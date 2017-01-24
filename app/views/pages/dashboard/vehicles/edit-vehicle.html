@@ -1,0 +1,336 @@
+<div class="mdl-cell" flex="100" style="background: white;" ng-init="vm.initEditVehicle()">
+    <div class="panel-header">
+        Edit Vehicle Details
+    </div>
+    <div class="panel-body forms">
+        <form name="vehicleForm" class="form-horizontal" ng-submit="vm.editVehicle()">
+            <h4>Primary Details</h4>
+            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'licensePlateTooltip' | translate}}"
+                                id="{{validate(vehicleForm.licensePlate.$valid)}}"
+                                name="licensePlate"
+                                placeholder="License Plate"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.licensePlateID" focus-if>
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                id="{{validate(vehicleForm.vin.$valid)}}"
+                                name="vin"
+                                placeholder="VIN"
+                                ng-required="false"
+                                ng-maxlength="17"
+                                ng-minlength="17"
+                                ng-pattern="/^[a-zA-Z0-9]{17}$/"
+                                ng-trim="false"
+                                ng-change="vm.getVehicleInformationByVin()"
+                                ng-model="vm.vehicle.vin">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Make</label>
+                        <md-select 
+                            class="form-control" 
+                            id="{{validate(vehicleForm.vehicleMake.$valid)}}"
+                            name="vehicleMake"
+                            ng-required="true"
+                            ng-init="vm.getMakes()"
+                            ng-model="vm.vehicle.make"
+                            ng-change="vm.refreshModels()"
+                            ng-disabled="vm.vehicleInfoIsFound && vehicleForm.vin.$valid && !!vehicleForm.vin.$viewValue">
+                            <md-option ng-repeat="make in vm.makes" ng-value="make.name">
+                                {{make.name}}
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Model</label>
+                        <md-select 
+                            class="form-control" 
+                            id="{{validate(vehicleForm.vehicleModel.$valid)}}"
+                            name="vehicleModel"
+                            ng-required="vm.vehicle.make!='Other'"
+                            ng-model="vm.vehicle.model"
+                            ng-disabled="vm.vehicleInfoIsFound && vehicleForm.vin.$valid && !!vehicleForm.vin.$viewValue"
+                            ng-hide="vm.vehicle.make=='Other'">
+                            <md-option ng-repeat="model in vm.models" ng-value="model.name"> 
+                                {{model.name}} 
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
+                    <md-input-container ng-show="vm.vehicle.make=='Other'">
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.customMake.$valid)}}"
+                                name="customMake"
+                                placeholder="Make"
+                                ng-required="vm.vehicle.make=='Other'"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.customMake">
+                    </md-input-container>
+                    <md-input-container ng-show="vm.vehicle.make=='Other'">
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.customModel.$valid)}}"
+                                name="customModel"
+                                placeholder="Model"
+                                ng-required="vm.vehicle.make=='Other'"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.customModel">
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'yearTooltip' | translate}}"
+                                id="{{validate(vehicleForm.year.$valid)}}"
+                                name="year"
+                                placeholder="Year"
+                                ng-required="false"
+                                ng-maxlength="4"
+                                ng-minlength="4"
+                                ng-pattern="/(([1][9][0-9][0-9])|([2][0-1][0-9][0-9]))$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.year"
+                                ng-disabled="vm.vehicleInfoIsFound && vehicleForm.vin.$valid && !!vehicleForm.vin.$viewValue"
+                                ui-mask="9999"  
+                                ui-mask-placeholder 
+                                ui-mask-placeholder-char="_">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Color</label>
+                        <md-select 
+                            class="form-control" 
+                            id="{{validate(vehicleForm.color.$valid)}}"
+                            name="color"
+                            ng-required="true"
+                            ng-model="vm.vehicle.color">
+                            <md-option ng-repeat="color in vm.colors" ng-value="color.name"> 
+                                {{color.name}} 
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                    <md-input-container>
+                        <label>Department</label>
+                        <md-select 
+                            class="form-control" 
+                            id="{{validate(vehicleForm.department.$valid)}}"
+                            name="department"
+                            ng-required="true"
+                            ng-model="vm.vehicle.department">
+                            <md-option ng-repeat="department in vm.departments" ng-value="department.name"> 
+                                {{department.name}} 
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Type</label>
+                        <md-select 
+                            class="form-control" 
+                            id="{{validate(vehicleForm.type.$valid)}}"
+                            name="type"
+                            ng-required="true"
+                            ng-model="vm.vehicle.type">
+                            <md-option ng-repeat="type in vm.types" ng-value="type.name"> 
+                                {{type.name}} 
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.serialNumber.$valid)}}"
+                                name="serialNumber"
+                                placeholder="Serial Number"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.serialNumber">
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.propertyNumber.$valid)}}"
+                                name="propertyNumber"
+                                placeholder="Property Number"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.propertyNumber">
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.registrationID.$valid)}}"
+                                name="registrationID"
+                                placeholder="Registration ID"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.registrationID">
+                    </md-input-container>
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.titleID.$valid)}}"
+                                name="titleID"
+                                placeholder="Title ID"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.titleID">
+                    </md-input-container>
+                </div>
+            </div>
+        <form name="vehicleForm" class="form-horizontal" ng-submit="vm.editVehicle()">
+            <h4>Additional Details</h4>
+            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
+            
+                    <md-input-container>
+                        <label><small>Marbete Date</small></label>
+                    </md-input-container>
+                    <md-datepicker 
+                        ng-model="vm.vehicle.marbeteDate" 
+                        md-placeholder="mm/dd/yyyy">
+                    </md-datepicker>
+                    
+                    <md-input-container>
+                        <label><small>Inspection Date</small></label>
+                    </md-input-container>
+                    <md-datepicker 
+                        ng-model="vm.vehicle.inspectionDate" 
+                        md-placeholder="mm/dd/yyyy">
+                    </md-datepicker>
+                    <br><br>
+
+                    <md-input-container>
+                        <input  type="number"
+                                class="form-control"
+                                tooltip="{{'doorsTooltip' | translate}}"
+                                id="{{validate(vehicleForm.doors.$valid)}}"
+                                name="doors"
+                                placeholder="Doors"
+                                ng-required="false"
+                                ng-maxlength="4"
+                                ng-minlength="4"
+                                ng-pattern="/([0-4])$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.doors"
+                                ui-mask="9"  
+                                ui-mask-placeholder 
+                                ui-mask-placeholder-char="_">
+                    </md-input-container>
+                </div>
+
+                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
+                    
+                    <md-input-container>
+                        <label><small>Decommission Date</small></label>
+                    </md-input-container>
+                    <md-datepicker 
+                        ng-model="vm.vehicle.decomissionDate" 
+                        md-placeholder="mm/dd/yyyy">
+                    </md-datepicker>
+                    
+                    <md-input-container>
+                        <label><small>Inscription Date</small></label>
+                    </md-input-container>
+                    <md-datepicker 
+                        ng-model="vm.vehicle.inscriptionDate" 
+                        md-placeholder="mm/dd/yyyy">
+                    </md-datepicker>
+                    <br><br>
+
+                    <md-input-container>
+                        <input  type="number"
+                                class="form-control"
+                                tooltip="{{'cylindersTooltip' | translate}}"
+                                id="{{validate(vehicleForm.cylinders.$valid)}}"
+                                name="cylinders"
+                                placeholder="Cylinders"
+                                ng-required="false"
+                                ng-maxlength="4"
+                                ng-minlength="4"
+                                ng-pattern="/([0-8])$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.cylinders"
+                                ui-mask="9"  
+                                ui-mask-placeholder 
+                                ui-mask-placeholder-char="_">
+                    </md-input-container>
+                </div>
+                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'ACAATooltip' | translate}}"
+                                id="{{validate(vehicleForm.ACAA.$valid)}}"
+                                name="ACAA"
+                                placeholder="ACAA"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.ACAA.licensePlateID">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.purchasePrice.$valid)}}"
+                                name="purchasePrice"
+                                placeholder="Purchase Price"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.purchasePrice">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                id="{{validate(vehicleForm.insurance.$valid)}}"
+                                name="insurance"
+                                placeholder="Insurance"
+                                ng-required="true"
+                                ng-maxlength="24"
+                                ng-minlength="1"
+                                ng-pattern="/^[a-zA-Z0-9]*$/"
+                                ng-trim="false"
+                                ng-model="vm.vehicle.insurance">
+                    </md-input-container>
+                </div>
+            </div>
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
+        </form>
+    </div>
+</div>

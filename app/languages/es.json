@@ -1,0 +1,24 @@
+{
+      "lang": "Lenguaje",
+      "dashboard": "Inicio",
+      "cards": "Tarjetas",
+      "calendar": "Calendario",
+      "mail": "Correo",
+      "inbox": "Bandeja de Entrada",
+      "compose": "Redactar",
+      "login": "Iniciar Sesión",
+      "signup": "Regístrate",
+      "profilee": "Perfil",
+      "logout": "Cerrar Sesión",
+      "registerhere": "Regístrate Aquí",
+      "email": "Email",
+      "password": "Contraseña",
+      "register": "Regístrate",
+      "loginpage": "Página de Inicio de Sesión",
+      "fullname": "Nombre Completo",
+      "repeatpass": "Repetir Contraseña",
+
+      "vehicles": "Vehículos",
+      "tolls": "Peajes",
+      "maintenance": "Mantenimiento"
+  }

@@ -1,0 +1,68 @@
+<pageheader pagename="{{ 'userDetails' | translate }}" subtitle="Invoice Page subtitle"></pageheader>
+<div class="conter-wrapper" ng-controller="LoginCtrl as loginCtrl" ng-init="usersCtrl.getUser()">
+	<div class="cover-wrapper">
+		<div class="cover-photo" style="background-image: url( 'images/profile-cover.jpg ') ;">
+            <button type="button" class="btn btn-primary pull-right btn-xs" ng-click="$back()"><i class="fa fa-close"></i><span class="hidden-xs"></button>
+			<div class="name-desg">
+				<h3>
+					{{usersCtrl.user.firstName}} {{usersCtrl.user.middleName}} {{usersCtrl.user.firstLastName}} {{usersCtrl.user.secondlastName}} 
+					<small>{{usersCtrl.user.role | translate}} @ University of Puerto Rico, Mayagüez Campus</small>
+				</h3>
+			</div>
+		</div>
+		<div class="profile-photo-warp">
+			<img class="profile-photo img-responsive img-circle" ng-src="images/user_profiles/{{usersCtrl.user.profilePicture || 'default.png'}}" alt="">
+		</div>
+		<div class="foobar">
+			<a href="">
+				<!-- <i class="fa fa-file-text text-danger"></i> 443</a> &nbsp;&nbsp;&nbsp; <i class="fa fa-bar-chart-o"></i> 443 -->
+				<span class="probutton"  ng-show="loginCtrl.currentUser().userRoleID==1 || loginCtrl.currentUser()._id==usersCtrl.user._id"> 
+					<button type="button" class="btn btn-primary  btn-bordered" ui-sref="users.edit({userID: usersCtrl.user._id})">
+					{{ 'edit' | translate }} {{ 'profile' | translate }}</button> 
+				</span>
+				<span class="links pull-right"><a href="mailto:{{usersCtrl.user.email}}"><i class="fa fa-envelope-o"></i></a></span>
+			</a>
+		</div>
+	</div>
+	<div class="conter-wrapper">
+		<div>
+			<div class="profile-body row " id="profile-items">
+				<div class="col-sm-6 col-md-offset-3">
+					<div class="prophoto">
+						<div class="comment-link">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title"><img class="panel-photo img-responsive img-circle" ng-src="images/user_profiles/{{usersCtrl.user.profilePicture || 'default.png'}}" alt="">
+										{{ 'userDetails' | translate }} <br>
+									</h3>
+								</div>
+								<div class="panel-body">
+									<div class="lorem">
+										<strong class="text-dark">{{ 'name' | translate }}</strong>:&nbsp;{{usersCtrl.user.firstName}} {{usersCtrl.user.middleName}} {{usersCtrl.user.firstLastName}} {{usersCtrl.user.secondLastName}} 
+										<br>
+										<strong class="text-dark">{{ 'userID' | translate }}</strong>:&nbsp;{{usersCtrl.user._id}}
+										<br>
+										<strong class="text-dark">{{ 'telephone' | translate }}</strong>:&nbsp;{{usersCtrl.user.telephone}}
+										<br>
+										<strong class="text-dark">{{ 'userRole' | translate }}</strong>:&nbsp;{{usersCtrl.user.role | translate}}
+										<br>
+										<strong class="text-dark">{{ 'status' | translate }}</strong>:&nbsp;
+											<span ng-show="usersCtrl.user.status">{{ 'active_singular' | translate }}</span>
+											<span ng-hide="usersCtrl.user.status">{{ 'notActive_singular' | translate }}</span>
+										<br>
+									</div>
+								</div>
+					            <div class="panel-footer">
+					                <div class="clearfix text-center">
+					                <div class="text-center">
+					                    <h4>{{'footer' | translate}}</h4>
+					                </div>
+					            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

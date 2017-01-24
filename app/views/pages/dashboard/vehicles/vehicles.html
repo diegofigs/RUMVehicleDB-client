@@ -1,0 +1,68 @@
+<pageheader pagename="{{ 'vehicles' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
+
+<div class="mdl-cell shadow" ng-init="vm.getVehicles()">
+    <div class="panel-header">{{ 'vehicles' | translate }}</div>
+    <div class="panel-body">
+        <md-card ng-repeat="vehicle in vm.vehicles" hide-lg hide-md hide-xl>
+            <md-card-title>
+              <md-card-title-text>
+                    <span class="md-headline">{{vehicle.make + " " + vehicle.model}} {{vehicle.year}}</span>
+                    <span class="md-subhead">{{vehicle.licensePlateID}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media">
+                        <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ui-sref="vehicles.view({vehicleID: vehicle._id})">View Vehicle</md-button>
+                <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
+            </md-card-actions>
+        </md-card>
+        <div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid" hide-xs hide-sm>
+            <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+                <md-card ng-repeat="vehicle in vm.evenVehicles">
+                    <md-card-title>
+                      <md-card-title-text>
+                            <span class="md-headline">{{vehicle.make + " " + vehicle.model}} {{vehicle.year}}</span>
+                            <span class="md-subhead">{{vehicle.licensePlateID}}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media">
+                                <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ui-sref="vehicles.view({vehicleID: vehicle._id})">View Vehicle</md-button>
+                        <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+            <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+                <md-card ng-repeat="vehicle in vm.oddVehicles">
+                    <md-card-title>
+                      <md-card-title-text>
+                            <span class="md-headline">{{vehicle.make + " " + vehicle.model}} {{vehicle.year}}</span>
+                            <span class="md-subhead">{{vehicle.licensePlateID}}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media">
+                                <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ui-sref="vehicles.view({vehicleID: vehicle._id})">View Vehicle</md-button>
+                        <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>
+<nav mfb-menu position="br" effect="slidein-spring" label="Add Card"
+     active-icon="mdi mdi-plus" resting-icon="mdi mdi-plus"
+     toggling-method="click" ui-sref="cards.add()">
+</nav>

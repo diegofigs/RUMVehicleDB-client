@@ -1,0 +1,71 @@
+<pageheader pagename="{{ 'users' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
+
+<div class="conter-wrapper" ng-controller="LoginCtrl as loginCtrl" ng-init="usersCtrl.getUsers()">                
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><i class="fa fa-users"></i>&nbsp;&nbsp;{{ 'users' | translate }}
+                        <button type="button" class="btn btn-success btn-bordered pull-right btn-xs" ui-sref="users.add" ng-show="loginCtrl.currentUser().userRoleID==1"><i class="fa fa-plus"></i><span class="hidden-xs">&nbsp;&nbsp;{{"add" | translate}} {{"user" | translate}}</span></button>
+                        <div class="panel-control pull-right">
+                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
+                            <a class="panelButton"><i class="fa fa-minus"></i></a>
+                            <a class="panelButton"><i class="fa fa-remove"></i></a>
+                        </div>
+                    </h1>
+                </div>
+                <div class="panel-body hidden-xs">
+                    <form class="form-inline" ng-submit="usersCtrl.searchUsers()">
+                        <div class="form-group">
+                            <label>{{'searchBy' | translate}}:&nbsp;&nbsp;<label>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstNameSearch">{{ 'name' | translate }}:&nbsp;&nbsp;</label>
+                            <input ng-model="usersCtrl.firstNameSearch" type="text" class="form-control underline" id="firstNameSearch" placeholder="{{'firstName' | translate}}" focus-if>
+                            <input ng-model="usersCtrl.firstLastNameSearch" type="text" class="form-control underline" id="firstLastNameSearch" placeholder="{{'lastName' | translate}}">
+                        </div>
+                        <button type="submit" class="btn btn-info btn-rounded"><i class="fa fa-search">&nbsp;&nbsp;{{"search" | translate}}</i></button>
+                    </form>    
+                </div>
+                <div class="panel-body">
+                    <tabset justified="true">
+                        <tab heading="{{ 'active' | translate }}" select="usersCtrl.tabChanged(1)">
+                            <alert type="warning" ng-show="usersCtrl.noUsersFound">
+                                <strong class="text-dark"><i class="fa fa-warning"></i>&nbsp;&nbsp;{{ 'noUsersFound' | translate }}</strong>
+                            </alert>     
+                            <div class="list-group">
+                                <a class="list-group-item" ui-sref="users.view({userID: user._id})" ng-repeat="user in usersCtrl.users | orderBy:'lastName'">
+                                    <span class="badge">{{user.role}}</span>
+                                    <h4 class="list-group-item-heading"><b>{{user.firstName}} {{user.firstLastName}} {{user.secondLastName}}</b></h4>
+                                    <p class="list-group-item-text" >{{"telephone" | translate}}: {{user.telephone}}</p>
+                                </a>
+                            </div>
+                        </tab>
+                        <tab heading="{{ 'notActive' | translate }}" select="usersCtrl.tabChanged(0)">
+                            <alert type="warning" ng-show="usersCtrl.noUsersFound">
+                                <strong class="text-dark"><i class="fa fa-warning"></i>&nbsp;&nbsp;{{ 'noUsersFound' | translate }}</strong>
+                            </alert>     
+                            <div class="list-group">
+                                <a class="list-group-item" ui-sref="users.view({userID: user._id})" ng-repeat="user in usersCtrl.users | orderBy:'lastName'">
+                                    <span class="badge">{{user.role}}</span>
+                                    <h4 class="list-group-item-heading"><b>{{user.firstName}} {{user.firstLastName}} {{user.secondLastName}}</b></h4>
+                                    <p class="list-group-item-text" >{{"telephone" | translate}}: {{user.telephone}}</p>
+                                </a>
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+                <div class="panel-footer">
+                    <div class="clearfix text-center">
+                        <pagination boundary-links="true" total-items="usersCtrl.totalItems" ng-change="usersCtrl.getUsers()" ng-model="usersCtrl.currentPage" items-per-page="usersCtrl.itemsPerPage" num-pages="usersCtrl.numOfPages" max-size="usersCtrl.maxNumOfPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>   
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h4>{{'footer' | translate}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
