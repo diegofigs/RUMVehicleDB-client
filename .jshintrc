@@ -20,6 +20,7 @@
   "jasmine": true,
   "globals": {
     "angular": false,
-    "inject": false
+    "inject": false,
+    "$": false
   }
 }
