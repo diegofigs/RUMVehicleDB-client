@@ -13,11 +13,11 @@
 			<form style="display: flex; justify-content: center;">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
 					<md-input-container >
-	                    <input ng-model="user.mail" type="email" placeholder="email">
+	                    <input ng-model="user.email" type="email" placeholder="email">
 	                </md-input-container>
 				</div>
 			</form>
-			<form style="display: flex; justify-content: center;">	
+			<form style="display: flex; justify-content: center;">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
 					<md-input-container >
 	                    <input ng-model="user.password" type="password" placeholder="password">
@@ -33,7 +33,7 @@
 				</span>
 				<div class="link">
 					<div class="link" style="padding-bottom:0;">
-						<md-button class="md-raised primary" ui-sref="home"> Login </md-button>						
+						<md-button class="md-raised primary" ng-click="login()"> Login </md-button>
 					</div>
 				</div>
 			</div>

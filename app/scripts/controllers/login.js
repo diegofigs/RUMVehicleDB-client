@@ -24,21 +24,16 @@ angular.module('MaterialApp')
       controller: 'LoginCtrl'
     });
 })
-.controller('LoginCtrl', function($scope, $location, $timeout, $q) {
+.controller('LoginCtrl', function($scope, $state, $log, AuthService) {
 
-  $scope.submit = function() {
-    return false;
-  };
-
-  $scope.authenticate = function() {
-    var defer = $q.defer();
-    $timeout(function() {
-      defer.resolve();
-      $timeout(function() {
-        $location.path('/dashboard/home');
-      }, 600);
-    }, 1100);
-    return defer.promise;
+  $scope.login = function() {
+    return AuthService.authenticate($scope.user)
+      .then(function(token) {
+      $log.log(token);
+      $state.go('dashboard');
+    }).catch(function(error) {
+      $log.log(error);
+    });
   };
 
 });
