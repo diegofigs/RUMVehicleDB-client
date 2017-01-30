@@ -18,7 +18,7 @@ angular
     'chart.js',
     'gridshore.c3js.chart',
     'angular-growl',
-    'growlNotifications',    
+    'growlNotifications',
     'angular-loading-bar',
     'easypiechart',
     'ui.sortable',
@@ -30,36 +30,33 @@ angular
     ])
     // .constant('BACKEND_SERVER', 'http://dev.uprm.edu/guardia/CAAMpusInfractionAPI/public/api/v1/')
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.latencyThreshold = 5;
-          cfpLoadingBarProvider.includeSpinner = false;
+      cfpLoadingBarProvider.latencyThreshold = 5;
+      cfpLoadingBarProvider.includeSpinner = false;
     }])
-       
     .config(function($translateProvider) {
-        $translateProvider.useStaticFilesLoader({
+      $translateProvider.useStaticFilesLoader({
           prefix: 'languages/',
           suffix: '.json'
         });
-        $translateProvider.useSanitizeValueStrategy(null);
-        $translateProvider.preferredLanguage('en');       
+      $translateProvider.useSanitizeValueStrategy(null);
+      $translateProvider.preferredLanguage('en');
     })
-
     .config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.when('/dashboard', '/dashboard/home');
-        $urlRouterProvider.otherwise('/dashboard/home');
+      $urlRouterProvider.when('/dashboard', '/dashboard/home');
+      $urlRouterProvider.otherwise('/dashboard/home');
 
-        $stateProvider
+      $stateProvider
         .state('base', {
-            abstract: true,
-            url: '',
-            templateUrl: 'views/base.html?v='+window.appVersion,
-            controller: 'DashboardCtrl'
+          abstract: true,
+          url: '',
+          templateUrl: 'views/base.html?v=' + window.appVersion,
+          controller: 'DashboardCtrl'
         })
         .state('404', {
-            url: '/404-page',
-            parent: 'base',
-            templateUrl: 'views/pages/404-page.html?v='+window.appVersion
+          url: '/404-page',
+          parent: 'base',
+          templateUrl: 'views/pages/404-page.html?v=' + window.appVersion
         });
     });
-
 
