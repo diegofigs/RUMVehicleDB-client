@@ -15,6 +15,7 @@ angular
     'ui.router',
     'ngAnimate',
     'ngMaterial',
+    'ngStorage',
     'chart.js',
     'gridshore.c3js.chart',
     'angular-growl',
@@ -41,6 +42,11 @@ angular
       $translateProvider.useSanitizeValueStrategy(null);
       $translateProvider.preferredLanguage('en');
     })
+    .config(['$mdIconProvider', function($mdIconProvider) {
+      $mdIconProvider
+        .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
+        .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+    }])
     .config(function($stateProvider, $urlRouterProvider) {
 
       $urlRouterProvider.when('/dashboard', '/dashboard/home');
