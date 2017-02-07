@@ -19,11 +19,13 @@ angular.module('MaterialApp')
     });
 })
 .controller('DashboardCtrl', function($scope,
+                                      $log,
                                       $state,
                                       $rootScope,
                                       $translate,
                                       $timeout,
-                                      $window) {
+                                      $window,
+                                      AuthService) {
 
   if ($(window).width() < 1450) {
     $('.c-hamburger').removeClass('is-active');
@@ -31,6 +33,7 @@ angular.module('MaterialApp')
   }
 
   $scope.$state = $state;
+  $scope.getUser = AuthService.getUser;
 
   $rootScope.$on('$stateChangeSuccess', function() {
     $timeout(function() {

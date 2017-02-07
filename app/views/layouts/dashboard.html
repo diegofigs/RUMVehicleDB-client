@@ -1,5 +1,5 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-	<header class=" navbar shadow">
+	<header class="navbar shadow">
 		<!-- Hamburger -->
 		<button class="c-hamburger c-hamburger--htla is-active" ng-click="extend()">
 			<span>toggle menu</span>
@@ -21,7 +21,6 @@
 					</md-menu-item>
 				</md-menu-content>
 			</md-menu>
-
 			<md-menu md-position-mode="target-right target" >
 				<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
 					<i class="mdi mdi-brightness-1 text-primary"></i>
@@ -61,70 +60,76 @@
 					<md-menu-item>
 						<md-button ui-sref="login" style="display:flex;">Logout</md-button>
 					</md-menu-item>
+                </md-menu-content>
 			</md-menu>
 		</nav>
-
 	</header>
-<!-- Side bar here -->
-<aside id="" class="sidebar">
-	<div class="top-logo">
-		<i class="mdi mdi-car"></i>
-	</div>
-	<div class="top-logo-extended">
-		RUM Vehicle<br/> <span class="smaller">Database</span>
-	</div>
-	<div class="scrollbar" id="scroll">
-		<div class="user-info">
-			<div class="opacity">
-				<a ui-sref="profile"><img src="images/profile.jpg" alt="" class="sidebar-profile"></a>
-				<div class="info">
-					Lixhjideny Mendez <br /> <span class="smaller">Dev at UPR Mayagüez</span>
-					<div class="pen">
-						<a ui-sref="profile" class=""><i class="mdi mdi-border-color"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="dashboard-menu">
-			<ul class="menu-list">
-				<li ng-class="{active: $state.includes('home')}">
-					<md-button ui-sref="home" class="">
-						<i class="mdi mdi-home"></i> &nbsp;
-						<span class="text">{{ 'dashboard' | translate }}</span>
-					</md-button>
-				</li>
-				<li ng-class="{active: $state.includes('vehicles')}">
-					<md-button ui-sref="vehicles" class="">
-						<i class="mdi mdi-car"></i> &nbsp;
-						<span class="text">{{ 'vehicles' | translate }}</span>
-					</md-button>
-				</li>
-				<li ng-class="{active: $state.includes('cards')}">
-					<md-button ui-sref="cards" class="">
-						<i class="mdi mdi-credit-card"></i> &nbsp;
-						<span class="text">{{ 'cards' | translate }}</span>
-					</md-button>
-				</li>
-				<li ng-class="{active: $state.includes('tolls')}">
-					<md-button ui-sref="tolls" class="" ng-disabled="true">
-						<i class="mdi mdi-traffic-light"></i> &nbsp;
-						<span class="text">{{ 'tolls' | translate }}</span>
-					</md-button>
-				</li>
-				<li ng-class="{active: $state.includes('maintenance')}">
-					<md-button ui-sref="maintenance" class="" ng-disabled="true">
-						<i class="mdi mdi-wrench"></i> &nbsp;
-						<span class="text">{{ 'maintenance' | translate }}</span>
-					</md-button>
-				</li>
-			</ul>
-		</div>
-	</div>
-</aside>
-<main class=" content-holder">
-	<div class="page-content remodal-bg animsition" ng-class="{expandedContainer: $state.includes('profile')}" >
-		<!-- Your content goes here -->
-		<div ui-view ></div>
-	</div>
-</main>
+    <!-- Side bar here -->
+    <aside id="" class="sidebar">
+        <div class="top-logo">
+            <i class="mdi mdi-car"></i>
+        </div>
+        <div class="top-logo-extended">
+            RUM Vehicle<br/> <span class="smaller">Database</span>
+        </div>
+        <div class="scrollbar" id="scroll">
+            <div class="user-info">
+                <div class="opacity">
+                    <a ui-sref="profile"><img src="images/profile.jpg" alt="" class="sidebar-profile"></a>
+                    <div class="info">
+                        {{ getUser().email}} <br /> <span class="smaller">Dev at UPR Mayagüez</span>
+                        <div class="pen">
+                            <a ui-sref="profile" class=""><i class="mdi mdi-border-color"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-menu">
+                <ul class="menu-list">
+                    <li ng-class="{active: $state.includes('home')}">
+                        <md-button ui-sref="home" class="">
+                            <i class="mdi mdi-home"></i>
+                            <span class="text">{{ 'dashboard' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-if="getUser().id === 1" ng-class="{active: $state.includes('users')}">
+                        <md-button ui-sref="users" class="">
+                            <i class="mdi mdi-account-multiple"></i>
+                            <span class="text">{{ 'users' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('vehicles')}">
+                        <md-button ui-sref="vehicles" class="">
+                            <i class="mdi mdi-car"></i>
+                            <span class="text">{{ 'vehicles' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('cards')}">
+                        <md-button ui-sref="cards" class="">
+                            <i class="mdi mdi-credit-card"></i>
+                            <span class="text">{{ 'cards' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('tolls')}">
+                        <md-button ui-sref="tolls" class="" ng-disabled="true">
+                            <i class="mdi mdi-traffic-light"></i> &nbsp;
+                            <span class="text">{{ 'tolls' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('maintenance')}">
+                        <md-button ui-sref="maintenance" class="" ng-disabled="true">
+                            <i class="mdi mdi-wrench"></i> &nbsp;
+                            <span class="text">{{ 'maintenance' | translate }}</span>
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <main class=" content-holder">
+        <div class="page-content remodal-bg animsition" ng-class="{expandedContainer: $state.includes('profile')}" >
+            <!-- Your content goes here -->
+            <div ui-view ></div>
+        </div>
+    </main>
 </div>
