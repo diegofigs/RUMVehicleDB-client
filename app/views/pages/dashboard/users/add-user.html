@@ -1,186 +1,30 @@
 <pageheader pagename="{{ 'add' | translate }} {{ 'user' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
 
-<div class="conter-wrapper" ng-init="usersCtrl.initAddUser()">                
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'add' | translate }} {{ 'user' | translate }}
-                        <button type="button" class="btn btn-primary pull-right btn-xs" ng-click="$back()"><i class="fa fa-close"></i><span class="hidden-xs"></button>
-                        <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </h3>
+<div class="mdl-cell shadow">
+    <div class="panel-header">{{ 'add' | translate }} {{ 'user' | translate }}</div>
+    <div class="panel-body forms">
+        <form name="userForm" class="form-horizontal" ng-submit="createUser()">
+            <div class="form-group">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                    <md-input-container >
+                        <input ng-model="user.email" type="email" placeholder="email">
+                    </md-input-container>
                 </div>
-                <div class="panel-body">
-                    <form name="userForm" class="form-horizontal" ng-submit="usersCtrl.addUser()">
-                        <h1>{{ 'userDetails' | translate }}</h1>
-                        <hr>
-                        <div class="row form-group">
-                            <label class="col-sm-1 control-label">{{ 'name' | translate }}</label>
-                            <div class="col-sm-4">
-                                <input  tooltip-placement="top"
-                                        type="text" 
-                                        class="form-control"
-                                        tooltip="{{'nameTooltip' | translate}}"
-                                        id="{{validate(userForm.firstName.$valid)}}"
-                                        name="firstName"
-                                        placeholder="First Name"
-                                        ng-required="true"
-                                        ng-maxlength="24"
-                                        ng-minlength="2"
-                                        ng-pattern="/^([A-Z]{1}[a-z]{1,23})$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.firstName" focus-if>
-                            </div>
-                            <div class="col-sm-1">
-                                <input  type="text" 
-                                        class="form-control"
-                                        tooltip="{{'middleNameTooltip' | translate}}"
-                                        id="{{validate(userForm.middleName.$valid)}}"
-                                        name="middleName"
-                                        placeholder="Middle"
-                                        ng-required="false"
-                                        ng-maxlength="1"
-                                        ng-minlength="0"
-                                        ng-pattern="/^[A-Z]{1}$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.middleName">
-                            </div>
-                            <div class="col-sm-3">
-                                <input  type="text" 
-                                        class="form-control"
-                                        tooltip="{{'nameTooltip' | translate}}"
-                                        id="{{validate(userForm.firstLastName.$valid)}}"
-                                        name="firstLastName"
-                                        placeholder="Paternal Last Name"
-                                        ng-required="true"
-                                        ng-maxlength="24"
-                                        ng-minlength="1"
-                                        ng-pattern="/^(([A-ZÁÉÍÓÚ]{1}[a-záéíóú ]*))+$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.firstLastName">
-                            </div>
-                            <div class="col-sm-3">
-                                <input  type="text" 
-                                        class="form-control"
-                                        tooltip="{{'nameTooltip' | translate}}"
-                                        id="{{validate(userForm.secondLastName.$valid)}}"
-                                        name="secondLastName"
-                                        placeholder="Maternal Last Name"
-                                        ng-required="false"
-                                        ng-maxlength="24"
-                                        ng-minlength="1"
-                                        ng-pattern="/^(([A-ZÁÉÍÓÚ]{1}[a-záéíóú ]*))+$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.secondLastName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-sm-1 control-label">{{ 'email' | translate }}</label>
-                            <div class="col-sm-5">
-                                <input  type="email" 
-                                        class="form-control"
-                                        tooltip="{{'emailTooltip' | translate}}"
-                                        id="{{validate(userForm.email.$valid)}}"
-                                        name="email"
-                                        placeholder="firstname.lastname@upr.edu"
-                                        ng-required="true"
-                                        ng-maxlength="40"
-                                        ng-minlength="9"
-                                        ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.email">
-                            </div>
-                            <label for="telephone" class="col-sm-1 control-label">{{ 'telephone' | translate }}</label>
-                            <div class="col-sm-5">
-                                <input  type="text" 
-                                        class="form-control"
-                                        tooltip="{{'phoneTooltip' | translate}}"
-                                        id="{{validate(userForm.telephone.$valid)}}"
-                                        name="telephone"
-                                        placeholder="787-555-5555"
-                                        ng-required="false"
-                                        ng-maxlength="12"
-                                        ng-minlength="12"
-                                        ng-pattern="/^([0-9]{3}\-[0-9]{3}\-[0-9]{4}){1}$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.telephone"
-                                        ui-mask="999-999-9999"  
-                                        ui-mask-placeholder 
-                                        ui-mask-placeholder-char="_">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-sm-1 control-label">{{ 'password' | translate }}</label>
-                            <div class="col-sm-5">
-                                <input  type="password" 
-                                        class="form-control"
-                                        tooltip="{{'passwordTooltip' | translate}}"
-                                        id="{{validate(userForm.password.$valid)}}"
-                                        name="password"
-                                        placeholder=""
-                                        ng-required="true"
-                                        ng-maxlength="40"
-                                        ng-minlength="8"
-                                        ng-pattern="/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([^\s]+)$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.password">
-                            </div>
-                            <label for="pin" class="col-sm-1 control-label">{{ 'pin' | translate }}</label>
-                            <div class="col-sm-5">
-                                <input  type="text" 
-                                        class="form-control"
-                                        tooltip="{{'pinTooltip' | translate}}"
-                                        id="{{validate(userForm.pin.$valid)}}"
-                                        name="pin"
-                                        placeholder="1234"
-                                        ng-required="true"
-                                        ng-maxlength="4"
-                                        ng-minlength="4"
-                                        ng-pattern="/^[0-9]{4}$/"
-                                        ng-trim="false"
-                                        ng-model="usersCtrl.user.pin"
-                                        ui-mask="9999"  
-                                        ui-mask-placeholder 
-                                        ui-mask-placeholder-char="_">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="permitType" class="col-sm-1 control-label">{{ 'userRole' | translate }}</label>
-                            <div class="col-sm-5">
-                                <select 
-                                    class="form-control" 
-                                    name="userRole"
-                                    id="{{validate(userForm.userRole.$valid)}}"
-                                    ng-required="true"
-                                    ng-model="usersCtrl.user.userRoleID"
-                                    ng-options="userRole._id as userRole.description | translate for userRole in usersCtrl.userRoles">
-                                    <option value="" selected disabled>{{"selectUserRolePlaceholder" | translate}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-10 col-sm-2">
-                                <button type="submit" 
-                                        class="btn btn-success btn-block"
-                                        ng-disabled="userForm.$invalid">
-                                        {{ 'add' | translate }} {{ 'user' | translate }}
-                                </button> &nbsp; 
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="panel-footer">
-                    <div class="clearfix text-center">
-                    <div class="text-center">
-                        <h4>{{'footer' | translate}}</h4>
-                    </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                    <md-input-container >
+                        <input ng-model="user.password" type="password" placeholder="password">
+                    </md-input-container>
                 </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-sm-offset-10 col-sm-2">
+                    <button type="submit"
+                            class="btn btn-success btn-block"
+                            ng-disabled="userForm.$invalid">
+                            {{ 'add' | translate }} {{ 'user' | translate }}
+                    </button> &nbsp;
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
