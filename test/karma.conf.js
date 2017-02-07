@@ -38,6 +38,7 @@ module.exports = function(config) {
       '../bower_components/angular-translate-loader-url/angular-translate-loader-url.js',
       '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       '../bower_components/ng-material-floating-button/src/mfb-directive.js',
+      '../bower_components/ngstorage/ngStorage.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/scripts/**/*.js',

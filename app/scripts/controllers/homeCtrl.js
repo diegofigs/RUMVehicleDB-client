@@ -44,7 +44,8 @@ angular.module('MaterialApp')
     trackColor: '#F5E5F5'
   };
 
-  $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  $scope.labels = ['January', 'February', 'March',
+    'April', 'May', 'June', 'July'];
   $scope.series = ['Series A', 'Series B'];
   $scope.data = [
   [65, 59, 80, 81, 56, 55, 40],
@@ -54,7 +55,7 @@ angular.module('MaterialApp')
   $scope.onClick = function(points, evt) {
     console.log(points, evt);
   };
-  if ($(window).width() < 600) {		
+  if ($(window).width() < 600) {
     $('.mdl-grid').removeAttr('dragula');
   }
   $timeout(function() {
@@ -64,23 +65,22 @@ angular.module('MaterialApp')
       [7, 20, 10, 15, 17, 10, 27],
       [6, 9, 22, 11, 13, 20, 27]
       ],
-      colours: [{ 
+      colours: [{
         fillColor: '#FFA3FD',
         strokeColor: '#FFA3FD',
         pointColor: '#fff',
         pointStrokeColor: '#FFA3FD',
         pointHighlightFill: '#fff',
-        pointHighlightStroke: '#FFA3FD',
+        pointHighlightStroke: '#FFA3FD'
       },
-	        	{
-  fillColor: '#F800FC',
-  strokeColor: '#F800FC',
-  pointColor: '#fff',
-  pointStrokeColor: '#F800FC',
-  pointHighlightFill: '#fff',
-  pointHighlightStroke: '#F800FC',
-	        	}
-	        	],
+      {
+        fillColor: '#F800FC',
+        strokeColor: '#F800FC',
+        pointColor: '#fff',
+        pointStrokeColor: '#F800FC',
+        pointHighlightFill: '#fff',
+        pointHighlightStroke: '#F800FC'
+      }],
       options: {
         responsive: true,
         bezierCurve : false,
@@ -92,7 +92,6 @@ angular.module('MaterialApp')
       onClick: function(points, evt) {
         console.log(points, evt);
       }
-
     };
   }, 100);
   $scope.line2 = {
@@ -101,7 +100,7 @@ angular.module('MaterialApp')
     [99, 180, 80, 140, 120, 220, 100],
     [50, 145, 200, 75, 50, 100, 50]
     ],
-    colours: [{ 
+    colours: [{
       fillColor: 'rgba(0,0,0, 0)',
       strokeColor: '#C172FF',
       pointColor: '#fff',
@@ -109,15 +108,14 @@ angular.module('MaterialApp')
       pointHighlightFill: '#fff',
       pointHighlightStroke: '#8F00FF'
     },
-        	{
-          fillColor: 'rgba(0,0,0, 0)',
-          strokeColor: '#FFB53A',
-          pointColor: '#fff',
-          pointStrokeColor: '#FF8300',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: '#FF8300'
-        	}
-        	],
+    {
+      fillColor: 'rgba(0,0,0, 0)',
+      strokeColor: '#FFB53A',
+      pointColor: '#fff',
+      pointStrokeColor: '#FF8300',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: '#FF8300'
+    }],
     options: {
       responsive: true,
       bezierCurve : false,

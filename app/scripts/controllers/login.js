@@ -28,10 +28,9 @@ angular.module('MaterialApp')
 
   $scope.login = function() {
     return AuthService.authenticate($scope.user)
-      .then(function(token) {
-      $log.log(token);
-      $state.go('dashboard');
-    }).catch(function(error) {
+      .then(function() {
+        $state.go('dashboard');
+      }).catch(function(error) {
       $log.log(error);
     });
   };
