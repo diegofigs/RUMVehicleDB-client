@@ -4,31 +4,44 @@
 (function() {
   'use strict';
   angular.module('MaterialApp')
-    .factory('AuthService', function($http, $log) {
-      var auth = {
-        token: ''
-      };
+    .factory('AuthService', function($http, $log, $sessionStorage) {
+      var baseDomain = 'http://67.205.161.165/api/v1';
+      var auth = {};
       auth.authenticate = function(user) {
-        return $http.post('http://67.205.161.165/auth', user)
+        return $http.post(baseDomain + '/auth', user)
           .then(function(response) {
-            auth.token = response.data.token;
-            return auth.token;
+            $sessionStorage.token = response.data.token;
+            return $http.get(baseDomain + '/auth/me', {
+              headers: {
+                Authorization: 'Bearer ' + $sessionStorage.token
+              }
+            }).then(function(response) {
+              $sessionStorage.user = response.data.user;
+              return $sessionStorage.user;
+            });
           })
           .catch(function(error) {
             $log.log(error);
           });
       };
+      auth.logOut = function() {
+        delete $sessionStorage.token;
+        delete $sessionStorage.user;
+      };
       auth.getToken = function() {
         if (auth.isLoggedIn()) {
-          return auth.token;
+          return $sessionStorage.token;
+        }
+        return null;
+      };
+      auth.getUser = function() {
+        if (auth.isLoggedIn()) {
+          return $sessionStorage.user;
         }
         return null;
       };
       auth.isLoggedIn = function() {
-        if (auth.token !== '') {
-          return true;
-        }
-        return false;
+        return $sessionStorage.token !== '';
       };
       return auth;
     });
