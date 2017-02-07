@@ -27,15 +27,23 @@ angular.module('MaterialApp')
     });
   })
   .controller('UsersCtrl', function($scope, $state, $log, UsersService) {
-    $scope.users = UsersService.getCurrentUsers();
+    $scope.users = UsersService.users;
     $scope.createUser = function() {
       return UsersService.createUser($scope.user).then(function(response) {
         $log.log(response);
+        $state.go('users');
       });
     };
     $scope.deleteUser = function(user) {
       return UsersService.deleteUser(user).then(function(response) {
         $log.log(response);
+        $state.reload();
+      });
+    };
+    $scope.editUser = function(user) {
+      return UsersService.editUser(user).then(function(response) {
+        $log.log(response);
+        $state.go('users');
       });
     };
   });

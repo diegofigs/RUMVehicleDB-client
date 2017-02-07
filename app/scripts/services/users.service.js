@@ -5,13 +5,13 @@
 
 window.appVersion = 2.0;
 angular.module('MaterialApp')
-  .factory('UsersService', function($http, $log) {
+  .factory('UsersService', function($http, $log, AuthService) {
     var baseDomain = 'http://67.205.161.165/api/v1';
     var user = {
       users: []
     };
     user.getUsers = function() {
-      return $http.get(baseDomain + '/users')
+      user.users = $http.get(baseDomain + '/users')
         .then(function(response) {
           user.users = response.data.data;
           $log.log(response.data.data);
@@ -20,6 +20,7 @@ angular.module('MaterialApp')
         .catch(function(error) {
           $log.log(error);
         });
+      return user.users;
     };
     user.createUser = function(user) {
       return $http.post(baseDomain + '/users', user)
@@ -31,7 +32,11 @@ angular.module('MaterialApp')
         });
     };
     user.deleteUser = function(user) {
-      return $http.delete(baseDomain + '/users/' + user.id)
+      return $http.delete(baseDomain + '/users/' + user.id, {
+        headers: {
+          Authorization: 'Bearer ' + AuthService.getToken()
+        }
+      })
         .then(function(response) {
           $log.log(response);
         })
@@ -39,8 +44,14 @@ angular.module('MaterialApp')
           $log.log(error);
         });
     };
-    user.getCurrentUsers = function() {
-      return user.users;
+    user.editUser = function(user) {
+      return $http.put(baseDomain + '/users/' + user.id, user)
+        .then(function(response) {
+          $log.log(response);
+        })
+        .catch(function(error) {
+          $log.log(error);
+        });
     };
     return user;
   });
