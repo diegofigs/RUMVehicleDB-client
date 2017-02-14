@@ -27,8 +27,9 @@ angular
     'materialCalendar',
     'paperCollapse',
     'pascalprecht.translate',
+    'truncate',
     'ng-mfb'
-    ])
+  ])
     // .constant('BACKEND_SERVER', 'http://dev.uprm.edu/guardia/CAAMpusInfractionAPI/public/api/v1/')
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
       cfpLoadingBarProvider.latencyThreshold = 5;
@@ -44,8 +45,7 @@ angular
     })
     .config(['$mdIconProvider', function($mdIconProvider) {
       $mdIconProvider
-        .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
-        .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+        .fontSet('mdi', 'material-icons');
     }])
     .config(function($stateProvider, $urlRouterProvider) {
 
