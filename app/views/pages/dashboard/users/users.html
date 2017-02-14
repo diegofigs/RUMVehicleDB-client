@@ -2,17 +2,15 @@
 
 <md-content layout="row" layout-xs="column" layout-sm="column" layout-padding layout-wrap>
     <md-card ng-repeat="u in users" flex-md="50 none" flex-gt-md="33 nogrow">
-        <md-card-title>
-            <md-card-header>
-                <md-card-avatar>
-                    <md-icon md-font-set="mdi">people</md-icon>
-                </md-card-avatar>
-            </md-card-header>
-            <md-card-title-text>
+        <md-card-header>
+            <md-card-avatar>
+                <md-icon md-font-set="mdi">people</md-icon>
+            </md-card-avatar>
+            <md-card-header-text>
                 <span class="md-headline">{{ u.email | characters:18 }}</span>
                 <span class="md-subhead">{{u.id}}</span>
-            </md-card-title-text>
-        </md-card-title>
+            </md-card-header-text>
+        </md-card-header>
         <md-card-actions layout="row" layout-align="start start">
             <md-button>View User</md-button>
             <md-button ui-sref="users.edit({id: u.id})">Edit User</md-button>
