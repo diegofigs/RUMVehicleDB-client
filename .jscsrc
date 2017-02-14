@@ -60,5 +60,8 @@
     "disallowSpacesInsideParentheses": true,
 
     "disallowMultipleLineBreaks": true,
-    "disallowNewlineBeforeBlockStatements": true
+    "disallowNewlineBeforeBlockStatements": true,
+  "excludeFiles": [
+    "./app/scripts/filters/truncate.js"
+  ]
 }
