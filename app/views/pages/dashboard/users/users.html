@@ -2,28 +2,25 @@
 
 <div class="mdl-cell shadow">
     <div class="panel-header">{{ 'users' | translate }}</div>
-    <div class="panel-body">
-        <md-card ng-repeat="u in users">
+    <div class="panel-body" layout-xs="column" layout-sm="column" layout="row" layout-wrap>
+        <md-card ng-repeat="u in users" flex-md="50 none" flex-gt-md="33 nogrow">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{u.email}}</span>
+                    <span class="md-headline">{{ u.email | characters:18 }}</span>
                     <span class="md-subhead">{{u.id}}</span>
                 </md-card-title-text>
-                <md-card-title-media hide-sm hide-xs>
+                <md-card-title-media hide-xs hide-sm>
                     <div class="md-media-sm card-media">
                         <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
                     </div>
                 </md-card-title-media>
             </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
+            <md-card-actions layout="row" layout-align="start start">
                 <md-button>View User</md-button>
+                <md-button ui-sref="users.edit({id: u.id})">Edit User</md-button>
                 <md-button ng-click="deleteUser(u)">Delete User</md-button>
             </md-card-actions>
         </md-card>
     </div>
 </div>
 
-<nav mfb-menu position="br" effect="slidein-spring" label="Add Card"
-     active-icon="mdi mdi-plus" resting-icon="mdi mdi-plus"
-     toggling-method="click" ui-sref="users.add()">
-</nav>

@@ -45,7 +45,11 @@ angular.module('MaterialApp')
         });
     };
     user.editUser = function(user) {
-      return $http.put(baseDomain + '/users/' + user.id, user)
+      return $http.put(baseDomain + '/users/' + user.id, user, {
+        headers: {
+          Authorization: 'Bearer ' + AuthService.getToken()
+        }
+      })
         .then(function(response) {
           $log.log(response);
         })

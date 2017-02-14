@@ -19,12 +19,18 @@ angular.module('MaterialApp')
           }
         }
       }).state('users.add', {
-      url: '/users/add',
-      parent: 'dashboard',
-      templateUrl: 'views/pages/dashboard' +
-      '/users/add-user.html?v=' + window.appVersion,
-      controller: 'UsersCtrl',
-    });
+        url: '/users/add',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard' +
+        '/users/add-user.html?v=' + window.appVersion,
+        controller: 'UsersCtrl'
+      }).state('users.edit', {
+        url: '/users/:id/edit',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard' +
+        '/users/edit-user.html?v=' + window.appVersion,
+        controller: 'UsersCtrl'
+      });
   })
   .controller('UsersCtrl', function($scope, $state, $log, UsersService) {
     $scope.users = UsersService.users;
