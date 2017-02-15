@@ -1,13 +1,13 @@
 <pageheader pagename="{{ 'cards' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
 
-<div class="mdl-cell shadow" ng-init="vm.getCards()">
+<div class="mdl-cell shadow">
     <div class="panel-header">{{ 'cards' | translate }}</div>
-    <div class="panel-body">
-        <md-card ng-repeat="card in vm.cards" hide-lg hide-md hide-xl>
+    <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
+        <md-card ng-repeat="c in cards" flex-md="50 none" flex-gt-md="33 nogrow">
             <md-card-title>
-              <md-card-title-text>
-                    <span class="md-headline">{{card.make + " " + card.model}} {{card.year}}</span>
-                    <span class="md-subhead">{{card.licensePlateID}}</span>
+                <md-card-title-text>
+                    <span class="md-headline">{{ c.number }}</span>
+                    <span class="md-subhead">{{ c.type }}</span>
                 </md-card-title-text>
                 <md-card-title-media>
                     <div class="md-media-sm card-media">
@@ -15,53 +15,15 @@
                     </div>
                 </md-card-title-media>
             </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button ui-sref="cards.view({cardID: card._id})">View Card</md-button>
-                <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
+            <md-card-actions layout="row" layout-align="start start">
+                <md-button ui-sref="cards.view({id: c.id})">View Card</md-button>
+                <md-button ui-sref="cards.edit({id: c.id})">Edit Card</md-button>
+                <md-button ng-click="deleteCard(c)">Delete Card</md-button>
             </md-card-actions>
         </md-card>
-        <div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid" hide-xs hide-sm>
-            <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
-                <md-card ng-repeat="card in vm.evenCards">
-                    <md-card-title>
-                      <md-card-title-text>
-                            <span class="md-headline">{{card.make + " " + card.model}} {{card.year}}</span>
-                            <span class="md-subhead">{{card.licensePlateID}}</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media">
-                                <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
-                            </div>
-                        </md-card-title-media>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button ui-sref="cards.view({cardID: card._id})">View Card</md-button>
-                        <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
-                    </md-card-actions>
-                </md-card>
-            </div>
-            <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
-                <md-card ng-repeat="card in vm.oddCards">
-                    <md-card-title>
-                      <md-card-title-text>
-                            <span class="md-headline">{{card.make + " " + card.model}} {{card.year}}</span>
-                            <span class="md-subhead">{{card.licensePlateID}}</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media">
-                                <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
-                            </div>
-                        </md-card-title-media>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button ui-sref="cards.view({cardID: card._id})">View Card</md-button>
-                        <md-button ng-click="vm.showAddUsageEntry($event)">Add Usage Entry</md-button>
-                    </md-card-actions>
-                </md-card>
-            </div>
-        </div>
     </div>
 </div>
+
 <nav mfb-menu position="br" effect="slidein-spring" label="Add Card"
      active-icon="mdi mdi-plus" resting-icon="mdi mdi-plus"
      toggling-method="click" ui-sref="cards.add()">
