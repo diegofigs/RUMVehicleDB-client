@@ -14,7 +14,6 @@ angular.module('MaterialApp')
       user.users = $http.get(baseDomain + '/users')
         .then(function(response) {
           user.users = response.data.data;
-          $log.log(response.data.data);
           return response.data.data;
         })
         .catch(function(error) {
@@ -24,9 +23,6 @@ angular.module('MaterialApp')
     };
     user.createUser = function(user) {
       return $http.post(baseDomain + '/users', user)
-        .then(function(response) {
-          $log.log(response);
-        })
         .catch(function(error) {
           $log.log(error);
         });
@@ -36,11 +32,7 @@ angular.module('MaterialApp')
         headers: {
           Authorization: 'Bearer ' + AuthService.getToken()
         }
-      })
-        .then(function(response) {
-          $log.log(response);
-        })
-        .catch(function(error) {
+      }).catch(function(error) {
           $log.log(error);
         });
     };
@@ -49,11 +41,7 @@ angular.module('MaterialApp')
         headers: {
           Authorization: 'Bearer ' + AuthService.getToken()
         }
-      })
-        .then(function(response) {
-          $log.log(response);
-        })
-        .catch(function(error) {
+      }).catch(function(error) {
           $log.log(error);
         });
     };
