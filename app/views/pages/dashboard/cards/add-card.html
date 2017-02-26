@@ -1,333 +1,122 @@
-<div class="mdl-cell" flex="100" style="background: white;" ng-init="vm.initAddCard()">
+<div class="mdl-cell" flex="100" style="background: white;">
     <div class="panel-header">
         Add Card
     </div>
     <div class="panel-body forms">
-        <form name="cardForm" class="form-horizontal" ng-submit="vm.addCard()">
+        <form name="cardForm" class="form-horizontal" ng-submit="createCard()">
             <h4>Primary Details</h4>
             <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                tooltip="{{'licensePlateTooltip' | translate}}"
-                                id="{{validate(cardForm.licensePlate.$valid)}}"
-                                name="licensePlate"
-                                placeholder="License Plate"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.licensePlateID" focus-if>
-                    </md-input-container>
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
                                 tooltip="{{'vinTooltip' | translate}}"
-                                id="{{validate(cardForm.vin.$valid)}}"
-                                name="vin"
-                                placeholder="VIN"
+                                name="number"
+                                placeholder="Number"
                                 ng-required="false"
                                 ng-maxlength="17"
                                 ng-minlength="17"
                                 ng-pattern="/^[a-zA-Z0-9]{17}$/"
                                 ng-trim="false"
                                 ng-change="vm.getCardInformationByVin()"
-                                ng-model="vm.card.vin">
+                                ng-model="newCard.number">
                     </md-input-container>
-                    <md-input-container>
-                        <label>Make</label>
-                        <md-select 
-                            class="form-control" 
-                            id="{{validate(cardForm.cardMake.$valid)}}"
-                            name="cardMake"
-                            ng-required="true"
-                            ng-init="vm.getMakes()"
-                            ng-model="vm.card.make"
-                            ng-change="vm.refreshModels()"
-                            ng-disabled="vm.cardInfoIsFound && cardForm.vin.$valid && !!cardForm.vin.$viewValue">
-                            <md-option ng-repeat="make in vm.makes" ng-value="make.name">
-                                {{make.name}}
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Model</label>
-                        <md-select 
-                            class="form-control" 
-                            id="{{validate(cardForm.cardModel.$valid)}}"
-                            name="cardModel"
-                            ng-required="vm.card.make!='Other'"
-                            ng-model="vm.card.model"
-                            ng-disabled="vm.cardInfoIsFound && cardForm.vin.$valid && !!cardForm.vin.$viewValue"
-                            ng-hide="vm.card.make=='Other'">
-                            <md-option ng-repeat="model in vm.models" ng-value="model.name"> 
-                                {{model.name}} 
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container ng-show="vm.card.make=='Other'">
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.customMake.$valid)}}"
-                                name="customMake"
-                                placeholder="Make"
-                                ng-required="vm.card.make=='Other'"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.customMake">
-                    </md-input-container>
-                    <md-input-container ng-show="vm.card.make=='Other'">
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.customModel.$valid)}}"
-                                name="customModel"
-                                placeholder="Model"
-                                ng-required="vm.card.make=='Other'"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.customModel">
-                    </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'yearTooltip' | translate}}"
-                                id="{{validate(cardForm.year.$valid)}}"
-                                name="year"
-                                placeholder="Year"
-                                ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
-                                ng-pattern="/(([1][9][0-9][0-9])|([2][0-1][0-9][0-9]))$/"
+                                name="expiry"
+                                placeholder="Exp Date in MM/YY"
+                                ng-required="true"
                                 ng-trim="false"
-                                ng-model="vm.card.year"
-                                ng-disabled="vm.cardInfoIsFound && cardForm.vin.$valid && !!cardForm.vin.$viewValue"
-                                ui-mask="9999"  
-                                ui-mask-placeholder 
-                                ui-mask-placeholder-char="_">
+                                ng-model="newCard.expiry">
                     </md-input-container>
+
                     <md-input-container>
-                        <label>Color</label>
-                        <md-select 
-                            class="form-control" 
-                            id="{{validate(cardForm.color.$valid)}}"
-                            name="color"
-                            ng-required="true"
-                            ng-model="vm.card.color">
-                            <md-option ng-repeat="color in vm.colors" ng-value="color.name"> 
-                                {{color.name}} 
-                            </md-option>
-                        </md-select><br>
+                        <input  type="text"
+                                class="form-control"
+                                name="name"
+                                placeholder="Name"
+                                ng-required="true"
+                                ng-trim="false"
+                                ng-model="newCard.name">
                     </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                name="cardID"
+                                placeholder="Card ID (UPR)"
+                                ng-required="true"
+                                ng-trim="false"
+                                ng-model="newCard.cardID">
+                    </md-input-container>
+
                 </div>
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                    <md-input-container>
-                        <label>Department</label>
-                        <md-select 
-                            class="form-control" 
-                            id="{{validate(cardForm.department.$valid)}}"
-                            name="department"
-                            ng-required="true"
-                            ng-model="vm.card.department">
-                            <md-option ng-repeat="department in vm.departments" ng-value="department.name"> 
-                                {{department.name}} 
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Type</label>
-                        <md-select 
-                            class="form-control" 
-                            id="{{validate(cardForm.type.$valid)}}"
-                            name="type"
-                            ng-required="true"
-                            ng-model="vm.card.type">
-                            <md-option ng-repeat="type in vm.types" ng-value="type.name"> 
-                                {{type.name}} 
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.serialNumber.$valid)}}"
-                                name="serialNumber"
-                                placeholder="Serial Number"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.serialNumber">
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.propertyNumber.$valid)}}"
-                                name="propertyNumber"
-                                placeholder="Property Number"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.propertyNumber">
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.registrationID.$valid)}}"
-                                name="registrationID"
-                                placeholder="Registration ID"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.registrationID">
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.titleID.$valid)}}"
-                                name="titleID"
-                                placeholder="Title ID"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.titleID">
-                    </md-input-container>
-                </div>
-            </div>
-        <form name="cardForm" class="form-horizontal" ng-submit="vm.editCard()">
-            <h4>Additional Details</h4>
-            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
-                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
-            
-                    <md-input-container>
-                        <label><small>Marbete Date</small></label>
-                    </md-input-container>
-                    <md-datepicker 
-                        ng-model="vm.card.marbeteDate" 
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    
-                    <md-input-container>
-                        <label><small>Inspection Date</small></label>
-                    </md-input-container>
-                    <md-datepicker 
-                        ng-model="vm.card.inspectionDate" 
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    <br><br>
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
-                    <md-input-container>
-                        <input  type="number"
-                                class="form-control"
-                                tooltip="{{'doorsTooltip' | translate}}"
-                                id="{{validate(cardForm.doors.$valid)}}"
-                                name="doors"
-                                placeholder="Doors"
-                                ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
-                                ng-pattern="/([0-4])$/"
-                                ng-trim="false"
-                                ng-model="vm.card.doors"
-                                ui-mask="9"  
-                                ui-mask-placeholder 
-                                ui-mask-placeholder-char="_">
-                    </md-input-container>
-                </div>
+                <md-input-container>
+                    <label>Department</label>
+                    <md-select
+                        class="form-control"
+                        name="department"
+                        ng-required="true"
+                        ng-model="newCard.department_id">
+                        <md-option ng-repeat="department in departments" ng-value="department.id">
+                            {{department.name}}
+                        </md-option>
+                        <md-option ng-value="1">
+                            Rectoria
+                        </md-option>
+                        <md-option ng-value="2">
+                            Matematicas
+                        </md-option>
+                    </md-select><br>
+                </md-input-container>
 
-                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
-                    
-                    <md-input-container>
-                        <label><small>Decommission Date</small></label>
-                    </md-input-container>
-                    <md-datepicker 
-                        ng-model="vm.card.decomissionDate" 
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    
-                    <md-input-container>
-                        <label><small>Inscription Date</small></label>
-                    </md-input-container>
-                    <md-datepicker 
-                        ng-model="vm.card.inscriptionDate" 
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    <br><br>
+                <md-input-container>
+                    <label>Type</label>
+                    <md-select
+                        class="form-control"
+                        name="type"
+                        ng-required="true"
+                        ng-model="newCard.type">
+                        <md-option ng-repeat="type in types" value="type">
+                            {{type}}
+                        </md-option>
+                        <md-option value="Regular">
+                            Regular
+                        </md-option>
+                        <md-option value="Premium">
+                            Premium
+                        </md-option>
+                        <md-option value="Diesel">
+                            Diesel
+                        </md-option>
+                        <md-option value="SPARE">
+                            SPARE
+                        </md-option>
+                    </md-select>
+                </md-input-container>
 
-                    <md-input-container>
-                        <input  type="number"
-                                class="form-control"
-                                tooltip="{{'cylindersTooltip' | translate}}"
-                                id="{{validate(cardForm.cylinders.$valid)}}"
-                                name="cylinders"
-                                placeholder="Cylinders"
-                                ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
-                                ng-pattern="/([0-8])$/"
-                                ng-trim="false"
-                                ng-model="vm.card.cylinders"
-                                ui-mask="9"  
-                                ui-mask-placeholder 
-                                ui-mask-placeholder-char="_">
-                    </md-input-container>
-                </div>
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                tooltip="{{'ACAATooltip' | translate}}"
-                                id="{{validate(cardForm.ACAA.$valid)}}"
-                                name="ACAA"
-                                placeholder="ACAA"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.ACAA.licensePlateID">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.purchasePrice.$valid)}}"
-                                name="purchasePrice"
-                                placeholder="Purchase Price"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.purchasePrice">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(cardForm.insurance.$valid)}}"
-                                name="insurance"
-                                placeholder="Insurance"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="vm.card.insurance">
-                    </md-input-container>
+                <md-input-container>
+                    <label>Status</label>
+                    <md-select
+                        class="form-control"
+                        name="status"
+                        ng-required="true"
+                        ng-model="newCard.status">
+                        <md-option ng-repeat="status in status_types" value="status">
+                            {{status}}
+                        </md-option>
+                        <md-option value="Active">
+                            Active
+                        </md-option>
+                        <md-option value="Inactive">
+                            Inactive
+                        </md-option>
+                    </md-select><br>
+                </md-input-container>
                 </div>
             </div>
             <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>

@@ -6,7 +6,8 @@ angular.module('MaterialApp')
     var baseDomain = 'http://67.205.175.113/api/v1';
     var resource = '/cards';
     var card = {
-      cards: []
+      cards: [],
+      card: {}
     };
     card.getCards = function() {
       card.cards = $http.get(baseDomain + resource, {
@@ -21,6 +22,20 @@ angular.module('MaterialApp')
           $log.log(error);
         });
       return card.cards;
+    };
+    card.getCard = function(id) {
+      return $http.get(baseDomain + resource + '/' + id, {
+        headers: {
+          Authorization: 'Bearer ' + AuthService.getToken()
+        }
+      }).then(function(response) {
+          $log.log(response.data.data);
+          card.card = response.data.data;
+          return response.data.data;
+        })
+        .catch(function(error) {
+        $log.log(error);
+      });
     };
     card.createCard = function(card) {
       return $http.post(baseDomain + resource, card, {

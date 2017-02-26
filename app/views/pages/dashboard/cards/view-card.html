@@ -1,7 +1,7 @@
 <pageheader pagename="{{ 'cardDetails' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
 <div layout="row" layout-sm="column" layout-xs="column" style="background: white;">
 	<md-content flex="40" flex-sm="100">
-		<md-card ng-init="vm.getCard()">
+		<md-card>
 	        <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
 	        <md-card-title>
 				<md-card-title-text>
@@ -10,130 +10,56 @@
 	        </md-card-title>
 	        <md-card-content>
 				<div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid">
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{card.number || "Number"}} </h3>
+                                <p> Number </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{card.expiry || "Expiry"}} </h3>
+                                <p> Expiration Date </p>
+                            </div>
+                        </md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> 
-									{{vm.card.make || "Make"}} 
-									{{vm.card.model || "Model"}} 
-									{{vm.card.year || "Year"}} 
-								</h3>
-								<p> Card </p>
+								<h3> {{card.name || "Name"}} </h3>
+								<p> Name </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.color}} </h3>
-								<p> Color </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.vin || "VIN"}} </h3>
-								<p> VIN </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.type || "Type"}} </h3>
-								<p> Type </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.serialNumber || "Serial Number"}} </h3>
-								<p> Serial Number </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.propertyNumber || "Property Number"}} </h3>
-								<p> Property Number </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.registrationID || "Registration ID"}} </h3>
-								<p> Registration ID </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.titleID || "Title ID"}} </h3>
-								<p> Title ID </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.purchasePrice || "Purchase Price"}} </h3>
-								<p> Purchase Price </p>
-							</div>
-						</md-list-item>
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{card.card_custodian_name || "Custodian Name"}} </h3>
+                                <p> Custodian </p>
+                            </div>
+                        </md-list-item>
 					</div>
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.card.department || "Department"}} </h3>
+								<h3> {{card.card_department_name || "Department"}} </h3>
 								<p> Department </p>
 							</div>
 						</md-list-item>
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{card.type || "Type"}} </h3>
+                                <p> Type </p>
+                            </div>
+                        </md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.card.marbeteDate || "Marbete Date"}} </h3>
-								<p> Marbete Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.inspectionDate || "Inspection Date"}} </h3>
-								<p> Inspection Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.decommissionDate || "Decommission Date"}} </h3>
-								<p> Decommission Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.inscriptionDate || "Inscription Date"}} </h3>
-								<p> Inscription Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.doors || "Doors"}}/{{vm.card.cylinders || "Cylinders"}} </h3>
-								<p> Doors/Cylinders </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.color || "Color"}} </h3>
-								<p> Color </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.ACAA || "ACAA"}} </h3>
-								<p> ACAA </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.insurance || "Insurance"}} </h3>
-								<p> Insurance </p>
+								<h3> {{card.status || "Status"}} </h3>
+								<p> Status </p>
 							</div>
 						</md-list-item>
 					</div>
 				</div>
 	        </md-card-content>
 	        <md-card-actions layout="row" layout-align="end center">
-				<md-button ng-click="vm.showMoreDetails()">
-					<span ng-show="vm.moreDetails">Show Less</span>
-					<span ng-hide="vm.moreDetails">Show More</span>
-				</md-button>
-				<md-button ui-sref="cards.edit({cardID: vm.card._id})">Edit Card Details</md-button>
+				<md-button ui-sref="cards.edit({id: card.id})">Edit Card Details</md-button>
 	        </md-card-actions>
 	    </md-card>
 		<md-card>
@@ -153,92 +79,21 @@
 				</md-card-title-text>
 			</md-card-title>
 			<md-card-content>
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> 
-									{{vm.card.custodian.firstName || "Juan"}} 
-									{{vm.card.custodian.lastName || "Del Pueblo"}} 
+								<h3>
+									{{card.custodian_id.firstName || "ID"}}
 								</h3>
-								<p> Full Name </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.custodian.telephone || "Telephone"}} </h3>
-								<p> Telephone </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.custodian.position || "Position"}} </h3>
-								<p> Position </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{vm.card.custodian.employeeID || "Employee ID"}} </h3>
-								<p> Employee ID </p>
+								<p> ID </p>
 							</div>
 						</md-list-item>
 					</div>
 			</md-card-content>
 	        <md-card-actions layout="row" layout-align="end center">
-				<md-button ui-sref="cards.edit({cardID: vm.card._id})">View Custodian Details</md-button>
-				<md-button ui-sref="cards.edit({cardID: vm.card._id})">Assign New Custodian</md-button>
+				<md-button ui-sref="cards.edit({id: card.id})">Edit Custodian Details</md-button>
 	        </md-card-actions>
 		</md-card>
-<!-- 		<md-card>
-	        <img src="images/material3.jpg" class="md-card-image" alt="Washed Out">
-	        <md-card-title>
-				<md-card-title-text>
-					<span class="md-headline">Linked Gasoline Credit Cards</span>
-				</md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-				<p>
-					The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-					two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-				</p>
-	        </md-card-content>
-	        <md-card-actions layout="row" layout-align="end center">
-				<md-button class="md-icon-button" aria-label="Favorite">
-					<md-icon ><i class="mdi mdi-navigation"></i></md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Settings">
-					<md-icon ><i class="mdi mdi-reply"></i></md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Share">
-					<md-icon ><i class="mdi mdi-play-circle"></i></md-icon>
-				</md-button>
-	        </md-card-actions>
-	  	</md-card>
-	    <md-card>
-	        <img src="images/material2.jpg" class="md-card-image" alt="Washed Out">
-			<md-card-title>
-				<md-card-title-text>
-					<span class="md-headline">Card Maintenance Manager</span>
-				</md-card-title-text>
-			</md-card-title>
-			<md-card-actions layout="row" layout-align="start center">
-				<md-card-icon-actions>
-					<md-button class="md-icon-button" aria-label="Favorite">
-						<md-icon ><i class="mdi mdi-heart"></i></md-icon>
-					</md-button>
-					<md-button class="md-icon-button" aria-label="Share">
-						<md-icon ><i class="mdi mdi-information"></i></md-icon>
-					</md-button>
-				</md-card-icon-actions>
-				<md-button>Action 1</md-button>
-				<md-button>Action 2</md-button>
-			</md-card-actions>
-			<md-card-content>
-				<p>
-				The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-				two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-				</p>
-			</md-card-content>
-		</md-card> -->
 	</md-content>
 	<md-content flex="60" flex-sm="100">
 	    <md-card>
@@ -314,10 +169,3 @@
 		</md-card>
 	</md-content>
 </div>
-<nav mfb-menu position="br" effect="slidein-spring" label="Options"
-     active-icon="mdi mdi-close" resting-icon="mdi mdi-menu"
-     toggling-method="click">
-	<button mfb-button icon="mdi mdi-note-plus" label="Add Card Usage Entry" ui-sref="cardRecords.add({cardID: vm.card._id})"></button>
-	<button mfb-button icon="mdi mdi-folder-download" label="Download Latest Usage Report"></button>
-	<button mfb-button icon="mdi mdi-lead-pencil" label="Edit Card Details" ui-sref="cards.edit({cardID: vm.card._id})"></button>
-</nav>
