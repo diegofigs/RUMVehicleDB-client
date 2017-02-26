@@ -5,18 +5,20 @@
   'use strict';
   angular.module('MaterialApp')
     .factory('AuthService', function($http, $log, $sessionStorage) {
-      var baseDomain = 'http://67.205.161.165/api/v1';
+      var baseDomain = 'http://67.205.175.113/api/v1';
       var auth = {};
       auth.authenticate = function(user) {
         return $http.post(baseDomain + '/auth', user)
           .then(function(response) {
+            $log.log(response.data.token);
             $sessionStorage.token = response.data.token;
             return $http.get(baseDomain + '/auth/me', {
               headers: {
                 Authorization: 'Bearer ' + $sessionStorage.token
               }
             }).then(function(response) {
-              $sessionStorage.user = response.data.user;
+              $log.log(response.data.data);
+              $sessionStorage.user = response.data.data;
               return $sessionStorage.user;
             });
           })
@@ -41,7 +43,7 @@
         return null;
       };
       auth.isLoggedIn = function() {
-        return $sessionStorage.token !== '';
+        return $sessionStorage.token !== null;
       };
       return auth;
     });

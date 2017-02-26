@@ -6,14 +6,17 @@
 window.appVersion = 2.0;
 angular.module('MaterialApp')
   .factory('UsersService', function($http, $log, AuthService) {
-    var baseDomain = 'http://67.205.161.165/api/v1';
-    var resource = '/users';
+    var baseDomain = 'http://67.205.175.113/api/v1';
+    var resource = '/custodians';
     var user = {
       users: []
     };
     user.getUsers = function() {
-      user.users = $http.get(baseDomain + resource)
-        .then(function(response) {
+      user.users = $http.get(baseDomain + resource, {
+        headers: {
+          Authorization: 'Bearer ' + AuthService.getToken()
+        }
+      }).then(function(response) {
           user.users = response.data.data;
           return response.data.data;
         })

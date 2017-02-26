@@ -92,7 +92,7 @@
                             <span class="text">{{ 'dashboard' | translate }}</span>
                         </md-button>
                     </li>
-                    <li ng-if="getUser().id === 1" ng-class="{active: $state.includes('users')}">
+                    <li ng-if="getUser().user_type_id === 1" ng-class="{active: $state.includes('users')}">
                         <md-button ui-sref="users" class="">
                             <i class="mdi mdi-account-multiple"></i>
                             <span class="text">{{ 'users' | translate }}</span>
