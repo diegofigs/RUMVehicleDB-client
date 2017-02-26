@@ -24,7 +24,12 @@ angular.module('MaterialApp')
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard' +
         '/cards/add-card.html?v=' + window.appVersion,
-        controller: 'CardsCtrl'
+        controller: 'CardsCtrl',
+        resolve: {
+          departments: function(DepartmentsService) {
+            return DepartmentsService.getDepartments();
+          }
+        }
       })
       .state('cards.view', {
         url: '/cards/:id',
