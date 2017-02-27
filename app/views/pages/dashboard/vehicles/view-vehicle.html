@@ -1,7 +1,7 @@
 <pageheader pagename="{{ 'vehicleDetails' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
 <div layout="row" layout-sm="column" layout-xs="column" style="background: white;">
 	<md-content flex="40" flex-sm="100">
-		<md-card ng-init="vm.getVehicle()">
+		<md-card>
 	        <img src="images/material1.jpg" class="md-card-image" alt="Washed Out">
 	        <md-card-title>
 				<md-card-title-text>
@@ -10,118 +10,118 @@
 	        </md-card-title>
 	        <md-card-content>
 				<div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid">
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> 
-									{{vm.vehicle.make || "Make"}} 
-									{{vm.vehicle.model || "Model"}} 
-									{{vm.vehicle.year || "Year"}} 
+								<h3>
+									{{vehicle.make || "Make"}}
+									{{vehicle.model || "Model"}}
+									{{vehicle.year || "Year"}}
 								</h3>
 								<p> Vehicle </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.color}} </h3>
+								<h3> {{vehicle.color}} </h3>
 								<p> Color </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.vin || "VIN"}} </h3>
+								<h3> {{vehicle.vin || "VIN"}} </h3>
 								<p> VIN </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.type || "Type"}} </h3>
+								<h3> {{vehicle.type || "Type"}} </h3>
 								<p> Type </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.serialNumber || "Serial Number"}} </h3>
+								<h3> {{vehicle.serial_number || "Serial Number"}} </h3>
 								<p> Serial Number </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.propertyNumber || "Property Number"}} </h3>
+								<h3> {{vehicle.property_number || "Property Number"}} </h3>
 								<p> Property Number </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.registrationID || "Registration ID"}} </h3>
+								<h3> {{vehicle.registration_id || "Registration ID"}} </h3>
 								<p> Registration ID </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.titleID || "Title ID"}} </h3>
+								<h3> {{vehicle.title_id || "Title ID"}} </h3>
 								<p> Title ID </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.purchasePrice || "Purchase Price"}} </h3>
+								<h3> {{vehicle.purchase_price || "Purchase Price"}} </h3>
 								<p> Purchase Price </p>
 							</div>
 						</md-list-item>
 					</div>
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.department || "Department"}} </h3>
+								<h3> {{vehicle.vehicle_department_name || "Department"}} </h3>
 								<p> Department </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.marbeteDate || "Marbete Date"}} </h3>
+								<h3> {{vehicle.marbete_date || "Marbete Date"}} </h3>
 								<p> Marbete Date </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.inspectionDate || "Inspection Date"}} </h3>
+								<h3> {{vehicle.inspection_date || "Inspection Date"}} </h3>
 								<p> Inspection Date </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
+						<md-list-item class="md-2-line" ng-show="moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.decommissionDate || "Decommission Date"}} </h3>
+								<h3> {{vehicle.decomission_date || "Decommission Date"}} </h3>
 								<p> Decommission Date </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
+						<md-list-item class="md-2-line" ng-show="moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.inscriptionDate || "Inscription Date"}} </h3>
+								<h3> {{vehicle.inscription_date || "Inscription Date"}} </h3>
 								<p> Inscription Date </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
+						<md-list-item class="md-2-line" ng-show="moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.doors || "Doors"}}/{{vm.vehicle.cylinders || "Cylinders"}} </h3>
+								<h3> {{vehicle.doors || "Doors"}}/{{vehicle.cylinders || "Cylinders"}} </h3>
 								<p> Doors/Cylinders </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.color || "Color"}} </h3>
+								<h3> {{vehicle.color || "Color"}} </h3>
 								<p> Color </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.ACAA || "ACAA"}} </h3>
+								<h3> {{vehicle.ACAA || "ACAA"}} </h3>
 								<p> ACAA </p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-2-line" ng-show="vm.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{vm.vehicle.insurance || "Insurance"}} </h3>
+								<h3> {{vehicle.insurance || "Insurance"}} </h3>
 								<p> Insurance </p>
 							</div>
 						</md-list-item>
@@ -129,11 +129,11 @@
 				</div>
 	        </md-card-content>
 	        <md-card-actions layout="row" layout-align="end center">
-				<md-button ng-click="vm.showMoreDetails()">
-					<span ng-show="vm.moreDetails">Show Less</span>
-					<span ng-hide="vm.moreDetails">Show More</span>
+				<md-button ng-click="moreDetails = !moreDetails">
+					<span ng-show="moreDetails">Show Less</span>
+					<span ng-hide="moreDetails">Show More</span>
 				</md-button>
-				<md-button ui-sref="vehicles.edit({vehicleID: vm.vehicle._id})">Edit Vehicle Details</md-button>
+				<md-button ui-sref="vehicles.edit({id: vehicle.id})">Edit Vehicle Details</md-button>
 	        </md-card-actions>
 	    </md-card>
 		<md-card>
@@ -153,12 +153,12 @@
 				</md-card-title-text>
 			</md-card-title>
 			<md-card-content>
-					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100"> 
+					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 						<md-list-item class="md-2-line">
 							<div class="md-list-item-text">
-								<h3> 
-									{{vm.vehicle.custodian.firstName || "Juan"}} 
-									{{vm.vehicle.custodian.lastName || "Del Pueblo"}} 
+								<h3>
+									{{vm.vehicle.custodian.firstName || "Juan"}}
+									{{vm.vehicle.custodian.lastName || "Del Pueblo"}}
 								</h3>
 								<p> Full Name </p>
 							</div>

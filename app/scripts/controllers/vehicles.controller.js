@@ -81,7 +81,7 @@ angular.module('MaterialApp')
           $state.reload();
         });
       };
-      $scope.editCard = function() {
+      $scope.editVehicle = function() {
         return VehiclesService.editVehicle($scope.vehicle)
           .then(function(response) {
           $log.log(response);
