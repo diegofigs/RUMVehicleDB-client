@@ -1,4 +1,4 @@
-<div class="mdl-cell" flex="100" style="background: white;" ng-init="vm.initAddVehicle()">
+<div class="mdl-cell" flex="100" style="background: white;">
     <div class="panel-header">
         Add Vehicle
     </div>
@@ -16,7 +16,6 @@
                                 ng-required="true"
                                 ng-maxlength="24"
                                 ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
                                 ng-trim="false"
                                 ng-model="newVehicle.license_plate">
                     </md-input-container>
@@ -78,8 +77,6 @@
                                 name="color"
                                 placeholder="Color"
                                 ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
                                 ng-trim="false"
                                 ng-change="vm.getVehicleInformationByVin()"
                                 ng-model="newVehicle.color">
