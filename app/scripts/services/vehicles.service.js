@@ -16,7 +16,6 @@ angular.module('MaterialApp')
         }
       }).then(function(response) {
         vehicle.vehicles = response.data.data;
-        $log.log(vehicle.vehicles);
         return response.data.data;
       })
         .catch(function(error) {
@@ -30,7 +29,6 @@ angular.module('MaterialApp')
           Authorization: 'Bearer ' + AuthService.getToken()
         }
       }).then(function(response) {
-        $log.log(response.data.data);
         vehicle.vehicle = response.data.data;
         return response.data.data;
       })

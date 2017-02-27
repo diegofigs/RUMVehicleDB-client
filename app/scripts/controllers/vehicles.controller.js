@@ -70,8 +70,7 @@ angular.module('MaterialApp')
         $scope.newVehicle.custodian_id = AuthService.getUser().id;
         $log.log($scope.newVehicle);
         return VehiclesService.createVehicle($scope.newVehicle)
-          .then(function(response) {
-          $log.log(response);
+          .then(function() {
           $state.go('vehicles');
         });
       };
@@ -83,8 +82,7 @@ angular.module('MaterialApp')
       };
       $scope.editVehicle = function() {
         return VehiclesService.editVehicle($scope.vehicle)
-          .then(function(response) {
-          $log.log(response);
+          .then(function() {
           $state.go('vehicles');
         });
       };
