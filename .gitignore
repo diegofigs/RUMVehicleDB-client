@@ -1,5 +1,15 @@
+# OS-related
+.DS_Store
+
+# npm assets
 node_modules/
-bower_components/
+
+# Jetbrains IDE's
 .idea/
+
+# Build folders (in-memory/production)
 .tmp/
 dist/
+
+# Webpack
+stats.json
