@@ -1,0 +1,135 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<header class="navbar shadow">
+		<!-- Hamburger -->
+		<button class="c-hamburger c-hamburger--htla is-active" ng-click="ctrl.extend()">
+			<span>toggle menu</span>
+		</button>
+		<div class="responsive-logo">
+			RUM <br><span class="smaller">Vehicle Database</span>
+		</div>
+		<nav class="right" style="margin-right: 20px; margin-top: 10px;">
+			<md-menu md-position-mode="target-right target" >
+				<md-button aria-label="Open language menu" class="nav-btn" ng-click="$mdOpenMenu($event)">
+					<div class="mdl-badge" data-badge="3"><i class="mdi mdi-keyboard"></i></div>
+				</md-button>
+				<md-menu-content width="3" >
+					<md-menu-item>
+						<md-button ng-click="ctrl.changeLanguage('en')">English</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ng-click="ctrl.changeLanguage('es')">Spanish</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+			<md-menu md-position-mode="target-right target" >
+				<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+					<i class="mdi mdi-brightness-1 text-primary"></i>
+				</md-button>
+				<md-menu-content class="color-picker">
+					<md-menu-item>
+						<div layout="row" class="zero-padding">
+							<md-button href="javascript:void(0)" id="blue" class="theme-picker" flex ng-click="ctrl.changeTheme('blue')" aria-label="Blue"><i class="mdi mdi-brightness-1"></i></md-button>
+							<md-button href="javascript:void(0)" id="red" class="theme-picker" ng-click="ctrl.changeTheme('red')" aria-label="Red"><i class="mdi mdi-brightness-1"></i></md-button>
+						</div>
+					</md-menu-item>
+					<md-menu-item>
+						<div layout="row" class="zero-padding">
+							<md-button href="javascript:void(0)" id="grey" class="theme-picker" flex ng-click="ctrl.changeTheme('grey')" aria-label="Gray"><i class="mdi mdi-brightness-1"></i></md-button>
+							<md-button href="javascript:void(0)" id="green" class="theme-picker" ng-click="ctrl.changeTheme('green')" aria-label="Green"><i class="mdi mdi-brightness-1"></i></md-button>
+						</div>
+					</md-menu-item>
+					<md-menu-item>
+						<div layout="row" class="zero-padding">
+							<md-button href="javascript:void(0)" id="purple" class="theme-picker" flex ng-click="ctrl.changeTheme('purple')" aria-label="Purple"><i class="mdi mdi-brightness-1"></i></md-button>
+							<md-button href="javascript:void(0)" id="cyan" class="theme-picker" ng-click="ctrl.changeTheme('cyan')" aria-label="Cyan"><i class="mdi mdi-brightness-1"></i></md-button>
+						</div>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+			<md-menu md-position-mode="target-right target" >
+				<md-button aria-label="Open demo menu" class="nav-btn" ng-click="$mdOpenMenu($event)">
+					<i class="mdi mdi-dots-vertical"></i>
+				</md-button>
+				<md-menu-content width="3" >
+					<md-menu-item>
+						<md-button ui-sref="docs" style="display:flex;">Help</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ui-sref="settings" style="display:flex;" ng-disabled="true">Settings</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ui-sref="login" style="display:flex;">Logout</md-button>
+					</md-menu-item>
+                </md-menu-content>
+			</md-menu>
+		</nav>
+	</header>
+    <!-- Side bar here -->
+    <aside id="" class="sidebar">
+        <div class="top-logo">
+            <i class="mdi mdi-car"></i>
+        </div>
+        <div class="top-logo-extended">
+            RUM Vehicle<br/> <span class="smaller">Database</span>
+        </div>
+        <div class="scrollbar" id="scroll">
+            <div class="user-info">
+                <div class="opacity">
+                    <a ui-sref="dashboard.profile"><img src="../../../public/images/profile.jpg" alt="" class="sidebar-profile"></a>
+                    <div class="info">
+                        {{ ctrl.getUser().email }} <br /> <span class="smaller">Dev at UPR Mayagüez</span>
+                        <div class="pen">
+                            <a ui-sref="dashboard.profile" class=""><i class="mdi mdi-border-color"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-menu">
+                <ul class="menu-list">
+                    <li ui-sref-active="active">
+                        <md-button ui-sref="dashboard.home">
+                            <i class="mdi mdi-home"></i>
+                            <span class="text">{{ 'dashboard' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-if="ctrl.getUser().user_type_id === 1" ui-sref-active="active">
+                        <md-button ui-sref="dashboard.users.list">
+                            <i class="mdi mdi-account-multiple"></i>
+                            <span class="text">{{ 'users' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ui-sref-active="active">
+                        <md-button ui-sref="dashboard.cards.list">
+                            <i class="mdi mdi-credit-card"></i>
+                            <span class="text">{{ 'cards' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ui-sref-active="active">
+                        <md-button ui-sref="dashboard.vehicles.list">
+                            <i class="mdi mdi-car"></i>
+                            <span class="text">{{ 'vehicles' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('tolls')}">
+                        <md-button ui-sref="tolls" class="" ng-disabled="true">
+                            <i class="mdi mdi-traffic-light"></i> &nbsp;
+                            <span class="text">{{ 'tolls' | translate }}</span>
+                        </md-button>
+                    </li>
+                    <li ng-class="{active: $state.includes('maintenance')}">
+                        <md-button ui-sref="maintenance" class="" ng-disabled="true">
+                            <i class="mdi mdi-wrench"></i> &nbsp;
+                            <span class="text">{{ 'maintenance' | translate }}</span>
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <main class="content-holder">
+        <div class="page-content remodal-bg animsition" ng-class="{expandedContainer: $state.includes('profile')}" >
+            <!-- Your content goes here -->
+            <div ui-view ></div>
+        </div>
+    </main>
+</div>

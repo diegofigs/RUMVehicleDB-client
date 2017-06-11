@@ -1,0 +1,30 @@
+<pageheader pagename="{{ 'add' | translate }} {{ 'user' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
+
+<div class="mdl-cell shadow">
+    <div class="panel-header">{{ 'edit' | translate }} {{ 'user' | translate }}</div>
+    <div class="panel-body forms">
+        <form name="userForm" class="form-horizontal" ng-submit="ctrl.editUser()">
+            <div class="form-group">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                    <md-input-container >
+                        <label>Email</label>
+                        <input ng-model="ctrl.user.email" type="email" placeholder="email">
+                    </md-input-container>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                    <md-input-container >
+                        <label>Password</label>
+                        <input ng-model="ctrl.user.password" type="password" placeholder="password">
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="form-group">
+                <md-button type="submit"
+                        class="md-raised primary"
+                        ng-disabled="userForm.$invalid">
+                        {{ 'edit' | translate }} {{ 'user' | translate }}
+                </md-button> &nbsp;
+            </div>
+        </form>
+    </div>
+</div>

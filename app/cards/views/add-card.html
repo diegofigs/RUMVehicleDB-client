@@ -1,0 +1,119 @@
+<div class="mdl-cell" flex="100" style="background: white;">
+    <div class="panel-header">
+        Add Card
+    </div>
+    <div class="panel-body forms">
+        <form name="cardForm" class="form-horizontal" ng-submit="ctrl.createCard()">
+            <h4>Primary Details</h4>
+            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="number"
+                                placeholder="Number"
+                                ng-required="false"
+                                ng-maxlength="17"
+                                ng-minlength="17"
+                                ng-pattern="/^[a-zA-Z0-9]{17}$/"
+                                ng-trim="false"
+                                ng-change="vm.getCardInformationByVin()"
+                                ng-model="ctrl.newCard.number">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                name="expiry"
+                                placeholder="Exp Date in MM/YY"
+                                ng-required="true"
+                                ng-trim="false"
+                                ng-model="ctrl.newCard.expiry">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                name="name"
+                                placeholder="Name"
+                                ng-required="true"
+                                ng-trim="false"
+                                ng-model="ctrl.newCard.name">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                name="cardID"
+                                placeholder="Card ID (UPR)"
+                                ng-required="true"
+                                ng-trim="false"
+                                ng-model="ctrl.newCard.cardID">
+                    </md-input-container>
+
+                </div>
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+
+                <md-input-container>
+                    <label>Department</label>
+                    <md-select
+                        class="form-control"
+                        name="department"
+                        ng-required="true"
+                        ng-model="ctrl.newCard.department_id">
+                        <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
+                            {{department.name}}
+                        </md-option>
+                    </md-select><br>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Type</label>
+                    <md-select
+                        class="form-control"
+                        name="type"
+                        ng-required="true"
+                        ng-model="ctrl.newCard.type">
+                        <md-option ng-repeat="type in ctrl.types" value="type">
+                            {{type}}
+                        </md-option>
+                        <md-option value="Regular">
+                            Regular
+                        </md-option>
+                        <md-option value="Premium">
+                            Premium
+                        </md-option>
+                        <md-option value="Diesel">
+                            Diesel
+                        </md-option>
+                        <md-option value="SPARE">
+                            SPARE
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Status</label>
+                    <md-select
+                        class="form-control"
+                        name="status"
+                        ng-required="true"
+                        ng-model="ctrl.newCard.status">
+                        <md-option ng-repeat="status in ctrl.status_types" value="status">
+                            {{status}}
+                        </md-option>
+                        <md-option value="Active">
+                            Active
+                        </md-option>
+                        <md-option value="Inactive">
+                            Inactive
+                        </md-option>
+                    </md-select><br>
+                </md-input-container>
+                </div>
+            </div>
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+        </form>
+    </div>
+</div>

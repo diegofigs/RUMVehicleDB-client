@@ -1,0 +1,25 @@
+{
+      "lang": "Language",
+      "dashboard": "Home",
+      "cards": "Cards",
+      "calendar": "Calendar",
+      "mail": "Mail",
+      "inbox": "Inbox",
+      "compose": "Compose",
+      "login": "Log in",
+      "signup": "Sign Up",
+      "profilee": "Profile",
+      "logout": "Logout",
+      "registerhere": "Register Here",
+      "email": "Email",
+      "password": "Password",
+      "register": "Register",
+      "loginpage": "Login Page",
+      "fullname": "Full Name",
+      "repeatpass": "Repeat Password",
+
+      "vehicles": "Vehicles",
+      "users": "Users",
+      "tolls": "Tolls",
+      "maintenance": "Maintenance"
+  }
