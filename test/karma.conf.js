@@ -1,5 +1,5 @@
 // Karma configuration
-module.exports = function(config) {
+module.exports = function (config) {
   'use strict';
 
   config.set({
@@ -14,37 +14,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // bower:js
-      '../bower_components/angular/angular.js',
-      '../bower_components/angular-animate/angular-animate.js',
-      '../bower_components/angular-aria/angular-aria.js',
-      '../bower_components/angular-messages/angular-messages.js',
-      '../bower_components/angular-material/angular-material.js',
-      '../bower_components/angular-dragula/dist/angular-dragula.js',
-      '../bower_components/angular-growl/build/angular-growl.js',
-      '../bower_components/angular-growl-notifications/dist/angular-growl-notifications.js',
-      '../bower_components/angular-loading-bar/build/loading-bar.js',
-      '../bower_components/angular-ui-sortable/sortable.js',
-      '../bower_components/Chart.js/Chart.js',
-      '../bower_components/angular-chart.js/dist/angular-chart.js',
-      '../bower_components/d3/d3.js',
-      '../bower_components/c3/c3.js',
-      '../bower_components/c3-angular/c3-angular.min.js',
-      '../bower_components/angular-sanitize/angular-sanitize.js',
-      '../bower_components/material-calendar/dist/angular-material-calendar.js',
-      '../bower_components/perfect-scrollbar/js/perfect-scrollbar.js',
-      '../bower_components/angular-ui-router/release/angular-ui-router.js',
-      '../bower_components/angular-translate/angular-translate.js',
-      '../bower_components/angular-translate-loader-url/angular-translate-loader-url.js',
-      '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-      '../bower_components/ng-material-floating-button/src/mfb-directive.js',
-      '../bower_components/ngstorage/ngStorage.js',
-      '../bower_components/moment/moment.js',
-      '../bower_components/angular-mocks/angular-mocks.js',
-      // endbower
-      '../app/scripts/**/*.js',
+      '../app/**/*.js',
       //'../test/mock/**/*.js',
-      '../test/spec/**/*.js'
+      '../test/spec/**/*.js',
     ],
 
     // list of files / patterns to exclude
@@ -63,13 +35,13 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'PhantomJS',
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
     ],
 
     // Continuous Integration mode
