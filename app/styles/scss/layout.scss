@@ -7,17 +7,17 @@ body {
 }
 
 .content-holder {
-	background: $bg;
+	background: white;
 	@include transition(.3s);
 	min-height:100vh;
 }
 
 .page-content {
-	padding: 15px;	
+	padding: 15px;
 	padding-top: 85px;
-	padding-left : 95px;	
+	padding-left : 95px;
 	max-width: 1390px;
-	margin: 0 auto;	
+	margin: 0 auto;
 }
 
 .profile-content {
@@ -29,14 +29,14 @@ body {
 .extended {
 	.navbar {
 		margin-left: 290px;
-		width: calc(100% - 290px); 
+		width: calc(100% - 290px);
 	}
 
 	.sidebar {
 		width: 290px;
 		position: fixed;
 		bottom:0;
-		overflow: hidden; 
+		overflow: hidden;
 		.top-logo {
 			display: none;
 		}
@@ -64,7 +64,7 @@ body {
 				font-size: 16px;
 				letter-spacing: 5px;
 				font-weight: 400;
-			} 
+			}
 		}
 		.user-info {
 			.opacity {
@@ -82,7 +82,7 @@ body {
 					top: 65px;
 					right: 25px;
 					display: inline-block;
-					opacity: 1;	
+					opacity: 1;
 					.smaller {
 						font-size: 14px;
 					}
@@ -100,12 +100,12 @@ body {
 		}
 		.dashboard-menu {
         	ul.menu-list {
-    			li {  
-    				min-height: 50px;	
+    			li {
+    				min-height: 50px;
     				float: left;
     				display: block;
-    				width: 100%;	
-    				height: auto;	
+    				width: 100%;
+    				height: auto;
     				a {
     					display: block;
     					span.text {
@@ -115,7 +115,7 @@ body {
     					text-transform: none;
     					color: white;
     					font-weight: 400;
-    					text-align: left; 
+    					text-align: left;
     					height: 100%;
     					font-size: 17px;
     					padding-top: 6px;
@@ -134,7 +134,7 @@ body {
     						&.active {
     							transform: rotate(180deg);
     						}
-    					}    					
+    					}
     				}
     				&.active {
     					a {
@@ -143,7 +143,7 @@ body {
     				}
     			}
     			ul.sub-menu {
-    				position: static;    				
+    				position: static;
     				opacity: 0;
     				max-height: 0;
     				padding-left: 0;
@@ -156,7 +156,7 @@ body {
     				&.visible {
     					opacity: 1;
     					max-height: 300px;
-    					
+
     				}
     				li {
     					height: 40px;
@@ -187,7 +187,7 @@ body {
     				}
 					li:before {
 					    content: "• ";
-					    color: lighten($primary, 25%); 
+					    color: lighten($primary, 25%);
 					    position: absolute;
 					    left: 15px;
 					    top: -2px;
@@ -219,8 +219,8 @@ body {
 				padding-right: 0;
 				li {
 					a {
-						padding-left: 15px;	
-						direction: ltr;						
+						padding-left: 15px;
+						direction: ltr;
 					}
 					&.active {
 						a {
@@ -259,7 +259,7 @@ body {
 		.sidebar {
 			.user-info {
 				.opacity {
-					direction: ltr;					
+					direction: ltr;
 				}
 			}
 		}
@@ -288,7 +288,7 @@ body {
 		}
 		.navbar {
 			margin-right: 0;
-		}		
+		}
 		.page-content {
 		    padding-right: 15px;
 		}

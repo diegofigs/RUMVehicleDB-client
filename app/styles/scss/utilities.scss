@@ -3,16 +3,16 @@
 /* Shadow */
 
 .shadow {
-	-webkit-box-shadow: 1px 1px 7px 0px rgba(145,145,145,0.5);
-	-moz-box-shadow: 1px 1px 7px 0px rgba(145,145,145,0.5);
-	box-shadow: 1px 1px 7px 0px rgba(145,145,145,0.5);
+	-webkit-box-shadow: 1px 1px 7px 0 rgba(145,145,145,0.5);
+	-moz-box-shadow: 1px 1px 7px 0 rgba(145,145,145,0.5);
+	box-shadow: 1px 1px 7px 0 rgba(145,145,145,0.5);
 }
 
 .panel-header {
 	padding: 15px;
 	font-size: 16px;
 	background: $primary;
-	color: #fff;	
+	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	position: relative;
@@ -48,19 +48,19 @@
 
 .arrow-up {
 	display: inline-block;
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;	
+	border-right: 10px solid transparent;
 	border-bottom: 10px solid #00D554;
 }
 
 .arrow-down {
 	display: inline-block;
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;	
+	border-right: 10px solid transparent;
 	border-top: 10px solid #FF2800;
 }
 
@@ -92,12 +92,12 @@ h1, h2, h3, h4, h5, h6, p {
   * Styles for HTML elements
   */
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-  font-size: 56px;
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.02em;
   opacity: 0.54;
-  font-size: 0.6em; }
+  font-size: 0.6em;
+}
 
 h1 {
   font-size: 56px;
@@ -169,8 +169,8 @@ md-menu-item > .md-button {
 	text-align: left;
 }
 
-/* Hidden in mobiles */ 
- 
+/* Hidden in mobiles */
+
 @media screen and (max-width: 600px) {
    .hidden-sm {
    		display: none !important;
@@ -219,7 +219,7 @@ md-input-container.md-icon-float > label {
 
 .mdl-layout {
 	overflow-y: hidden !important;
-} 
+}
 /* Print */
 
 @media print {

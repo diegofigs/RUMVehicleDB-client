@@ -6,7 +6,7 @@
 }
 .profile-content {
 	div.cover-photo {
-		background-image: url('../images/cover.jpg');
+		background-image: url('~/images/cover.jpg');
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -40,12 +40,12 @@
 					padding-right: 40px;
 					font-size: 22px;
 					line-height: 1.4;
-					.smaller {						
+					.smaller {
 						font-size: 17px;
 					}
 					.location {
 						line-height: 2;
-						font-size: 16px;						
+						font-size: 16px;
 					}
 					.social-icons {
 						a {
@@ -70,7 +70,7 @@
 					font-weight: 300;
 					letter-spacing: 1px;
 					.desc {
-						font-size: 14px;						
+						font-size: 14px;
 					}
 				}
 			}
@@ -93,14 +93,14 @@
 			background-color: transparent;
 		}
 		.lightbox-container {
-			padding: 10px;	
-			text-align: center; 
+			padding: 10px;
+			text-align: center;
 			img {
 				width: 270px;
 				height: 200px;
 				margin: 10px;
 			}
-		} 
+		}
 		.info-container {
 			padding: 8px;
 			display: table;
@@ -113,7 +113,6 @@
 					width: 75%;
 					th.table-header {
 						text-align: center;
-						font-size: 16px !important;
 						position: relative;
 						vertical-align: bottom;
 						text-overflow: ellipsis;
@@ -160,7 +159,7 @@
 							text-align: left;
 						}
 					}
-				} 
+				}
 			}
 		}
 	}
