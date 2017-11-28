@@ -6,7 +6,7 @@
   "main": ".dist/app.bundle.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --progress",
-    "build": "webpack -p --progress --colors"
+    "build": "webpack -p --progress"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
