@@ -7,7 +7,7 @@ export default class DepartmentsService {
     this.$http = $http;
     this.$log = $log;
     this.authService = AuthService;
-    this.baseDomain = 'http://67.205.175.113/api/v1';
+    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/departments';
     this.departments = [];
   }
