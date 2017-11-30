@@ -1,7 +1,7 @@
 import 'angular-material/angular-material.scss';
 import 'ng-material-floating-button/mfb/src/mfb.scss';
 import 'mdi/scss/materialdesignicons.scss';
-import './styles/app-grey.scss';
+import './styles/app-green.scss';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
