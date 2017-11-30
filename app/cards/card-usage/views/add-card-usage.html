@@ -1,0 +1,114 @@
+<div flex="100" style="background: white;">
+    <div class="panel-header">
+        Add Gas Expense
+    </div>
+    <div class="panel-body forms">
+        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.createCardUsageEntry()">  <!--TODO: verify this -->
+            <h4>Please enter usage details</h4>
+            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+
+                    <md-datepicker
+                        ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
+                        tooltip="{{'vinTooltip' | translate}}"
+                        ng-change="ctrl.onDateChange()"
+                        md-placeholder="mm/dd/yyyy"
+                        ng-model="ctrl.temp_date">
+                    </md-datepicker>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="provider_number"
+                                placeholder="Provider Number"
+                                ng-model="ctrl.newCardUsage.provider_number">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="vehicle_mileage"
+                                placeholder="Vehicle Mileage"
+                                ng-model="ctrl.newCardUsage.vehicle_mileage">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Purchase Type</label>
+                        <md-select
+                            class="form-control"
+                            name="purchase_type"
+                            ng-model="ctrl.newCardUsage.purchase_type">
+
+                            <md-option value="R">  <!-- R: Regular -->
+                                Regular
+                            </md-option>
+                            <md-option value="P">  <!-- P: Premium -->
+                                Premium
+                            </md-option>
+                            <md-option value="D">  <!-- D: Diesel -->
+                                Diesel
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="total_liters"
+                                placeholder="Total of liters"
+                                ng-model="ctrl.newCardUsage.total_liters">
+                    </md-input-container>
+
+                </div>
+
+                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow" layout-margin="60px">
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="total_receipt"
+                                placeholder="Receipt Total"
+                                ng-model="ctrl.newCardUsage.total_receipt">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="receipt_number"
+                                placeholder="Receipt Number"
+                                ng-model="ctrl.newCardUsage.receipt_number">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input  type="text"
+                                class="form-control"
+                                tooltip="{{'vinTooltip' | translate}}"
+                                name="comments"
+                                placeholder="Any comments?"
+                                ng-model="ctrl.newCardUsage.comments">
+                    </md-input-container>
+
+                    <md-input-container ng-if="ctrl.uploader">
+                        <input type="file" nv-file-select uploader="ctrl.uploader" /><br/>
+                        <ul>
+                            <li ng-repeat="item in ctrl.uploader.queue">
+                                {{item.file.name}}
+                                <button ng-click="item.upload()">Upload Picture</button>
+                            </li>
+                        </ul>
+                    </md-input-container>
+
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardUsageForm.$invalid"> Add Record </md-button>
+            </div>
+        </form>
+    </div>
+</div>
+
