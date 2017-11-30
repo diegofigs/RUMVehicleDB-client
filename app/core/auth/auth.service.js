@@ -53,6 +53,6 @@ export default class AuthService {
   }
 
   isLoggedIn() {
-    return this.$sessionStorage.token !== null;
+    return !!this.$sessionStorage.token;
   }
 }
