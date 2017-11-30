@@ -103,4 +103,9 @@ export default class DashboardController {
   getUser() {
     return this.authService.getUser();
   }
+
+  logOut() {
+    this.authService.logOut();
+    this.$state.go('login');
+  }
 }

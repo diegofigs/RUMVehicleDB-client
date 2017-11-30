@@ -12,7 +12,7 @@ export default class AuthController {
     return this.authService.authenticate(this.user)
       .then(() => {
         this.user = {};
-        this.$state.go('dashboard');
+        this.$state.go('dashboard.home');
       })
       .catch((error) => {
         this.$log.log(error);
