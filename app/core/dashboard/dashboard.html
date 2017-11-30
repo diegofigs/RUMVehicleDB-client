@@ -55,10 +55,10 @@
 						<md-button ui-sref="docs" style="display:flex;">Help</md-button>
 					</md-menu-item>
 					<md-menu-item>
-						<md-button ui-sref="settings" style="display:flex;" ng-disabled="true">Settings</md-button>
+						<md-button style="display:flex;" ng-disabled="true">Settings</md-button>
 					</md-menu-item>
 					<md-menu-item>
-						<md-button ui-sref="login" style="display:flex;">Logout</md-button>
+						<md-button ng-click="ctrl.logOut()" style="display:flex;">Logout</md-button>
 					</md-menu-item>
                 </md-menu-content>
 			</md-menu>
