@@ -26,7 +26,7 @@
                         <input  type="text"
                                 class="form-control"
                                 name="expiry"
-                                placeholder="Exp Date in MM/YY"
+                                placeholder="Exp Date in YYYY-MM-DD"
                                 ng-required="true"
                                 ng-trim="false"
                                 ng-model="ctrl.newCard.expiry">
@@ -55,62 +55,62 @@
                 </div>
                 <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
-                <md-input-container>
-                    <label>Department</label>
-                    <md-select
-                        class="form-control"
-                        name="department"
-                        ng-required="true"
-                        ng-model="ctrl.newCard.department_id">
-                        <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
-                            {{department.name}}
-                        </md-option>
-                    </md-select><br>
-                </md-input-container>
+                    <md-input-container>
+                        <label>Department</label>
+                        <md-select
+                            class="form-control"
+                            name="department"
+                            ng-required="true"
+                            ng-model="ctrl.newCard.department_id">
+                            <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
+                                {{department.name}}
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label>Type</label>
-                    <md-select
-                        class="form-control"
-                        name="type"
-                        ng-required="true"
-                        ng-model="ctrl.newCard.type">
-                        <md-option ng-repeat="type in ctrl.types" value="type">
-                            {{type}}
-                        </md-option>
-                        <md-option value="Regular">
-                            Regular
-                        </md-option>
-                        <md-option value="Premium">
-                            Premium
-                        </md-option>
-                        <md-option value="Diesel">
-                            Diesel
-                        </md-option>
-                        <md-option value="SPARE">
-                            SPARE
-                        </md-option>
-                    </md-select>
-                </md-input-container>
+                    <md-input-container>
+                        <label>Type</label>
+                        <md-select
+                            class="form-control"
+                            name="type"
+                            ng-required="true"
+                            ng-model="ctrl.newCard.type">
+                            <md-option ng-repeat="type in ctrl.types" value="type">
+                                {{type}}
+                            </md-option>
+                            <md-option value="Regular">
+                                Regular
+                            </md-option>
+                            <md-option value="Premium">
+                                Premium
+                            </md-option>
+                            <md-option value="Diesel">
+                                Diesel
+                            </md-option>
+                            <md-option value="SPARE">
+                                SPARE
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label>Status</label>
-                    <md-select
-                        class="form-control"
-                        name="status"
-                        ng-required="true"
-                        ng-model="ctrl.newCard.status">
-                        <md-option ng-repeat="status in ctrl.status_types" value="status">
-                            {{status}}
-                        </md-option>
-                        <md-option value="Active">
-                            Active
-                        </md-option>
-                        <md-option value="Inactive">
-                            Inactive
-                        </md-option>
-                    </md-select><br>
-                </md-input-container>
+                    <md-input-container>
+                        <label>Status</label>
+                        <md-select
+                            class="form-control"
+                            name="status"
+                            ng-required="true"
+                            ng-model="ctrl.newCard.status">
+                            <md-option ng-repeat="status in ctrl.status_types" value="status">
+                                {{status}}
+                            </md-option>
+                            <md-option value="Active">
+                                Active
+                            </md-option>
+                            <md-option value="Inactive">
+                                Inactive
+                            </md-option>
+                        </md-select><br>
+                    </md-input-container>
                 </div>
             </div>
             <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
