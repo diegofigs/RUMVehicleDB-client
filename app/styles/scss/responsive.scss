@@ -41,7 +41,7 @@
         }
     }
     .buy {
-        display: none;  
+        display: none;
     }
     .thisrtl {
         display: none;
@@ -61,7 +61,7 @@
             text-align:center;
             .smaller {
                 font-size: 15px;
-                letter-spacing: 1.1px;                
+                letter-spacing: 1.1px;
                 margin-left: -6px;
             }
         }
@@ -79,9 +79,9 @@
         padding-left: 2px;
     }
     .small-sidebar {
-        &.extended {            
+        &.extended {
             .sidebar {
-                left: 0; 
+                left: 0;
                 .dashboard-menu {
                     ul.menu-list {
                         margin-top: 0;
@@ -110,7 +110,7 @@
         	}
         	.mdl-layout__header-row {
     	    	padding-left: 72px;
-    	    }        
+    	    }
         }
     }
 }
@@ -123,7 +123,7 @@
             display: none;
         }
         .buy {
-            display: none;  
+            display: none;
         }
     }
     .dialog-lg {

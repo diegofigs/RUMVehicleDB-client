@@ -31,11 +31,11 @@
 .navbar {
 	height: 80px;
 	margin-left: 80px;
-	background: white;
+	background: $primary;
 	position: fixed;
 	border-radius: 0;
 	z-index: 5;
-	width: calc(100% - 80px); 
+	width: calc(100% - 80px);
 	@include transition(.3s);
 	a {
 		padding: 0 15px !important;
@@ -46,10 +46,10 @@
 		.md-button {
 			line-height: 60px;
 		}
-		
+
 	}
 	.mdi {
-		color:  #78909c;
+		color:  #FFFFFF;
 	}
 	.mdi {
 		font-size: 25px;
