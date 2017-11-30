@@ -19,15 +19,24 @@ const dashboardModule = angular.module('core.dashboard', [])
         url: '',
         template: baseTemplate,
       })
-      .state('404', {
-        url: '/404',
-        template: errorTemplate,
-        controller: 'DashboardCtrl as ctrl',
-      })
       .state('dashboard', {
+        abstract: true,
         url: '/dashboard',
+        parent: 'base',
         template: dashboardTemplate,
         controller: 'DashboardCtrl as ctrl',
+        resolve: {
+          redirectUnauthorized: ($q, $state, $timeout, AuthService) => {
+            let deferred = $q.defer();
+            if(AuthService.isLoggedIn())
+              deferred.resolve();
+            else {
+              $timeout(() => $state.go('login'));
+              deferred.reject();
+            }
+            return deferred.promise.catch(() => {});
+          }
+        }
       })
       .state('dashboard.home', {
         url: '/home',
@@ -38,11 +47,14 @@ const dashboardModule = angular.module('core.dashboard', [])
         url: '/profile',
         template: profileTemplate,
         controller: 'ProfileCtrl as ctrl',
+      })
+      .state('404', {
+        url: '/404',
+        template: errorTemplate,
+        controller: 'DashboardCtrl as ctrl',
       });
 
     $urlRouterProvider.when('/dashboard', '/dashboard/home');
-    $urlRouterProvider.when('/', '/dashboard/home');
-    $urlRouterProvider.when('', '/dashboard/home');
     $urlRouterProvider.otherwise('/404');
   }).name;
 

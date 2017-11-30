@@ -25,9 +25,6 @@ export default class AuthService {
           this.$sessionStorage.user = response.data.data;
           return this.$sessionStorage.user;
         });
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
