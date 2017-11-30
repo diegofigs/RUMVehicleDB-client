@@ -10,8 +10,10 @@ import cardsEditTemplate from './views/edit-card.html';
 import cardsViewTemplate from './views/view-card.html';
 import cardsTemplate from './cards.html';
 
+import cardUsageModule from './card-usage/card-usage.js';
+
 /** @ngInject */
-const cardsModule = angular.module('app.cards', [])
+const cardsModule = angular.module('app.cards', [cardUsageModule])
   .config(function ($stateProvider) {
     $stateProvider
       .state('dashboard.cards', {
@@ -37,6 +39,7 @@ const cardsModule = angular.module('app.cards', [])
       })
       .state('dashboard.cards.view', {
         url: '/:id',
+        abstract: true,
         template: cardsViewTemplate,
         controller: 'CardsCtrl as ctrl',
         resolve: {
