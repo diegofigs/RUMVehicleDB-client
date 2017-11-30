@@ -22,40 +22,15 @@
 				</md-menu-content>
 			</md-menu>
 			<md-menu md-position-mode="target-right target" >
-				<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-					<i class="mdi mdi-brightness-1 text-primary"></i>
-				</md-button>
-				<md-menu-content class="color-picker">
-					<md-menu-item>
-						<div layout="row" class="zero-padding">
-							<md-button href="javascript:void(0)" id="blue" class="theme-picker" flex ng-click="ctrl.changeTheme('blue')" aria-label="Blue"><i class="mdi mdi-brightness-1"></i></md-button>
-							<md-button href="javascript:void(0)" id="red" class="theme-picker" ng-click="ctrl.changeTheme('red')" aria-label="Red"><i class="mdi mdi-brightness-1"></i></md-button>
-						</div>
-					</md-menu-item>
-					<md-menu-item>
-						<div layout="row" class="zero-padding">
-							<md-button href="javascript:void(0)" id="grey" class="theme-picker" flex ng-click="ctrl.changeTheme('grey')" aria-label="Gray"><i class="mdi mdi-brightness-1"></i></md-button>
-							<md-button href="javascript:void(0)" id="green" class="theme-picker" ng-click="ctrl.changeTheme('green')" aria-label="Green"><i class="mdi mdi-brightness-1"></i></md-button>
-						</div>
-					</md-menu-item>
-					<md-menu-item>
-						<div layout="row" class="zero-padding">
-							<md-button href="javascript:void(0)" id="purple" class="theme-picker" flex ng-click="ctrl.changeTheme('purple')" aria-label="Purple"><i class="mdi mdi-brightness-1"></i></md-button>
-							<md-button href="javascript:void(0)" id="cyan" class="theme-picker" ng-click="ctrl.changeTheme('cyan')" aria-label="Cyan"><i class="mdi mdi-brightness-1"></i></md-button>
-						</div>
-					</md-menu-item>
-				</md-menu-content>
-			</md-menu>
-			<md-menu md-position-mode="target-right target" >
 				<md-button aria-label="Open demo menu" class="nav-btn" ng-click="$mdOpenMenu($event)">
 					<i class="mdi mdi-dots-vertical"></i>
 				</md-button>
 				<md-menu-content width="3" >
 					<md-menu-item>
-						<md-button ui-sref="docs" style="display:flex;">Help</md-button>
+						<md-button style="display:flex;">Help</md-button>
 					</md-menu-item>
 					<md-menu-item>
-						<md-button ui-sref="settings" style="display:flex;" ng-disabled="true">Settings</md-button>
+						<md-button style="display:flex;" ng-disabled="true">Settings</md-button>
 					</md-menu-item>
 					<md-menu-item>
 						<md-button ui-sref="login" style="display:flex;">Logout</md-button>

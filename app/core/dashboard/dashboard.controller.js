@@ -94,11 +94,12 @@ export default class DashboardController {
     }, 200);
   }
 
-  changeTheme(setTheme) {
-    $('<link>').appendTo('head')
-      .attr({type : 'text/css', rel : 'stylesheet'})
-      .attr('href', 'styles/app-' + setTheme + '.css');
-  }
+  // Deprecated
+  // changeTheme(setTheme) {
+  //   $('<link>').appendTo('head')
+  //     .attr({type : 'text/css', rel : 'stylesheet'})
+  //     .attr('href', 'styles/app-' + setTheme + '.css');
+  // }
 
   getUser() {
     return this.authService.getUser();
