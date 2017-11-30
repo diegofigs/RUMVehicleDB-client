@@ -50,7 +50,10 @@ angular.module(appModule, [
   $translateProvider.useSanitizeValueStrategy(null);
   $translateProvider.preferredLanguage('en');
 })
-  .config(($mdIconProvider) => {
+  .config(($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
       .fontSet('mdi', 'material-icons');
+    $mdThemingProvider.theme('default')
+      .primaryPalette('green')
+      .warnPalette('grey');
   });
