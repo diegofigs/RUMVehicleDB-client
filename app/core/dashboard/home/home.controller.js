@@ -123,4 +123,8 @@ export default class HomeController {
     };
 
   }
+
+  getUser() {
+    return this.authService.getUser();
+  }
 };
