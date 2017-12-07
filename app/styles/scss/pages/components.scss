@@ -4,11 +4,11 @@ div.table-container {
 	padding-left: 4%;
 	padding-right: 4%;
 	th:first-child {
-		text-align: left; 
+		text-align: left;
 	}
 	.mdl-js-data-table {
 		width: 100%;
-	}	
+	}
 }
 
 
@@ -57,10 +57,10 @@ div.table-container {
 
 .md-toast-open-top .md-button.md-fab-top-left, .md-toast-open-top .md-button.md-fab-top-right {
 	transform: none;
-	
+
 }
-.md-button.md-fab.md-fab-top-left { 
+.md-button.md-fab.md-fab-top-left {
 	top: 40px;
 	left: 160px;
-	z-index: 4;
+	z-index: 4;  //TODO: Change z index so that "add usage button doesn't overlap with main screen view"
 }
