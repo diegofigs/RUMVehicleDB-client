@@ -1,6 +1,8 @@
 /** @ngInject */
 export default class HomeController {
-  constructor($scope, $timeout) {
+  constructor($scope, $timeout, AuthService) {
+    this.authService = AuthService;
+
     $scope.options1 = {
       lineWidth: 8,
       scaleColor: false,
