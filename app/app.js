@@ -2,6 +2,7 @@ import 'angular-material/angular-material.scss';
 import 'ng-material-floating-button/mfb/src/mfb.scss';
 import 'mdi/scss/materialdesignicons.scss';
 import './styles/app-green.scss';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
@@ -9,6 +10,7 @@ import angularUiRouter from 'angular-ui-router';
 import angularMaterial from 'angular-material';
 import translate from 'angular-translate';
 import ngStorage from 'ngstorage';
+import { ngSweetAlert2 } from 'angular-h-sweetalert';
 import 'angular-file-upload';
 import 'angular-truncate-2/src/angular-truncate-2';
 import 'angular-translate-loader-static-files';
@@ -22,6 +24,7 @@ import departmentsModule from './departments/departments';
 import vehiclesModule from './vehicles/vehicles';
 import usersModule from './users/users';
 import cardUsageModule from './cards/card-usage/card-usage';
+import recordsModule from './records/records';
 
 export const appModule = 'app';
 
@@ -33,6 +36,7 @@ angular.module(appModule, [
   angularMaterial,
   ngStorage.name,
   translate,
+  ngSweetAlert2,
   'ui.sortable',
   'ng-mfb',
   'truncate',
@@ -42,6 +46,7 @@ angular.module(appModule, [
   vehiclesModule,
   usersModule,
   cardUsageModule,
+  recordsModule,
 ]).config(($translateProvider) => {
   $translateProvider.useStaticFilesLoader({
     prefix: 'languages/',

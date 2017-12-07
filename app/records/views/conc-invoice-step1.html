@@ -1,0 +1,27 @@
+<div layout class="layout bg-primary bottom-shadow">
+    <h1 class="white" flex="50" flex-offset="10">Expense Conciliation</h1>
+</div>
+<div layout="row" layout-margin class="layout">
+    <div layout="column" flex="66" flex-offset="15" class="layout">
+        <md-card>
+            <h2 flex="initial">Step 1: Upload Vendor's Invoice</h2>
+            <p flex="initial">
+                Provide the monthly spreadsheet file distributed
+                by UPRM's gas vendor to start the automated
+                conciliation process.
+            </p>
+            <md-input-container ng-if="ctrl.uploader">
+                <input type="file" nv-file-select uploader="ctrl.uploader" /><br/>
+                <ul>
+                    <li ng-repeat="item in ctrl.uploader.queue">
+                        {{item.file.name}}
+                        <button ng-click="item.upload()">Upload Report</button>
+                    </li>
+                </ul>
+            </md-input-container>
+            <md-button class="md-primary">Select & Upload</md-button>
+            <md-button ui-sref="dashboard.step2">Submit</md-button>
+        </md-card>
+    </div>
+</div>
+
