@@ -27,6 +27,8 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         controller: 'CardsCtrl as ctrl',
         resolve: {
           cards: (CardsService) => CardsService.getCards(),
+          departments: (DepartmentsService) => DepartmentsService.getDepartments(),
+          users: (UsersService) => UsersService.getUsers(),
         },
       })
       .state('dashboard.cards.add', {

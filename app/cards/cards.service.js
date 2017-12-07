@@ -14,13 +14,14 @@ export default class CardsService {
     this.cards = [];
   }
 
-  getCards() {
+  getCards(params = {}) {
     return this.$http.get(this.baseDomain + this.resource, {
       headers: {
         Authorization: 'Bearer ' + this.authService.getToken()
-      }
+      },
+      params: params
     }).then((response) => {
-      this.cards = response.data.data;
+      this.cards = response.data.data[0].data;
       return this.cards;
     }).catch((error) => {
         this.$log.log(error);
