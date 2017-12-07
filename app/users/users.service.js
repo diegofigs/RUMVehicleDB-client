@@ -20,7 +20,7 @@ export default class UsersService {
         Authorization: 'Bearer ' + this.authService.getToken()
       }
     }).then((response) => {
-      this.users = response.data.data;
+      this.users = response.data.data[0].data;
       return this.users;
     })
       .catch((error) => {

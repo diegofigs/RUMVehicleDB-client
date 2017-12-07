@@ -20,7 +20,7 @@ export default class VehiclesService {
         Authorization: 'Bearer ' + this.authService.getToken()
       }
     }).then((response) => {
-      this.vehicles = response.data.data;
+      this.vehicles = response.data.data[0].data;
       return this.vehicles;
     })
       .catch((error) => {

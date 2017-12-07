@@ -20,8 +20,6 @@ export default class CardUsageService {
 
   createCardUsageEntry(cardUsage) {
 
-    //Picture upload
-
     return this.$http.post(this.baseDomain + this.resource, cardUsage, {
       transformRequest: angular.identity,
       headers: {
@@ -39,7 +37,7 @@ export default class CardUsageService {
         Authorization: 'Bearer ' + this.authService.getToken()
       }
     }).then((response) => {
-      this.cardUsages = response.data.data;  //Verify: response.data.data is correct?
+      this.cardUsages = response.data.data[0].data;
       this.$log.log('I am inside getCardUsage in CardUsageService and cardUsage: ' + this.cardUsages);
       return this.cardUsages;
     }).catch((error) => {
