@@ -1,7 +1,8 @@
 /* Style for the page layout */
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
+  font-weight: 100;
 	position: static !important;
 	background: #F5F5F5;
 }
@@ -13,10 +14,8 @@ body {
 }
 
 .page-content {
-	padding: 15px;
-	padding-top: 85px;
-	padding-left : 95px;
-	max-width: 1390px;
+	padding-top: 80px;
+	padding-left : 80px;
 	margin: 0 auto;
 }
 
@@ -24,6 +23,13 @@ body {
 	margin-left: 80px;
 }
 
+.bg-primary {
+  background-color: #4CAF50;
+}
+
+.white {
+  color: white;
+}
 /* Styles for extended layout */
 
 .extended {
