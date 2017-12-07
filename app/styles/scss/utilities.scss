@@ -8,6 +8,10 @@
 	box-shadow: 1px 1px 7px 0 rgba(145,145,145,0.5);
 }
 
+.bottom-shadow {
+  box-shadow: 0 0 7px 0 rgba(145,145,145,0.5);
+}
+
 .panel-header {
 	padding: 15px;
 	font-size: 16px;
@@ -86,13 +90,14 @@
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-weight: 100;
+}
 
 /**
   * Styles for HTML elements
   */
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-  font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.02em;
   opacity: 0.54;
@@ -101,7 +106,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 h1 {
   font-size: 56px;
-  font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.02em;
   margin-top: 24px;
@@ -109,21 +113,18 @@ h1 {
 
 h2 {
   font-size: 45px;
-  font-weight: 400;
   line-height: 48px;
   margin-top: 24px;
   margin-bottom: 24px; }
 
 h3 {
   font-size: 34px;
-  font-weight: 400;
   line-height: 40px;
   margin-top: 24px;
   margin-bottom: 24px; }
 
 h4 {
   font-size: 24px;
-  font-weight: 400;
   line-height: 32px;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 24px;
@@ -131,7 +132,6 @@ h4 {
 
 h5 {
   font-size: 20px;
-  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.02em;
   margin-top: 24px;
@@ -139,7 +139,6 @@ h5 {
 
 h6 {
   font-size: 16px;
-  font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.04em;
   margin-top: 24px;
