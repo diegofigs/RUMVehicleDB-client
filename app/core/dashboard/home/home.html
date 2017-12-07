@@ -1,21 +1,21 @@
 <div layout class="layout bg-primary bottom-shadow">
-    <h1 class="white" flex="50" flex-offset="15">Welcome back, ADMIN  <i class="white mdi mdi-weather-partlycloudy mdi-48px"></i></h1>
+    <h1 ng-show="ctrl.getUser().user_type_id === '1'" class="white" flex="50" flex-offset="15">Welcome, {{ctrl.getUser().name}}  <i class="white mdi mdi-weather-partlycloudy mdi-48px"></i></h1>
 </div>
 <div layout="column" layout-margin class="layout">
     <div layout="row" flex="100" class="layout">
-        <div layout="column" layout-align="center center" flex="5" flex-offset="10">
+        <div ng-show="ctrl.getUser().user_type_id === '1'" layout="column" layout-align="center center" flex="5" flex-offset="10">
             <i flex="25" class="mdi mdi-account-multiple mdi-48px icon-block"></i>
             <i flex="25" class="mdi mdi-credit-card mdi-48px icon-block"></i>
             <i flex="25" class="mdi mdi-car mdi-48px icon-block"></i>
             <i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>
         </div>
-        <div layout="column" layout-align="center center" flex="10">
+        <div ng-show="ctrl.getUser().user_type_id === '1'" layout="column" layout-align="center center" flex="10">
             <h2 flex="25" class="text-light">1</h2>
             <h2 flex="25" class="text-light">2</h2>
             <h2 flex="25" class="text-light">3</h2>
             <h2 flex="25" class="text-light">4</h2>
         </div>
-        <div layout="column" layout-align="center start" flex="25">
+        <div ng-show="ctrl.getUser().user_type_id === '1'" layout="column" layout-align="center start" flex="25">
             <h3 flex="25" class="text-light">registered users</h3>
             <h3 flex="25" class="text-light">credit cards active</h3>
             <h3 flex="25" class="text-light">registered vehicles</h3>
