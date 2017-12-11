@@ -1,8 +1,44 @@
-<pageheader pagename="{{ 'vehicles' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
-
 <div class="mdl-cell shadow">
     <div class="panel-header">{{ 'vehicles' | translate }}</div>
     <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
+
+           <span class="sort-by">
+                <md-icon>
+                    <i class="filter-icon mdi mdi-filter-outline"></i>
+                </md-icon>Sort by:
+            </span>
+
+        <!-- User Type IDs: Administrator = 1, Card Custodian = 2, Card Custodian (Auxiliary) = 3, Vehicle Manager = 4
+
+        - Administrator and Vehicle Manager can filter vehicles by: Department, Custodian, Vehicle Type (Trolley, Golf Cars, Security)
+        - Custodians can filter vehicles by: Vehicle Type (Trolley, Golf Cars, Security) -->
+
+        <div class="filter-selects layout-row" >
+            <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+                <label>Department</label>
+                <md-select ng-model="ctrl.filter.department_id">
+                    <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+                <label>Custodian</label>
+                <md-select ng-model="ctrl.filter.custodian_id">
+                    <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="filter-selects-space">
+                <label>Vehicle Type</label>
+                <md-select ng-model="ctrl.filter.vehicle_type">
+                    <md-option value= "{{type}}" ng-repeat="type in ctrl.vehicles.type">{{type}}</md-option>
+                </md-select>
+            </md-input-container>
+
+        </div>
+        <md-card-actions class="layout-align-end layout-row">
+            <md-button ng-click="ctrl.applyVehicleFilter()"  class="md-raised md-primary"> Apply Filter </md-button>
+        </md-card-actions>
         <md-card ng-repeat="v in ctrl.vehicles" flex-md="50 none" flex-gt-md="33 nogrow">
             <md-card-title>
                 <md-card-title-text>

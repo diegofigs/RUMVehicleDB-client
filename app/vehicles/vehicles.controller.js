@@ -4,17 +4,24 @@
 export default class VehiclesController {
   /** @ngInject */
   constructor($state, $log,
-           AuthService, DepartmentsService, VehiclesService) {
+           AuthService, DepartmentsService, UsersService, VehiclesService) {
     this.$state = $state;
     this.$log = $log;
     this.authService = AuthService;
     this.departmentsService = DepartmentsService;
+    this.usersService = UsersService
     this.vehiclesService = VehiclesService;
 
     this.vehicles = this.vehiclesService.vehicles;
     this.vehicle = this.vehiclesService.vehicle;
     this.departments = this.departmentsService.departments;
     this.newVehicle = {};
+
+    this.filter = {
+      department_id: '',
+      custodian_id: '',
+      vehicle_type: '',
+    };
   }
 
   createVehicle() {
@@ -36,6 +43,17 @@ export default class VehiclesController {
     return this.vehiclesService.editVehicle(this.vehicle)
       .then(() => {
       this.$state.go('dashboard.vehicles.list');
+      });
+  }
+
+  getUser() {
+    return this.authService.getUser();
+  }
+
+  applyVehicleFilter() {
+    return this.vehiclesService.getVehicles(this.filter)
+      .then( () => {
+        this.vehicles = this.vehiclesService.vehicles;
       });
   }
 }
