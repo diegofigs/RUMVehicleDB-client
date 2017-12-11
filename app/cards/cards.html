@@ -1,7 +1,6 @@
 <div class="mdl-cell shadow">
     <div class="panel-header">{{ 'cards' | translate }}</div>
-
-    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+    <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
 
             <span class="sort-by">
                 <md-icon>
@@ -9,45 +8,46 @@
                 </md-icon>Sort by:
             </span>
 
+        <!-- User Type IDs: Administrator = 1, Card Custodian = 2, Card Custodian (Auxiliary) = 3, Vehicle Manager = 4
+
+        - Administrator and Vehicle Manager can filter cards by: department, custodian, type, and status
+        - Custodians can filter cards by: type, and status -->
+
+
         <div class="filter-selects layout-row" >
-            <md-input-container class="filter-selects-space">
-                <label>Department</label>
-                <md-select ng-model="ctrl.filter.department_id">
-                    <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
-                </md-select>
-            </md-input-container>
+                <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+                    <label>Department</label>
+                    <md-select ng-model="ctrl.filter.department_id">
+                        <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-            <md-input-container class="filter-selects-space">
-                <label>Custodian</label>
-                <md-select ng-model="ctrl.filter.custodian_id">
-                    <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
-                </md-select>
-            </md-input-container>
+                <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+                    <label>Custodian</label>
+                    <md-select ng-model="ctrl.filter.custodian_id">
+                        <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-            <md-input-container class="filter-selects-space">
-                <label>Card Type</label>
-                <md-select ng-model="ctrl.filter.type">
-                    <md-option value= "{{type}}"" ng-repeat="type in ctrl.cardTypeOptions">{{type}}</md-option>
-                </md-select>
-            </md-input-container>
+                <md-input-container class="filter-selects-space">
+                    <label>Card Type</label>
+                    <md-select ng-model="ctrl.filter.type">
+                        <md-option value= "{{type}}"" ng-repeat="type in ctrl.cardTypeOptions">{{type}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-            <md-input-container class="filter-selects-space">
-                <label>Status</label>
-                <md-select ng-model="ctrl.filter.status">
-                    <md-option  value="{{status}}" ng-repeat="status in ctrl.cardStatusOptions">{{status}}</md-option>
-                </md-select>
-            </md-input-container>
+                <md-input-container class="filter-selects-space">
+                    <label>Status</label>
+                    <md-select ng-model="ctrl.filter.status">
+                        <md-option  value="{{status}}" ng-repeat="status in ctrl.cardStatusOptions">{{status}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-        </div>
-        <md-card-actions class="layout-align-end layout-row">
-            <md-button ng-click="ctrl.applyFilter()">Apply Filter</md-button>
-        </md-card-actions>
+            </div>
+            <md-card-actions class="layout-align-end layout-row">
+                <md-button ng-click="ctrl.applyFilter()"  class="md-raised md-primary"> Apply Filter </md-button>
+            </md-card-actions>
 
-    </md-card>
- </div>
-
-
-    <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
         <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
             <md-card-title>
                 <md-card-title-text>

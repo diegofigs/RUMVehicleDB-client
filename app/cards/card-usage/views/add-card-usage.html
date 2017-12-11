@@ -8,28 +8,23 @@
             <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
                 <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
-                    <label class="md-datepicker-input-container md-placeholder"> Select Transaction date: </label>
+                    <md-input-container>
+                        <label>Transaction Date</label>
+                    </md-input-container>
                     <md-datepicker
                         ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
                         ng-change="ctrl.onDateChange()"
-                        ng-model="ctrl.temp_date">
+                        ng-model="ctrl.temp_date"
+                        md-placeholder="mm/dd/yyyy">
                     </md-datepicker>
 
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
                                 name="provider_number"
-                                placeholder="Provider Number"
-                                ng-model="ctrl.newCardUsage.provider_number"
-                                ng-pattern="/^(\d)+$/"
-                                required>
-                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.provider_number.$error.pattern">
-                            <md-icon>
-                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                            </md-icon>This entry can only contain numbers
-                        </p>
+                                placeholder="Provider (Store)"
+                                ng-model="ctrl.newCardUsage.provider_number">
                     </md-input-container>
-
 
                     <md-input-container>
                         <input  type="text"
@@ -39,10 +34,10 @@
                                 ng-model="ctrl.newCardUsage.vehicle_mileage"
                                 ng-pattern="/^(\d)+$/"
                                 required>
-                        <p style="color: crimson; font-size: 65%" ng-show="cardUsageForm.vehicle_mileage.$error.pattern">
-                        <md-icon>
-                            <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                        </md-icon>This entry can only contain numbers
+                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.vehicle_mileage.$error.pattern">
+                            <md-icon>
+                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                            </md-icon>This entry can only contain numbers
                         </p>
                     </md-input-container>
 
@@ -74,7 +69,7 @@
                                 ng-model="ctrl.newCardUsage.total_liters"
                                 ng-pattern="/^(\d)+$/"
                                 required>
-                        <p style="color: crimson; font-size: 65%" ng-show="cardUsageForm.total_liters.$error.pattern">
+                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.total_liters.$error.pattern">
                             <md-icon>
                                 <i class="mdi mdi-alert-circle" style="color: crimson"></i>
                             </md-icon>This entry can only contain numbers
@@ -93,7 +88,7 @@
                                 ng-model="ctrl.newCardUsage.total_receipt"
                                 ng-pattern="/^(\d)+$/"
                                 required>
-                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.total_receipt.$error.pattern">
+                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.total_receipt.$error.pattern">
                             <md-icon>
                                 <i class="mdi mdi-alert-circle" style="color: crimson"></i>
                             </md-icon>This entry can only contain numbers
@@ -108,14 +103,14 @@
                                 ng-model="ctrl.newCardUsage.receipt_number"
                                 ng-pattern="/^(\d)+$/"
                                 required>
-                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.receipt_number.$error.pattern">
+                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.receipt_number.$error.pattern">
                             <md-icon>
                                 <i class="mdi mdi-alert-circle" style="color: crimson"></i>
                             </md-icon>This entry can only contain numbers
                         </p>
                     </md-input-container>
 
-                    <md-input-container>
+                    <md-input-container class="md-has-icon">
                         <input  type="text"
                                 class="form-control"
                                 name="comments"
@@ -124,6 +119,7 @@
                     </md-input-container>
 
                     <md-input-container ng-if="ctrl.uploader">
+                        <label>Transaction Receipt</label><br/><br/>
                         <input type="file" nv-file-select uploader="ctrl.uploader" required/><br/>
                         <ul>
                             <li ng-repeat="item in ctrl.uploader.queue">

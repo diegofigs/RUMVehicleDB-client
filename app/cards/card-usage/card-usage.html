@@ -33,7 +33,7 @@
         </thead>
 
         <tbody>
-        <tr ng-repeat="usage in ctrl.cardUsages | orderBy: reverse: true | limitTo: 10" >
+        <tr ng-repeat="usage in ctrl.cardUsages | orderBy: '-date' | limitTo: 10" >
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.record_custodian_name}}</td>
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.date | date}}</td>
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.purchase_type }}</td>

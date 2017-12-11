@@ -1,6 +1,4 @@
-/**
- * Created by Jan on 6/19/17.
- */
+
 
 export default class CardUsageService {
   /** @ngInject */
