@@ -50,5 +50,10 @@
     "ng-material-floating-button": "0.6.2",
     "ngstorage": "^0.3.11",
     "perfect-scrollbar": "^0.6.12"
+  },
+  "esdoc": {
+    "source": "./app",
+    "destination": "./docs",
+    "plugins": [{"name": "esdoc-standard-plugin"}]
   }
 }
