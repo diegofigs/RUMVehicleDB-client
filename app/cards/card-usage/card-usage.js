@@ -1,6 +1,4 @@
-/**
- * Created by Jan on 6/19/17.
- */
+
 
 import cardsUsageController from './card-usage.controller';
 import cardUsageService from './card-usage.service';

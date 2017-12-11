@@ -1,6 +1,4 @@
-/**
- * Created by Jan on 6/19/17.
- */
+
 import moment from 'moment';
 
 export default class CardsUsageController {
