@@ -14,18 +14,18 @@ export default class VehiclesService {
     this.vehicles = [];
   }
 
-  getVehicles() {
+  getVehicles(params = {}) {
     return this.$http.get(this.baseDomain + this.resource, {
       headers: {
         Authorization: 'Bearer ' + this.authService.getToken()
-      }
+      },
+      params: params
     }).then((response) => {
       this.vehicles = response.data.data[0].data;
       return this.vehicles;
-    })
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    }).catch((error) => {
+      this.$log.log(error);
+    });
   }
 
   getVehicle(id) {
