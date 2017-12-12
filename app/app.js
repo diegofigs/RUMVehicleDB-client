@@ -1,8 +1,11 @@
 import 'angular-material/angular-material.scss';
+import 'angular-material-data-table/dist/md-data-table.css';
 import 'ng-material-floating-button/mfb/src/mfb.scss';
 import 'mdi/scss/materialdesignicons.scss';
-import './styles/app-green.scss';
 import 'sweetalert2/dist/sweetalert2.min.css';
+
+import './styles/app-green.scss';
+import './styles/scss/widgets/card-filter.scss';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
@@ -17,6 +20,7 @@ import 'angular-translate-loader-static-files';
 import 'angular-bootstrap-lightbox';
 import 'angular-ui-sortable';
 import 'ng-material-floating-button/src/mfb-directive';
+import 'angular-material-data-table'
 
 import coreModule from './core/core';
 import cardsModule from './cards/cards';
@@ -34,6 +38,7 @@ angular.module(appModule, [
   angularAnimate,
   'angularFileUpload',
   angularMaterial,
+  'md.data.table',
   ngStorage.name,
   translate,
   ngSweetAlert2,
@@ -60,5 +65,5 @@ angular.module(appModule, [
       .fontSet('mdi', 'material-icons');
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
-      .warnPalette('grey');
+      .warnPalette('red');
   });

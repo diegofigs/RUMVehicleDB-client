@@ -213,7 +213,16 @@ md-menu-item > .md-button {
 	}
 }
 md-input-container.md-icon-float > label {
-	margin-left: 0;
+
+}
+
+md-input-container.md-has-icon > label{
+  left: 0px;
+}
+
+md-input-container.md-icon-float.md-has-icon{
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .mdl-layout {

@@ -57,14 +57,22 @@ export default class CardsUsageController {
 
   }
 
+  submitUsageForm() {
+
+    let tempItem = null;
+
+    for (let x = 0; x < this.uploader.queue.length; x++){
+      this.tempItem = this.uploader.queue[x];
+    }
+    this.tempItem.upload();
+  }
+
   onDateChange() {
     this.newCardUsage.date = moment(this.temp_date).format('YYYY-M-D');
   }
 
   getCardUsages() {
-    //let cardID = this.cardsService.card.id;    Do I really need ID?
     return this.cardUsageService.getCardUsages();
-
   }
 
   deleteCardUsage(id) {
@@ -75,7 +83,6 @@ export default class CardsUsageController {
   }
 
   editCardUsage(id) {
-    this.$log.log('I am inside editCardUsageEntry() in card-usage.controller');
     return this.cardUsageService.editCardUsage(this.cardUsages.id)
       .then(() => {
         this.$state.go('dashboard.cards.view.card-usage');

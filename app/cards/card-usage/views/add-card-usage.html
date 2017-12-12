@@ -3,35 +3,47 @@
         Add Gas Expense
     </div>
     <div class="panel-body forms">
-        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.createCardUsageEntry()">  <!--TODO: verify this -->
+        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.submitUsageForm()" novalidate>  <!--TODO: verify this -->
             <h4>Please enter usage details</h4>
             <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
                 <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
+                    <label class="md-datepicker-input-container md-placeholder"> Select Transaction date: </label>
                     <md-datepicker
                         ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
-                        tooltip="{{'vinTooltip' | translate}}"
                         ng-change="ctrl.onDateChange()"
-                        md-placeholder="mm/dd/yyyy"
                         ng-model="ctrl.temp_date">
                     </md-datepicker>
 
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="provider_number"
                                 placeholder="Provider Number"
-                                ng-model="ctrl.newCardUsage.provider_number">
+                                ng-model="ctrl.newCardUsage.provider_number"
+                                ng-pattern="/^(\d)+$/"
+                                required>
+                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.provider_number.$error.pattern">
+                            <md-icon>
+                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                            </md-icon>This entry can only contain numbers
+                        </p>
                     </md-input-container>
+
 
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="vehicle_mileage"
                                 placeholder="Vehicle Mileage"
-                                ng-model="ctrl.newCardUsage.vehicle_mileage">
+                                ng-model="ctrl.newCardUsage.vehicle_mileage"
+                                ng-pattern="/^(\d)+$/"
+                                required>
+                        <p style="color: crimson; font-size: 65%" ng-show="cardUsageForm.vehicle_mileage.$error.pattern">
+                        <md-icon>
+                            <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                        </md-icon>This entry can only contain numbers
+                        </p>
                     </md-input-container>
 
                     <md-input-container>
@@ -39,7 +51,8 @@
                         <md-select
                             class="form-control"
                             name="purchase_type"
-                            ng-model="ctrl.newCardUsage.purchase_type">
+                            ng-model="ctrl.newCardUsage.purchase_type"
+                            ng-required="true">
 
                             <md-option value="R">  <!-- R: Regular -->
                                 Regular
@@ -56,10 +69,16 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="total_liters"
                                 placeholder="Total of liters"
-                                ng-model="ctrl.newCardUsage.total_liters">
+                                ng-model="ctrl.newCardUsage.total_liters"
+                                ng-pattern="/^(\d)+$/"
+                                required>
+                        <p style="color: crimson; font-size: 65%" ng-show="cardUsageForm.total_liters.$error.pattern">
+                            <md-icon>
+                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                            </md-icon>This entry can only contain numbers
+                        </p>
                     </md-input-container>
 
                 </div>
@@ -69,36 +88,47 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="total_receipt"
                                 placeholder="Receipt Total"
-                                ng-model="ctrl.newCardUsage.total_receipt">
+                                ng-model="ctrl.newCardUsage.total_receipt"
+                                ng-pattern="/^(\d)+$/"
+                                required>
+                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.total_receipt.$error.pattern">
+                            <md-icon>
+                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                            </md-icon>This entry can only contain numbers
+                        </p>
                     </md-input-container>
 
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="receipt_number"
                                 placeholder="Receipt Number"
-                                ng-model="ctrl.newCardUsage.receipt_number">
+                                ng-model="ctrl.newCardUsage.receipt_number"
+                                ng-pattern="/^(\d)+$/"
+                                required>
+                        <p  style="color: crimson; font-size: 65%" ng-show="cardUsageForm.receipt_number.$error.pattern">
+                            <md-icon>
+                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
+                            </md-icon>This entry can only contain numbers
+                        </p>
                     </md-input-container>
 
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="comments"
                                 placeholder="Any comments?"
                                 ng-model="ctrl.newCardUsage.comments">
                     </md-input-container>
 
                     <md-input-container ng-if="ctrl.uploader">
-                        <input type="file" nv-file-select uploader="ctrl.uploader" /><br/>
+                        <input type="file" nv-file-select uploader="ctrl.uploader" required/><br/>
                         <ul>
                             <li ng-repeat="item in ctrl.uploader.queue">
                                 {{item.file.name}}
-                                <button ng-click="item.upload()">Upload Picture</button>
+                               <!-- <button ng-click="item.upload()">Upload Picture</button>  -->
                             </li>
                         </ul>
                     </md-input-container>
@@ -106,7 +136,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardUsageForm.$invalid"> Add Record </md-button>
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardUsageForm.$invalid && !!ctrl.uploader.queue"> Add Record </md-button>
             </div>
         </form>
     </div>
