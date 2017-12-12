@@ -15,6 +15,8 @@ export default class VehiclesController {
     this.vehicles = this.vehiclesService.vehicles;
     this.vehicle = this.vehiclesService.vehicle;
     this.departments = this.departmentsService.departments;
+    //Get all custodians for card filtering purposes.
+    this.custodianNames = this.usersService.users;
     this.newVehicle = {};
 
     this.filter = {
