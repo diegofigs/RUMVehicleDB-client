@@ -38,18 +38,18 @@
 
     <!-- Dashboard view for VEHICLE MANAGER -->
 
-    <div layout="row" flex="100" class="layout">
-        <div ng-show="ctrl.getUser().user_type_id === '4'" layout="column" layout-align="center start" flex="5" flex-offset="10">
+    <div ng-if="ctrl.getUser().user_type_id === '4'" layout="row" flex="100" class="layout">
+        <div layout="column" layout-align="center start" flex="5" flex-offset="10">
             <i flex="25" class="mdi mdi-car mdi-48px icon-block"></i>
             <i flex="25" class="mdi mdi-credit-card mdi-48px icon-block"></i>
             <i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>
         </div>
-        <div ng-show="ctrl.getUser().user_type_id === '4'" layout="column" layout-align="center center" flex="10">
+        <div layout="column" layout-align="center center" flex="10">
             <h2 flex="25" class="text-light">1</h2>
             <h2 flex="25" class="text-light">3</h2>
             <h2 flex="25" class="text-light">4</h2>
         </div>
-        <div ng-show="ctrl.getUser().user_type_id === '4'" layout="column" layout-align="center start" flex="25">
+        <div layout="column" layout-align="center start" flex="25">
             <h3 flex="25" class="text-light">registered vehicles</h3>
             <h3 flex="25" class="text-light">credit cards active</h3>
             <h3 flex="25" class="text-light">total expenses</h3>
