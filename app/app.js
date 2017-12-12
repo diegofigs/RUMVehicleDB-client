@@ -63,7 +63,18 @@ angular.module(appModule, [
   .config(($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
       .fontSet('mdi', 'material-icons');
+
+    let greenMap = $mdThemingProvider.extendPalette('green', {
+      'contrastDefaultColor': 'light',
+    });
+    $mdThemingProvider.definePalette('newGreen', greenMap);
+
+    let redMap = $mdThemingProvider.extendPalette('red', {
+      'contrastDefaultColor': 'light',
+    });
+    $mdThemingProvider.definePalette('newRed', redMap);
+
     $mdThemingProvider.theme('default')
-      .primaryPalette('green')
-      .warnPalette('red');
+      .primaryPalette('newGreen')
+      .warnPalette('newRed');
   });
