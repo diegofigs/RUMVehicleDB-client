@@ -1,20 +1,21 @@
 <div class="mdl-cell shadow">
     <div class="panel-header">{{ 'cards' | translate }}</div>
-    <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
-
-            <span class="sort-by">
-                <md-icon>
-                    <i class="filter-icon mdi mdi-filter-outline"></i>
-                </md-icon>Sort by:
-            </span>
+    <div class="panel-body" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
 
         <!-- User Type IDs: Administrator = 1, Card Custodian = 2, Card Custodian (Auxiliary) = 3, Vehicle Manager = 4
 
         - Administrator and Vehicle Manager can filter cards by: department, custodian, type, and status
         - Custodians can filter cards by: type, and status -->
+        <div class="sort-by" flex="100">
+            <span>
+                <md-icon>
+                    <i class="filter-icon mdi mdi-filter-outline"></i>
+                </md-icon>Sort by:
+            </span>
+        </div>
 
+        <div layout="row" layout-align="start center">
 
-        <div class="filter-selects layout-row" >
                 <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
                     <label>Department</label>
                     <md-select ng-model="ctrl.filter.department_id">
@@ -43,31 +44,33 @@
                     </md-select>
                 </md-input-container>
 
-            </div>
-            <md-card-actions class="layout-align-end layout-row">
-                <md-button ng-click="ctrl.applyFilter()"  class="md-raised md-primary"> Apply Filter </md-button>
-            </md-card-actions>
+                 <md-button ng-click="ctrl.applyFilter()" class="md-raised md-primary">Filter</md-button>
+        </div>
 
-        <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{ card.name }}</span>
-                    <span class="md-subhead">Department: {{ card.card_department_name  }}</span>
+        <div class="card-group" layout="row"  layout-wrap>
+            <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ card.name }}</span>
+                        <span class="md-subhead">Department: {{ card.card_department_name  }}</span>
 
-                    <!--Show custodian name on card view only if user is Admin -->
-                    <span ng-show="ctrl.getUser().user_type_id === '1'" class="md-subhead">Custodian: {{ card.card_custodian_name  }}</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-sm card-media">
-                        <img src="../../public/images/generic-credit-card.jpg" class="md-card-image" alt="Washed Out">
-                    </div>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="start start">
-                <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
-                <md-button ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
-                <md-button ng-click="ctrl.deleteCard(card)">Delete Card</md-button>
-            </md-card-actions>
-        </md-card>
+                        <!--Show custodian name on card view only if user is Admin -->
+                        <span ng-show="ctrl.getUser().user_type_id === '1'" class="md-subhead">Custodian: {{ card.card_custodian_name  }}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <img src="../../public/images/generic-credit-card.jpg" class="md-card-image" alt="Washed Out">
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="start start">
+                    <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
+                    <md-button ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
+                    <md-button ng-click="ctrl.deleteCard(card)">Delete Card</md-button>
+                </md-card-actions>
+            </md-card>
+
+        </div>
+
     </div>
 </div>
