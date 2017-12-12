@@ -8,9 +8,9 @@ export default class RecordsController {
     this.authService = AuthService;
     this.swal = swal;
 
-    this.reconciled_server_records = [];
-    this.no_reconciled_server_records = [];
-    this.excel_no_reconciliated_records = [];
+    this.reconciled = [];
+    this.nonReconciled = [];
+    this.excelNonReconciled = [];
 
     this.uploader = new FileUploader({
       url: 'http://dev.uprm.edu/rumvehicles/api/v1/records/reconcile',

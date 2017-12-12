@@ -10,5 +10,4 @@ export default class RecordsService {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
   }
 
-
 }
