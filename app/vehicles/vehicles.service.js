@@ -29,45 +29,31 @@ export default class VehiclesService {
   }
 
   getVehicle(id) {
-    return this.$http.get(this.baseDomain + this.resource + '/' + id, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).then((response) => {
+    return this.$http.get(this.baseDomain + this.resource + '/' + id).then((response) => {
       this.vehicle = response.data.data;
       return this.vehicle;
-    })
-      .catch((error) => {
+    }).catch((error) => {
         this.$log.log(error);
       });
   }
 
   createVehicle(vehicle) {
-    return this.$http.post(this.baseDomain + this.resource, vehicle, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).catch((error) => {
+    return this.$http.post(this.baseDomain + this.resource, vehicle)
+      .catch((error) => {
       this.$log.log(error);
     });
   }
 
   deleteVehicle(vehicle) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + vehicle.id, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).catch((error) => {
+    return this.$http.delete(this.baseDomain + this.resource + '/' + vehicle.id)
+      .catch((error) => {
       this.$log.log(error);
     });
   }
 
   editVehicle(vehicle) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).catch((error) => {
+    return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle)
+      .catch((error) => {
       this.$log.log(error);
     });
   }

@@ -13,14 +13,11 @@ export default class DepartmentsService {
   }
 
   getDepartments() {
-    return this.$http.get(this.baseDomain + this.resource, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).then((response) => {
-      this.departments = response.data;
-      return this.departments;
-    })
+    return this.$http.get(this.baseDomain + this.resource)
+      .then((response) => {
+        this.departments = response.data;
+        return this.departments;
+      })
       .catch((error) => {
         this.$log.log(error);
       });
