@@ -3,7 +3,7 @@
         Add Gas Expense
     </div>
     <div class="panel-body forms">
-        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.submitUsageForm()" novalidate>  <!--TODO: verify this -->
+        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.confirmUsageForm()" novalidate>  <!--TODO: verify this -->
             <h4>Please enter usage details</h4>
             <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
                 <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
@@ -118,13 +118,12 @@
                                 ng-model="ctrl.newCardUsage.comments">
                     </md-input-container>
 
-                    <md-input-container ng-if="ctrl.uploader">
+                    <md-input-container ng-if="ctrl.uploader" required="true">
                         <label>Transaction Receipt</label><br/><br/>
                         <input type="file" nv-file-select uploader="ctrl.uploader" required/><br/>
                         <ul>
                             <li ng-repeat="item in ctrl.uploader.queue">
                                 {{item.file.name}}
-                               <!-- <button ng-click="item.upload()">Upload Picture</button>  -->
                             </li>
                         </ul>
                     </md-input-container>
