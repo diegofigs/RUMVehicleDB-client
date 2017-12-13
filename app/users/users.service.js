@@ -3,12 +3,11 @@
  */
 export default class UsersService {
   /** @ngInject */
-  constructor($http, $log, AuthService) {
+  constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/custodians';
     this.$http = $http;
     this.$log = $log;
-    this.authService = AuthService;
 
     this.user = {};
     this.users = [];

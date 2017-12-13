@@ -1,13 +1,10 @@
-
-
 export default class CardUsageService {
   /** @ngInject */
-  constructor($http, $log, AuthService) {
+  constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/records';
     this.$http = $http;
     this.$log = $log;
-    this.authService = AuthService;
 
     this.cards = [];
 

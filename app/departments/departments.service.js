@@ -3,10 +3,9 @@
  */
 
 export default class DepartmentsService {
-  constructor($http, $log, AuthService) {
+  constructor($http, $log) {
     this.$http = $http;
     this.$log = $log;
-    this.authService = AuthService;
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/departments';
     this.departments = [];
