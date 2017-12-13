@@ -40,7 +40,7 @@
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.total_liters }}</td>
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.total_receipt | currency }}</td>
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">
-                <a href={{usage.record_picture}} target="_blank">View receipt</a>
+                <a ng-click="ctrl.showReceipt(usage)">View receipt</a>
             </td>
             <td ng-hide="true" class="table-header"  style="border-left: 1px solid #C7C7CB;">
                 <button ui-sref="dashboard.cards.view.edit-card-usage({id: usage.id})">

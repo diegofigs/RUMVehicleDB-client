@@ -55,9 +55,23 @@ export default class CardsUsageController {
 
   }
 
-  // Shows confirmation dialog to user.
-  // If user confirms, a new card usage/record will be created.
-  // If user cancels, he/she will stay in the "Add New Card Usage" view
+  /**
+   * Shows a card usage receipt in a dialog/pop up
+   * @param usage Card usage object
+   */
+  showReceipt(usage){
+    console.log(usage.record_picture);
+    this.swal({
+      title: 'Receipt',
+      imageUrl: usage.record_picture,
+    });
+  }
+
+  /**
+   * Shows confirmation dialog to user
+   * If user confirms, a new card usage/record will be created
+   * If user cancels, he/she will stay in the "Add New Card Usage" view
+   */
   confirmUsageForm() {
 
     this.swal({
@@ -89,6 +103,9 @@ export default class CardsUsageController {
     });
   }
 
+  /**
+   * Sends newly created transaction to backend
+   */
   submitUsageForm(){
 
     let tempItem = null;
