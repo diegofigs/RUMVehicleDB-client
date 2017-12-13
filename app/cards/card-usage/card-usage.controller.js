@@ -2,9 +2,8 @@
 import moment from 'moment';
 
 export default class CardsUsageController {
-  /** @ngInject */
   constructor($state, $log, FileUploader,
-              AuthService, CardsService, CardUsageService) {
+              AuthService, CardsService, CardUsageService, swal) {
     this.$state = $state;
     this.$log = $log;
     this.authService = AuthService;
@@ -13,6 +12,7 @@ export default class CardsUsageController {
     this.cardsService = CardsService;
     this.cardUsages = this.cardUsageService.cardUsages;
     this.temp_date = new Date();
+    this.swal = swal;
 
     this.newCardUsage = {
       date: '',
@@ -55,7 +55,41 @@ export default class CardsUsageController {
 
   }
 
-  submitUsageForm() {
+  // Shows confirmation dialog to user.
+  // If user confirms, a new card usage/record will be created.
+  // If user cancels, he/she will stay in the "Add New Card Usage" view
+  confirmUsageForm() {
+
+    this.swal({
+      title: 'Confirm transaction',
+      html: '<div class="confirmation-table">' +
+      '<ul style="list-style-type:none; text-align: left">' +
+      '<li> Date:  ' + '<b>' + this.newCardUsage.date + '</b></li>' +
+      '<li> Store:  ' + '<b>' + this.newCardUsage.provider_number + '</b></li>' +
+      '<li> Vehicle mileage:  ' + '<b>' + this.newCardUsage.vehicle_mileage + '</b></li>' +
+      '<li> Purchase type:  ' + '<b>' + this.newCardUsage.purchase_type + '</b></li>' +
+      '<li> Total of liters:  ' + '<b>' + this.newCardUsage.total_liters + '</b></li>' +
+      '<li> Receipt total:  ' + '<b>' + this.newCardUsage.total_receipt + '</b></li>' +
+      '<li> Receipt number: ' + '<b>' + this.newCardUsage.receipt_number + '</b></li>' +
+      '<li> Comments:  ' + '<b>' + this.newCardUsage.comments + '</b></li></ul></div>',
+      type: 'info',
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#4caf50',
+      showCancelButton: 'true',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#f44336',
+    }).then(() => {
+
+      this.swal({
+        title: 'Success!',
+        text: 'You have submitted a new transaction successfully',
+        type: 'success'
+      });
+      this.submitUsageForm();
+    });
+  }
+
+  submitUsageForm(){
 
     let tempItem = null;
 
