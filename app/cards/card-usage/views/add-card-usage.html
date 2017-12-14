@@ -3,10 +3,12 @@
         Add Gas Expense
     </div>
     <div class="panel-body forms">
-        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.confirmUsageForm()" novalidate>  <!--TODO: verify this -->
+
+        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.confirmUsageForm()" novalidate> 
             <h4>Please enter usage details</h4>
-            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
-                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+            <div layout="column" layout-sm="column" layout-xs="column" class="mdl-grid">
+
+                <div class="mdl-cell" flex ="100 nogrow">
 
                     <md-input-container>
                         <label>Transaction Date</label>
@@ -18,116 +20,118 @@
                         md-placeholder="mm/dd/yyyy">
                     </md-datepicker>
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="provider_number"
-                                placeholder="Provider (Store)"
-                                ng-model="ctrl.newCardUsage.provider_number">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="vehicle_mileage"
-                                placeholder="Vehicle Mileage"
-                                ng-model="ctrl.newCardUsage.vehicle_mileage"
-                                ng-pattern="/^(\d)+$/"
-                                required>
-                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.vehicle_mileage.$error.pattern">
-                            <md-icon>
-                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                            </md-icon>This entry can only contain numbers
-                        </p>
-                    </md-input-container>
-
-                    <md-input-container>
-                        <label>Purchase Type</label>
-                        <md-select
-                            class="form-control"
-                            name="purchase_type"
-                            ng-model="ctrl.newCardUsage.purchase_type"
-                            ng-required="true">
-
-                            <md-option value="R">  <!-- R: Regular -->
-                                Regular
-                            </md-option>
-                            <md-option value="P">  <!-- P: Premium -->
-                                Premium
-                            </md-option>
-                            <md-option value="D">  <!-- D: Diesel -->
-                                Diesel
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="total_liters"
-                                placeholder="Total of liters"
-                                ng-model="ctrl.newCardUsage.total_liters"
-                                ng-pattern="/^(\d)+$/"
-                                required>
-                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.total_liters.$error.pattern">
-                            <md-icon>
-                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                            </md-icon>This entry can only contain numbers
-                        </p>
-                    </md-input-container>
-
                 </div>
 
-                <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow" layout-margin="60px">
+                <div layout="row" class="mdl-cell" flex ="100 nogrow">
+                    <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
-                    <md-input-container>
-                        <input  type="text"
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="provider_number"
+                                    placeholder="Provider (Store)"
+                                    ng-model="ctrl.newCardUsage.provider_number">
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="vehicle_mileage"
+                                    placeholder="Vehicle Mileage"
+                                    ng-model="ctrl.newCardUsage.vehicle_mileage"
+                                    ng-pattern="/^(\d)+$/"
+                                    required>
+                            <div ng-messages="cardUsageForm.vehicle_mileage.$error" ng-if="cardUsageForm.vehicle_mileage.$dirty">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain numbers</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="total_liters"
+                                    placeholder="Total of liters"
+                                    ng-model="ctrl.newCardUsage.total_liters"
+                                    ng-pattern="/^(\d)+$/"
+                                    required>
+                            <div ng-messages="cardUsageForm.total_liters.$error" ng-if="cardUsageForm.total_liters.$dirty">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain numbers</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Purchase Type</label>
+                            <md-select
                                 class="form-control"
-                                name="total_receipt"
-                                placeholder="Receipt Total"
-                                ng-model="ctrl.newCardUsage.total_receipt"
-                                ng-pattern="/^(\d)+$/"
-                                required>
-                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.total_receipt.$error.pattern">
-                            <md-icon>
-                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                            </md-icon>This entry can only contain numbers
-                        </p>
-                    </md-input-container>
+                                name="purchase_type"
+                                ng-model="ctrl.newCardUsage.purchase_type"
+                                ng-required="true">
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="receipt_number"
-                                placeholder="Receipt Number"
-                                ng-model="ctrl.newCardUsage.receipt_number"
-                                ng-pattern="/^(\d)+$/"
-                                required>
-                        <p  style="color: crimson; font-size: 80%" ng-show="cardUsageForm.receipt_number.$error.pattern">
-                            <md-icon>
-                                <i class="mdi mdi-alert-circle" style="color: crimson"></i>
-                            </md-icon>This entry can only contain numbers
-                        </p>
-                    </md-input-container>
+                                <md-option value="Regular">
+                                    Regular
+                                </md-option>
+                                <md-option value="Premium">
+                                    Premium
+                                </md-option>
+                                <md-option value="Diesel">
+                                    Diesel
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
 
-                    <md-input-container class="md-has-icon">
-                        <input  type="text"
-                                class="form-control"
-                                name="comments"
-                                placeholder="Any comments?"
-                                ng-model="ctrl.newCardUsage.comments">
-                    </md-input-container>
+                    </div>
 
-                    <md-input-container ng-if="ctrl.uploader" required="true">
-                        <label>Transaction Receipt</label><br/><br/>
-                        <input type="file" nv-file-select uploader="ctrl.uploader" required/><br/>
-                        <ul>
-                            <li ng-repeat="item in ctrl.uploader.queue">
-                                {{item.file.name}}
-                            </li>
-                        </ul>
-                    </md-input-container>
+                    <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="total_receipt"
+                                    placeholder="Receipt Total"
+                                    ng-model="ctrl.newCardUsage.total_receipt"
+                                    ng-pattern="/^\d+(\.\d+)?$/"
+                                    required>
+                            <div ng-messages="cardUsageForm.total_receipt.$error" ng-if="cardUsageForm.total_receipt.$dirty">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain numbers and decimal point</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="receipt_number"
+                                    placeholder="Receipt Number"
+                                    ng-model="ctrl.newCardUsage.receipt_number"
+                                    ng-pattern="/^(\d)+$/"
+                                    required>
+                            <div ng-messages="cardUsageForm.receipt_number.$error" ng-if="cardUsageForm.receipt_number.$dirty">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain numbers</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="comments"
+                                    placeholder="Any comments?"
+                                    ng-model="ctrl.newCardUsage.comments">
+                        </md-input-container>
+
+                        <md-input-container ng-if="ctrl.uploader">
+                            <label>Transaction Receipt</label><br/><br/>
+                            <input type="file" nv-file-select uploader="ctrl.uploader" required/><br/>
+                            <ul>
+                                <li ng-repeat="item in ctrl.uploader.queue">
+                                    {{item.file.name}}
+                                </li>
+                            </ul>
+                        </md-input-container>
+                  </div>   
                 </div>
             </div>
             <div style="text-align: center;">

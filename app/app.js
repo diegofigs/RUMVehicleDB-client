@@ -21,6 +21,7 @@ import 'angular-bootstrap-lightbox';
 import 'angular-ui-sortable';
 import 'ng-material-floating-button/src/mfb-directive';
 import 'angular-material-data-table'
+import 'angular-messages';
 
 import coreModule from './core/core';
 import cardsModule from './cards/cards';
@@ -32,10 +33,10 @@ import recordsModule from './records/records';
 
 export const appModule = 'app';
 
-/** @ngInject */
 angular.module(appModule, [
   angularUiRouter,
   angularAnimate,
+  'ngMessages',
   'angularFileUpload',
   angularMaterial,
   'md.data.table',
