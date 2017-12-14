@@ -15,10 +15,10 @@
             <i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>
         </div>
         <div ng-show="ctrl.getUser().user_type_id === '1'" layout="column" layout-align="center center" flex="10">
-            <h2 flex="25" class="text-light">1</h2>
-            <h2 flex="25" class="text-light">2</h2>
-            <h2 flex="25" class="text-light">3</h2>
-            <h2 flex="25" class="text-light">4</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.registered_users }}</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.active_credit_cards }}</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.registered_vehicles }}</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.total_monthly_expenses }}</h2>
         </div>
         <div ng-show="ctrl.getUser().user_type_id === '1'" layout="column" layout-align="center start" flex="25">
             <h3 flex="25" class="text-light">registered users</h3>
@@ -45,9 +45,9 @@
             <i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>
         </div>
         <div layout="column" layout-align="center center" flex="10">
-            <h2 flex="25" class="text-light">1</h2>
-            <h2 flex="25" class="text-light">3</h2>
-            <h2 flex="25" class="text-light">4</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.registered_vehicles }}</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.active_credit_cards }}</h2>
+            <h2 flex="25" class="text-light">{{ ctrl.total_monthly_expenses }}</h2>
         </div>
         <div layout="column" layout-align="center start" flex="25">
             <h3 flex="25" class="text-light">registered vehicles</h3>

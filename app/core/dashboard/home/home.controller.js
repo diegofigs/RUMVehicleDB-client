@@ -1,7 +1,12 @@
 /** @ngInject */
 export default class HomeController {
-  constructor($scope, $timeout, AuthService) {
+  constructor($scope, $timeout, AuthService, StatsService) {
     this.authService = AuthService;
+    this.statsService = StatsService;
+    this.registered_users = this.statsService.registered_users;
+    this.registered_vehicles = this.statsService.registered_vehicles;
+    this.active_credit_cards = this.statsService.active_credit_cards;
+    this.total_monthly_expenses = this.statsService.total_monthly_expenses;
 
     $scope.options1 = {
       lineWidth: 8,
