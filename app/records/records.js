@@ -12,7 +12,7 @@ import step2templateReconc from './views/reconciliation-step2-review.html';
 const recordsModule = angular.module('app.records', [])
   .controller('RecordsCtrl', recordsController)
   .service('RecordsService', recordsService)
-  .config(function ($locationProvider, $stateProvider) {
+  .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('dashboard.conciliation', {
         abstract: true,
@@ -51,6 +51,9 @@ const recordsModule = angular.module('app.records', [])
         template: step2templateReconc,
         controller: 'RecordsCtrl as ctrl',
       });
+
+    $urlRouterProvider.when('/dashboard/conc', '/dashboard/conc/step1');
+    $urlRouterProvider.when('/dashboard/reconciliation', '/dashboard/reconciliation/step1');
   }).name;
 
 export default recordsModule;
