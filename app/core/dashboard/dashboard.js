@@ -6,12 +6,14 @@ import homeTemplate from './home/home.html';
 import homeController from './home/home.controller';
 import profileTemplate from './profile/profile.html';
 import profileController from './profile/profile.controller';
+import statsService from './services/stats.service';
 
 /** @ngInject */
 const dashboardModule = angular.module('core.dashboard', [])
   .controller('DashboardCtrl', dashboardController)
   .controller('HomeCtrl', homeController)
   .controller('ProfileCtrl', profileController)
+  .service('StatsService', statsService)
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('base', {
@@ -26,8 +28,9 @@ const dashboardModule = angular.module('core.dashboard', [])
         template: dashboardTemplate,
         controller: 'DashboardCtrl as ctrl',
         resolve: {
-          redirectUnauthorized: ($q, $state, $timeout, AuthService) => {
+          redirectUnauthorized: ($q, $state, $timeout, $log, AuthService) => {
             let deferred = $q.defer();
+            $log.log(AuthService);
             if(AuthService.isLoggedIn())
               deferred.resolve();
             else {
@@ -42,6 +45,11 @@ const dashboardModule = angular.module('core.dashboard', [])
         url: '/home',
         template: homeTemplate,
         controller: 'HomeCtrl as ctrl',
+        resolve: {
+          dashboardStats: (StatsService) =>
+            StatsService.getDashboardStats(),
+        }
+
       })
       .state('dashboard.profile', {
         url: '/profile',
