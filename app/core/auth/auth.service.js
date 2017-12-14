@@ -16,6 +16,7 @@ export default class AuthService {
       .then((response) => {
         this.$log.log(response);
         this.$sessionStorage.token = response.data.token;
+        this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
         return this.$http.get(this.baseDomain + '/auth/me', {
           headers: {
             Authorization: 'Bearer ' + this.$sessionStorage.token,

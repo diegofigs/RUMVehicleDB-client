@@ -3,26 +3,22 @@
  */
 export default class UsersService {
   /** @ngInject */
-  constructor($http, $log, AuthService) {
+  constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/custodians';
     this.$http = $http;
     this.$log = $log;
-    this.authService = AuthService;
 
     this.user = {};
     this.users = [];
   }
 
   getUsers() {
-    return this.$http.get(this.baseDomain + this.resource, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).then((response) => {
-      this.users = response.data.data[0].data;
-      return this.users;
-    })
+    return this.$http.get(this.baseDomain + this.resource)
+      .then((response) => {
+        this.users = response.data.data[0].data;
+        return this.users;
+      })
       .catch((error) => {
         this.$log.log(error);
       });
@@ -36,22 +32,16 @@ export default class UsersService {
   }
 
   deleteUser(user) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + user.id, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).catch((error) => {
-      this.$log.log(error);
-    });
+    return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
+      .catch((error) => {
+        this.$log.log(error);
+      });
   }
 
   editUser(user) {
-    return this.http.put(this.baseDomain + this.resource + '/' + user.id, user, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).catch((error) => {
-      this.$log.log(error);
-    });
+    return this.http.put(this.baseDomain + this.resource + '/' + user.id, user)
+      .catch((error) => {
+        this.$log.log(error);
+      });
   }
 }

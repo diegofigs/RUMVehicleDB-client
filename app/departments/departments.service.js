@@ -3,24 +3,20 @@
  */
 
 export default class DepartmentsService {
-  constructor($http, $log, AuthService) {
+  constructor($http, $log) {
     this.$http = $http;
     this.$log = $log;
-    this.authService = AuthService;
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/departments';
     this.departments = [];
   }
 
   getDepartments() {
-    return this.$http.get(this.baseDomain + this.resource, {
-      headers: {
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
-    }).then((response) => {
-      this.departments = response.data;
-      return this.departments;
-    })
+    return this.$http.get(this.baseDomain + this.resource)
+      .then((response) => {
+        this.departments = response.data;
+        return this.departments;
+      })
       .catch((error) => {
         this.$log.log(error);
       });
