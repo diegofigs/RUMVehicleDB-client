@@ -28,9 +28,8 @@ const dashboardModule = angular.module('core.dashboard', [])
         template: dashboardTemplate,
         controller: 'DashboardCtrl as ctrl',
         resolve: {
-          redirectUnauthorized: ($q, $state, $timeout, $log, AuthService) => {
+          redirectUnauthorized: ($q, $state, $timeout, AuthService) => {
             let deferred = $q.defer();
-            $log.log(AuthService);
             if(AuthService.isLoggedIn())
               deferred.resolve();
             else {
