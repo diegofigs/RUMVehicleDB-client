@@ -1,13 +1,15 @@
 /** @ngInject */
 export default class RecordsController {
   constructor($log, $state, $timeout, FileUploader,
-              AuthService, swal) {
+              AuthService, CardUsageService, swal) {
     this.$log = $log;
     this.$state = $state;
     this.$timeout = $timeout;
     this.authService = AuthService;
+    this.cardUsageService = CardUsageService;
     this.swal = swal;
 
+    this.records = this.cardUsageService.cardUsages;
     this.reconciled = [];
     this.nonReconciled = [];
     this.excelNonReconciled = [];
