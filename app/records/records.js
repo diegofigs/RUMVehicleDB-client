@@ -7,6 +7,7 @@ import step3template from './views/conc-step3-custodians.html';
 import baseTemplateReconc from './views/reconciliation-base.html';
 import step1templateReconc from './views/reconciliation-step1-justify.html';
 import step2templateReconc from './views/reconciliation-step2-review.html';
+import recordTemplate from './records.html';
 
 /** @ngInject **/
 const recordsModule = angular.module('app.records', [])
@@ -50,6 +51,16 @@ const recordsModule = angular.module('app.records', [])
         url: '/step2',
         template: step2templateReconc,
         controller: 'RecordsCtrl as ctrl',
+      })
+      .state('dashboard.records', {
+        url: '/records',
+        template: recordTemplate,
+        controller: 'RecordsCtrl as ctrl',
+        resolve: {
+          records: (CardUsageService) => {
+            return CardUsageService.getCardUsages();
+          }
+        }
       });
 
     $urlRouterProvider.when('/dashboard/conc', '/dashboard/conc/step1');

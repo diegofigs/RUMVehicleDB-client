@@ -79,6 +79,12 @@
                             <span class="text">{{ 'cards' | translate }}</span>
                         </md-button>
                     </li>
+                    <li ng-show="ctrl.getUser().user_type_id === '1'" ui-sref-active="active">
+                        <md-button ui-sref="dashboard.records">
+                            <i class="mdi mdi-receipt"></i>
+                            <span class="text">{{ 'records' | translate }}</span>
+                        </md-button>
+                    </li>
                     <li ui-sref-active="active">
                         <md-button ui-sref="dashboard.vehicles.list">
                             <i class="mdi mdi-car"></i>
