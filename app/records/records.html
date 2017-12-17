@@ -55,7 +55,7 @@
     </div>
 </div>
 <div layout-fill layout-padding layout="row">
-    <md-card flex="80" flex-offset="10">
+    <md-card flex="80" flex-offset="10" layout-padding>
         <md-table-container>
             <table md-table>
                 <thead md-head>
@@ -84,5 +84,12 @@
                 </tbody>
             </table>
         </md-table-container>
+        <cl-paging flex
+                   cl-pages="ctrl.pagination.total"
+                   cl-steps="5"
+                   cl-page-changed="ctrl.applyFilter()"
+                   cl-current-page="ctrl.filter.page"
+                   cl-align="center stretch"
+        ></cl-paging>
     </md-card>
 </div>
