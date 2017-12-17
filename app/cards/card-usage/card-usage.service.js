@@ -13,9 +13,10 @@ export default class CardUsageService {
     this.files = [];
   }
 
-  getCardUsages() {
-    return this.$http.get(this.baseDomain + this.resource)
-      .then((response) => {
+  getCardUsages(params) {
+    return this.$http.get(this.baseDomain + this.resource, {
+      params: params
+    }).then((response) => {
         this.cardUsages = response.data.data[0].data;
         this.$log.log('I am inside getCardUsage in CardUsageService and cardUsage: ' + this.cardUsages);
         return this.cardUsages;
