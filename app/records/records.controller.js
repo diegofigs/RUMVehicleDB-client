@@ -1,15 +1,36 @@
 /** @ngInject */
 export default class RecordsController {
   constructor($log, $state, $timeout, FileUploader,
-              AuthService, CardUsageService, swal) {
+              AuthService, CardUsageService, DepartmentsService,
+              UsersService, swal) {
+    // Injected elements
     this.$log = $log;
     this.$state = $state;
     this.$timeout = $timeout;
     this.authService = AuthService;
     this.cardUsageService = CardUsageService;
+    this.departmentsService = DepartmentsService;
+    this.usersService = UsersService;
     this.swal = swal;
 
+    this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
+
+    this.filter = {
+      department_id: '',
+      custodian_id: '',
+      purchase_type: '',
+      date_from: new Date(),
+      date_to: new Date(),
+    };
+
+    // Reference to records from service
     this.records = this.cardUsageService.cardUsages;
+    // Reference to departments from service
+    this.departments = this.departmentsService.departments;
+    // Reference to custodian names
+    this.users = this.usersService.users;
+
+    // Lists that detail reconciliation process and breakdown
     this.reconciled = [];
     this.nonReconciled = [];
     this.excelNonReconciled = [];
@@ -39,5 +60,12 @@ export default class RecordsController {
       );
     };
 
+  }
+
+  applyFilter(){
+    return this.cardUsageService.getCardUsages(this.filter)
+      .then( () => {
+        this.records = this.cardUsageService.cardUsages;
+      });
   }
 };
