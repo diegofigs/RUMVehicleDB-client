@@ -59,7 +59,11 @@ const recordsModule = angular.module('app.records', [])
         resolve: {
           records: (CardUsageService) => {
             return CardUsageService.getCardUsages();
-          }
+          },
+          departments: (DepartmentsService) =>
+            DepartmentsService.getDepartments(),
+          users: (UsersService) =>
+            UsersService.getUsers()
         }
       });
 
