@@ -1,7 +1,7 @@
 /* Style for the page layout */
 
 body {
-	font-family: Roboto, sans-serif;
+	font-family: Roboto-light, sans-serif;
   font-weight: 400;
 	position: static !important;
 	background: #F5F5F5;
@@ -294,9 +294,6 @@ body {
 		}
 		.navbar {
 			margin-right: 0;
-		}
-		.page-content {
-		    padding-right: 15px;
 		}
 		&.extended {
 			.sidebar {
