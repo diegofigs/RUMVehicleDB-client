@@ -47,6 +47,7 @@
     "angular-ui-sortable": "0.14.3",
     "c3-angular": "1.2.0",
     "jquery": "3.1.0",
+    "material-angular-paging": "git+https://github.com/Crawlink/material-angular-paging.git",
     "mdi": "^1.6.50",
     "moment": "^2.17.1",
     "ng-material-floating-button": "0.6.2",
