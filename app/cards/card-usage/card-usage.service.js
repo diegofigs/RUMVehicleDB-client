@@ -6,18 +6,22 @@ export default class CardUsageService {
     this.$http = $http;
     this.$log = $log;
 
-    this.cards = [];
-
+    // Initialize usage list
     this.cardUsages = [];
 
-    this.files = [];
+    // Initialize pagination metadata
+    this.pageSize = 10;
+    this.total = 1;
   }
 
   getCardUsages(params) {
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
     }).then((response) => {
+        this.$log.log(response);
         this.cardUsages = response.data.data[0].data;
+        this.pageSize = response.data.data[0].per_page;
+        this.total = response.data.data[0].last_page;
         this.$log.log('I am inside getCardUsage in CardUsageService and cardUsage: ' + this.cardUsages);
         return this.cardUsages;
       })
