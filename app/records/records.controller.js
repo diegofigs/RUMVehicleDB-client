@@ -15,12 +15,20 @@ export default class RecordsController {
 
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
 
+    let today = new Date();
+    let oneMonthAgo = (new Date()).setMonth(today.getMonth()-1);
     this.filter = {
       department_id: '',
       custodian_id: '',
       purchase_type: '',
-      date_from: new Date(),
-      date_to: new Date(),
+      date_from: oneMonthAgo,
+      date_to: today,
+      page: 1,
+    };
+
+    this.pagination = {
+      pageSize: this.cardUsageService.pageSize,
+      total: this.cardUsageService.total,
     };
 
     // Reference to records from service
