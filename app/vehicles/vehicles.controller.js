@@ -31,6 +31,24 @@ export default class VehiclesController {
     };
   }
 
+  confirmVehicleCreation(){
+
+    this.createVehicle()
+      .then(() => {
+        this.swal({
+          title: 'Vehicle was successfully created!',
+          type: 'success'
+        });
+      })
+      .catch((error) => {
+        this.swal({
+          title: 'Error: Vehicle could not be created',
+          type: 'error'
+        });
+      });
+  }
+
+
   createVehicle() {
     this.newVehicle.custodian_id = this.authService.getUser().id;
 
@@ -86,7 +104,30 @@ export default class VehiclesController {
     return this.vehiclesService.deleteVehicle(vehicle);
   }
 
+  confirmVehicleEdition(){
+
+      this.editVehicle()
+        .then(() => {
+          this.swal({
+            title: 'Vehicle was successfully edited!',
+            type: 'success'
+          });
+        })
+        .catch((error) => {
+          this.swal({
+            title: 'Error: Vehicle could not be edited',
+            type: 'error'
+          });
+        });
+    }
+
   editVehicle() {
+
+    this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format('YYYY-MM-DD');
+    this.vehicle.decomission_date = moment(this.vehicle.decomission_date).format('YYYY-MM-DD');
+    this.vehicle.inscription_date = moment(this.vehicle.inscription_date).format('YYYY-MM-DD');
+    this.vehicle.inspection_date = moment(this.vehicle.inspection_date).format('YYYY-MM-DD');
+
     return this.vehiclesService.editVehicle(this.vehicle)
       .then(() => {
       this.$state.go('dashboard.vehicles.list');
