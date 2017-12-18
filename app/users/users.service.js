@@ -2,7 +2,6 @@
  * Created by diegofigs on 1/31/17.
  */
 export default class UsersService {
-  /** @ngInject */
   constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/custodians';
@@ -24,6 +23,17 @@ export default class UsersService {
       });
   }
 
+  getUser(id) {
+    return this.$http.get(this.baseDomain + this.resource + '/' + id)
+      .then((response) => {
+        this.user = response.data.data;
+        return this.user;
+      })
+      .catch((error) => {
+        this.$log.log(error);
+      });
+  }
+
   createUser(user) {
     return this.$http.post(this.baseDomain + this.resource, user)
       .catch((error) => {
@@ -39,7 +49,7 @@ export default class UsersService {
   }
 
   editUser(user) {
-    return this.http.put(this.baseDomain + this.resource + '/' + user.id, user)
+    return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
       .catch((error) => {
         this.$log.log(error);
       });

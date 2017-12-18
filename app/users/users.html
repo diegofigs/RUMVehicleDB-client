@@ -28,13 +28,18 @@
                             </td>
                             <td md-cell>
                                 <md-icon>
-                                    <i ng-click="ctrl.deleteUser(user)" class="mdi mdi-delete-sweep"></i>
+                                    <i ng-click="ctrl.confirmUserDeletion(user)" class="mdi mdi-delete-sweep"></i>
                                 </md-icon>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
+
+            <div style="text-align: center;">
+                <md-button class="md-raised md-primary" ui-sref="dashboard.users.add()"> Add User </md-button>
+            </div>
+
         </md-card>
     </div>
 </div>
