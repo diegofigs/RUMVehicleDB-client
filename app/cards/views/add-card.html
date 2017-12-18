@@ -3,7 +3,7 @@
         Add Card
     </div>
     <div class="panel-body forms">
-        <form name="cardForm" class="form-horizontal" ng-submit="ctrl.createCard()">
+        <form name="cardForm" class="form-horizontal" ng-submit="ctrl.confirmCardCreation()">
             <h4>Primary Details</h4>
             <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
                 <div class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
@@ -15,13 +15,13 @@
                                 placeholder="Card Number"
                                 maxlength="17"
                                 minlength="17"
-                                ng-pattern="/^[a-zA-Z0-9]{17}$/"
+                                ng-pattern="/^(\d)+$/"
                                 ng-model="ctrl.newCard.number" required>
 
-                        <div ng-messages="cardForm.number.$error" ng-if="cardForm.number.$dirty">
+                        <div ng-messages="cardForm.number.$error" ng-if="cardForm.number.$touched && cardForm.number.$invalid">
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">This entry can only contain numbers.</div>
-                            <div ng-message="maxlength">This entry should have exactly 17 digits.</div>
+                            <div ng-message="minlength">This entry should have exactly 17 digits.</div>
                         </div>
 
                     </md-input-container>
@@ -34,7 +34,7 @@
                                 ng-model="ctrl.newCard.expiry"
                                 ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
 
-                        <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$dirty">
+                        <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
                         </div>
@@ -48,7 +48,7 @@
                                 ng-model="ctrl.newCard.name"
                                 ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
 
-                        <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$dirty">
+                        <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">This entry can only contain characters</div>
                         </div>
@@ -63,7 +63,7 @@
                                 ng-model="ctrl.newCard.cardID"
                                 ng-pattern="/^(\d)+$/" required>
 
-                        <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$dirty">
+                        <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
                             <div ng-message="pattern">This entry can only contain numbers.</div>
                         </div>
 
