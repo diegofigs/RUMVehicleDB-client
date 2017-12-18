@@ -2,7 +2,7 @@
  * Created by diegofigs on 2/13/17.
  */
 export default class VehiclesService {
-  /** @ngInject */
+
   constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/vehicles';
@@ -11,6 +11,7 @@ export default class VehiclesService {
 
     this.vehicle = {};
     this.vehicles = [];
+    this.vehicleTypes = [];
   }
 
   getVehicles(params = {}) {
@@ -45,13 +46,24 @@ export default class VehiclesService {
 
   deleteVehicle(vehicle) {
     return this.$http.delete(this.baseDomain + this.resource + '/' + vehicle.id)
+  }
+
+  editVehicle(vehicle) {
+    return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle)
       .catch((error) => {
         this.$log.log(error);
       });
   }
 
-  editVehicle(vehicle) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle)
+  /**
+   * Gets vehicle types from backend. E.g. Golf car, Mini-Van, Gas Car, etc.
+   */
+  getVehicleTypes() {
+    return this.$http.get(this.baseDomain + '/vehicle-types')
+        .then((response) => {
+      this.vehicleTypes = response.data;
+          return this.vehicleTypes;
+    })
       .catch((error) => {
         this.$log.log(error);
       });

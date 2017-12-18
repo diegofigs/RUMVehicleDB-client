@@ -14,16 +14,18 @@
             </span>
         </div>
 
-        <div layout="row" layout-align="start center">
+        <!-- Filter options for Admin and Vehicle Admin-->
 
-                <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+        <div ng-show="ctrl.getUser().user_type_name === 'admin' || ctrl.getUser().user_type_name === 'vehicle_admin' "  layout="row" layout-align="start center">
+
+                <md-input-container class="filter-selects-space">
                     <label>Department</label>
                     <md-select ng-model="ctrl.filter.department_id">
                         <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
                     </md-select>
                 </md-input-container>
 
-                <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
+                <md-input-container class="filter-selects-space">
                     <label>Custodian</label>
                     <md-select ng-model="ctrl.filter.custodian_id">
                         <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
@@ -40,12 +42,26 @@
                  <md-button ng-click="ctrl.applyVehicleFilter()"  class="md-raised md-primary">Filter</md-button>
         </div>
 
+        <!-- Filter options for Custodians-->
+
+        <div ng-show="ctrl.getUser().user_type_name === 'custodian'"  layout="row" layout-align="start center">
+            <md-input-container class="filter-selects-space">
+                <label>Vehicle Type</label>
+                <md-select ng-model="ctrl.filter.vehicle_type">
+                    <md-option value= "{{type}}" ng-repeat="type in ctrl.vehicles.type">{{type}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-button ng-click="ctrl.applyVehicleFilter()"  class="md-raised md-primary">Filter</md-button>
+        </div>
+
         <div class="card-group" layout="row"  layout-wrap>
             <md-card ng-repeat="v in ctrl.vehicles" flex-md="50 none" flex-gt-md="33 nogrow">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{v.make}} {{v.model}} {{v.licence_plate}}</span>
                         <span class="md-subhead">Department: {{ v.vehicle_department_name }}</span>
+                        <span class="md-subhead">Custodian: {{ v.vehicle_custodian_name }}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
@@ -56,7 +72,7 @@
                 <md-card-actions layout="row" layout-align="start start">
                     <md-button ui-sref="dashboard.vehicles.view({id: v.id})">View Vehicle</md-button>
                     <md-button ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
-                    <md-button ng-click="ctrl.deleteVehicle(v)">Delete Vehicle</md-button>
+                    <md-button ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
                 </md-card-actions>
             </md-card>
          </div>
