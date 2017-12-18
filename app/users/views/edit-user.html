@@ -1,30 +1,137 @@
-<pageheader pagename="{{ 'add' | translate }} {{ 'user' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
+<div flex="100" style="background: white;">
+    <div class="mdl-cell shadow">
 
-<div class="mdl-cell shadow">
-    <div class="panel-header">{{ 'edit' | translate }} {{ 'user' | translate }}</div>
-    <div class="panel-body forms">
-        <form name="userForm" class="form-horizontal" ng-submit="ctrl.editUser()">
-            <div class="form-group">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-                    <md-input-container >
-                        <label>Email</label>
-                        <input ng-model="ctrl.user.email" type="email" placeholder="email">
-                    </md-input-container>
+        <div class="panel-header">Edit User</div>
+
+        <div class="panel-body forms">
+            <form name="userForm" class="form-horizontal" ng-submit="ctrl.editUser()">
+
+                <div layout="column" layout-sm="column" layout-xs="column" class="mdl-grid">
+
+                    <div layout="row" class="mdl-cell" flex ="100 nogrow">
+                        <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+
+                            <md-input-container>
+                                <input  type="text"
+                                        class="form-control"
+                                        name="name"
+                                        placeholder="Full Name"
+                                        ng-model="ctrl.user.name"
+                                        ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+
+                                <div ng-messages="userForm.name.$error" ng-if="userForm.name.$dirty">
+                                    <div ng-message="required">This field is required!</div>
+                                    <div ng-message="pattern">This entry can only contain characters.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <input  type="email"
+                                        class="form-control"
+                                        name="email"
+                                        placeholder="Email"
+                                        ng-model="ctrl.user.email" required>
+                                <div ng-messages="userForm.email.$error" ng-if="userForm.email.$dirty">
+                                    <div ng-message="required">This field is required!</div>
+                                    <div ng-message="email">Please enter a valid email.</div>
+                                </div>
+
+                            </md-input-container>
+
+                            <md-input-container>
+                                <input  type="password"
+                                        class="form-control"
+                                        name="password"
+                                        placeholder="Password"
+                                        minlength="6"
+                                        ng-model="ctrl.user.password" required>
+
+                                <div ng-messages="userForm.password.$error" ng-if="userForm.password.$dirty">
+                                    <div ng-message="required">This field is required!</div>
+                                    <div ng-message="minlength">Password should have at least 6 characters.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <input  type="text"
+                                        class="form-control"
+                                        name="position"
+                                        placeholder="Position"
+                                        ng-model="ctrl.user.position">
+
+                            </md-input-container>
+
+                        </div>
+
+
+                        <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
+
+                            <md-input-container>
+                                <input  type="text"
+                                        class="form-control"
+                                        name="contactNumber"
+                                        placeholder="Contact Number"
+                                        ng-pattern="/^(\d)+$/"
+                                        ng-model="ctrl.user.contact_number">
+
+                                <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$dirty">
+                                    <div ng-message="pattern">This entry can only contain numbers</div>
+                                </div>
+
+                            </md-input-container>
+
+                            <md-input-container>
+                                <input  type="text"
+                                        class="form-control"
+                                        name="employeeID"
+                                        placeholder="Employee ID"
+                                        ng-pattern="/^(\d)+$/"
+                                        ng-model="ctrl.user.employee_id">
+
+                                <div ng-messages="userForm.employeeID.$error" ng-if="userForm.employeeID.$dirty">
+                                    <div ng-message="pattern">This entry can only contain numbers.</div>
+                                </div>
+
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Department</label>
+                                <md-select
+                                    class="form-control"
+                                    name="department"
+                                    ng-required="true"
+                                    placeholer = "Department"
+                                    ng-model="ctrl.user.department_id" required>
+                                    <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
+                                        {{department.name}}
+                                    </md-option>
+                                </md-select><br>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>User Type</label>
+                                <md-select
+                                    class="form-control"
+                                    name="userType"
+                                    ng-required="true"
+                                    ng-model="ctrl.user.user_type_id">
+
+                                    <md-option value="1">Administrator</md-option>
+                                    <md-option value="2">Vehicle Manager</md-option>
+                                    <md-option value="3">Custodian</md-option>
+                                    <md-option value="4">Auxiliary Custodian</md-option>
+                                </md-select>
+
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+
+                    <div style="text-align: center;">
+                        <md-button type="submit" class="md-raised md-primary" ng-disabled="userForm.$invalid"> edit User </md-button>
+                    </div>
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-                    <md-input-container >
-                        <label>Password</label>
-                        <input ng-model="ctrl.user.password" type="password" placeholder="password">
-                    </md-input-container>
-                </div>
-            </div>
-            <div class="form-group">
-                <md-button type="submit"
-                        class="md-raised primary"
-                        ng-disabled="userForm.$invalid">
-                        {{ 'edit' | translate }} {{ 'user' | translate }}
-                </md-button> &nbsp;
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
