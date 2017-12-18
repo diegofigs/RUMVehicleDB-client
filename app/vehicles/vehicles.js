@@ -29,6 +29,10 @@ const vehiclesModule = angular.module('app.vehicles', [])
             DepartmentsService.getDepartments(),
           users: (UsersService) =>
             UsersService.getUsers(),
+          stats: (StatsService) =>
+          StatsService.getDashboardStats(),
+          vehicleTypes: (VehiclesService) =>
+            VehiclesService.getVehicleTypes()
         },
       })
       .state('dashboard.vehicles.add', {
@@ -37,7 +41,9 @@ const vehiclesModule = angular.module('app.vehicles', [])
         controller: 'VehiclesCtrl as ctrl',
         resolve: {
           departments: (DepartmentsService) =>
-            DepartmentsService.getDepartments()
+            DepartmentsService.getDepartments(),
+          vehicleTypes: (VehiclesService) =>
+            VehiclesService.getVehicleTypes()
         },
       })
       .state('dashboard.vehicles.view', {
@@ -57,7 +63,9 @@ const vehiclesModule = angular.module('app.vehicles', [])
           vehicle: ($stateParams, VehiclesService) =>
             VehiclesService.getVehicle($stateParams.id),
           departments: (DepartmentsService) =>
-            DepartmentsService.getDepartments()
+            DepartmentsService.getDepartments(),
+          vehicleTypes: (VehiclesService) =>
+            VehiclesService.getVehicleTypes()
         },
       });
   })
