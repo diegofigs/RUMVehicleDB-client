@@ -12,14 +12,18 @@
                                 class="form-control"
                                 tooltip="{{'vinTooltip' | translate}}"
                                 name="number"
-                                placeholder="Number"
-                                ng-required="false"
-                                ng-maxlength="17"
-                                ng-minlength="17"
+                                placeholder="Card Number"
+                                maxlength="17"
+                                minlength="17"
                                 ng-pattern="/^[a-zA-Z0-9]{17}$/"
-                                ng-trim="false"
-                                ng-change="vm.getCardInformationByVin()"
-                                ng-model="ctrl.newCard.number">
+                                ng-model="ctrl.newCard.number" required>
+
+                        <div ng-messages="cardForm.number.$error" ng-if="cardForm.number.$dirty">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">This entry can only contain numbers.</div>
+                            <div ng-message="maxlength">This entry should have exactly 17 digits.</div>
+                        </div>
+
                     </md-input-container>
 
                     <md-input-container>
@@ -27,9 +31,13 @@
                                 class="form-control"
                                 name="expiry"
                                 placeholder="Exp Date in YYYY-MM-DD"
-                                ng-required="true"
-                                ng-trim="false"
-                                ng-model="ctrl.newCard.expiry">
+                                ng-model="ctrl.newCard.expiry"
+                                ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+
+                        <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$dirty">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
+                        </div>
                     </md-input-container>
 
                     <md-input-container>
@@ -37,9 +45,14 @@
                                 class="form-control"
                                 name="name"
                                 placeholder="Name"
-                                ng-required="true"
-                                ng-trim="false"
-                                ng-model="ctrl.newCard.name">
+                                ng-model="ctrl.newCard.name"
+                                ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+
+                        <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$dirty">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">This entry can only contain characters</div>
+                        </div>
+
                     </md-input-container>
 
                     <md-input-container>
@@ -47,9 +60,13 @@
                                 class="form-control"
                                 name="cardID"
                                 placeholder="Card ID (UPR)"
-                                ng-required="true"
-                                ng-trim="false"
-                                ng-model="ctrl.newCard.cardID">
+                                ng-model="ctrl.newCard.cardID"
+                                ng-pattern="/^(\d)+$/" required>
+
+                        <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$dirty">
+                            <div ng-message="pattern">This entry can only contain numbers.</div>
+                        </div>
+
                     </md-input-container>
 
                 </div>
@@ -59,7 +76,6 @@
                         <label>Department</label>
                         <md-select
                             class="form-control"
-                            name="department"
                             ng-required="true"
                             ng-model="ctrl.newCard.department_id">
                             <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
@@ -72,7 +88,6 @@
                         <label>Type</label>
                         <md-select
                             class="form-control"
-                            name="type"
                             ng-required="true"
                             ng-model="ctrl.newCard.type">
                             <md-option ng-repeat="type in ctrl.types" value="type">
@@ -97,7 +112,6 @@
                         <label>Status</label>
                         <md-select
                             class="form-control"
-                            name="status"
                             ng-required="true"
                             ng-model="ctrl.newCard.status">
                             <md-option ng-repeat="status in ctrl.status_types" value="status">
@@ -113,7 +127,11 @@
                     </md-input-container>
                 </div>
             </div>
-            <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+
+            <div style="text-align: center;">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+            </div>
+
         </form>
     </div>
 </div>
