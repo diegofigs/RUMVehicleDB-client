@@ -10,78 +10,91 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'licensePlateTooltip' | translate}}"
                                 name="licensePlate"
                                 placeholder="License Plate"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.license_plate">
+                                ng-maxlength="8"
+                                ng-minlength="3"
+                                ng-model="ctrl.vehicle.license_plate" required>
+
+                        <div ng-messages="vehicleForm.licensePlate.$error" ng-if="vehicleForm.licensePlate.$touched && vehicleForm.licensePlate.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="vin"
                                 placeholder="VIN"
-                                ng-required="false"
                                 ng-maxlength="17"
                                 ng-minlength="17"
                                 ng-pattern="/^[a-zA-Z0-9]{17}$/"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.vin">
+                                ng-model="ctrl.vehicle.vin" required>
+
+                        <div ng-messages="vehicleForm.vin.$error" ng-if="vehicleForm.vin.$touched && vehicleForm.vin.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">VIN number should have 17 characters/digits. </div>
+                        </div>
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="make"
                                 placeholder="Make"
-                                ng-required="false"
-                                ng-minlength="1"
-                                ng-trim="false"
-                                ng-change="vm.getVehicleInformationByVin()"
-                                ng-model="ctrl.vehicle.make">
+                                ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
+                                ng-model="ctrl.vehicle.make" required>
+
+                        <div ng-messages="vehicleForm.make.$error" ng-if="vehicleForm.make.$touched && vehicleForm.make.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">Only characters are allowed in this field</div>
+                        </div>
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="model"
                                 placeholder="Model"
                                 ng-required="false"
-                                ng-minlength="1"
-                                ng-trim="false"
-                                ng-change="vm.getVehicleInformationByVin()"
-                                ng-model="ctrl.vehicle.model">
+                                ng-model="ctrl.vehicle.model" required>
+
+                        <div ng-messages="vehicleForm.model.$error" ng-if="vehicleForm.model.$touched && vehicleForm.model.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="year"
                                 placeholder="Year"
-                                ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
-                                ng-trim="false"
-                                ng-change="vm.getVehicleInformationByVin()"
-                                ng-model="ctrl.vehicle.year">
+                                maxlength="4"
+                                minlength="4"
+                                ng-model="ctrl.vehicle.year" required>
+
+                        <div ng-messages="vehicleForm.year.$error" ng-if="vehicleForm.year.$touched && vehicleForm.year.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">Only numbers are allowed in this field</div>
+                            <div ng-message="minlength">This field should contain 4 digits</div>
+                            <div ng-message="maxlength">This field should contain 4 digits</div>
+                        </div>
+
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'vinTooltip' | translate}}"
                                 name="color"
                                 placeholder="Color"
-                                ng-required="false"
-                                ng-maxlength="4"
-                                ng-minlength="4"
-                                ng-trim="false"
-                                ng-change="vm.getVehicleInformationByVin()"
-                                ng-model="ctrl.vehicle.color">
+                                ng-model="ctrl.vehicle.color" required>
+
+                        <div ng-messages="vehicleForm.color.$error" ng-if="vehicleForm.color.$touched && vehicleForm.color.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">Only characters are allowed in this field</div>
+                        </div>
                     </md-input-container>
+
                 </div>
                 <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
                     <md-input-container>
@@ -89,7 +102,6 @@
                         <md-select
                             class="form-control"
                             name="department"
-                            ng-required="true"
                             ng-model="ctrl.vehicle.department_id">
                             <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
                                 {{department.name}}
@@ -101,7 +113,6 @@
                         <md-select
                             class="form-control"
                             name="type"
-                            ng-required="true"
                             ng-model="ctrl.vehicle.type_id">
                             <md-option ng-repeat="type in ctrl.vehicleTypes" ng-value="type.id">
                                 {{type.vehicle_type_name}}
@@ -114,13 +125,16 @@
                                 class="form-control"
                                 name="serial_number"
                                 placeholder="Serial Number"
-                                ng-required="true"
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.serial_number">
+                                ng-model="ctrl.vehicle.serial_number" required>
+
+                        <div ng-messages="vehicleForm.serial_number.$error" ng-if="vehicleForm.serial_number.$touched && vehicleForm.serial_number.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
+
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
@@ -130,8 +144,12 @@
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.property_number">
+                                ng-model="ctrl.vehicle.property_number" required>
+
+                        <div ng-messages="vehicleForm.property_number.$error" ng-if="vehicleForm.property_number.$touched && vehicleForm.property_number.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
+
                     </md-input-container>
                     <md-input-container>
                         <input  type="text"
@@ -142,8 +160,12 @@
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.registration_id">
+                                ng-model="ctrl.vehicle.registration_id" required>
+
+                        <div ng-messages="vehicleForm.registration_id.$error" ng-if="vehicleForm.registration_id.$touched && vehicleForm.registration_id.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
+
                     </md-input-container>
                     <md-input-container>
                         <input  type="text"
@@ -155,7 +177,11 @@
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
                                 ng-trim="false"
-                                ng-model="ctrl.vehicle.title_id">
+                                ng-model="ctrl.vehicle.title_id" required>
+
+                        <div ng-messages="vehicleForm.title_id.$error" ng-if="vehicleForm.title_id.$touched && vehicleForm.title_id.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
                 </div>
             </div>
@@ -187,12 +213,10 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'doorsTooltip' | translate}}"
                                 name="doors"
                                 placeholder="Doors"
                                 ng-required="false"
                                 ng-pattern="/([0-4])$/"
-                                ng-trim="false"
                                 ng-model="ctrl.vehicle.doors"
                                 ui-mask="9"
                                 ui-mask-placeholder
@@ -226,11 +250,9 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'cylindersTooltip' | translate}}"
                                 id="{{validate(vehicleForm.cylinders.$valid)}}"
                                 name="cylinders"
                                 placeholder="Cylinders"
-                                ng-required="false"
                                 ng-pattern="/([0-8])$/"
                                 ng-model="ctrl.vehicle.cylinders"
                                 ui-mask="9"
@@ -243,15 +265,12 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                tooltip="{{'ACAATooltip' | translate}}"
                                 id="{{validate(vehicleForm.ACAA.$valid)}}"
                                 name="ACAA"
                                 placeholder="ACAA"
-                                ng-required="true"
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
                                 ng-model="ctrl.vehicle.ACAA">
                     </md-input-container>
 
@@ -261,11 +280,9 @@
                                 id="{{validate(vehicleForm.purchasePrice.$valid)}}"
                                 name="purchase_price"
                                 placeholder="Purchase Price"
-                                ng-required="true"
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
                                 ng-model="ctrl.vehicle.purchase_price">
                     </md-input-container>
 
@@ -275,11 +292,9 @@
                                 id="{{validate(vehicleForm.insurance.$valid)}}"
                                 name="insurance"
                                 placeholder="Insurance"
-                                ng-required="true"
                                 ng-maxlength="24"
                                 ng-minlength="1"
                                 ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
                                 ng-model="ctrl.vehicle.insurance">
                     </md-input-container>
                 </div>
