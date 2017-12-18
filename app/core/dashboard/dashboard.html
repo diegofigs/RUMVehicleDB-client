@@ -67,7 +67,7 @@
                             <span class="text">{{ 'dashboard' | translate }}</span>
                         </md-button>
                     </li>
-                    <li ng-show="ctrl.getUser().user_type_id === '1'" ui-sref-active="active">
+                    <li ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref-active="active">
                         <md-button ui-sref="dashboard.users.list">
                             <i class="mdi mdi-account-multiple"></i>
                             <span class="text">{{ 'users' | translate }}</span>
@@ -79,7 +79,7 @@
                             <span class="text">{{ 'cards' | translate }}</span>
                         </md-button>
                     </li>
-                    <li ng-show="ctrl.getUser().user_type_id === '1'" ui-sref-active="active">
+                    <li ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref-active="active">
                         <md-button ui-sref="dashboard.records">
                             <i class="mdi mdi-receipt"></i>
                             <span class="text">{{ 'records' | translate }}</span>
