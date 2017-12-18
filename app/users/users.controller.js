@@ -16,6 +16,23 @@ export default class UsersController {
     this.swal = swal;
   }
 
+  confirmUserCreation(){
+
+      this.createUser()
+        .then(() => {
+          this.swal({
+            title: 'User was successfully created!',
+            type: 'success'
+          });
+        })
+        .catch((error) => {
+          this.swal({
+            title: 'Error: User could not be created',
+            type: 'error'
+          });
+        });
+  }
+
   createUser() {
     return this.usersService.createUser(this.newUser)
       .then(() => {
@@ -43,7 +60,7 @@ export default class UsersController {
             type: 'success'
           });
 
-          this.$state.reload();
+          this.$state.go('dashboard.users.list');
         })
         .catch((error) => {
           this.swal({
