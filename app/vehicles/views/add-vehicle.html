@@ -101,19 +101,11 @@
                             class="form-control"
                             name="type"
                             ng-required="true"
-                            ng-model="ctrl.newVehicle.type">
-                            <md-option ng-repeat="type in ctrl.types" ng-value="type.name">
-                                {{type.name}}
+                            ng-model="ctrl.newVehicle.type_id">
+                            <md-option ng-repeat="type in ctrl.vehicleTypes" ng-value="type.id">
+                                {{type.vehicle_type_name}}
                             </md-option>
-                            <md-option value="Regular">
-                                Regular
-                            </md-option>
-                            <md-option value="Premium">
-                                Premium
-                            </md-option>
-                            <md-option value="Diesel">
-                                Diesel
-                            </md-option>
+
                         </md-select><br>
                     </md-input-container>
                     <md-input-container>

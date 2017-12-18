@@ -30,7 +30,6 @@
                                 ng-minlength="17"
                                 ng-pattern="/^[a-zA-Z0-9]{17}$/"
                                 ng-trim="false"
-                                ng-change="vm.getVehicleInformationByVin()"
                                 ng-model="ctrl.vehicle.vin">
                     </md-input-container>
                     <md-input-container>
@@ -103,19 +102,11 @@
                             class="form-control"
                             name="type"
                             ng-required="true"
-                            ng-model="ctrl.vehicle.type">
-                            <md-option ng-repeat="type in ctrl.types" ng-value="type.name">
-                                {{type.name}}
+                            ng-model="ctrl.vehicle.type_id">
+                            <md-option ng-repeat="type in ctrl.vehicleTypes" ng-value="type.id">
+                                {{type.vehicle_type_name}}
                             </md-option>
-                            <md-option value="Regular">
-                                Regular
-                            </md-option>
-                            <md-option value="Premium">
-                                Premium
-                            </md-option>
-                            <md-option value="Diesel">
-                                Diesel
-                            </md-option>
+
                         </md-select><br>
                     </md-input-container>
                     <md-input-container>
@@ -194,7 +185,7 @@
                     <br><br>
 
                     <md-input-container>
-                        <input  type="number"
+                        <input  type="text"
                                 class="form-control"
                                 tooltip="{{'doorsTooltip' | translate}}"
                                 name="doors"
@@ -233,7 +224,7 @@
                     <br><br>
 
                     <md-input-container>
-                        <input  type="number"
+                        <input  type="text"
                                 class="form-control"
                                 tooltip="{{'cylindersTooltip' | translate}}"
                                 id="{{validate(vehicleForm.cylinders.$valid)}}"
@@ -241,7 +232,6 @@
                                 placeholder="Cylinders"
                                 ng-required="false"
                                 ng-pattern="/([0-8])$/"
-                                ng-trim="false"
                                 ng-model="ctrl.vehicle.cylinders"
                                 ui-mask="9"
                                 ui-mask-placeholder
@@ -294,7 +284,11 @@
                     </md-input-container>
                 </div>
             </div>
+
+            <div style="text-align: center;">
             <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
+            </div>
+
         </form>
     </div>
 </div>
