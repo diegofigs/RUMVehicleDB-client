@@ -6,6 +6,7 @@
   "main": ".dist/app.bundle.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --progress",
+    "docs": "esdoc",
     "build": "webpack -p --progress",
     "test": "karma start"
   },
