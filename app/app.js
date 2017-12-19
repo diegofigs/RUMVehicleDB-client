@@ -3,6 +3,7 @@ import 'angular-material-data-table/dist/md-data-table.css';
 import 'ng-material-floating-button/mfb/src/mfb.scss';
 import 'mdi/scss/materialdesignicons.scss';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import 'angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css'
 
 import './styles/app-green.scss';
 import './styles/scss/widgets/card-filter.scss'
@@ -11,16 +12,16 @@ import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import angularUiRouter from 'angular-ui-router';
 import angularMaterial from 'angular-material';
-import translate from 'angular-translate';
-import ngStorage from 'ngstorage';
+import translate from 'angular-translate/dist/angular-translate.min';
+import ngStorage from 'ngstorage/ngStorage.min';
 import { ngSweetAlert2 } from 'angular-h-sweetalert';
 import 'angular-file-upload';
-import 'angular-truncate-2/src/angular-truncate-2';
-import 'angular-translate-loader-static-files';
-import 'angular-bootstrap-lightbox';
-import 'angular-ui-sortable';
+import 'angular-truncate-2/dist/angular-truncate-2.min';
+import 'angular-translate-loader-static-files/angular-translate-loader-static-files.min';
+import 'angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min';
+import 'angular-ui-sortable/dist/sortable.min';
 import 'ng-material-floating-button/src/mfb-directive';
-import 'angular-material-data-table'
+import 'angular-material-data-table/dist/md-data-table.min'
 import 'angular-messages';
 
 import coreModule from './core/core';
