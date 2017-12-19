@@ -59,7 +59,7 @@
         </tbody>
     </table>
 
-    <md-card-actions layout="row" layout-align="end center">
+    <md-card-actions ng-show="ctrl.getUser().user_type_name === 'admin'" layout="row" layout-align="end center">
         <md-button ng-hide="false" >View All</md-button>
     </md-card-actions>
 

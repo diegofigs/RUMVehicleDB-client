@@ -20,7 +20,7 @@
                                 ng-model="ctrl.newUser.name"
                                 ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
 
-                    <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$dirty">
+                    <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$touched && userForm.fullName.$invalid">
                         <div ng-message="required">This field is required!</div>
                         <div ng-message="pattern">This entry can only contain characters.</div>
                     </div>
@@ -32,7 +32,7 @@
                                 name="email"
                                 placeholder="Email"
                                 ng-model="ctrl.newUser.email" required>
-                        <div ng-messages="userForm.email.$error" ng-if="userForm.email.$dirty">
+                        <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched && userForm.email.$invalid">
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="email">Please enter a valid email.</div>
                         </div>
@@ -47,7 +47,7 @@
                                 minlength="6"
                                 ng-model="ctrl.newUser.password" required>
 
-                        <div ng-messages="userForm.password.$error" ng-if="userForm.password.$dirty">
+                        <div ng-messages="userForm.password.$error" ng-if="userForm.password.$touched && userForm.password.$invalid">
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="minlength">Password should have at least 6 characters.</div>
                         </div>
@@ -75,7 +75,7 @@
                                 ng-pattern="/^(\d)+$/"
                                 ng-model="ctrl.newUser.contact_number">
 
-                        <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$dirty">
+                        <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$touched && userForm.contactNumber.$invalid">
                             <div ng-message="pattern">This entry can only contain numbers</div>
                         </div>
 
@@ -89,7 +89,7 @@
                                 ng-pattern="/^(\d)+$/"
                                 ng-model="ctrl.newUser.employee_id">
 
-                        <div ng-messages="userForm.employeeID.$error" ng-if="userForm.employeeID.$dirty">
+                        <div ng-messages="userForm.employeeID.$error" ng-if="userForm.employeeID.$touched && userForm.employeeID.$invalid">
                             <div ng-message="pattern">This entry can only contain numbers.</div>
                         </div>
 
