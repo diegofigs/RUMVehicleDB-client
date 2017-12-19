@@ -2,14 +2,13 @@
  * Created by diegofigs on 2/26/17.
  */
 const path = require('path');
-
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 //noinspection JSUnresolvedFunction
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve('./public/'),
     compress: true,
@@ -31,7 +30,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.css$/,
+        loader: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+
+      {
+        test: /\.scss$/,
         loaders: [
           'style-loader',
           'css-loader',
@@ -42,7 +49,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: [
-          'ng-annotate-loader',
           'babel-loader'
         ]
       },
@@ -54,7 +60,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'url-loader'
+        loader: 'url-loader?limit=8192'
       },
       {
         test: /.eot$/,
