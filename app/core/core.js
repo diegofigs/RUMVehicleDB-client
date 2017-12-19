@@ -16,4 +16,10 @@ const coreModule = angular.module('core', [
   .filter('capitalize', capitalize)
   .name;
 
+/**
+ * Core is in charge of encapsulating all functionality
+ * common to the whole application domain.
+ * @type {string}
+ * @return {string} 'core'
+ */
 export default coreModule;

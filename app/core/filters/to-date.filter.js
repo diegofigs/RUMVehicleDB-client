@@ -1,6 +1,8 @@
 import moment from 'moment';
+
 /**
- * Created by diegofigs on 2/26/17.
+ * Angular filter that converts date to JS Date object.
+ * @return {function: Date}
  */
 export default () => (input) => {
     let date = moment(input);

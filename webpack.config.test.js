@@ -1,12 +1,7 @@
-/**
- * Created by diegofigs on 2/26/17.
- */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-//noinspection JSUnresolvedFunction
 module.exports = {
   devtool: 'inline-source-map',
   devServer: {
@@ -87,15 +82,6 @@ module.exports = {
       template: path.resolve('./app/index.html'),
       inject: 'body'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
-      filename: '[name].bundle.js',
-      minChunks: function(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf('node_modules') !== -1;
-      }
-    }),
-    // new BundleAnalyzerPlugin()
   ],
   resolve : {
     extensions : ['.js', '.jsx']

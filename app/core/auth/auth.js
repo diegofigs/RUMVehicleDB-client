@@ -1,15 +1,14 @@
-/**
- * Created by diegofigs on 2/27/17.
- */
 import authController from './auth.controller';
 import authService from './auth.service';
-import signupTemplate from './views/signup.html';
 import loginTemplate from './views/login.html';
 
 /** @ngInject */
-const authModule = angular.module('core.auth', [])
+const authModule = angular.module('core.auth', [
+  'ui.router', 'ngStorage'])
+  // Config block for state declaration
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
+      // Login state
       .state('login', {
         url: '/login',
         parent: 'base',
@@ -27,19 +26,22 @@ const authModule = angular.module('core.auth', [])
             return deferred.promise.catch(() => {});
           }
         }
-      })
-      .state('signup', {
-        url: '/signup',
-        parent: 'base',
-        template: signupTemplate,
-        controller: 'AuthCtrl as ctrl',
       });
 
       $urlRouterProvider.when('/', '/login');
       $urlRouterProvider.when('', '/login');
   })
+  // Declare module elements
   .service('AuthService', authService)
   .controller('AuthCtrl', authController)
+  // Return module name string for portability
   .name;
 
+/**
+ * Auth is in charge of encapsulating all functionality
+ * related to authentication and security measures inside the application.
+ * This angular module declares all states from the login portal.
+ * @type {string}
+ * @return {string} 'core.auth'
+ */
 export default authModule;
