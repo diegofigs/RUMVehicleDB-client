@@ -7,7 +7,6 @@ import cardUsageTemplate from './card-usage.html';
 import cardUsageFormTemplate from './views/add-card-usage.html';
 import cardUsageEditTemplate from './views/edit-card-usage.html';
 
-/** @ngInject */
 const cardUsageModule = angular.module('app.cards.card-usage', [])
   .config(function ($stateProvider) {
 

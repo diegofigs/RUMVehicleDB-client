@@ -1,6 +1,9 @@
 
 import moment from 'moment';
 
+/**
+ * Controller is in charge of all business logic related to card usages (Gas transactions)
+ */
 export default class CardsUsageController {
   constructor($state, $log, FileUploader,
               AuthService, CardsService, CardUsageService, swal) {
@@ -29,6 +32,9 @@ export default class CardsUsageController {
     };
     this.onDateChange();
 
+    /**
+     *  Used for uploading gas transaction, including receipt
+     */
     this.uploader = new FileUploader({
       url: 'http://dev.uprm.edu/rumvehicles/api/v1/records',
       alias: 'filename',
@@ -38,6 +44,10 @@ export default class CardsUsageController {
       },
     });
 
+    /**
+     * Gathers New Card Usage data and file data (receipt picture) together
+     * @param fileItem
+     */
     this.uploader.onBeforeUploadItem = (fileItem) => {
       this.newCardUsage.custodian_id = this.authService.getUser().id;
       this.newCardUsage.card_id = this.cardsService.card.id;
@@ -46,13 +56,19 @@ export default class CardsUsageController {
       fileItem.formData.push(this.newCardUsage);
     };
 
+    /**
+     * Once upload is complete, goes back to card usage list
+     * @param item
+     * @param response
+     * @param status
+     * @param headers
+     */
     this.uploader.onCompleteItem = (item, response, status, headers) => {
       this.$log.log(item);
       this.$log.log(status);
       this.$log.log(response);
       this.$state.go('dashboard.cards.view.card-usage');
     };
-
   }
 
   /**
@@ -104,7 +120,7 @@ export default class CardsUsageController {
   }
 
   /**
-   * Sends newly created transaction to backend
+   * Sends newly created gas transaction to backend
    */
   submitUsageForm(){
 
@@ -116,14 +132,25 @@ export default class CardsUsageController {
     this.tempItem.upload();
   }
 
+  /**
+   * Method used to format date in the format YYYY-MM-DD
+   */
   onDateChange() {
     this.newCardUsage.date = moment(this.temp_date).format('YYYY-M-D');
   }
 
+  /**
+   * Gets all card usages or gas transactions that are logged in the system
+   * @returns {Promise} Promise object represents all card usages
+   */
   getCardUsages() {
     return this.cardUsageService.getCardUsages();
   }
 
+  /**
+   * Deletes a specific card usage or gas transaction
+   * @param id Card Usage ID
+   */
   deleteCardUsage(id) {
     return this.cardUsageService.deleteCardUsage(id)
       .then(() => {
@@ -131,6 +158,10 @@ export default class CardsUsageController {
       });
   }
 
+  /**
+   * Modifies a specific card usage or gas transaction
+   * @param id Card Usage ID
+   */
   editCardUsage(id) {
     return this.cardUsageService.editCardUsage(this.cardUsages.id)
       .then(() => {

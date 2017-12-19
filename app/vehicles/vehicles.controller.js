@@ -2,6 +2,9 @@
  * Created by diegofigs on 1/31/17.
  */
 
+/**
+ * Vehicles Controller is in charge of all business logic related to UPRM's Vehicles
+ */
 import moment from 'moment-es6';
 
 export default class VehiclesController {
@@ -31,6 +34,10 @@ export default class VehiclesController {
     };
   }
 
+  /**
+   * If vehicle creation is successful, shows user success feedback
+   * If vehicle creation is unsuccessful, shows user error feedback
+   */
   confirmVehicleCreation(){
 
     this.createVehicle()
@@ -48,7 +55,10 @@ export default class VehiclesController {
       });
   }
 
-
+  /**
+   * Sends vehicle to be created to the Vehicles Service
+   * Formats input dates as YYYY-MM-DD
+   */
   createVehicle() {
     this.newVehicle.custodian_id = this.authService.getUser().id;
 
@@ -64,9 +74,10 @@ export default class VehiclesController {
   }
 
   /**
-   * Shows confirmation dialog to user
+   *  Shows confirmation dialog to user
    * If user confirms, vehicle will be deleted (if no error in deletion is present)
    * If user cancels, he/she will stay in the "Vehicles" view
+   * @param vehicle Vehicle to be deleted
    */
   confirmVehicleDeletion(vehicle) {
 
@@ -99,11 +110,19 @@ export default class VehiclesController {
     });
   }
 
-
+  /**
+   *Sends vehicle to be deleted to the Vehicles Service
+   * @param vehicle Vehicle to be deleted
+   * @returns {*}
+   */
   deleteVehicle(vehicle) {
     return this.vehiclesService.deleteVehicle(vehicle);
   }
 
+  /**
+   * If vehicle edition is successful, shows user success feedback
+   * If vehicle edition is unsuccessful, shows user error feedback
+   */
   confirmVehicleEdition(){
 
       this.editVehicle()
@@ -121,6 +140,9 @@ export default class VehiclesController {
         });
     }
 
+  /**
+   * Sends vehicle to be edited to the Vehicles Service
+   */
   editVehicle() {
 
     this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format('YYYY-MM-DD');
@@ -134,10 +156,17 @@ export default class VehiclesController {
       });
   }
 
+  /**
+   * gets current system User
+   * @returns {*|Object} User Object
+   */
   getUser() {
     return this.authService.getUser();
   }
 
+  /**
+   * Requests Vehicles Service a list of vehicles with filter parameters applied
+   */
   applyVehicleFilter() {
     return this.vehiclesService.getVehicles(this.filter)
       .then(() => {

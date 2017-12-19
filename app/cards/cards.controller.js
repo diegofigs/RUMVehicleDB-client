@@ -1,8 +1,11 @@
 /**
  * Created by diegofigs on 1/31/17.
  */
+
+/**
+ * Cards Controller is in charge of all the business logic related to Credit Cards
+ */
 export default class CardsController {
-  /** @ngInject */
   constructor($state, $log,
               AuthService, CardsService, UsersService, DepartmentsService, swal) {
     this.$state = $state;
@@ -29,6 +32,10 @@ export default class CardsController {
     };
   }
 
+  /**
+   * If card creation is successful, shows user success feedback
+   * If card creation is unsuccessful, shows user error feedback
+   */
   confirmCardCreation(){
 
     this.createCard()
@@ -46,6 +53,9 @@ export default class CardsController {
       });
   }
 
+  /**
+   * Sends card to be created to the Card Service
+   */
   createCard() {
     this.newCard.custodian_id = this.authService.getUser().id;
     return this.cardsService.createCard(this.newCard)
@@ -54,6 +64,11 @@ export default class CardsController {
     });
   }
 
+  /**
+   * If card deletion is successful, shows user success feedback
+   * If card deletion is unsuccessful, shows user error feedback
+   * @param card Card to be deleted
+   */
   confirmCardDeletion(card){
 
     this.swal({
@@ -82,6 +97,9 @@ export default class CardsController {
     });
   }
 
+  /**
+   * Sends card to be deleted to the Card Service
+   */
   deleteCard(card) {
     return this.cardsService.deleteCard(card)
       .then(() => {
@@ -89,6 +107,10 @@ export default class CardsController {
     });
   }
 
+  /**
+   * If card edition is successful, shows user success feedback
+   * If card edition is unsuccessful, shows user error feedback
+   */
   confirmCardEdition(){
 
       this.editCard()
@@ -106,6 +128,9 @@ export default class CardsController {
         });
     }
 
+  /**
+   * Sends card to be edited to the Card Service
+   */
   editCard() {
     return this.cardsService.editCard(this.card)
       .then(() => {
@@ -113,6 +138,9 @@ export default class CardsController {
     });
   }
 
+  /**
+   * Requests Card Service a list of cards with filter parameters applied
+   */
   applyFilter() {
     return this.cardsService.getCards(this.filter)
       .then( () => {
@@ -120,6 +148,10 @@ export default class CardsController {
       });
   }
 
+  /**
+   * Gets current user
+   * @returns {Object} current user object
+   */
   getUser() {
     return this.authService.getUser();
   }
