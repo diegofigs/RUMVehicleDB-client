@@ -1,5 +1,10 @@
+/**
+ * Card Usage Service is in charge of API calls (GET, POST, PUT, DELETE)
+ * related to card usage (gas transactions) object
+ */
+
 export default class CardUsageService {
-  /** @ngInject */
+
   constructor($http, $log) {
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/records';
@@ -14,6 +19,11 @@ export default class CardUsageService {
     this.total = 1;
   }
 
+  /**
+   * Requests all card usages if no param is given
+   * If filtering params are given, then requests card usages that apply only
+   * @param params Filtering parameters for card usages
+   */
   getCardUsages(params) {
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
@@ -30,6 +40,11 @@ export default class CardUsageService {
       });
   };
 
+  /**
+   * Deletes a specific card usage from the backend
+   * @param id Card Usage ID
+   * @returns {Promise} Server response. If delete was not successful, catch error and log it.
+   */
   deleteCardUsage(id) {
     this.$log.log('I am inside deleteCardUsage(cardUsage) in card-usage.service');
     return this.$http.delete(this.baseDomain + this.resource + '/' + id)
@@ -38,6 +53,11 @@ export default class CardUsageService {
       });
   };
 
+  /**
+   * Modifies a card usage in the backend
+   * @param cardUsage Card Usage
+   * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
+   */
   editCardUsage(cardUsage) {
     this.$log.log('I am inside editCardUsage() in card-usage.service');
     return this.$http.put(this.baseDomain + this.resource + '/' + cardUsage)

@@ -12,7 +12,6 @@ import cardsTemplate from './cards.html';
 
 import cardUsageModule from './card-usage/card-usage.js';
 
-/** @ngInject */
 const cardsModule = angular.module('app.cards', [cardUsageModule])
   .config(function ($stateProvider) {
     $stateProvider

@@ -1,6 +1,11 @@
 /**
  * Created by diegofigs on 2/13/17.
  */
+
+/**
+ * Vehicles Service is in charge of API calls (GET, POST, PUT, DELETE)
+ * related to UPRM's Vehicles
+ */
 export default class VehiclesService {
 
   constructor($http, $log) {
@@ -14,6 +19,11 @@ export default class VehiclesService {
     this.vehicleTypes = [];
   }
 
+  /**
+   * Requests all vehicles if no param is given
+   * If filtering params are given, then requests vehicles that apply only
+   * @param params Filtering parameters for vehicles
+   */
   getVehicles(params = {}) {
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
@@ -26,6 +36,10 @@ export default class VehiclesService {
       });
   }
 
+  /**
+   * Requests the backend for a specific vehicle
+   * @param id Vehicle ID
+   */
   getVehicle(id) {
     return this.$http.get(this.baseDomain + this.resource + '/' + id)
       .then((response) => {
@@ -37,6 +51,10 @@ export default class VehiclesService {
       });
   }
 
+  /**
+   * Requests backend to create a new vehicle
+   * @param vehicle Vehicle Object
+   */
   createVehicle(vehicle) {
     return this.$http.post(this.baseDomain + this.resource, vehicle)
       .catch((error) => {
@@ -44,10 +62,20 @@ export default class VehiclesService {
       });
   }
 
+  /**
+   * Deletes a specific vehicle from the backend
+   * @param vehicle Vehicle Object
+   * @returns {Promise} Server response. If delete was not successful, catch error and log it.
+   */
   deleteVehicle(vehicle) {
     return this.$http.delete(this.baseDomain + this.resource + '/' + vehicle.id)
   }
 
+  /**
+   * Modifies a vehicle in the backend
+   * @param vehicle Vehicle to be modified
+   * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
+   */
   editVehicle(vehicle) {
     return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle)
       .catch((error) => {

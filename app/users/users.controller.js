@@ -2,6 +2,10 @@
  * Created by diegofigs on 1/31/17.
  */
 
+/**
+ * Users Controller is in charge of all business logic related to System Users
+ * The system has 4 different type of users: Admin, Vehicle Admin, Custodian, Auxiliary Custodian
+ */
 export default class UsersController {
   constructor($state, $log, UsersService, DepartmentsService, swal) {
     this.$state = $state;
@@ -16,6 +20,10 @@ export default class UsersController {
     this.swal = swal;
   }
 
+  /**
+   * If user creation is successful, shows user success feedback
+   * If user creation is unsuccessful, shows user error feedback
+   */
   confirmUserCreation(){
 
       this.createUser()
@@ -33,6 +41,9 @@ export default class UsersController {
         });
   }
 
+  /**
+   * Sends user to be created to the Users Service
+   */
   createUser() {
     return this.usersService.createUser(this.newUser)
       .then(() => {
@@ -40,6 +51,11 @@ export default class UsersController {
     });
   }
 
+  /**
+   * If card user is successful, shows user success feedback
+   * If user deletion is unsuccessful, shows user error feedback
+   * @param user User to be deleted
+   */
   confirmUserDeletion(user){
 
     this.swal({
@@ -69,6 +85,9 @@ export default class UsersController {
     });
   }
 
+  /**
+   * Sends user to be deleted to the Users Service
+   */
   deleteUser(user) {
     return this.usersService.deleteUser(user)
       .then(() => {
@@ -77,6 +96,10 @@ export default class UsersController {
     });
   }
 
+  /**
+   * If user edition is successful, shows user success feedback
+   * If user edition is unsuccessful, shows user error feedback
+   */
   confirmUserEdition(){
 
     this.editUser()
@@ -94,6 +117,9 @@ export default class UsersController {
       });
   }
 
+  /**
+   * Sends user to be edited to the Card Service
+   */
   editUser() {
     return this.usersService.editUser(this.user).then(() => {
       this.$state.go('dashboard.users.list');
