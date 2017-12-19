@@ -1,16 +1,26 @@
-/**
- * Created by diegofigs on 2/27/17.
- */
 import 'perfect-scrollbar/jquery';
-
+/**
+ * AuthController is in charge of handling user input at the
+ * login portal.
+ */
 export default class DashboardController {
-  /** @ngInject */
+  /**
+   * Constructs a new instance of DashboardController
+   * and initializes it.
+   * @param $rootScope
+   * @param $state
+   * @param $translate
+   * @param $timeout
+   * @param $window
+   * @param AuthService
+   */
   constructor($rootScope,
               $state,
               $translate,
               $timeout,
               $window,
               AuthService) {
+    // angular injected services
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$timeout = $timeout;
@@ -64,25 +74,32 @@ export default class DashboardController {
     }
   }
 
-  subnav(x) {
-    if (x === $scope.showingSubNav) {
-      $scope.showingSubNav = 0;
-    } else {
-      $scope.showingSubNav = x;
-    }
-    return false;
-  }
+  // Deprecated
+  // subnav(x) {
+  //   if (x === $scope.showingSubNav) {
+  //     $scope.showingSubNav = 0;
+  //   } else {
+  //     $scope.showingSubNav = x;
+  //   }
+  //   return false;
+  // }
 
-  rtl() {
-    $(this.bodySelector).toggleClass('rtl');
-  }
+  // Deprecated
+  // rtl() {
+  //   $(this.bodySelector).toggleClass('rtl');
+  // }
 
+  /**
+   * Changes language used inside application.
+   * @param {string} l regional code
+   */
   changeLanguage(l) {
-
     this.$translate.use(l);
-
   }
 
+  /**
+   * Trigger function for extending sidebar.
+   */
   extend() {
     $('.c-hamburger').toggleClass('is-active');
     $(this.bodySelector).toggleClass('extended');
@@ -101,10 +118,18 @@ export default class DashboardController {
   //     .attr('href', 'styles/app-' + setTheme + '.css');
   // }
 
+  /**
+   * Wrapper function for accessing user details
+   * in scope.
+   * @return {Object|null}
+   */
   getUser() {
     return this.authService.getUser();
   }
 
+  /**
+   * Wrapper function for logging user out.
+   */
   logOut() {
     this.authService.logOut();
     this.$state.go('login');

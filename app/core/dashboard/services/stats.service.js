@@ -1,9 +1,16 @@
 /**
- * Created by diegofigs on 12/13/17.
+ * StatsService provides functions for looking up
+ * stats relevant to current user.
  */
-
 export default class StatsService {
+  /**
+   * Constructs a new instance of StatsService and
+   * initializes it.
+   * @param $http
+   * @param $log
+   */
   constructor($http, $log) {
+    // angular injected service
     this.$http = $http;
     this.$log = $log;
     this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
@@ -14,6 +21,10 @@ export default class StatsService {
     this.total_monthly_expenses = 0;
   }
 
+  /**
+   * Getter function for pulling stats from system.
+   * @return {Promise<Object>}
+   */
   getDashboardStats() {
     return this.$http.get(this.baseDomain + '/dashboard/stats')
       .then((response) => {

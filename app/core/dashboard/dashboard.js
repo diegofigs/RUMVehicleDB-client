@@ -4,16 +4,15 @@ import dashboardTemplate from './dashboard.html';
 import dashboardController from './dashboard.controller';
 import homeTemplate from './home/home.html';
 import homeController from './home/home.controller';
-import profileTemplate from './profile/profile.html';
-import profileController from './profile/profile.controller';
 import statsService from './services/stats.service';
 
 /** @ngInject */
 const dashboardModule = angular.module('core.dashboard', [])
+  // Declare module elements
   .controller('DashboardCtrl', dashboardController)
   .controller('HomeCtrl', homeController)
-  .controller('ProfileCtrl', profileController)
   .service('StatsService', statsService)
+  // Config block for state declaration
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('base', {
@@ -50,11 +49,6 @@ const dashboardModule = angular.module('core.dashboard', [])
         }
 
       })
-      .state('dashboard.profile', {
-        url: '/profile',
-        template: profileTemplate,
-        controller: 'ProfileCtrl as ctrl',
-      })
       .state('404', {
         url: '/404',
         template: errorTemplate,
@@ -65,4 +59,10 @@ const dashboardModule = angular.module('core.dashboard', [])
     $urlRouterProvider.otherwise('/404');
   }).name;
 
+/**
+ * Dashboard is in charge of providing an accessible menu interface
+ * for the user at all times and encapsulating this functionality.
+ * @type {string}
+ * @return {string} 'core.dashboard'
+ */
 export default dashboardModule;
