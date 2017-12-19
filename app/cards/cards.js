@@ -37,6 +37,7 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         controller: 'CardsCtrl as ctrl',
         resolve: {
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
+          users: (UsersService) => UsersService.getUsers(),
         },
       })
       .state('dashboard.cards.view', {
@@ -55,6 +56,7 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         resolve: {
           card: ($stateParams, CardsService) => CardsService.getCard($stateParams.id),
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
+          users: (UsersService) => UsersService.getUsers()
         },
       });
   })
