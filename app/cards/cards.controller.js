@@ -54,12 +54,57 @@ export default class CardsController {
     });
   }
 
+  confirmCardDeletion(card){
+
+    this.swal({
+      title: 'Do you really want to delete this card?',
+      type: 'warning',
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#4caf50',
+      showCancelButton: 'true',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#f44336',
+    }).then(() => {
+
+      this.deleteCard(card)
+        .then(() => {
+          this.swal({
+            title: 'Card has been deleted',
+            type: 'success'
+          });
+        })
+        .catch((error) => {
+          this.swal({
+            title: 'Error: Card could not be deleted',
+            type: 'error'
+          });
+        });
+    });
+  }
+
   deleteCard(card) {
     return this.cardsService.deleteCard(card)
       .then(() => {
       this.$state.reload();
     });
   }
+
+  confirmCardEdition(){
+
+      this.editCard()
+        .then(() => {
+          this.swal({
+            title: 'Card was successfully edited!',
+            type: 'success'
+          });
+        })
+        .catch((error) => {
+          this.swal({
+            title: 'Error: Card could not be edited',
+            type: 'error'
+          });
+        });
+    }
 
   editCard() {
     return this.cardsService.editCard(this.card)

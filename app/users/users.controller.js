@@ -54,13 +54,11 @@ export default class UsersController {
 
       this.deleteUser(user)
         .then(() => {
-
           this.swal({
             title: 'User has been deleted',
             type: 'success'
           });
 
-          this.$state.go('dashboard.users.list');
         })
         .catch((error) => {
           this.swal({
@@ -72,9 +70,28 @@ export default class UsersController {
   }
 
   deleteUser(user) {
-    return this.usersService.deleteUser(user).then(() => {
+    return this.usersService.deleteUser(user)
+      .then(() => {
+      this.$state.go('dashboard.users.list');
       this.$state.reload();
     });
+  }
+
+  confirmUserEdition(){
+
+    this.editUser()
+      .then(() => {
+        this.swal({
+          title: 'User was successfully edited!',
+          type: 'success'
+        });
+      })
+      .catch((error) => {
+        this.swal({
+          title: 'Error: User could not be edited',
+          type: 'error'
+        });
+      });
   }
 
   editUser() {
