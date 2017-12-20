@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 2/6/17.
- */
 
 /**
  * Cards Service is in charge of API calls (GET, POST, PUT, DELETE)

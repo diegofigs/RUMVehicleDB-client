@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 3/28/17.
- */
+
 import vehiclesController from './vehicles.controller';
 import vehiclesService from './vehicles.service';
 

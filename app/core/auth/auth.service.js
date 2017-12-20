@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 1/30/17.
- */
+
 export default class AuthService {
   /** @ngInject */
   constructor($http, $log, $sessionStorage) {

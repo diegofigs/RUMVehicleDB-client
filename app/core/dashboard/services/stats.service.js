@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 12/13/17.
- */
 
 export default class StatsService {
   constructor($http, $log) {

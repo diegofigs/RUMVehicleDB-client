@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 3/5/17.
- */
+
 import departmentsService from './departments.service';
 /**
  * @ngInject

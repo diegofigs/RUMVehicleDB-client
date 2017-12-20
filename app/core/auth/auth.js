@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 2/27/17.
- */
+
 import authController from './auth.controller';
 import authService from './auth.service';
 import signupTemplate from './views/signup.html';

@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 1/31/17.
- */
 
 /**
  * Users Controller is in charge of all business logic related to System Users

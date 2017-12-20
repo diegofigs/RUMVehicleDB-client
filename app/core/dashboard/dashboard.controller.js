@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 2/27/17.
- */
+
 import 'perfect-scrollbar/jquery';
 
 export default class DashboardController {

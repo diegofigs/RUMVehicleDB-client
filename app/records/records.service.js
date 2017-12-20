@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 12/7/17.
- */
+
 export default class RecordsService {
   /** @ngInject */
   constructor($http, $log, $sessionStorage) {

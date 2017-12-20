@@ -59,12 +59,12 @@
                         <input  type="text"
                                 class="form-control"
                                 name="cardID"
+                                maxlength=""
                                 placeholder="Card ID (UPR)"
-                                ng-model="ctrl.newCard.cardID"
-                                ng-pattern="/^(\d)+$/" required>
+                                ng-model="ctrl.newCard.cardID" required>
 
                         <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
-                            <div ng-message="pattern">This entry can only contain numbers.</div>
+                            <div ng-message="required">This field is required!</div>
                         </div>
 
                     </md-input-container>

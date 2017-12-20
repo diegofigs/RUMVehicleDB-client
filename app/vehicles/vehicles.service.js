@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 2/13/17.
- */
 
 /**
  * Vehicles Service is in charge of API calls (GET, POST, PUT, DELETE)

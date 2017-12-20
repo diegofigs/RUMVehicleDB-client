@@ -1,6 +1,4 @@
-/**
- * Created by diegofigs on 3/3/17.
- */
+
 import cardsController from './cards.controller';
 import cardsService from './cards.service';
 
@@ -10,6 +8,9 @@ import cardsEditTemplate from './views/edit-card.html';
 import cardsViewTemplate from './views/view-card.html';
 import cardsTemplate from './cards.html';
 
+/**
+ *
+ */
 import cardUsageModule from './card-usage/card-usage.js';
 
 const cardsModule = angular.module('app.cards', [cardUsageModule])
