@@ -7,7 +7,7 @@ import homeController from './home/home.controller';
 import statsService from './services/stats.service';
 
 /** @ngInject */
-const dashboardModule = angular.module('core.dashboard', [])
+const dashboardModule = angular.module('app.core.dashboard', [])
   // Declare module elements
   .controller('DashboardCtrl', dashboardController)
   .controller('HomeCtrl', homeController)
@@ -55,7 +55,9 @@ const dashboardModule = angular.module('core.dashboard', [])
         controller: 'DashboardCtrl as ctrl',
       });
 
+    // Redirect to home if on dashboard
     $urlRouterProvider.when('/dashboard', '/dashboard/home');
+    // Show not found view if non-matching view
     $urlRouterProvider.otherwise('/404');
   }).name;
 
@@ -63,6 +65,6 @@ const dashboardModule = angular.module('core.dashboard', [])
  * Dashboard is in charge of providing an accessible menu interface
  * for the user at all times and encapsulating this functionality.
  * @type {string}
- * @return {string} 'core.dashboard'
+ * @return {string} 'app.core.dashboard'
  */
 export default dashboardModule;

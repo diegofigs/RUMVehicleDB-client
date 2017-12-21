@@ -4,10 +4,8 @@ import authModule from './auth/auth';
 import toDate from './filters/to-date.filter';
 import capitalize from './filters/capitalize.filter';
 
-/**
- * @ngInject
- */
-const coreModule = angular.module('core', [
+/** @ngInject */
+const coreModule = angular.module('app.core', [
   authModule,
   dashboardModule,
 ]).filter('toDate', toDate)
@@ -18,6 +16,6 @@ const coreModule = angular.module('core', [
  * Core is in charge of encapsulating all functionality
  * common to the whole application domain.
  * @type {string}
- * @return {string} 'core'
+ * @return {string} 'app.core'
  */
 export default coreModule;

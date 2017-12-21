@@ -3,7 +3,7 @@ import authService from './auth.service';
 import loginTemplate from './views/login.html';
 
 /** @ngInject */
-const authModule = angular.module('core.auth', [
+const authModule = angular.module('app.core.auth', [
   'ui.router', 'ngStorage'])
   // Config block for state declaration
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -42,6 +42,6 @@ const authModule = angular.module('core.auth', [
  * related to authentication and security measures inside the application.
  * This angular module declares all states from the login portal.
  * @type {string}
- * @return {string} 'core.auth'
+ * @return {string} 'app.core.auth'
  */
 export default authModule;
