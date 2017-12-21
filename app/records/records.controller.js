@@ -66,6 +66,7 @@ export default class RecordsController {
         'You have submitted the Report!',
         'success'
       );
+      this.$state.go('dashboard.conciliation.step2');
     };
 
   }
@@ -75,5 +76,13 @@ export default class RecordsController {
       .then( () => {
         this.records = this.cardUsageService.cardUsages;
       });
+  }
+
+  submitUsageForm(){
+    let tempItem = null;
+    for (let x = 0; x < this.uploader.queue.length; x++){
+      this.tempItem = this.uploader.queue[x];
+    }
+    this.tempItem.upload();
   }
 };
