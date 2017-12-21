@@ -137,7 +137,7 @@ export default class CardsController {
   /**
    * Requests Card Service a list of cards with filter parameters applied
    */
-  applyFilter() {
+  applyCardsFilter() {
     return this.cardsService.getCards(this.filter)
       .then( () => {
         this.cards = this.cardsService.cards;
