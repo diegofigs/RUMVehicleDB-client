@@ -1,8 +1,8 @@
 import 'perfect-scrollbar/jquery';
 
 /**
- * AuthController is in charge of handling user input at the
- * login portal.
+ * DashboardController is in charge of handling state changes
+ * emitted from sidebar and be a container for other modules' views.
  */
 export default class DashboardController {
   /**
