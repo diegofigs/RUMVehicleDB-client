@@ -1,5 +1,4 @@
 import recordsController from './records.controller';
-import recordsService from './records.service';
 import baseTemplate from './views/conc-base.html';
 import step1template from './views/conc-step1-invoice.html';
 import step2template from './views/conc-step2-results.html';
@@ -12,9 +11,9 @@ import recordTemplate from './records.html';
 /** @ngInject **/
 const recordsModule = angular.module('app.records', [])
   .controller('RecordsCtrl', recordsController)
-  .service('RecordsService', recordsService)
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
+      // Conciliation views and child steps
       .state('dashboard.conciliation', {
         abstract: true,
         url: '/conc',
@@ -36,6 +35,7 @@ const recordsModule = angular.module('app.records', [])
         template: step3template,
         controller: 'RecordsCtrl as ctrl',
       })
+      // Reconciliation views and child steps
       .state('dashboard.reconciliation', {
         abstract: true,
         url: '/reconciliation',
@@ -71,4 +71,11 @@ const recordsModule = angular.module('app.records', [])
     $urlRouterProvider.when('/dashboard/reconciliation', '/dashboard/reconciliation/step1');
   }).name;
 
+/**
+ * Records is in charge of encapsulating all functionality
+ * related to reconciliation and conciliation processes inside the application.
+ * This angular module declares all states from the login portal.
+ * @type {string}
+ * @return {string} 'app.records'
+ */
 export default recordsModule;
