@@ -5,124 +5,21 @@
         by UPRM's gas vendor to start the automated
         conciliation process.
     </p>
-    <div layout="row" layout-align="center center">
-        <md-input-container flex="60" ng-if="ctrl.uploader">
-            <input aria-label="Invoice image" type="file" nv-file-select uploader="ctrl.uploader" /><br/>
-            <ul>
-                <li ng-repeat="item in ctrl.uploader.queue">
-                    {{item.file.name}}
-                    <button ng-click="item.upload()">Upload Report</button>
-                </li>
-            </ul>
-        </md-input-container>
-        <md-button flex="20" class="md-raised md-warn">Cancel</md-button>
-        <md-button flex="20" class="md-raised md-primary" ui-sref="dashboard.conciliation.step2">Submit</md-button>
+    <div layout="row" >
+        <form name="invoiceForm" flex="100" layout="row" layout-align="center center" ng-submit="ctrl.submitUsageForm()">
+            <md-input-container flex="60" ng-if="ctrl.uploader">
+                <input aria-label="Invoice image" type="file" nv-file-select uploader="ctrl.uploader" /><br/>
+                <ul>
+                    <li ng-repeat="item in ctrl.uploader.queue">
+                        {{item.file.name}}
+                    </li>
+                </ul>
+            </md-input-container>
+            <md-button flex="20" class="md-raised md-warn">Cancel</md-button>
+            <md-button type="submit" flex="20" class="md-raised md-primary" ui-sref="dashboard.conciliation.step2">Submit</md-button>
+        </form>
     </div>
 </div>
 
 
-<!-- Deprecated code -->
-<!--<h4 align="center">Reconciled Records</h4>-->
-<!--<table class="invoice-table" style="width: 100%; margin-top: 15px;">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Custodian</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Provider #</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Purchase Type</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt #</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Mileage</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>-->
-<!--<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>-->
-<!--</tr>-->
-<!--</thead>-->
 
-<!--<tbody>-->
-<!--<tr ng-repeat="record in ctrl.reconciled">-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.record_custodian_name}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">-->
-<!--<a href= "{{'http://dev.uprm.edu/rumvehicles/web/index.html#/dashboard/cards/' + record.card_id}}" target="_blank">Card Info</a>-->
-<!--</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.date | date}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.provider_number}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.purchase_type}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.receipt_number}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_receipt | currency}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_liters}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.vehicle_mileage}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.comments}}</td>-->
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--<h4 align="center">Non Reconciled Records</h4>-->
-<!--<table class="invoice-table layout-align-center" style="width: 100%; margin-top: 15px;">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Custodian</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Provider Number</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Purchase Type</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt Number</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Mileage</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt</th>-->
-<!--<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>-->
-<!--</tr>-->
-<!--</thead>-->
-
-<!--<tbody>-->
-<!--<tr ng-repeat="record in ctrl.nonReconciled">-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.record_custodian_name}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">-->
-<!--<a href= "{{'http://dev.uprm.edu/rumvehicles/web/index.html#/dashboard/cards/' + record.card_id}}" target="_blank">Card Info</a>-->
-<!--</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.date | date}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.provider_number}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.purchase_type}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.receipt_number}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_receipt | currency}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_liters}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.vehicle_mileage}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.WARNING}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">-->
-<!--<a href={{record.record_picture}} target="_blank">View Receipt</a>-->
-<!--</td>-->
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
-
-<!--<h4 align="center">Excel Non Reconciled Records</h4>-->
-<!--<table class="invoice-table layout-align-center" style="width: 100%; margin-top: 15px;">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Location</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt Number</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card Name</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Type</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>-->
-<!--<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>-->
-<!--<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>-->
-<!--</tr>-->
-<!--</thead>-->
-
-<!--<tbody>-->
-<!--<tr ng-repeat="record in ctrl.excelNonReconciled">-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.fecha_de_la_transaccion | date}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.ubicacion_de_compra}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.numero_de_transaccion}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.nombre_de_la_tarjeta}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.tipo_de_gasolina}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.cantidad_litros}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_del_solicitante | currency}}</td>-->
-<!--<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.WARNING}}</td>-->
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
