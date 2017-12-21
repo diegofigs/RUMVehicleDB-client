@@ -1,12 +1,10 @@
-/**
- * Created by diegofigs on 1/31/17.
- */
+
+
+import moment from 'moment-es6';
 
 /**
  * Vehicles Controller is in charge of all business logic related to UPRM's Vehicles
  */
-import moment from 'moment-es6';
-
 export default class VehiclesController {
   constructor($state, $log,
            AuthService, DepartmentsService, UsersService, VehiclesService, swal) {

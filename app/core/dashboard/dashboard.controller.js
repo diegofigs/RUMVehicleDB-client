@@ -1,4 +1,5 @@
 import 'perfect-scrollbar/jquery';
+
 /**
  * AuthController is in charge of handling user input at the
  * login portal.

@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 1/31/17.
- */
 
 /**
  * Users Service is in charge of API calls (GET, POST, PUT, DELETE)

@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 3/29/17.
- */
 import usersController from '../users/users.controller';
 import usersService from '../users/users.service';
 

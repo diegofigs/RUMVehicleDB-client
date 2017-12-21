@@ -1,8 +1,4 @@
 /**
- * Created by diegofigs on 1/31/17.
- */
-
-/**
  * Cards Controller is in charge of all the business logic related to Credit Cards
  */
 export default class CardsController {

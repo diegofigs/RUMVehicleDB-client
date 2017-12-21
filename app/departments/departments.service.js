@@ -1,6 +1,3 @@
-/**
- * Created by diegofigs on 3/5/17.
- */
 
 /**
  * Departments Service is in charge of API calls (GET)
