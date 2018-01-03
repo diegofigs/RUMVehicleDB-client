@@ -33,12 +33,12 @@
                 </md-input-container>
                 <md-input-container flex flex-gt-sm="33">
                     <label>Vehicle Type</label>
-                    <md-select ng-model="ctrl.filter.purchase_type">
-                        <md-option value= "{{type}}" ng-repeat="type in ctrl.vehicles.type">{{type}}</md-option>
+                    <md-select ng-model="ctrl.filter.type_id">
+                        <md-option value="{{type.id}}" ng-repeat="type in ctrl.vehicleTypes">{{type.vehicle_type_name}}</md-option>
                     </md-select>
                 </md-input-container>
-                <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
             </div>
+            <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
         </md-card>
 
 

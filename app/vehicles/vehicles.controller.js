@@ -28,7 +28,7 @@ export default class VehiclesController {
     this.filter = {
       department_id: '',
       custodian_id: '',
-      vehicle_type: '',
+      type_id: '',
     };
   }
 
@@ -36,7 +36,6 @@ export default class VehiclesController {
    * If vehicle creation is successful, shows user success feedback
    * If vehicle creation is unsuccessful, shows user error feedback
    */
-
   confirmVehicleCreation(){
 
     this.createVehicle()
