@@ -1,3 +1,12 @@
+<!-- Loading Spinner -->
+<div class="flexbox-parent">
+    <div layout="row" layout-align="center center"  style="height: 100vh" ng-show="stateIsLoading">
+        <md-progress-circular  md-diameter="150" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</div>
+
+<!-- Show if data is already resolved -->
+<div ng-show="!stateIsLoading">
 <div layout class="layout bg-primary bottom-shadow">
     <h1 class="white" flex="50" flex-offset="10">Users</h1>
 </div>
@@ -42,5 +51,6 @@
 
         </md-card>
     </div>
+</div>
 
 

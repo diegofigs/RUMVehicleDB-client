@@ -32,7 +32,6 @@ export default class CardUsageService {
         this.cardUsages = response.data.data[0].data;
         this.pageSize = response.data.data[0].per_page;
         this.total = response.data.data[0].last_page;
-        this.$log.log('I am inside getCardUsage in CardUsageService and cardUsage: ' + this.cardUsages);
         return this.cardUsages;
       })
       .catch((error) => {
