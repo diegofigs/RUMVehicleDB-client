@@ -34,7 +34,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ["PhantomJS"],
+    browsers: ["Chrome"],
     singleRun: false,
     plugins: [
       require('karma-webpack'),
@@ -43,6 +43,7 @@ module.exports = function(config) {
       require('karma-sinon'),
       require('karma-mocha-reporter'),
       require('karma-chrome-launcher'),
+      require('karma-phantomjs-launcher'),
       require('karma-sourcemap-loader')
     ]
   });
