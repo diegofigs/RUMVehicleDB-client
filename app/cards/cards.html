@@ -10,14 +10,20 @@
         - Custodians can filter cards by: type, and status -->
 
         <md-card flex layout="column" layout-padding>
-            <label>
-            <span>
-                <md-icon>
-                    <i class="filter-icon mdi mdi-filter-outline"></i>
-                </md-icon>Filter by:
-            </span>
-            </label>
-            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
+            <div flex layout="row">
+                <label flex layout-align-gt-sm="start">
+                    <span>
+                        <md-icon>
+                        <i class="filter-icon mdi mdi-filter-outline"></i>
+                        </md-icon>Filter by:
+                    </span>
+                </label>
+
+                <span layout-padding layout-align-gt-sm="end">
+                    <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear all</a>
+                </span>
+            </div>
+            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-between center">
                 <md-input-container ng-show="ctrl.getUser().user_type_id === '1'" class="filter-selects-space">
                     <label>Department</label>
                     <md-select ng-model="ctrl.filter.department_id">
@@ -44,7 +50,7 @@
                     </md-select>
                 </md-input-container>
 
-                <md-button ng-click="ctrl.applyCardsFilter()" class="md-raised md-primary">Filter</md-button>
+                <md-button flex="initial" ng-click="ctrl.applyCardsFilter()" class="md-raised md-primary">Filter</md-button>
 
             </div>
         </md-card>
