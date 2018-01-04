@@ -4,15 +4,16 @@
     <h1 class="white" flex="50" flex-offset="10">Expense Records</h1>
 </div>
 
-    <md-content>
+<div layout="row" flex-gt-sm="80" flex-offset-gt-sm="10">
+
+    <md-content flex>
         <md-tabs md-dynamic-height md-border-bottom>
 
                                             <!-- RECORDS TAB -->
-            <md-tab label="Records">
-                <md-content class="md-padding">
-
-                    <div layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align="start stretch">
-                        <div flex-gt-sm="35" flex-offset-gt-sm="10">
+            <md-tab label="All Records">
+                <md-content>
+                    <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
+                        <div flex="45">
                             <md-card flex layout="column" layout-padding>
                                 <label>Filter By</label>
                                 <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
@@ -37,10 +38,10 @@
                                 </div>
                             </md-card>
                         </div>
-                        <div flex-gt-sm="30" layout-padding>
+                        <div flex="45" layout-padding>
                             <md-card flex layout="column" layout-fill layout-padding>
                                 <label>Limit Time Range</label>
-                                <div flex layout="row" layout-align="start center" layout-align-gt-sm="space-around center">
+                                <div flex layout="row" layout-align-gt-sm="space-around center">
                                     <md-datepicker
                                         flex="50"
                                         ng-init="from = (ctrl.filter.date_from | toDate)"
@@ -58,14 +59,14 @@
                                 </div>
                             </md-card>
                         </div>
-                        <div flex flex-gt-sm="15" layout="row" layout-align-gt-sm="center center">
+                        <div flex="10" layout="row" layout-align-gt-sm="end center">
                             <md-button flex="initial" ng-click="ctrl.applyFilter()" class="md-fab md-primary">
                                 <md-icon>filter_list</md-icon>
                             </md-button>
                         </div>
                     </div>
-                    <div layout-fill layout-padding layout="row">
-                        <md-card flex="80" flex-offset="10" layout-padding>
+                    <div layout-fill layout="row">
+                        <md-card flex layout-padding>
                             <md-table-container>
                                 <table md-table>
                                     <thead md-head>
@@ -107,9 +108,9 @@
                 </md-content>
             </md-tab>
                                         <!-- REPORTS TAB -->
-            <md-tab label="Reports">
+            <md-tab label="Download Reports">
                 <md-content class="md-padding">
-                    <div flex-gt-sm="30" flex-offset-gt-sm="35"  layout-gt-sm="row" layout-xs="column" layout-sm="column">
+                    <div flex-gt-sm="50" flex-offset-gt-sm="25"  layout-gt-sm="row" layout-xs="column" layout-sm="column">
 
                             <md-card flex layout="row" layout-fill layout-padding>
                                 <div flex="80">
@@ -134,3 +135,4 @@
             </md-tab>
         </md-tabs>
     </md-content>
+</div>
