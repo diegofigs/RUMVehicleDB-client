@@ -2,8 +2,8 @@
     <h1 class="white" flex="50" flex-offset="10">Users</h1>
 </div>
 
-    <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
-        <md-card flex-xs="100" flex-sm="80" flex-offset-sm="10" flex-gt-md="60" flex-offset-gt-md="20">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="row">
+        <md-card flex>
             <md-table-container>
                 <table md-table>
                     <thead md-head>
@@ -23,12 +23,12 @@
                             <td md-cell>{{user.email}}</td>
                             <td md-cell>
                                 <md-icon>
-                                    <i ui-sref="dashboard.users.edit({id: user.id})" class="mdi mdi-account-edit"></i>
+                                    <i ui-sref="dashboard.users.edit({id: user.id})" class="clickable mdi mdi-account-edit"></i>
                                 </md-icon>
                             </td>
                             <td md-cell>
                                 <md-icon>
-                                    <i ng-click="ctrl.confirmUserDeletion(user)" class="mdi mdi-delete"></i>
+                                    <i ng-click="ctrl.confirmUserDeletion(user)" class="clickable mdi mdi-delete"></i>
                                 </md-icon>
                             </td>
                         </tr>

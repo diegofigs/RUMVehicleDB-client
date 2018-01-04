@@ -1,143 +1,145 @@
-<div class="mdl-cell" flex="100" style="background: white;">
-    <div class="panel-header">
-        Edit Card Details
-    </div>
-    <div class="panel-body forms">
-        <form name="cardForm" class="form-horizontal" ng-submit="ctrl.confirmCardEdition(card)">
-            <h4>Primary Details</h4>
-            <div layout="row" layout-padding  layout-sm="column" layout-xs="column">
-                <div layout="column" flex="50">
-                    <md-input-container flex>
-                        <input  type="text"
+<div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <div class="mdl-cell shadow">
+
+    <div class="panel-header">Edit Card Details</div>
+
+        <div class="panel-body forms">
+            <form name="cardForm" class="form-horizontal" ng-submit="ctrl.confirmCardEdition(card)">
+                <h4>Primary Details</h4>
+                <div layout="row" layout-padding  layout-sm="column" layout-xs="column">
+                    <div layout="column" flex="50">
+                        <md-input-container flex>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="number"
+                                    placeholder="Number"
+                                    maxlength="17"
+                                    minlength="17"
+                                    ng-pattern="/^(\d)+$/"
+                                    ng-model="ctrl.card.number" required>
+
+                            <div ng-messages="cardForm.number.$error" ng-if="cardForm.number.$touched && cardForm.number.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain numbers.</div>
+                                <div ng-message="minlength">This entry should have exactly 17 digits.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="expiry"
+                                    placeholder="Exp Date in MM/YY"
+                                    ng-model="ctrl.card.expiry"
+                                    ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+
+                            <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="name"
+                                    placeholder="Name"
+                                    ng-model="ctrl.card.name"
+                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+
+                            <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This entry can only contain characters</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="cardID"
+                                    placeholder="Card ID (UPR)"
+                                    ng-model="ctrl.card.cardID" required>
+
+                            <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
+
+                        </md-input-container>
+
+                    </div>
+                    <div layout="column" flex="50 none">
+
+                        <md-input-container flex>
+                            <label>Department</label>
+                            <md-select
                                 class="form-control"
-                                name="number"
-                                placeholder="Number"
-                                maxlength="17"
-                                minlength="17"
-                                ng-pattern="/^(\d)+$/"
-                                ng-model="ctrl.card.number" required>
+                                name="department"
+                                ng-model="ctrl.card.department_id"
+                                ng-required="true">
+                            <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
+                                    {{department.name}}
+                                </md-option>
+                            </md-select><br>
+                        </md-input-container>
 
-                        <div ng-messages="cardForm.number.$error" ng-if="cardForm.number.$touched && cardForm.number.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">This entry can only contain numbers.</div>
-                            <div ng-message="minlength">This entry should have exactly 17 digits.</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <input  type="text"
+                        <md-input-container flex>
+                            <label>Type</label>
+                            <md-select
                                 class="form-control"
-                                name="expiry"
-                                placeholder="Exp Date in MM/YY"
-                                ng-model="ctrl.card.expiry"
-                                ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+                                name="type"
+                                ng-model="ctrl.card.type"
+                                ng-required="true">
+                                <md-option ng-repeat="type in ctrl.types" value="type">
+                                    {{type}}
+                                </md-option>
+                                <md-option value="Regular">
+                                    Regular
+                                </md-option>
+                                <md-option value="Premium">
+                                    Premium
+                                </md-option>
+                                <md-option value="Diesel">
+                                    Diesel
+                                </md-option>
+                                <md-option value="SPARE">
+                                    SPARE
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
 
-                        <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <input  type="text"
+                        <md-input-container flex>
+                            <label>Status</label>
+                            <md-select
                                 class="form-control"
-                                name="name"
-                                placeholder="Name"
-                                ng-model="ctrl.card.name"
-                                ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                                name="status"
+                                ng-model="ctrl.card.status"
+                                ng-required="true">
+                            <md-option ng-repeat="status in ctrl.status_types" value="status">
+                                    {{status}}
+                                </md-option>
+                                <md-option value="Active">
+                                    Active
+                                </md-option>
+                                <md-option value="Inactive">
+                                    Inactive
+                                </md-option>
+                            </md-select><br>
+                        </md-input-container>
 
-                        <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">This entry can only contain characters</div>
-                        </div>
+                        <md-input-container flex>
+                            <label>Custodian</label>
+                            <md-select
+                                ng-model="ctrl.card.custodian_id"
+                                ng-required="true">
+                            <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
 
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <input  type="text"
-                                class="form-control"
-                                name="cardID"
-                                placeholder="Card ID (UPR)"
-                                ng-model="ctrl.card.cardID" required>
-
-                        <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
-
-                    </md-input-container>
-
+                    </div>
                 </div>
-                <div layout="column" flex="50 none">
-
-                    <md-input-container flex>
-                        <label>Department</label>
-                        <md-select
-                            class="form-control"
-                            name="department"
-                            ng-model="ctrl.card.department_id"
-                            ng-required="true">
-                        <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
-                                {{department.name}}
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <label>Type</label>
-                        <md-select
-                            class="form-control"
-                            name="type"
-                            ng-model="ctrl.card.type"
-                            ng-required="true">
-                            <md-option ng-repeat="type in ctrl.types" value="type">
-                                {{type}}
-                            </md-option>
-                            <md-option value="Regular">
-                                Regular
-                            </md-option>
-                            <md-option value="Premium">
-                                Premium
-                            </md-option>
-                            <md-option value="Diesel">
-                                Diesel
-                            </md-option>
-                            <md-option value="SPARE">
-                                SPARE
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <label>Status</label>
-                        <md-select
-                            class="form-control"
-                            name="status"
-                            ng-model="ctrl.card.status"
-                            ng-required="true">
-                        <md-option ng-repeat="status in ctrl.status_types" value="status">
-                                {{status}}
-                            </md-option>
-                            <md-option value="Active">
-                                Active
-                            </md-option>
-                            <md-option value="Inactive">
-                                Inactive
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-
-                    <md-input-container flex>
-                        <label>Custodian</label>
-                        <md-select
-                            ng-model="ctrl.card.custodian_id"
-                            ng-required="true">
-                        <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-
-                </div>
-            </div>
-            <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
-        </form>
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+            </form>
+        </div>
     </div>
 </div>

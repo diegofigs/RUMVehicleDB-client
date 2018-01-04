@@ -1,5 +1,5 @@
-<div flex="100" style="background: white;">
-    <div class="mdl-cell shadow">
+<div flex-gt-sm="80" flex-offset-gt-sm="10">
+<div class="mdl-cell shadow">
 
     <div class="panel-header">Add User</div>
 
@@ -31,10 +31,10 @@
                                 class="form-control"
                                 name="email"
                                 placeholder="Email"
-                                ng-model="ctrl.newUser.email" required>
+                                ng-model="ctrl.newUser.email"
+                                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
                         <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched && userForm.email.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="email">Please enter a valid email.</div>
+                            <div ng-message="pattern">Please enter a valid email.</div>
                         </div>
 
                     </md-input-container>
@@ -44,12 +44,11 @@
                                 class="form-control"
                                 name="password"
                                 placeholder="Password"
-                                minlength="6"
-                                ng-model="ctrl.newUser.password" required>
+                                ng-model="ctrl.newUser.password"
+                                ng-pattern="/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/" required>
 
                         <div ng-messages="userForm.password.$error" ng-if="userForm.password.$touched && userForm.password.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="minlength">Password should have at least 6 characters.</div>
+                            <div ng-message="pattern">Password must contain characters, numbers and should be at least 8 characters long</div>
                         </div>
                     </md-input-container>
 

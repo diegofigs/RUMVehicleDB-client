@@ -1,308 +1,309 @@
-<div class="mdl-cell" flex="100" style="background: white;">
-    <div class="panel-header">
-        Edit Vehicle
-    </div>
-    <div class="panel-body forms">
-        <form name="vehicleForm" class="form-horizontal" ng-submit="ctrl.confirmVehicleEdition()">
-            <h4>Primary Details</h4>
-            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                    <md-input-container>
-                        <input  type="text"
+<div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <div  class="mdl-cell shadow">
+        <div class="panel-header">Edit Vehicle</div>
+
+        <div class="panel-body forms">
+            <form name="vehicleForm" class="form-horizontal" ng-submit="ctrl.confirmVehicleEdition()">
+                <h4>Primary Details</h4>
+                <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                    <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="licensePlate"
+                                    placeholder="License Plate"
+                                    maxlength="8"
+                                    minlength="3"
+                                    ng-model="ctrl.vehicle.license_plate" required>
+
+                            <div ng-messages="vehicleForm.licensePlate.$error" ng-if="vehicleForm.licensePlate.$touched && vehicleForm.licensePlate.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="vin"
+                                    placeholder="VIN"
+                                    maxlength="17"
+                                    ng-pattern="/^[a-zA-Z0-9]{17}$/"
+                                    ng-model="ctrl.vehicle.vin" required>
+
+                            <div ng-messages="vehicleForm.vin.$error" ng-if="vehicleForm.vin.$touched && vehicleForm.vin.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">VIN number should have 17 characters/digits. </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="make"
+                                    placeholder="Make"
+                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
+                                    ng-model="ctrl.vehicle.make" required>
+
+                            <div ng-messages="vehicleForm.make.$error" ng-if="vehicleForm.make.$touched && vehicleForm.make.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">Only characters are allowed in this field</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="model"
+                                    placeholder="Model"
+                                    ng-required="false"
+                                    ng-model="ctrl.vehicle.model" required>
+
+                            <div ng-messages="vehicleForm.model.$error" ng-if="vehicleForm.model.$touched && vehicleForm.model.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="year"
+                                    placeholder="Year"
+                                    maxlength="4"
+                                    minlength="4"
+                                    ng-model="ctrl.vehicle.year" required>
+
+                            <div ng-messages="vehicleForm.year.$error" ng-if="vehicleForm.year.$touched && vehicleForm.year.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">Only numbers are allowed in this field</div>
+                                <div ng-message="minlength">This field should contain 4 digits</div>
+                                <div ng-message="maxlength">This field should contain 4 digits</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="color"
+                                    placeholder="Color"
+                                    ng-model="ctrl.vehicle.color" required>
+
+                            <div ng-messages="vehicleForm.color.$error" ng-if="vehicleForm.color.$touched && vehicleForm.color.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">Only characters are allowed in this field</div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                    <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                        <md-input-container>
+                            <label>Department</label>
+                            <md-select
                                 class="form-control"
-                                name="licensePlate"
-                                placeholder="License Plate"
-                                maxlength="8"
-                                minlength="3"
-                                ng-model="ctrl.vehicle.license_plate" required>
-
-                        <div ng-messages="vehicleForm.licensePlate.$error" ng-if="vehicleForm.licensePlate.$touched && vehicleForm.licensePlate.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
+                                name="department"
+                                ng-model="ctrl.vehicle.department_id">
+                                <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
+                                    {{department.name}}
+                                </md-option>
+                            </md-select><br>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Type</label>
+                            <md-select
                                 class="form-control"
-                                name="vin"
-                                placeholder="VIN"
-                                maxlength="17"
-                                ng-pattern="/^[a-zA-Z0-9]{17}$/"
-                                ng-model="ctrl.vehicle.vin" required>
+                                name="type"
+                                ng-model="ctrl.vehicle.type_id">
+                                <md-option ng-repeat="type in ctrl.vehicleTypes" ng-value="type.id">
+                                    {{type.vehicle_type_name}}
+                                </md-option>
 
-                        <div ng-messages="vehicleForm.vin.$error" ng-if="vehicleForm.vin.$touched && vehicleForm.vin.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">VIN number should have 17 characters/digits. </div>
-                        </div>
-                    </md-input-container>
+                            </md-select><br>
+                        </md-input-container>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="serial_number"
+                                    placeholder="Serial Number"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.serial_number" required>
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="make"
-                                placeholder="Make"
-                                ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
-                                ng-model="ctrl.vehicle.make" required>
+                            <div ng-messages="vehicleForm.serial_number.$error" ng-if="vehicleForm.serial_number.$touched && vehicleForm.serial_number.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
+                        </md-input-container>
 
-                        <div ng-messages="vehicleForm.make.$error" ng-if="vehicleForm.make.$touched && vehicleForm.make.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">Only characters are allowed in this field</div>
-                        </div>
-                    </md-input-container>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="property_number"
+                                    placeholder="Property Number"
+                                    ng-required="true"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.property_number" required>
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="model"
-                                placeholder="Model"
-                                ng-required="false"
-                                ng-model="ctrl.vehicle.model" required>
+                            <div ng-messages="vehicleForm.property_number.$error" ng-if="vehicleForm.property_number.$touched && vehicleForm.property_number.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
 
-                        <div ng-messages="vehicleForm.model.$error" ng-if="vehicleForm.model.$touched && vehicleForm.model.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
-                    </md-input-container>
+                        </md-input-container>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="registration_id"
+                                    placeholder="Registration ID"
+                                    ng-required="true"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.registration_id" required>
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="year"
-                                placeholder="Year"
-                                maxlength="4"
-                                minlength="4"
-                                ng-model="ctrl.vehicle.year" required>
+                            <div ng-messages="vehicleForm.registration_id.$error" ng-if="vehicleForm.registration_id.$touched && vehicleForm.registration_id.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
 
-                        <div ng-messages="vehicleForm.year.$error" ng-if="vehicleForm.year.$touched && vehicleForm.year.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">Only numbers are allowed in this field</div>
-                            <div ng-message="minlength">This field should contain 4 digits</div>
-                            <div ng-message="maxlength">This field should contain 4 digits</div>
-                        </div>
+                        </md-input-container>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="title_id"
+                                    placeholder="Title ID"
+                                    ng-required="true"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-trim="false"
+                                    ng-model="ctrl.vehicle.title_id" required>
 
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="color"
-                                placeholder="Color"
-                                ng-model="ctrl.vehicle.color" required>
-
-                        <div ng-messages="vehicleForm.color.$error" ng-if="vehicleForm.color.$touched && vehicleForm.color.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">Only characters are allowed in this field</div>
-                        </div>
-                    </md-input-container>
-
+                            <div ng-messages="vehicleForm.title_id.$error" ng-if="vehicleForm.title_id.$touched && vehicleForm.title_id.$invalid">
+                                <div ng-message="required">This field is required!</div>
+                            </div>
+                        </md-input-container>
+                    </div>
                 </div>
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                    <md-input-container>
-                        <label>Department</label>
-                        <md-select
-                            class="form-control"
-                            name="department"
-                            ng-model="ctrl.vehicle.department_id">
-                            <md-option ng-repeat="department in ctrl.departments" ng-value="department.id">
-                                {{department.name}}
-                            </md-option>
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Type</label>
-                        <md-select
-                            class="form-control"
-                            name="type"
-                            ng-model="ctrl.vehicle.type_id">
-                            <md-option ng-repeat="type in ctrl.vehicleTypes" ng-value="type.id">
-                                {{type.vehicle_type_name}}
-                            </md-option>
+                <h4>Additional Details</h4>
+                <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
+                    <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
 
-                        </md-select><br>
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="serial_number"
-                                placeholder="Serial Number"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.serial_number" required>
+                        <md-input-container>
+                            <label><small>Marbete Date</small></label>
+                        </md-input-container>
+                        <md-datepicker
+                            ng-init="marbete = (ctrl.vehicle.marbete_date | toDate)"
+                            ng-model="marbete"
+                            ng-change="ctrl.vehicle.marbete_date = marbete.toISOString()"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
 
-                        <div ng-messages="vehicleForm.serial_number.$error" ng-if="vehicleForm.serial_number.$touched && vehicleForm.serial_number.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
-                    </md-input-container>
+                        <md-input-container>
+                            <label><small>Inspection Date</small></label>
+                        </md-input-container>
+                        <md-datepicker
+                            ng-init="inspection = (ctrl.vehicle.inspection_date | toDate)"
+                            ng-model="inspection"
+                            ng-change="ctrl.vehicle.inspection_date = inspection.toISOString()"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
+                        <br><br>
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="property_number"
-                                placeholder="Property Number"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.property_number" required>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="doors"
+                                    placeholder="Doors"
+                                    ng-required="false"
+                                    ng-pattern="/([0-4])$/"
+                                    ng-model="ctrl.vehicle.doors"
+                                    ui-mask="9"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_">
+                        </md-input-container>
+                    </div>
 
-                        <div ng-messages="vehicleForm.property_number.$error" ng-if="vehicleForm.property_number.$touched && vehicleForm.property_number.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
+                    <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
 
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="registration_id"
-                                placeholder="Registration ID"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.registration_id" required>
+                        <md-input-container>
+                            <label><small>Decommission Date</small></label>
+                        </md-input-container>
+                        <md-datepicker
+                            ng-init="decomission = (ctrl.vehicle.decomission_date | toDate)"
+                            ng-model="decomission"
+                            ng-change="ctrl.vehicle.decomission_date = decomission.toISOString()"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
 
-                        <div ng-messages="vehicleForm.registration_id.$error" ng-if="vehicleForm.registration_id.$touched && vehicleForm.registration_id.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
+                        <md-input-container>
+                            <label><small>Inscription Date</small></label>
+                        </md-input-container>
+                        <md-datepicker
+                            ng-init="inscription = (ctrl.vehicle.inscription_date | toDate)"
+                            ng-model="inscription"
+                            ng-change="ctrl.vehicle.inscription_date = inscription.toISOString()"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
+                        <br><br>
 
-                    </md-input-container>
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="title_id"
-                                placeholder="Title ID"
-                                ng-required="true"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-trim="false"
-                                ng-model="ctrl.vehicle.title_id" required>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="{{validate(vehicleForm.cylinders.$valid)}}"
+                                    name="cylinders"
+                                    placeholder="Cylinders"
+                                    ng-pattern="/([0-8])$/"
+                                    ng-model="ctrl.vehicle.cylinders"
+                                    ui-mask="9"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_">
+                        </md-input-container>
+                    </div>
+                    <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 
-                        <div ng-messages="vehicleForm.title_id.$error" ng-if="vehicleForm.title_id.$touched && vehicleForm.title_id.$invalid">
-                            <div ng-message="required">This field is required!</div>
-                        </div>
-                    </md-input-container>
-                </div>
-            </div>
-            <h4>Additional Details</h4>
-            <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
-                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="{{validate(vehicleForm.ACAA.$valid)}}"
+                                    name="ACAA"
+                                    placeholder="ACAA"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.ACAA">
+                        </md-input-container>
 
-                    <md-input-container>
-                        <label><small>Marbete Date</small></label>
-                    </md-input-container>
-                    <md-datepicker
-                        ng-init="marbete = (ctrl.vehicle.marbete_date | toDate)"
-                        ng-model="marbete"
-                        ng-change="ctrl.vehicle.marbete_date = marbete.toISOString()"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="{{validate(vehicleForm.purchasePrice.$valid)}}"
+                                    name="purchase_price"
+                                    placeholder="Purchase Price"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.purchase_price">
+                        </md-input-container>
 
-                    <md-input-container>
-                        <label><small>Inspection Date</small></label>
-                    </md-input-container>
-                    <md-datepicker
-                        ng-init="inspection = (ctrl.vehicle.inspection_date | toDate)"
-                        ng-model="inspection"
-                        ng-change="ctrl.vehicle.inspection_date = inspection.toISOString()"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    <br><br>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="doors"
-                                placeholder="Doors"
-                                ng-required="false"
-                                ng-pattern="/([0-4])$/"
-                                ng-model="ctrl.vehicle.doors"
-                                ui-mask="9"
-                                ui-mask-placeholder
-                                ui-mask-placeholder-char="_">
-                    </md-input-container>
+                        <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="{{validate(vehicleForm.insurance.$valid)}}"
+                                    name="insurance"
+                                    placeholder="Insurance"
+                                    ng-maxlength="24"
+                                    ng-minlength="1"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="ctrl.vehicle.insurance">
+                        </md-input-container>
+                    </div>
                 </div>
 
-                <div class="mdl-cell" flex="25" flex-sm="100" flex-xs="100">
-
-                    <md-input-container>
-                        <label><small>Decommission Date</small></label>
-                    </md-input-container>
-                    <md-datepicker
-                        ng-init="decomission = (ctrl.vehicle.decomission_date | toDate)"
-                        ng-model="decomission"
-                        ng-change="ctrl.vehicle.decomission_date = decomission.toISOString()"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-
-                    <md-input-container>
-                        <label><small>Inscription Date</small></label>
-                    </md-input-container>
-                    <md-datepicker
-                        ng-init="inscription = (ctrl.vehicle.inscription_date | toDate)"
-                        ng-model="inscription"
-                        ng-change="ctrl.vehicle.inscription_date = inscription.toISOString()"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
-                    <br><br>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(vehicleForm.cylinders.$valid)}}"
-                                name="cylinders"
-                                placeholder="Cylinders"
-                                ng-pattern="/([0-8])$/"
-                                ng-model="ctrl.vehicle.cylinders"
-                                ui-mask="9"
-                                ui-mask-placeholder
-                                ui-mask-placeholder-char="_">
-                    </md-input-container>
+                <div style="text-align: center;">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
                 </div>
-                <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
 
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(vehicleForm.ACAA.$valid)}}"
-                                name="ACAA"
-                                placeholder="ACAA"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.ACAA">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(vehicleForm.purchasePrice.$valid)}}"
-                                name="purchase_price"
-                                placeholder="Purchase Price"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.purchase_price">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                id="{{validate(vehicleForm.insurance.$valid)}}"
-                                name="insurance"
-                                placeholder="Insurance"
-                                ng-maxlength="24"
-                                ng-minlength="1"
-                                ng-pattern="/^[a-zA-Z0-9]*$/"
-                                ng-model="ctrl.vehicle.insurance">
-                    </md-input-container>
-                </div>
-            </div>
-
-            <div style="text-align: center;">
-            <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
 </div>
