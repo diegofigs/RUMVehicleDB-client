@@ -29,6 +29,7 @@ export default class CardsUsageController {
       vehicle_id: '',
       card_id: '',
       custodian_id: '',
+      department_id: ''
     };
     this.onDateChange();
 
@@ -51,6 +52,7 @@ export default class CardsUsageController {
     this.uploader.onBeforeUploadItem = (fileItem) => {
       this.newCardUsage.custodian_id = this.authService.getUser().id;
       this.newCardUsage.card_id = this.cardsService.card.id;
+      this.newCardUsage.department_id = this.cardsService.card.department_id;
       this.newCardUsage.vehicle_id = 1;
       this.$log.log(this.newCardUsage);
       fileItem.formData.push(this.newCardUsage);
