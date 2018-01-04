@@ -14,6 +14,8 @@ export default class AuthService {
     this.$log = $log;
     this.$sessionStorage = $sessionStorage;
 
+    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
+
     if(this.$sessionStorage.token){
       this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
       this.currentUser();
@@ -23,7 +25,6 @@ export default class AuthService {
       this.$sessionStorage.user = {};
     }
 
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
   }
 
   /**
