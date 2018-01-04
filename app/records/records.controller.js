@@ -38,6 +38,8 @@ export default class RecordsController {
     // Reference to custodian names
     this.users = this.usersService.users;
 
+    this.reportDates = [];
+
     // Lists that detail reconciliation process and breakdown
     this.reconciled = [];
     this.nonReconciled = [];
