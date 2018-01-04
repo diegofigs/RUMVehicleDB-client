@@ -1,26 +1,30 @@
 <h2 flex="initial">Step 2: Review preliminary results</h2>
 <p flex="initial">
-    A list is displayed below with transactions unknown
-    to the system along with stats for the conciliation process.
+    A list is displayed below with transactions not found
+    in the system along with stats for the conciliation process.
 </p>
 
-<div flex layout>
-    <div flex="25" layout="column" layout-align="start center">
-        <h4 flex="initial">Statistics</h4>
-        <h4 flex="initial" class="text-light">{{ ctrl.conciliation_percent || '1 %'}} %</h4>
+<div flex layout="column">
+    <div layout="column" layout-align="start center" layout-margin>
+        <h3 flex="initial">Statistics</h3>
+        <h4 flex="initial" class="text-light">Percentage of reconciled expenses: <strong>{{ ctrl.conciliation_percent }} %</strong></h4>
         <div flex layout="row" layout-align="start start" layout-fill>
-            <h4 flex class="text-light text-center">{{ ctrl.total_excel_records || '2'}}</h4>
-            <h4 flex class="text-center">VS</h4>
-            <h4 flex class="text-light text-center">{{ ctrl.total_server_records || '3'}}</h4>
+            <h4 flex="40" class="text-light text-right"><strong>{{ ctrl.total_excel_records }}</strong> transactions in Invoice</h4>
+            <h4 flex="20" class="text-center">VS</h4>
+            <h4 flex="40" class="text-light text-left"><strong>{{ ctrl.total_server_records }}</strong> transactions in RUM Vehicle</h4>
         </div>
-        <div flex layout="row" layout-align="start start" layout-fill>
-            <h4 flex class="text-light text-center">${{ ctrl.total_expenses_in_excel_records || '4'}}</h4>
-            <h4 flex class="text-center">VS</h4>
-            <h4 flex class="text-light text-center">${{ ctrl.total_server_records || '3'}}</h4>
+        <div flex layout="row" layout-align="space-between start" layout-fill>
+            <h4 flex="40" class="text-light text-right"><strong>${{ ctrl.total_expenses_in_excel_records }}</strong> total in Invoice</h4>
+            <h4 flex="20" class="text-center">VS</h4>
+            <h4 flex="40" class="text-light text-left"><strong>${{ ctrl.total_server_records }}</strong> total in RUM Vehicle</h4>
+        </div>
+        <div flex layout layout-fill>
+            <md-button flex="60" flex-offset="20" class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
         </div>
     </div>
-    <div flex="75" layout="column">
-        <h4 align="center">Unknown Records</h4>
+    <md-divider></md-divider>
+    <div flex layout="column">
+        <h3 align="center">Unknown Records</h3>
         <md-table-container>
             <table md-table>
                 <thead md-head>

@@ -11,6 +11,14 @@ body {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .content-holder {
 	background: white;
 	@include transition(.3s);
