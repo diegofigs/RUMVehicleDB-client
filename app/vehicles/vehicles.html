@@ -20,14 +20,20 @@
 
     <div flex-gt-sm="35">
         <md-card flex layout="column" layout-padding>
-            <label>
-                <span>
-                    <md-icon>
-                    <i class="filter-icon mdi mdi-filter-outline"></i>
-                    </md-icon>Filter by:
+            <div flex layout="row">
+                <label flex layout-align-gt-sm="start">
+                    <span>
+                        <md-icon>
+                        <i class="filter-icon mdi mdi-filter-outline"></i>
+                        </md-icon>Filter by:
+                    </span>
+                </label>
+
+                <span layout-padding layout-align-gt-sm="end">
+                    <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear all</a>
                 </span>
-            </label>
-            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
+            </div>
+            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-between center">
                 <md-input-container flex flex-gt-sm="33">
                     <label>Department</label>
                     <md-select ng-model="ctrl.filter.department_id">
@@ -46,8 +52,10 @@
                         <md-option value="{{type.id}}" ng-repeat="type in ctrl.vehicleTypes">{{type.vehicle_type_name}}</md-option>
                     </md-select>
                 </md-input-container>
+
+                <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
+
             </div>
-            <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
         </md-card>
 
 

@@ -22,7 +22,7 @@
 		color: #388e3c;
 		font-size: 27px;
 		letter-spacing: 1px;
-		top: 70px;
+		top: 15px;
 		.smaller {
 			font-size: 16px;
 			letter-spacing: 5px;
@@ -32,7 +32,7 @@
 	.form-container {
 	    position: relative;
 	    z-index: 1;
-	    top: 100px;
+	    top: 90px;
 	    background: white;
 	    width: 50%;
 	    margin: 0 auto;
@@ -71,8 +71,8 @@
 	    			}
 	    		}
 				.link {
-					padding-top: 40px;
-					padding-bottom: 30px;
+					padding-top: 10px;
+					padding-bottom: 20px;
 					.mdl-button {
 						background: $primary;
 						color: white;

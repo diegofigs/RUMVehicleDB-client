@@ -171,4 +171,8 @@ export default class VehiclesController {
         this.vehicles = this.vehiclesService.vehicles;
       });
   }
+
+  reload(){
+    this.$state.reload();
+  }
 }

@@ -151,4 +151,8 @@ export default class CardsController {
   getUser() {
     return this.authService.getUser();
   }
+
+  reload(){
+    this.$state.reload();
+  }
 }

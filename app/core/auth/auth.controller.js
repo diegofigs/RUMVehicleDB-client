@@ -9,11 +9,12 @@ export default class AuthController {
    * @param $log
    * @param AuthService
    */
-  constructor ($state, $log, AuthService) {
+  constructor ($state, $log, AuthService, swal) {
     // angular injected services
     this.$state = $state;
     this.$log = $log;
     this.authService = AuthService;
+    this.swal = swal;
 
     // Temporary user object for form
     this.user = {};
@@ -31,6 +32,21 @@ export default class AuthController {
       })
       .catch((error) => {
         this.$log.log(error);
+        this.swal({
+          title: 'Error',
+          text: 'Invalid credentials. Please, enter a valid email and password.',
+          type: 'error',
+        });
       });
+  }
+
+  showForgotPasswordDialog(){
+    this.swal({
+      title: 'Forgot Password?',
+      type: 'info',
+      text: 'Please contact RUM Vehicle\'s administrator, Jeannette Muñiz Vargas at (787) 832-4040 Ext. XXX in order to ' +
+      'reset your password. '
+    });
+
   }
 }
