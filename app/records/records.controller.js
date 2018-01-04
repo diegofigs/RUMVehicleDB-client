@@ -105,4 +105,8 @@ export default class RecordsController {
       this.tempItem.upload();
     });
   }
+
+  isStateActive(stateName) {
+    return this.$state.current.name === stateName;
+  }
 };
