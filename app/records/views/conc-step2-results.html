@@ -1,5 +1,59 @@
 <h2 flex="initial">Step 2: Review preliminary results</h2>
 <p flex="initial">
-    3 lists are displayed below with transactions categorized
-    by status: Verified, Unverified and Unknown.
+    A list is displayed below with transactions not found
+    in the system along with stats for the conciliation process.
 </p>
+
+<div flex layout="column">
+    <div layout="column" layout-align="start center" layout-margin>
+        <h3 flex="initial">Statistics</h3>
+        <h4 flex="initial" class="text-light">Percentage of reconciled expenses: <strong>{{ ctrl.conciliation_percent }} %</strong></h4>
+        <div flex layout="row" layout-align="start start" layout-fill>
+            <h4 flex="40" class="text-light text-right"><strong>{{ ctrl.total_excel_records }}</strong> transactions in Invoice</h4>
+            <h4 flex="20" class="text-center">VS</h4>
+            <h4 flex="40" class="text-light text-left"><strong>{{ ctrl.total_server_records }}</strong> transactions in RUM Vehicle</h4>
+        </div>
+        <div flex layout="row" layout-align="space-between start" layout-fill>
+            <h4 flex="40" class="text-light text-right"><strong>${{ ctrl.total_expenses_in_excel_records }}</strong> total in Invoice</h4>
+            <h4 flex="20" class="text-center">VS</h4>
+            <h4 flex="40" class="text-light text-left"><strong>${{ ctrl.total_server_records }}</strong> total in RUM Vehicle</h4>
+        </div>
+        <div flex layout layout-fill>
+            <md-button flex="60" flex-offset="20" class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div flex layout="column">
+        <h3 align="center">Unknown Records</h3>
+        <md-table-container>
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Date</th>
+                        <th md-column>Location</th>
+                        <th md-column>Receipt Number</th>
+                        <th md-column>Card Name</th>
+                        <th md-column>Type</th>
+                        <th md-column>Liters</th>
+                        <th md-column>Total</th>
+                        <th md-column>Comments</th>
+                        <th md-column ng-hide="true" colspan="2">Modify</th>
+                    </tr>
+                </thead>
+
+                <tbody md-body>
+                    <tr md-row ng-repeat="record in ctrl.excelNonReconciled">
+                        <td md-cell>{{record.fecha_de_la_transaccion | date}}</td>
+                        <td md-cell>{{record.ubicacion_de_compra}}</td>
+                        <td md-cell>{{record.numero_de_transaccion}}</td>
+                        <td md-cell>{{record.nombre_de_la_tarjeta}}</td>
+                        <td md-cell>{{record.tipo_de_gasolina}}</td>
+                        <td md-cell>{{record.cantidad_litros}}</td>
+                        <td md-cell>{{record.total_del_solicitante | currency}}</td>
+                        <td md-cell>{{record.WARNING}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </div>
+</div>
