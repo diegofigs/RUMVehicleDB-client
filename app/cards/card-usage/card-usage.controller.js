@@ -13,7 +13,8 @@ export default class CardsUsageController {
     this.cardUsageService = CardUsageService;
 
     this.cardsService = CardsService;
-    this.cardUsages = this.cardUsageService.cardUsages;
+    this.cardsUsages = this.cardUsageService.cardsUsages;
+    this.singleCardUsages = this.cardUsageService.singleCardUsages;
     this.temp_date = new Date();
     this.swal = swal;
 
@@ -145,8 +146,16 @@ export default class CardsUsageController {
    * Gets all card usages or gas transactions that are logged in the system
    * @returns {Promise} Promise object represents all card usages
    */
-  getCardUsages() {
-    return this.cardUsageService.getCardUsages();
+  getCardsUsages() {
+    return this.cardUsageService.getCardsUsages();
+  }
+
+  /**
+   * Gets a single card usages or gas transactions that are logged in the system
+   * @returns {Promise} Promise object represents a single card usages
+   */
+  getSingleCardUsages(cardID) {
+    return this.cardUsageService.getSingleCardUsages(cardID);
   }
 
   /**

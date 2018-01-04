@@ -58,7 +58,7 @@ const recordsModule = angular.module('app.records', [])
         controller: 'RecordsCtrl as ctrl',
         resolve: {
           records: (CardUsageService) => {
-            return CardUsageService.getCardUsages();
+            return CardUsageService.getCardsUsages();
           },
           departments: (DepartmentsService) =>
             DepartmentsService.getDepartments(),

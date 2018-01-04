@@ -11,8 +11,11 @@ export default class CardUsageService {
     this.$http = $http;
     this.$log = $log;
 
-    // Initialize usage list
-    this.cardUsages = [];
+    // Initialize all cards usage list
+    this.cardsUsages = [];
+
+    //Initialize single card usage
+    this.singleCardUsages = [];
 
     // Initialize pagination metadata
     this.pageSize = 10;
@@ -24,17 +27,34 @@ export default class CardUsageService {
    * If filtering params are given, then requests card usages that apply only
    * @param params Filtering parameters for card usages
    */
-  getCardUsages(params) {
+  getCardsUsages(params) {
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
     }).then((response) => {
         this.$log.log(response);
-        this.cardUsages = response.data.data[0].data;
+        this.cardsUsages = response.data.data[0].data;
         this.pageSize = response.data.data[0].per_page;
         this.total = response.data.data[0].last_page;
-        this.$log.log('I am inside getCardUsage in CardUsageService and cardUsage: ' + this.cardUsages);
-        return this.cardUsages;
+        return this.cardsUsages;
       })
+      .catch((error) => {
+        this.$log.log(error);
+      });
+  };
+
+  /**
+   * Requests card usages for a single card
+   * @param cardID Card ID
+   */
+  getSingleCardUsages(cardID) {
+    return this.$http.get(this.baseDomain + this.resource + '/card/' + cardID, {
+    }).then((response) => {
+      this.$log.log(response);
+      this.singleCardUsages = response.data.data[0].data;
+      this.pageSize = response.data.data[0].per_page;
+      this.total = response.data.data[0].last_page;
+      return this.singleCardUsages;
+    })
       .catch((error) => {
         this.$log.log(error);
       });

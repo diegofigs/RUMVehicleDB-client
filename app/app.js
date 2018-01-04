@@ -11,6 +11,7 @@ import './styles/scss/widgets/card-filter.scss'
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import angularUiRouter from 'angular-ui-router';
+import 'angular-ui-router/release/stateEvents.js'
 import angularMaterial from 'angular-material';
 import translate from 'angular-translate/dist/angular-translate.min';
 import ngStorage from 'ngstorage/ngStorage.min';
@@ -49,6 +50,7 @@ angular.module(appModule, [
   'ng-mfb',
   'cl.paging',
   'truncate',
+  'ui.router.state.events',
   coreModule,
   cardsModule,
   departmentsModule,
@@ -81,4 +83,15 @@ angular.module(appModule, [
     $mdThemingProvider.theme('default')
       .primaryPalette('newGreen')
       .warnPalette('newRed');
+  }).run(['$rootScope', '$state',function($rootScope){
+
+    $rootScope.stateIsLoading = false;
+
+    $rootScope.$on('$stateChangeStart',function(){
+      $rootScope.stateIsLoading = true;
   });
+    $rootScope.$on('$stateChangeSuccess',function(){
+      $rootScope.stateIsLoading = false;
+  });
+
+}]);

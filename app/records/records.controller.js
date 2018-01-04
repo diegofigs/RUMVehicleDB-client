@@ -16,7 +16,7 @@ export default class RecordsController {
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
 
     let today = new Date();
-    let oneMonthAgo = (new Date()).setMonth(today.getMonth()-1);
+    let oneMonthAgo = (new Date()).setMonth(today.getMonth()-1); //TODO: Verify that both dates are sent in a correct format
     this.filter = {
       department_id: '',
       custodian_id: '',
@@ -32,7 +32,7 @@ export default class RecordsController {
     };
 
     // Reference to records from service
-    this.records = this.cardUsageService.cardUsages;
+    this.records = this.cardUsageService.cardsUsages;
     // Reference to departments from service
     this.departments = this.departmentsService.departments;
     // Reference to custodian names
@@ -71,9 +71,9 @@ export default class RecordsController {
   }
 
   applyFilter(){
-    return this.cardUsageService.getCardUsages(this.filter)
+    return this.cardUsageService.getCardsUsages(this.filter)
       .then( () => {
-        this.records = this.cardUsageService.cardUsages;
+        this.records = this.cardUsageService.cardsUsages;
       });
   }
 };

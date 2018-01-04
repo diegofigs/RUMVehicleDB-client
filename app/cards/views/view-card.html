@@ -1,3 +1,12 @@
+<!-- Loading Spinner -->
+<div class="flexbox-parent">
+    <div layout="row" layout-align="center center"  style="height: 100vh" ng-show="stateIsLoading">
+        <md-progress-circular  md-diameter="150" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</div>
+
+<!-- Show if data is already resolved -->
+<div ng-show="!stateIsLoading">
 <div class="ng-scope layout-xs-column layout-sm-column layout-row mdl-cell" layout="row" layout-sm="column" layout-xs="column" >
 
     <!-- Card details view -->
@@ -72,35 +81,8 @@
 
     <md-content layout="row" flex="66" flex-sm="100">
         <md-card>
-
-            <!--TODO: is this code neccesary?? -->
-            <!--<calendar-md flex layout layout-fill-->
-            <!--calendar-direction="direction"-->
-            <!--on-prev-month="prevMonth"-->
-            <!--on-next-month="nextMonth"-->
-            <!--on-day-click="dayClick"-->
-            <!--title-format="'MMMM y'"-->
-            <!--ng-model='selectedDate'-->
-            <!--week-starts-on="firstDayOfWeek"-->
-
-            <!--data-start-month="8"-->
-
-            <!--data-start-year="2014"-->
-            <!--day-format="'d'"-->
-            <!--day-label-format="'EEE'"-->
-            <!--day-label-tooltip-format="'EEEE'"-->
-            <!--day-tooltip-format="'fullDate'"-->
-            <!--day-content="setDayContent">-->
-            <!--</calendar-md>-->
-
-
-            <!-- ui-view -> card usage report table -->
             <div ui-view ></div>
-
         </md-card>
     </md-content>
-
-
-
-
+</div>
 </div>
