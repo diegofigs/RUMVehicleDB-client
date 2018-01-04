@@ -1,109 +1,55 @@
 <h2 flex="initial">Step 2: Review preliminary results</h2>
 <p flex="initial">
-    3 lists are displayed below with transactions categorized
-    by status: Verified, Unverified and Unknown.
+    A list is displayed below with transactions unknown
+    to the system along with stats for the conciliation process.
 </p>
-<h4 align="center">Reconciled Records</h4>
-<table class="invoice-table" style="width: 100%; margin-top: 15px;">
-<thead>
-<tr>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Custodian</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Provider #</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Purchase Type</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt #</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Mileage</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>
-<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>
-</tr>
-</thead>
 
-<tbody>
-<tr ng-repeat="record in ctrl.reconciled">
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.record_custodian_name}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">
-<a href= "{{'http://dev.uprm.edu/rumvehicles/web/index.html#/dashboard/cards/' + record.card_id}}" target="_blank">Card Info</a>
-</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.date | date}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.provider_number}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.purchase_type}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.receipt_number}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_receipt | currency}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_liters}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.vehicle_mileage}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.comments}}</td>
-</tr>
-</tbody>
-</table>
-<h4 align="center">Non Reconciled Records</h4>
-<table class="invoice-table layout-align-center" style="width: 100%; margin-top: 15px;">
-<thead>
-<tr>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Custodian</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Provider Number</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Purchase Type</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt Number</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Mileage</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt</th>
-<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>
-</tr>
-</thead>
+<div flex layout>
+    <div flex="25" layout="column" layout-align="start center">
+        <h4 flex="initial">Statistics</h4>
+        <h4 flex="initial" class="text-light">{{ ctrl.conciliation_percent || '1 %'}} %</h4>
+        <div flex layout="row" layout-align="start start" layout-fill>
+            <h4 flex class="text-light text-center">{{ ctrl.total_excel_records || '2'}}</h4>
+            <h4 flex class="text-center">VS</h4>
+            <h4 flex class="text-light text-center">{{ ctrl.total_server_records || '3'}}</h4>
+        </div>
+        <div flex layout="row" layout-align="start start" layout-fill>
+            <h4 flex class="text-light text-center">${{ ctrl.total_expenses_in_excel_records || '4'}}</h4>
+            <h4 flex class="text-center">VS</h4>
+            <h4 flex class="text-light text-center">${{ ctrl.total_server_records || '3'}}</h4>
+        </div>
+    </div>
+    <div flex="75" layout="column">
+        <h4 align="center">Unknown Records</h4>
+        <md-table-container>
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Date</th>
+                        <th md-column>Location</th>
+                        <th md-column>Receipt Number</th>
+                        <th md-column>Card Name</th>
+                        <th md-column>Type</th>
+                        <th md-column>Liters</th>
+                        <th md-column>Total</th>
+                        <th md-column>Comments</th>
+                        <th md-column ng-hide="true" colspan="2">Modify</th>
+                    </tr>
+                </thead>
 
-<tbody>
-<tr ng-repeat="record in ctrl.nonReconciled">
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.record_custodian_name}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">
-<a href= "{{'http://dev.uprm.edu/rumvehicles/web/index.html#/dashboard/cards/' + record.card_id}}" target="_blank">Card Info</a>
-</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.date | date}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.provider_number}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.purchase_type}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.receipt_number}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_receipt | currency}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_liters}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.vehicle_mileage}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.WARNING}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">
-<a href={{record.record_picture}} target="_blank">View Receipt</a>
-</td>
-</tr>
-</tbody>
-</table>
-
-<h4 align="center">Excel Non Reconciled Records</h4>
-<table class="invoice-table layout-align-center" style="width: 100%; margin-top: 15px;">
-<thead>
-<tr>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Date</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Location</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt Number</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Card Name</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Type</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>
-<th class="table-header" style="border-left: 1px solid #C7C7CB;">Comments</th>
-<th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;">Modify</th>
-</tr>
-</thead>
-
-<tbody>
-<tr ng-repeat="record in ctrl.excelNonReconciled">
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.fecha_de_la_transaccion | date}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.ubicacion_de_compra}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.numero_de_transaccion}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.nombre_de_la_tarjeta}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.tipo_de_gasolina}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.cantidad_litros}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.total_del_solicitante | currency}}</td>
-<td class="table-data" style="border-left: 1px solid #C7C7CB;">{{record.WARNING}}</td>
-</tr>
-</tbody>
-</table>
+                <tbody md-body>
+                    <tr md-row ng-repeat="record in ctrl.excelNonReconciled">
+                        <td md-cell>{{record.fecha_de_la_transaccion | date}}</td>
+                        <td md-cell>{{record.ubicacion_de_compra}}</td>
+                        <td md-cell>{{record.numero_de_transaccion}}</td>
+                        <td md-cell>{{record.nombre_de_la_tarjeta}}</td>
+                        <td md-cell>{{record.tipo_de_gasolina}}</td>
+                        <td md-cell>{{record.cantidad_litros}}</td>
+                        <td md-cell>{{record.total_del_solicitante | currency}}</td>
+                        <td md-cell>{{record.WARNING}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </div>
+</div>

@@ -1,11 +1,12 @@
 /** @ngInject */
 export default class RecordsController {
-  constructor($log, $state, $timeout, FileUploader,
+  constructor($log, $state, $sessionStorage, $timeout, FileUploader,
               AuthService, CardUsageService, DepartmentsService,
               UsersService, swal) {
     // Injected elements
     this.$log = $log;
     this.$state = $state;
+    this.$sessionStorage = $sessionStorage;
     this.$timeout = $timeout;
     this.authService = AuthService;
     this.cardUsageService = CardUsageService;
@@ -41,7 +42,12 @@ export default class RecordsController {
     // Lists that detail reconciliation process and breakdown
     this.reconciled = [];
     this.nonReconciled = [];
-    this.excelNonReconciled = [];
+    this.excelNonReconciled = this.$sessionStorage.excelNonReconciled || [];
+    this.conciliation_percent = this.$sessionStorage.conciliation_percent || [];
+    this.total_excel_records = this.$sessionStorage.total_excel_records || [];
+    this.total_server_records = this.$sessionStorage.total_server_records || [];
+    this.total_expenses_in_excel_records = this.$sessionStorage.total_expenses_in_excel_records || [];
+    this.total_expenses_in_server_records = this.$sessionStorage.total_expenses_in_server_records || [];
 
     this.uploader = new FileUploader({
       url: 'http://dev.uprm.edu/rumvehicles/api/v1/records/reconcile',
@@ -58,15 +64,19 @@ export default class RecordsController {
 
     this.uploader.onCompleteItem = (item, response, status, headers) => {
       let responseData = response.data;
-      this.reconciled = responseData.reconciled_server_records;
-      this.nonReconciled = responseData.no_reconciled_server_records;
-      this.excelNonReconciled = responseData.excel_no_reconciliated_records;
-      this.swal(
-        'Good job!',
-        'You have submitted the Report!',
-        'success'
-      );
-      this.$state.go('dashboard.conciliation.step2');
+      this.$sessionStorage.conciliation_percent = responseData.conciliation_percent;
+      this.$sessionStorage.total_excel_records = responseData.total_excel_records;
+      this.$sessionStorage.total_server_records = responseData.total_server_records;
+      this.$sessionStorage.total_expenses_in_excel_records = responseData.total_expenses_in_excel_records;
+      this.$sessionStorage.total_expenses_in_server_records = responseData.total_expenses_in_server_records;
+      this.$sessionStorage.excelNonReconciled = responseData.excel_no_reconciliated_records;
+      this.swal({
+        title: 'Good job!',
+        text: 'You have submitted the Report!',
+        type: 'success',
+      }).then(() => {
+        this.$state.go('dashboard.conciliation.step2');
+      });
     };
 
   }
@@ -78,11 +88,21 @@ export default class RecordsController {
       });
   }
 
-  submitUsageForm(){
-    let tempItem = null;
-    for (let x = 0; x < this.uploader.queue.length; x++){
-      this.tempItem = this.uploader.queue[x];
-    }
-    this.tempItem.upload();
+  submitInvoice(){
+    this.swal({
+      title: 'Confirm Upload',
+      type: 'info',
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#4caf50',
+      showCancelButton: 'true',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#f44336',
+    }).then(() => {
+      let tempItem = null;
+      for (let x = 0; x < this.uploader.queue.length; x++){
+        this.tempItem = this.uploader.queue[x];
+      }
+      this.tempItem.upload();
+    });
   }
 };

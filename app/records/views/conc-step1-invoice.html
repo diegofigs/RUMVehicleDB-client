@@ -6,7 +6,7 @@
         conciliation process.
     </p>
     <div layout="row" >
-        <form name="invoiceForm" flex="100" layout="row" layout-align="center center" ng-submit="ctrl.submitUsageForm()">
+        <form name="invoiceForm" flex="100" layout="row" layout-align="center center" ng-submit="ctrl.submitInvoice()">
             <md-input-container flex="60" ng-if="ctrl.uploader">
                 <input aria-label="Invoice image" type="file" nv-file-select uploader="ctrl.uploader" /><br/>
                 <ul>
@@ -16,7 +16,7 @@
                 </ul>
             </md-input-container>
             <md-button flex="20" class="md-raised md-warn">Cancel</md-button>
-            <md-button type="submit" flex="20" class="md-raised md-primary" ui-sref="dashboard.conciliation.step2">Submit</md-button>
+            <md-button type="submit" flex="20" class="md-raised md-primary">Submit</md-button>
         </form>
     </div>
 </div>
