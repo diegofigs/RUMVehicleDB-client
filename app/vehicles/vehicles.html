@@ -76,8 +76,8 @@
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="start start">
                     <md-button ui-sref="dashboard.vehicles.view({id: v.id})">View Vehicle</md-button>
-                    <md-button ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
-                    <md-button ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
+                    <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
+                    <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
                 </md-card-actions>
             </md-card>
          </div>

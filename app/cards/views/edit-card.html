@@ -31,11 +31,11 @@
                                     name="expiry"
                                     placeholder="Exp Date in MM/YY"
                                     ng-model="ctrl.card.expiry"
-                                    ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+                                    ng-pattern = "/^\d{2}-\d{2}$/" required>
 
                             <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
+                                <div ng-message="pattern">Use the following format: MM-YY. For example: 01-18 for January 2018</div>
                             </div>
                         </md-input-container>
 
@@ -138,7 +138,11 @@
 
                     </div>
                 </div>
-                <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+
+                <div style="text-align: center;">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="cardForm.$invalid"> Submit </md-button>
+                </div>
+
             </form>
         </div>
     </div>
