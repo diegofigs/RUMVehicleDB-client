@@ -14,4 +14,11 @@ export default class NotificationService {
         this.unread_notifications_count = response.data.notifications.unread_notifications_count;
       });
   }
+
+  justifyNotification(notification) {
+    return this.$http.put(this.baseDomain + this.resource + '/' + notification.id, notification)
+      .then((response) => {
+        this.$log.log(response);
+      })
+  }
 }
