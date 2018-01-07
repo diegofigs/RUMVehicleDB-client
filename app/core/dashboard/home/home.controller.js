@@ -1,12 +1,20 @@
+import NotificationService from "../services/notifications.service";
+
 /** @ngInject */
 export default class HomeController {
-  constructor($scope, $timeout, AuthService, StatsService) {
+  constructor($scope, $timeout, swal, AuthService, StatsService,
+              NotificationService) {
+    this.swal = swal;
     this.authService = AuthService;
     this.statsService = StatsService;
+    this.notificationService = NotificationService;
     this.registered_users = this.statsService.registered_users;
     this.registered_vehicles = this.statsService.registered_vehicles;
     this.active_credit_cards = this.statsService.active_credit_cards;
     this.total_monthly_expenses = this.statsService.total_monthly_expenses;
+    this.notifications = this.notificationService.notifications;
+    this.unread_notifications_count = this.notificationService.unread_notifications_count;
+
 
     $scope.options1 = {
       lineWidth: 8,
@@ -131,5 +139,23 @@ export default class HomeController {
 
   getUser() {
     return this.authService.getUser();
+  }
+
+  showTransaction(notification) {
+    let transaction = notification.record_info[0];
+    this.swal({
+      title: 'Transaction details',
+      html: '<div class="confirmation-table">' +
+      '<ul style="list-style-type:none; text-align: left">' +
+      '<li> Date:  ' + '<b>' + transaction.date + '</b></li>' +
+      '<li> Store:  ' + '<b>' + transaction.provider_number + '</b></li>' +
+      '<li> Vehicle mileage:  ' + '<b>' + transaction.vehicle_mileage + '</b></li>' +
+      '<li> Purchase type:  ' + '<b>' + transaction.purchase_type + '</b></li>' +
+      '<li> Total of liters:  ' + '<b>' + transaction.total_liters + '</b></li>' +
+      '<li> Receipt total:  ' + '<b>' + transaction.total_receipt + '</b></li>' +
+      '<li> Receipt number: ' + '<b>' + transaction.receipt_number + '</b></li>' +
+      '<li> Comments:  ' + '<b>' + transaction.comments + '</b></li></ul></div>',
+      type: 'info',
+    });
   }
 };
