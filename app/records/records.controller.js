@@ -2,7 +2,7 @@
 export default class RecordsController {
   constructor($log, $state, $sessionStorage, $timeout, FileUploader,
               AuthService, CardUsageService, DepartmentsService,
-              UsersService, swal) {
+              UsersService, NotificationService, swal) {
     // Injected elements
     this.$log = $log;
     this.$state = $state;
@@ -12,6 +12,7 @@ export default class RecordsController {
     this.cardUsageService = CardUsageService;
     this.departmentsService = DepartmentsService;
     this.usersService = UsersService;
+    this.notificationService = NotificationService;
     this.swal = swal;
 
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
@@ -38,6 +39,7 @@ export default class RecordsController {
     this.departments = this.departmentsService.departments;
     // Reference to custodian names
     this.users = this.usersService.users;
+    this.notifications = this.notificationService.notifications;
 
     this.reportDates = [];
 
@@ -110,5 +112,27 @@ export default class RecordsController {
 
   isStateActive(stateName) {
     return this.$state.current.name === stateName;
+  }
+
+  submitJustification(notification) {
+    notification.was_read = 1;
+    return this.notificationService.justifyNotification(notification)
+      .then(() => {
+        this.swal({
+          title: 'Success!',
+          text: 'You have submitted justification!',
+          type: 'success',
+        }).then(() => {
+          this.$state.reload();
+        });
+      })
+      .catch((error) => {
+        this.$log.log(error);
+        this.swal({
+          title: 'Error',
+          text: 'There was an error communicating with the server.',
+          type: 'error',
+        });
+      });
   }
 };
