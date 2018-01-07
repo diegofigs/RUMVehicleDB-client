@@ -1,18 +1,22 @@
-/** @ngInject */
 export default class RecordsController {
-  constructor($log, $state, $sessionStorage, $timeout, FileUploader,
+  constructor($log, $state, $sessionStorage, $timeout, $window, FileUploader,
               AuthService, CardUsageService, DepartmentsService,
-              UsersService, swal) {
+              UsersService, RecordsService, swal) {
     // Injected elements
     this.$log = $log;
     this.$state = $state;
     this.$sessionStorage = $sessionStorage;
     this.$timeout = $timeout;
+    this.$window = $window;
     this.authService = AuthService;
     this.cardUsageService = CardUsageService;
     this.departmentsService = DepartmentsService;
     this.usersService = UsersService;
+    this.recordsService = RecordsService;
+
     this.swal = swal;
+    this.reportDates = this.recordsService.reportDates;
+    this.selectedReportDate = '';
 
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
 
@@ -38,8 +42,6 @@ export default class RecordsController {
     this.departments = this.departmentsService.departments;
     // Reference to custodian names
     this.users = this.usersService.users;
-
-    this.reportDates = [];
 
     // Lists that detail reconciliation process and breakdown
     this.reconciled = [];
@@ -110,5 +112,9 @@ export default class RecordsController {
 
   isStateActive(stateName) {
     return this.$state.current.name === stateName;
+  }
+
+  downloadMonthlyReport(){
+    this.$window.open('http://dev.uprm.edu/rumvehicles/api/v1/dashboard/report?dates=' + this.selectedReportDate, "_self");
   }
 };

@@ -8,135 +8,142 @@
 <!-- Show if data is already resolved -->
 <div ng-show="!stateIsLoading">
     <div layout class="layout bg-primary bottom-shadow">
-    <h1 class="white" flex="50" flex-offset="10">Expense Records</h1>
-</div>
-<div layout="row" flex-gt-sm="80" flex-offset-gt-sm="10">
-
-    <md-content flex>
-        <md-tabs md-dynamic-height md-border-bottom>
-
-                                            <!-- RECORDS TAB -->
-            <md-tab label="All Records">
-                <md-content><div layout-xs="column" layout-sm="column" layout-gt-sm="row" >
-    <div flex="45">
-        <md-card flex layout="column" layout-padding>
-            <label>Filter By</label>
-            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
-                <md-input-container flex flex-gt-sm="33">
-                    <label>Department</label>
-                    <md-select ng-model="ctrl.filter.department_id">
-                        <md-option value="{{ department.id }}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex flex-gt-sm="33">
-                    <label>Custodian</label>
-                    <md-select ng-model="ctrl.filter.custodian_id">
-                        <md-option value="{{ user.id }}" ng-repeat="user in ctrl.users">{{user.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex flex-gt-sm="33">
-                    <label>Purchase Type</label>
-                    <md-select ng-model="ctrl.filter.purchase_type">
-                        <md-option value="{{type}}" ng-repeat="type in ctrl.purchaseTypes">{{ type }}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-        </md-card>
+        <h1 class="white" flex="50" flex-offset="10">Expense Records</h1>
     </div>
-    <div flex="45" layout-padding>
-        <md-card flex layout="column" layout-fill layout-padding>
-            <label>Limit Time Range</label>
-            <div flex layout="row"  layout-align-gt-sm="space-around center">
-                <md-datepicker
-                    flex="50"
-                    ng-init="from = (ctrl.filter.date_from | toDate)"
-                    ng-model="from"
-                    ng-change="ctrl.filter.date_from = from.toISOString()"
-                    md-placeholder="mm/dd/yyyy">
-                </md-datepicker>
-                <md-datepicker
-                    flex="50"
-                    ng-init="to = (ctrl.filter.date_to | toDate)"
-                    ng-model="to"
-                    ng-change="ctrl.filter.date_to = to.toISOString()"
-                    md-placeholder="mm/dd/yyyy">
-                </md-datepicker>
-            </div>
-        </md-card>
-    </div>
-    <div flex ="10" layout="row" layout-align-gt-sm="end center">
-        <md-button flex="initial" ng-click="ctrl.applyFilter()" class="md-fab md-primary">
-            <md-icon>filter_list</md-icon>
-        </md-button>
-    </div>
-</div>
-<div layout-fill  layout="row">
-    <md-card flex layout-padding>
-        <md-table-container>
-            <table md-table>
-                <thead md-head>
-                <tr md-row>
-                    <th md-column>Custodian</th>
-                    <th md-column>Date</th>
-                    <th md-column>Type</th>
-                    <th md-column>Liters</th>
-                    <th md-column>Total</th>
-                    <th md-column>Receipt</th>
-                </tr>
-                </thead>
-                <tbody md-body>
-                <tr md-row ng-repeat="record in ctrl.records">
-                    <td md-cell><i class="mdi mdi-receipt mdi-24px"></i></td>
-                    <td md-cell>{{ record.record_custodian_name }}</td>
-                    <td md-cell>{{ record.date | date}}</td>
-                    <td md-cell>{{ record.purchase_type }}</td>
-                    <td md-cell>{{ record.total_liters }}</td>
-                    <td md-cell>{{ record.total_receipt | currency }}</td>
-                    <td md-cell>
-                        <a ng-click="ctrl.showReceipt(usage)">View receipt</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </md-table-container>
-        <cl-paging flex
-                   cl-pages="ctrl.pagination.total"
-                   cl-steps="5"
-                   cl-page-changed="ctrl.applyFilter()"
-                   cl-current-page="ctrl.filter.page"
-                   cl-align="center stretch"
-        ></cl-paging>
-    </md-card></div>
+    <div layout="row" flex-gt-sm="80" flex-offset-gt-sm="10" layout-margin>
 
-                </md-content>
-            </md-tab>
-                                        <!-- REPORTS TAB -->
-            <md-tab label="Download Reports">
-                <md-content class="md-padding">
-                    <div flex-gt-sm="50" flex-offset-gt-sm="25"  layout-gt-sm="row" layout-xs="column" layout-sm="column">
+        <md-content flex>
+            <md-tabs md-dynamic-height md-border-bottom>
 
+                                                <!-- RECORDS TAB -->
+                <md-tab label="All Records">
+                    <md-content>
+                        <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
+                            <div flex="45">
+                                <md-card flex layout="column" layout-padding>
+                                <label>Filter By</label>
+                                <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
+
+                                    <md-input-container flex flex-gt-sm="33">
+                                        <label>Department</label>
+                                        <md-select ng-model="ctrl.filter.department_id">
+                                            <md-option value="{{ department.id }}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container flex flex-gt-sm="33">
+                                        <label>Custodian</label>
+                                        <md-select ng-model="ctrl.filter.custodian_id">
+                                            <md-option value="{{ user.id }}" ng-repeat="user in ctrl.users">{{user.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container flex flex-gt-sm="33">
+                                        <label>Purchase Type</label>
+                                        <md-select ng-model="ctrl.filter.purchase_type">
+                                            <md-option value="{{type}}" ng-repeat="type in ctrl.purchaseTypes">{{ type }}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                </md-card>
+                            </div>
+
+                            <div flex="45" layout-padding>
+                                <md-card flex layout="column" layout-fill layout-padding>
+                                    <label>Limit Time Range</label>
+                                    <div flex layout="row"  layout-align-gt-sm="space-around center">
+                                        <md-datepicker
+                                            flex="50"
+                                            ng-init="from = (ctrl.filter.date_from | toDate)"
+                                            ng-model="from"
+                                            ng-change="ctrl.filter.date_from = from.toISOString()"
+                                            md-placeholder="mm/dd/yyyy">
+                                        </md-datepicker>
+                                        <md-datepicker
+                                            flex="50"
+                                            ng-init="to = (ctrl.filter.date_to | toDate)"
+                                            ng-model="to"
+                                            ng-change="ctrl.filter.date_to = to.toISOString()"
+                                            md-placeholder="mm/dd/yyyy">
+                                        </md-datepicker>
+                                    </div>
+                                </md-card>
+                            </div>
+
+                            <div flex ="10" layout="row" layout-align-gt-sm="end center">
+                                <md-button flex="initial" ng-click="ctrl.applyFilter()" class="md-fab md-primary">
+                                    <md-icon>filter_list</md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+
+                        <div layout-fill  layout="row">
+                            <md-card flex layout-padding>
+                                <md-table-container>
+                                    <table md-table>
+                                        <thead md-head>
+                                        <tr md-row>
+                                            <th md-column>Custodian</th>
+                                            <th md-column>Date</th>
+                                            <th md-column>Type</th>
+                                            <th md-column>Liters</th>
+                                            <th md-column>Total</th>
+                                            <th md-column>Receipt</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                        <tr md-row ng-repeat="record in ctrl.records">
+                                            <td md-cell><i class="mdi mdi-receipt mdi-24px"></i></td>
+                                            <td md-cell>{{ record.record_custodian_name }}</td>
+                                            <td md-cell>{{ record.date | date}}</td>
+                                            <td md-cell>{{ record.purchase_type }}</td>
+                                            <td md-cell>{{ record.total_liters }}</td>
+                                            <td md-cell>{{ record.total_receipt | currency }}</td>
+                                            <td md-cell>
+                                                <a ng-click="ctrl.showReceipt(usage)">View receipt</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+                                <cl-paging flex
+                                           cl-pages="ctrl.pagination.total"
+                                           cl-steps="5"
+                                           cl-page-changed="ctrl.applyFilter()"
+                                           cl-current-page="ctrl.filter.page"
+                                           cl-align="center stretch">
+                                </cl-paging>
+                            </md-card>
+                        </div>
+                    </md-content>
+                </md-tab>
+                                            <!-- DOWNLOAD REPORTS TAB -->
+                <md-tab label="Download Reports">
+                    <md-content class="md-padding">
+                        <div flex-gt-sm="50" flex-offset-gt-sm="25"  layout-gt-sm="row" layout-xs="column" layout-sm="column">
                             <md-card flex layout="row" layout-fill layout-padding>
                                 <div flex="80">
                                     <label>Select Report Date</label>
                                         <md-select
                                             class="form-control"
                                             name="report_date"
-                                            ng-model="ctrl.reportDates">
-                                            <md-option>
-                                                {{ }} <!--date received by backend -->
+                                            ng-model="ctrl.selectedReportDate">
+                                            <md-option ng-repeat="date in ctrl.reportDates" ng-value="date.value">
+                                                {{date.formatted_conciliation_dates}}
                                             </md-option>
                                         </md-select>
                                     </div>
-                                <div flex="20">
-                                    <md-button flex="initial" ng-click=" " class="md-fab md-primary">
-                                        <md-icon>file_download</md-icon>
-                                    </md-button>
-                                </div>
+
+                                    <div flex="20" layout layout-align="center center" layout-fill>
+                                        <md-button flex="initial" ng-disabled="ctrl.selectedReportDate === ''" ng-click="ctrl.downloadMonthlyReport()" class="md-fab md-primary">
+                                            <md-icon>file_download</md-icon>
+                                        </md-button>
+                                    </div>
                             </md-card>
-                    </div>
-                </md-content>
-            </md-tab>
-        </md-tabs>
-    </md-content>
-</div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
 </div>
