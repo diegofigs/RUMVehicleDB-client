@@ -25,8 +25,10 @@
 </md-card-actions>
 
 <md-card-content>
-    <table class="invoice-table" style="width: 100%; margin-top: 15px;">
 
+    <h4 ng-show="!ctrl.singleCardUsages.length">There are no transactions registered to this card.</h4>
+
+    <table ng-hide="!ctrl.singleCardUsages.length" class="invoice-table" style="width: 100%; margin-top: 15px;">
         <thead>
         <tr>
             <th class="table-header" style="border-left: 1px solid #C7C7CB;">Custodian</th>
@@ -35,19 +37,19 @@
             <th class="table-header" style="border-left: 1px solid #C7C7CB;">Liters</th>
             <th class="table-header" style="border-left: 1px solid #C7C7CB;">Total</th>
             <th class="table-header" style="border-left: 1px solid #C7C7CB;">Receipt</th>
-            <th ng-hide="true" colspan="2"class="table-header" style="border-left: 1px solid #C7C7CB;"></th>
 
         </tr>
         </thead>
 
         <tbody>
-        <tr ng-repeat="usage in ctrl.singleCardUsages | orderBy: '-date' | limitTo: 10" >
+        <tr ng-repeat="usage in ctrl.singleCardUsages | orderBy: '-date' | limitTo: 10">
+
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.record_custodian_name}}</td>
             <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.date | date}}</td>
-            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.purchase_type }}</td>
-            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.total_liters }}</td>
-            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{ usage.total_receipt | currency }}</td>
-            <td class="table-data" style="border-left: 1px solid #C7C7CB;">
+            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.purchase_type }}</td>
+            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.total_liters }}</td>
+            <td class="table-data" style="border-left: 1px solid #C7C7CB;">{{usage.total_receipt | currency }}</td>
+            <td class="table-data clickable" style="border-left: 1px solid #C7C7CB;">
                 <a ng-click="ctrl.showReceipt(usage)">View receipt</a>
             </td>
             <td ng-hide="true" class="table-header"  style="border-left: 1px solid #C7C7CB;">
@@ -55,13 +57,6 @@
                     <i  class="material-icons">edit</i>
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
-            </td>
-            <!--TODO: Fix usage delete implementation-->
-            <td ng-hide="true" class="table-header" style="border-left: 1px solid #C7C7CB;">
-                <a ng-click="ctrl.deleteCardUsage(usage.id)" class="icon">
-                    <i class="material-icons">delete</i>
-                    <span class="glyphicon glyphicon-print"></span>
-                </a>
             </td>
         </tr>
         </tbody>
@@ -71,8 +66,6 @@
         <md-button ng-hide="false" >View All</md-button>
     </md-card-actions>
 
-
-    </md-card-actions>
 </md-card-content>
 
 </div>
