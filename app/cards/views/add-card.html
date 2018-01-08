@@ -30,13 +30,13 @@
                             <input  type="text"
                                     class="form-control"
                                     name="expiry"
-                                    placeholder="Exp Date in MM-YY"
+                                    placeholder="Exp Date in YYYY-MM-DD"
                                     ng-model="ctrl.newCard.expiry"
-                                    ng-pattern = "/^\d{2}-\d{2}$/" required>
+                                    ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
 
                             <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">Use the following format: MM-YY. For example: 01-18 for January 2018</div>
+                                <div ng-message="pattern">Please use the following format: YYYY-MM-DD. For example: 2018-09-30</div>
                             </div>
                         </md-input-container>
 
@@ -50,7 +50,7 @@
 
                             <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">This entry can only contain characters</div>
+                                <div ng-message="pattern">This entry can only contain characters.</div>
                             </div>
 
                         </md-input-container>
