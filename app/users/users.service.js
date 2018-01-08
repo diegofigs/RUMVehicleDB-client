@@ -50,9 +50,6 @@ export default class UsersService {
    */
   createUser(user) {
     return this.$http.post(this.baseDomain + this.resource, user)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 
   /**

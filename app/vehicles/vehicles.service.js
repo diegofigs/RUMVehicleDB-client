@@ -54,9 +54,6 @@ export default class VehiclesService {
    */
   createVehicle(vehicle) {
     return this.$http.post(this.baseDomain + this.resource, vehicle)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 
   /**

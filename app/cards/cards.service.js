@@ -52,9 +52,6 @@ export default class CardsService {
    */
   createCard(card) {
     return this.$http.post(this.baseDomain + this.resource, card)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   };
 
   /**
