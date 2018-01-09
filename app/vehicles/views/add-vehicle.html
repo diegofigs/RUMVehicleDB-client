@@ -5,7 +5,7 @@
 
         <div class="panel-body forms">
             <form name="vehicleForm" class="form-horizontal" ng-submit="ctrl.confirmVehicleCreation()">
-                <h4>Primary Details (Required)</h4>
+                <h4>Primary Details</h4>
                 <div layout="row" layout-sm="column" layout-xs="column" class="mdl-grid">
                     <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
                         <md-input-container>
@@ -19,7 +19,7 @@
                                     ng-model="ctrl.newVehicle.license_plate" required>
 
                             <div ng-messages="vehicleForm.licensePlate.$error" ng-if="vehicleForm.licensePlate.$touched && vehicleForm.licensePlate.$invalid">
-                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="required">This field is required! If it is a golf cart, please enter GOLF.</div>
                             </div>
                         </md-input-container>
 
@@ -28,14 +28,12 @@
                                     class="form-control"
                                     name="vin"
                                     placeholder="VIN"
-                                    ng-required="false"
                                     maxlength="17"
                                     minlength="17"
                                     ng-pattern="/^[a-zA-Z0-9]{17}$/"
-                                    ng-model="ctrl.newVehicle.vin" required>
+                                    ng-model="ctrl.newVehicle.vin">
 
                             <div ng-messages="vehicleForm.vin.$error" ng-if="vehicleForm.vin.$touched && vehicleForm.vin.$invalid">
-                                <div ng-message="required">This field is required!</div>
                                 <div ng-message="pattern">VIN number should have 17 characters/digits. </div>
                             </div>
                         </md-input-container>
@@ -73,12 +71,12 @@
                                     placeholder="Year"
                                     maxlength="4"
                                     minlength="4"
-                                    ng-pattern="^\d{4}$"
+                                    ng-pattern="/(19|20)\d{2}$/"
                                     ng-model="ctrl.newVehicle.year" required>
 
                             <div ng-messages="vehicleForm.year.$error" ng-if="vehicleForm.year.$touched && vehicleForm.year.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">Only numbers are allowed in this field</div>
+                                <div ng-message="pattern">Only numbers are allowed in this field. Check that a valid year is entered.</div>
                                 <div ng-message="minlength">This field should contain 4 digits</div>
                                 <div ng-message="maxlength">This field should contain 4 digits</div>
                             </div>
@@ -129,14 +127,11 @@
                                     class="form-control"
                                     name="serial_number"
                                     placeholder="Serial Number"
-                                    ng-required="true"
-                                    ng-maxlength="24"
-                                    ng-minlength="1"
                                     ng-pattern="/^[a-zA-Z0-9]*$/"
-                                    ng-model="ctrl.newVehicle.serial_number" required>
+                                    ng-model="ctrl.newVehicle.serial_number">
 
                             <div ng-messages="vehicleForm.serial_number.$error" ng-if="vehicleForm.serial_number.$touched && vehicleForm.serial_number.$invalid">
-                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This field should only contain alphanumeric characters and/or numbers</div>
                             </div>
                         </md-input-container>
 
@@ -145,30 +140,22 @@
                                     class="form-control"
                                     name="property_number"
                                     placeholder="Property Number"
-                                    ng-required="true"
-                                    ng-maxlength="24"
-                                    ng-minlength="1"
-                                    ng-pattern="/^[a-zA-Z0-9]*$/"
-                                    ng-trim="false"
-                                    ng-model="ctrl.newVehicle.property_number" required>
+                                    ng-maxlength="12"
+                                    ng-model="ctrl.newVehicle.property_number">
 
-                            <div ng-messages="vehicleForm.property_number.$error" ng-if="vehicleForm.property_number.$touched && vehicleForm.property_number.$invalid">
-                                <div ng-message="required">This field is required!</div>
-                            </div>
                         </md-input-container>
 
                         <md-input-container>
                             <input  type="text"
                                     class="form-control"
                                     name="registration_id"
-                                    placeholder="Registration ID"
-                                    ng-maxlength="24"
-                                    ng-minlength="1"
-                                    ng-pattern="/^[a-zA-Z0-9]*$/"
-                                    ng-model="ctrl.newVehicle.registration_id" required>
+                                    placeholder="Registration Number"
+                                    ng-maxlength="7"
+                                    ng-pattern="/^\d{7}$/"
+                                    ng-model="ctrl.newVehicle.registration_id">
 
                             <div ng-messages="vehicleForm.registration_id.$error" ng-if="vehicleForm.registration_id.$touched && vehicleForm.registration_id.$invalid">
-                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This field should contain exactly 7 digits.</div>
                             </div>
                         </md-input-container>
 
@@ -176,15 +163,12 @@
                             <input  type="text"
                                     class="form-control"
                                     name="title_id"
-                                    placeholder="Title ID"
-                                    ng-maxlength="24"
-                                    ng-minlength="1"
-                                    ng-pattern="/^[a-zA-Z0-9]*$/"
-                                    ng-trim="false"
-                                    ng-model="ctrl.newVehicle.title_id" required>
+                                    placeholder="Title Number"
+                                    ng-pattern="/^[0-9]+$/"
+                                    ng-model="ctrl.newVehicle.title_id">
 
                             <div ng-messages="vehicleForm.title_id.$error" ng-if="vehicleForm.title_id.$touched && vehicleForm.title_id.$invalid">
-                                <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This field should only contain numbers.</div>
                             </div>
                         </md-input-container>
                     </div>
@@ -295,7 +279,11 @@
                         </md-input-container>
                     </div>
                 </div>
-                <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
+
+                <div style="text-align: center;">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="vehicleForm.$invalid"> Submit </md-button>
+                </div>
+
             </form>
         </div>
     </div>

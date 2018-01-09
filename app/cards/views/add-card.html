@@ -59,12 +59,14 @@
                             <input  type="text"
                                     class="form-control"
                                     name="cardID"
-                                    maxlength=""
+                                    maxlength="6"
+                                    minlength="6"
                                     placeholder="Card ID (UPR)"
                                     ng-model="ctrl.newCard.cardID" required>
 
                             <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
                                 <div ng-message="required">This field is required!</div>
+                                <div ng-message="minlength">This field should contain 6 digits.</div>
                             </div>
 
                         </md-input-container>
