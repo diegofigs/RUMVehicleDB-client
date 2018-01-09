@@ -1,7 +1,8 @@
+/** @ngInject */
 export default class RecordsController {
   constructor($log, $state, $sessionStorage, $timeout, $window, FileUploader,
               AuthService, CardUsageService, DepartmentsService,
-              UsersService, RecordsService, swal) {
+              UsersService, RecordsService, NotificationService, swal) {
     // Injected elements
     this.$log = $log;
     this.$state = $state;
@@ -13,7 +14,7 @@ export default class RecordsController {
     this.departmentsService = DepartmentsService;
     this.usersService = UsersService;
     this.recordsService = RecordsService;
-
+    this.notificationService = NotificationService;
     this.swal = swal;
     this.reportDates = this.recordsService.reportDates;
     this.selectedReportDate = '';
@@ -42,6 +43,7 @@ export default class RecordsController {
     this.departments = this.departmentsService.departments;
     // Reference to custodian names
     this.users = this.usersService.users;
+    this.notifications = this.notificationService.notifications;
 
     // Lists that detail reconciliation process and breakdown
     this.reconciled = [];
@@ -112,6 +114,28 @@ export default class RecordsController {
 
   isStateActive(stateName) {
     return this.$state.current.name === stateName;
+  }
+
+  submitJustification(notification) {
+    notification.was_read = 1;
+    return this.notificationService.justifyNotification(notification)
+      .then(() => {
+        this.swal({
+          title: 'Success!',
+          text: 'You have submitted justification!',
+          type: 'success',
+        }).then(() => {
+          this.$state.reload();
+        });
+      })
+      .catch((error) => {
+        this.$log.log(error);
+        this.swal({
+          title: 'Error',
+          text: 'There was an error communicating with the server.',
+          type: 'error',
+        });
+      });
   }
 
   downloadMonthlyReport(){

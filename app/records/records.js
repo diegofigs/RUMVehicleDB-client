@@ -46,6 +46,10 @@ const recordsModule = angular.module('app.records', [])
         url: '/step1',
         template: step1templateReconc,
         controller: 'RecordsCtrl as ctrl',
+        resolve: {
+          notifications: (NotificationService) =>
+            NotificationService.getNotifications(),
+        }
       })
       .state('dashboard.reconciliation.step2', {
         url: '/step2',
