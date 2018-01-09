@@ -5,6 +5,7 @@ import dashboardController from './dashboard.controller';
 import homeTemplate from './home/home.html';
 import homeController from './home/home.controller';
 import statsService from './services/stats.service';
+import notificationService from './services/notifications.service';
 
 /** @ngInject */
 const dashboardModule = angular.module('core.dashboard', [])
@@ -12,6 +13,7 @@ const dashboardModule = angular.module('core.dashboard', [])
   .controller('DashboardCtrl', dashboardController)
   .controller('HomeCtrl', homeController)
   .service('StatsService', statsService)
+  .service('NotificationService', notificationService)
   // Config block for state declaration
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -46,6 +48,8 @@ const dashboardModule = angular.module('core.dashboard', [])
         resolve: {
           dashboardStats: (StatsService) =>
             StatsService.getDashboardStats(),
+          notifications: (NotificationService) =>
+            NotificationService.getNotifications(),
         }
 
       })
