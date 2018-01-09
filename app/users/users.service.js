@@ -59,9 +59,6 @@ export default class UsersService {
    */
   deleteUser(user) {
     return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 
   /**
@@ -71,8 +68,5 @@ export default class UsersService {
    */
   editUser(user) {
     return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 }
