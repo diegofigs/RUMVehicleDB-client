@@ -45,12 +45,10 @@
                                     class="form-control"
                                     name="name"
                                     placeholder="Name"
-                                    ng-model="ctrl.newCard.name"
-                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                                    ng-model="ctrl.newCard.name"required>
 
                             <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">This entry can only contain characters.</div>
                             </div>
 
                         </md-input-container>
@@ -61,12 +59,13 @@
                                     name="cardID"
                                     maxlength="6"
                                     minlength="6"
+                                    ng-pattern="/^\d{6}$/"
                                     placeholder="Card ID (UPR)"
                                     ng-model="ctrl.newCard.cardID" required>
 
                             <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="minlength">This field should contain 6 digits.</div>
+                                <div ng-message="pattern">This field should contain exactly 6 digits.</div>
                             </div>
 
                         </md-input-container>
