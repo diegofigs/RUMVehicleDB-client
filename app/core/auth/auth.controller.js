@@ -37,32 +37,28 @@ export default class AuthController {
       })
       .catch((error) => {
         this.$log.log(error);
-        this.swal({
-          title: 'Error',
-          text: 'Invalid credentials. Please, enter a valid email and password.',
-          type: 'error',
-        });
-        // if(error === null){
-        //   this.swal({
-        //     title: 'Error',
-        //     text: 'Something went wrong! Please try again later.',
-        //     type: 'error',
-        //   });
-        // }
-        // else if(error !== null && error.data.error === 'invalid_credentials'){
-        //   this.swal({
-        //     title: 'Error',
-        //     text: 'Invalid credentials. Please, enter a valid email and password.',
-        //     type: 'error',
-        //   });
-        // }
-        // else {
-        //   this.swal({
-        //     title: 'Error',
-        //     text: 'Something went wrong! Please try again later.',
-        //     type: 'error',
-        //   });
-        // }
+
+        if(error.data === null){
+          this.swal({
+            title: 'Error',
+            text: 'Something went wrong! Please try again later.',
+            type: 'error',
+          });
+        }
+        else if(error.data !== null && error.data.error === 'invalid_credentials'){
+          this.swal({
+            title: 'Error',
+            text: 'Invalid credentials. Please, enter a valid email and password.',
+            type: 'error',
+          });
+        }
+        else {
+          this.swal({
+            title: 'Error',
+            text: 'Something went wrong! Please try again later.',
+            type: 'error',
+          });
+        }
       });
   }
 
