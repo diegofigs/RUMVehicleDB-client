@@ -26,9 +26,14 @@ export default class AuthController {
    */
   login() {
     return this.authService.authenticate(this.user)
-      .then(() => {
+      .then((user) => {
         this.user = {};
-        this.$state.go('dashboard.home');
+        if(user.user_type_name === 'vehicle_admin'){
+          this.$state.go('dashboard.vehicles.list');
+        }
+        else{
+          this.$state.go('dashboard.home');
+        }
       })
       .catch((error) => {
         this.$log.log(error);
@@ -37,6 +42,27 @@ export default class AuthController {
           text: 'Invalid credentials. Please, enter a valid email and password.',
           type: 'error',
         });
+        // if(error === null){
+        //   this.swal({
+        //     title: 'Error',
+        //     text: 'Something went wrong! Please try again later.',
+        //     type: 'error',
+        //   });
+        // }
+        // else if(error !== null && error.data.error === 'invalid_credentials'){
+        //   this.swal({
+        //     title: 'Error',
+        //     text: 'Invalid credentials. Please, enter a valid email and password.',
+        //     type: 'error',
+        //   });
+        // }
+        // else {
+        //   this.swal({
+        //     title: 'Error',
+        //     text: 'Something went wrong! Please try again later.',
+        //     type: 'error',
+        //   });
+        // }
       });
   }
 
