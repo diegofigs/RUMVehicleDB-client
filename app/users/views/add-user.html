@@ -34,6 +34,7 @@
                                 ng-model="ctrl.newUser.email"
                                 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
                         <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched && userForm.email.$invalid">
+                            <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">Please enter a valid email.</div>
                         </div>
 
@@ -48,6 +49,7 @@
                                 ng-pattern="/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/" required>
 
                         <div ng-messages="userForm.password.$error" ng-if="userForm.password.$touched && userForm.password.$invalid">
+                            <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">Password must contain characters, numbers and should be at least 8 characters long</div>
                         </div>
                     </md-input-container>

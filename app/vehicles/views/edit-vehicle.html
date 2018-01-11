@@ -126,6 +126,7 @@
                                     class="form-control"
                                     name="property_number"
                                     placeholder="Property Number"
+                                    maxlength="11"
                                     ng-pattern="/^[0-9-]*$/"
                                     ng-model="ctrl.vehicle.property_number" required>
 
@@ -185,9 +186,8 @@
                             <label><small>Marbete Date</small></label>
                         </md-input-container>
                         <md-datepicker
-                            ng-init="marbete = (ctrl.vehicle.marbete_date | toDate)"
-                            ng-model="marbete"
-                            ng-change="ctrl.vehicle.marbete_date = marbete.toISOString()"
+                            ng-model="ctrl.vehicle.marbete_date | toDate"
+                            ng-change="ctrl.vehicle.marbete_date = ctrl.vehicle.marbete_date.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
 
@@ -195,9 +195,8 @@
                             <label><small>Inspection Date</small></label>
                         </md-input-container>
                         <md-datepicker
-                            ng-init="inspection = (ctrl.vehicle.inspection_date | toDate)"
-                            ng-model="inspection"
-                            ng-change="ctrl.vehicle.inspection_date = inspection.toISOString()"
+                            ng-model="ctrl.vehicle.inspection_date | toDate"
+                            ng-change="ctrl.vehicle.inspection_date = ctrl.vehicle.inspection_date.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
                         <br><br>
@@ -222,9 +221,8 @@
                             <label><small>Decommission Date</small></label>
                         </md-input-container>
                         <md-datepicker
-                            ng-init="decomission = (ctrl.vehicle.decomission_date | toDate)"
-                            ng-model="decomission"
-                            ng-change="ctrl.vehicle.decomission_date = decomission.toISOString()"
+                            ng-model="ctrl.vehicle.decomission_date | toDate"
+                            ng-change="ctrl.vehicle.decomission_date = ctrl.vehicle.decomission_date.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
 
@@ -232,8 +230,7 @@
                             <label><small>Inscription Date</small></label>
                         </md-input-container>
                         <md-datepicker
-                            ng-init="inscription = (ctrl.vehicle.inscription_date | toDate)"
-                            ng-model="inscription"
+                            ng-model="ctrl.vehicle.inscription_date | toDate"
                             ng-change="ctrl.vehicle.inscription_date = inscription.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
