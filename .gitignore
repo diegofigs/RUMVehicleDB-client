@@ -10,6 +10,7 @@ node_modules/
 # Build folders (in-memory/production)
 .tmp/
 dist/
+docs/
 
 # Webpack
 stats.json
