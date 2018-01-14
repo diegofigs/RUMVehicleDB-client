@@ -20,6 +20,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./dist/'),
+    publicPath: process.env.ASSET_PATH || '/',
     filename: '[name].bundle.js'
   },
   module: {
