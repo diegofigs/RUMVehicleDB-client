@@ -6,7 +6,6 @@
 export default class VehiclesService {
 
   constructor($http, $log) {
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
     this.resource = '/vehicles';
     this.$http = $http;
     this.$log = $log;
@@ -22,7 +21,7 @@ export default class VehiclesService {
    * @param params Filtering parameters for vehicles
    */
   getVehicles(params = {}) {
-    return this.$http.get(this.baseDomain + this.resource, {
+    return this.$http.get(this.resource, {
       params: params
     }).then((response) => {
         this.vehicles = response.data.data[0].data;
@@ -38,7 +37,7 @@ export default class VehiclesService {
    * @param id Vehicle ID
    */
   getVehicle(id) {
-    return this.$http.get(this.baseDomain + this.resource + '/' + id)
+    return this.$http.get(this.resource + '/' + id)
       .then((response) => {
         this.vehicle = response.data.data;
         return this.vehicle;
@@ -53,7 +52,7 @@ export default class VehiclesService {
    * @param vehicle Vehicle Object
    */
   createVehicle(vehicle) {
-    return this.$http.post(this.baseDomain + this.resource, vehicle)
+    return this.$http.post(this.resource, vehicle)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -65,7 +64,7 @@ export default class VehiclesService {
    * @returns {Promise} Server response. If delete was not successful, catch error and log it.
    */
   deleteVehicle(vehicle) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + vehicle.id)
+    return this.$http.delete(this.resource + '/' + vehicle.id)
   }
 
   /**
@@ -74,7 +73,7 @@ export default class VehiclesService {
    * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
    */
   editVehicle(vehicle) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + vehicle.id, vehicle)
+    return this.$http.put(this.resource + '/' + vehicle.id, vehicle)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -84,7 +83,7 @@ export default class VehiclesService {
    * Gets vehicle types from backend. E.g. Golf car, Mini-Van, Gas Car, etc.
    */
   getVehicleTypes() {
-    return this.$http.get(this.baseDomain + '/vehicle-types')
+    return this.$http.get('/vehicle-types')
         .then((response) => {
       this.vehicleTypes = response.data;
           return this.vehicleTypes;

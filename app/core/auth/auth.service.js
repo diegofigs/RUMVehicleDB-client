@@ -14,11 +14,8 @@ export default class AuthService {
     this.$log = $log;
     this.$sessionStorage = $sessionStorage;
 
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-
     if(this.$sessionStorage.token){
       this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
-      this.currentUser();
     }
     else {
       this.$http.defaults.headers.common.Authorization = 'Basic';
@@ -34,7 +31,7 @@ export default class AuthService {
    * @return {Promise<Object>}
    */
   authenticate(user) {
-    return this.$http.post(this.baseDomain + '/auth', user)
+    return this.$http.post('api/v1/auth', user)
       .then((response) => {
         this.$sessionStorage.token = response.data.token;
         this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
@@ -48,7 +45,7 @@ export default class AuthService {
    * @return {Promise<Object>}
    */
   currentUser() {
-    return this.$http.get(this.baseDomain + '/auth/me')
+    return this.$http.get('api/v1/auth/me')
       .then((response) => {
         this.$sessionStorage.user = response.data.data;
         return this.$sessionStorage.user;

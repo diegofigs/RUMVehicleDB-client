@@ -1,9 +1,8 @@
-import 'angular-material/angular-material.scss';
+import 'angular-material/angular-material.css';
 import 'angular-material-data-table/dist/md-data-table.css';
 import 'ng-material-floating-button/mfb/dist/mfb.css';
 import 'mdi/css/materialdesignicons.css';
 import 'sweetalert2/dist/sweetalert2.css';
-import './styles/app-green.scss';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
@@ -34,6 +33,8 @@ import englishTranslations from './languages/en.json';
 import spanishTranslations from './languages/es.json';
 
 export const appModule = 'app';
+
+let NODE_ENV = process.env.NODE_ENV || 'development';
 
 angular.module(appModule, [
   angularUiRouter,
@@ -81,6 +82,7 @@ angular.module(appModule, [
       .primaryPalette('newGreen')
       .warnPalette('newRed');
   })
+  .constant('NODE_ENV', NODE_ENV)
   .run(($rootScope) => {
     $rootScope.stateIsLoading = false;
 

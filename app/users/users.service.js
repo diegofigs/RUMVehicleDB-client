@@ -6,10 +6,9 @@
 
 export default class UsersService {
   constructor($http, $log) {
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/custodians';
     this.$http = $http;
     this.$log = $log;
+    this.resource = 'api/v1/custodians';
 
     this.user = {};
     this.users = [];
@@ -19,7 +18,7 @@ export default class UsersService {
    * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
    */
   getUsers() {
-    return this.$http.get(this.baseDomain + this.resource)
+    return this.$http.get(this.resource)
       .then((response) => {
         this.users = response.data.data[0].data;
         return this.users;
@@ -34,7 +33,7 @@ export default class UsersService {
    * @param id User ID
    */
   getUser(id) {
-    return this.$http.get(this.baseDomain + this.resource + '/' + id)
+    return this.$http.get(this.resource + '/' + id)
       .then((response) => {
         this.user = response.data.data;
         return this.user;
@@ -49,7 +48,7 @@ export default class UsersService {
    * @param user User to be created
    */
   createUser(user) {
-    return this.$http.post(this.baseDomain + this.resource, user)
+    return this.$http.post(this.resource, user)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -61,7 +60,7 @@ export default class UsersService {
    * @returns {*} Server response
    */
   deleteUser(user) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
+    return this.$http.delete(this.resource + '/' + user.id)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -70,10 +69,10 @@ export default class UsersService {
   /**
    * Requests the backend to modify an existing user
    * @param user User to be modified
-   * @returns {FinishedRequest<T>} Server response
+   * @returns {Promise<Object>} Server response
    */
   editUser(user) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
+    return this.$http.put(this.resource + '/' + user.id, user)
       .catch((error) => {
         this.$log.log(error);
       });

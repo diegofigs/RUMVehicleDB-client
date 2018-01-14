@@ -2,12 +2,11 @@ export default class NotificationService {
   constructor($http, $log) {
     this.$http = $http;
     this.$log = $log;
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/dashboard/notifications';
+    this.resource = 'api/v1/dashboard/notifications';
   }
 
   getNotifications() {
-    return this.$http.get(this.baseDomain + this.resource)
+    return this.$http.get(this.resource)
       .then((response) => {
         this.$log.log(response);
         this.notifications = response.data.notifications;
@@ -16,7 +15,7 @@ export default class NotificationService {
   }
 
   justifyNotification(notification) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + notification.id, notification)
+    return this.$http.put(this.resource + '/' + notification.id, notification)
       .then((response) => {
         this.$log.log(response);
       })

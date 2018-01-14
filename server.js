@@ -1,16 +1,29 @@
-var path = require("path");
-var express = require("express");
+require('dotenv').config();
+const path = require("path");
+const express = require("express");
+const httpProxy = require("http-proxy");
 
-var DIST_DIR = path.join(__dirname, "dist"),
-  PORT = 3000,
-  app = express();
+const PORT = process.env.PORT || '9000';
+const API = process.env.API || 'localhost';
+const PUBLIC_DIR = path.join(__dirname, 'dist');
 
-//Serving the files on the dist folder
-app.use(express.static(DIST_DIR));
+const app = express();
+const proxy = httpProxy.createProxyServer();
 
-//Send index.html when the user access the web
-app.get("*", function (req, res) {
-  res.sendFile(path.join(DIST_DIR, "index.html"));
+// Serving the files on the dist folder
+app.use(express.static(PUBLIC_DIR));
+app.use('/docs', express.static(path.join(__dirname, 'docs')));
+
+// Send Webpack's generated index.html
+app.get("/", function (req, res) {
+  res.sendFile(path.join(PUBLIC_DIR, "index.html"));
 });
 
-app.listen(PORT);
+app.all('/api/v1/*', function(req, res) {
+  proxy.web(req, res, {target: API});
+});
+
+// Start server
+app.listen(PORT, function() {
+  console.log("Express server listening on port: " + PORT);
+});
