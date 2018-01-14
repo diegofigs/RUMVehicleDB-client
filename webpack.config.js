@@ -1,19 +1,20 @@
 /**
  * Created by diegofigs on 2/26/17.
  */
+require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractText = new ExtractTextPlugin({
+  filename: '[name]-styles.css',
+  allChunks: true,
+  disable: process.env.NODE_ENV === 'development'
+});
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-//noinspection JSUnresolvedFunction
 module.exports = {
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.resolve('./public/'),
-    compress: true,
-    port: 9000,
-  },
   entry: {
     app: path.resolve('./app/app.js')
   },
@@ -31,19 +32,22 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: [
-          'style-loader',
-          'css-loader'
-        ]
+        loader: extractText.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
 
       {
         test: /\.scss$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: extractText.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'resolve-url-loader',
+            'sass-loader?sourceMap'
+          ]
+        })
       },
       {
         test: /\.js$/,
@@ -77,6 +81,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -85,6 +90,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve('./app/index.html'),
+      favicon: 'app/favicon.ico',
       inject: 'body'
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -95,6 +101,7 @@ module.exports = {
         return module.context && module.context.indexOf('node_modules') !== -1;
       }
     }),
+    extractText,
     // new BundleAnalyzerPlugin()
   ],
   resolve : {
