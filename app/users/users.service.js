@@ -13,15 +13,24 @@ export default class UsersService {
 
     this.user = {};
     this.users = [];
+
+    // Initialize pagination metadata
+    this.total = 1;
+    this.page = 1;
+    this.pageSize = 10;
   }
 
   /**
    * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
    */
-  getUsers() {
-    return this.$http.get(this.baseDomain + this.resource)
+  getUsers(params = {}) {
+    return this.$http.get(this.baseDomain + this.resource, {
+      params: params
+    })
       .then((response) => {
         this.users = response.data.data[0].data;
+        this.pageSize = response.data.data[0].per_page;
+        this.total = response.data.data[0].total;
         return this.users;
       })
       .catch((error) => {

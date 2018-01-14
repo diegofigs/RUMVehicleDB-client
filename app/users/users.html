@@ -45,6 +45,13 @@
                 </table>
             </md-table-container>
 
+            <md-table-pagination
+                md-limit="ctrl.pagination.limit"
+                md-page="ctrl.pageQuery.page"
+                md-total="{{ctrl.pagination.total}}"
+                md-boundary-links="ctrl.pagination.boundaryLinks"
+                md-on-paginate="ctrl.getPaginatedUsers">
+
             <div style="text-align: center;">
                 <md-button class="md-raised md-primary" ui-sref="dashboard.users.add()"> Add User </md-button>
             </div>

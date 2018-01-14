@@ -15,6 +15,20 @@ export default class UsersController {
     this.departments = DepartmentsService.departments;
 
     this.swal = swal;
+
+    this.pageQuery = {
+      page: this.usersService.page,
+    };
+
+
+    this.pagination = {
+      boundaryLinks: true,
+      limit: this.usersService.pageSize,
+      total: this.usersService.total,
+    };
+
+    this.getPaginatedUsers = this.getPaginatedUsers.bind(this);
+
   }
 
   /**
@@ -85,7 +99,7 @@ export default class UsersController {
   /**
    * Sends user to be deleted to the Users Service
    */
-  deleteUser(user) {
+  deleteUser(user){
     return this.usersService.deleteUser(user)
       .then(() => {
       this.$state.go('dashboard.users.list');
@@ -117,9 +131,16 @@ export default class UsersController {
   /**
    * Sends user to be edited to the Card Service
    */
-  editUser() {
+  editUser(){
     return this.usersService.editUser(this.user).then(() => {
       this.$state.go('dashboard.users.list');
     });
+  }
+
+  getPaginatedUsers(){
+    return this.usersService.getUsers(this.pageQuery)
+      .then( () => {
+        this.users = this.usersService.users;
+      });
   }
 }
