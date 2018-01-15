@@ -66,7 +66,7 @@ export default class AuthController {
     this.swal({
       title: 'Forgot Password?',
       type: 'info',
-      text: 'Please contact RUM Vehicle\'s administrator, Jeannette Muñiz Vargas, at (787) 832-4040 Ext. XXX in order to ' +
+      text: 'Please contact RUM Vehicle\'s administrator, Jeannette Muñiz Vargas, at (787) 832-4040 ext. 2020/2024 in order to ' +
       'reset your password. '
     });
 
