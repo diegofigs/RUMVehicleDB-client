@@ -21,14 +21,10 @@ export default class RecordsController {
 
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
 
-    let today = new Date();
-    let oneMonthAgo = (new Date()).setMonth(today.getMonth()-1); //TODO: Verify that both dates are sent in a correct format
     this.filter = {
       department_id: '',
       custodian_id: '',
       purchase_type: '',
-      date_from: oneMonthAgo,
-      date_to: today,
       page: 1,
     };
 
@@ -140,5 +136,9 @@ export default class RecordsController {
 
   downloadMonthlyReport(){
     this.$window.open('http://dev.uprm.edu/rumvehicles/api/v1/dashboard/report?dates=' + this.selectedReportDate, "_self");
+  }
+
+  reload() {
+    this.$state.reload();
   }
 };

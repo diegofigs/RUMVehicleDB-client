@@ -19,62 +19,50 @@
                 <md-tab label="All Records">
                     <md-content>
                         <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
-                            <div flex="45">
-                                <md-card flex layout="column" layout-padding>
-                                <label>Filter By</label>
-                                <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row">
-
-                                    <md-input-container flex flex-gt-sm="33">
+                            <md-card flex="100" layout="column" layout-padding>
+                                <div flex="100" layout="row" layout-align="start center">
+                                    <span flex="20">Filter By</span>
+                                    <div flex="10" flex-offset="60">
+                                        <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear All</a>
+                                    </div>
+                                    <div flex="10">
+                                        <md-button ng-click="ctrl.applyFilter()" class="md-raised md-primary">Filter</md-button>
+                                    </div>
+                                </div>
+                                <div flex="100" layout="row" layout-align="start center">
+                                    <md-input-container flex flex-gt-sm="20">
                                         <label>Department</label>
                                         <md-select ng-model="ctrl.filter.department_id">
                                             <md-option value="{{ department.id }}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
                                         </md-select>
                                     </md-input-container>
 
-                                    <md-input-container flex flex-gt-sm="33">
+                                    <md-input-container flex flex-gt-sm="20">
                                         <label>Custodian</label>
                                         <md-select ng-model="ctrl.filter.custodian_id">
                                             <md-option value="{{ user.id }}" ng-repeat="user in ctrl.users">{{user.name}}</md-option>
                                         </md-select>
                                     </md-input-container>
 
-                                    <md-input-container flex flex-gt-sm="33">
-                                        <label>Purchase Type</label>
+                                    <md-input-container flex flex-gt-sm="20">
+                                        <label>Gas Type</label>
                                         <md-select ng-model="ctrl.filter.purchase_type">
                                             <md-option value="{{type}}" ng-repeat="type in ctrl.purchaseTypes">{{ type }}</md-option>
                                         </md-select>
                                     </md-input-container>
+
+                                    <md-datepicker
+                                        flex="20"
+                                        ng-model="ctrl.filter.date_from"
+                                        md-placeholder="From Date">
+                                    </md-datepicker>
+                                    <md-datepicker
+                                        flex="20"
+                                        ng-model="ctrl.filter.date_to"
+                                        md-placeholder="To Date">
+                                    </md-datepicker>
                                 </div>
-                                </md-card>
-                            </div>
-
-                            <div flex="45" layout-padding>
-                                <md-card flex layout="column" layout-fill layout-padding>
-                                    <label>Limit Time Range</label>
-                                    <div flex layout="row"  layout-align-gt-sm="space-around center">
-                                        <md-datepicker
-                                            flex="50"
-                                            ng-init="from = (ctrl.filter.date_from | toDate)"
-                                            ng-model="from"
-                                            ng-change="ctrl.filter.date_from = from.toISOString()"
-                                            md-placeholder="mm/dd/yyyy">
-                                        </md-datepicker>
-                                        <md-datepicker
-                                            flex="50"
-                                            ng-init="to = (ctrl.filter.date_to | toDate)"
-                                            ng-model="to"
-                                            ng-change="ctrl.filter.date_to = to.toISOString()"
-                                            md-placeholder="mm/dd/yyyy">
-                                        </md-datepicker>
-                                    </div>
-                                </md-card>
-                            </div>
-
-                            <div flex ="10" layout="row" layout-align-gt-sm="end center">
-                                <md-button flex="initial" ng-click="ctrl.applyFilter()" class="md-fab md-primary">
-                                    <md-icon>filter_list</md-icon>
-                                </md-button>
-                            </div>
+                            </md-card>
                         </div>
 
                         <div layout-fill  layout="row">
