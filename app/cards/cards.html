@@ -65,30 +65,38 @@
             </div>
         </md-card>
 
-        <div class="card-group" layout="row"  layout-wrap>
-            <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{ card.name }}</span>
-                        <span class="md-subhead">Department: {{ card.card_department_name  }}</span>
+        <md-card layout-margin>
+            <div class="card-group" layout="row"  layout-wrap>
+                <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{ card.name }}</span>
+                            <span class="md-subhead">Department: {{ card.card_department_name  }}</span>
 
-                        <!--Show custodian name on card view only if user is Admin -->
-                        <span ng-show="ctrl.getUser().user_type_name === 'admin'" class="md-subhead">Custodian: {{ card.card_custodian_name  }}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media">
-                            <img src="../../public/images/generic-credit-card.jpg" class="md-card-image" alt="Washed Out">
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start start">
-                    <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
-                    <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
-                    <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
-                </md-card-actions>
-            </md-card>
-
-        </div>
+                            <!--Show custodian name on card view only if user is Admin -->
+                            <span ng-show="ctrl.getUser().user_type_name === 'admin'" class="md-subhead">Custodian: {{ card.card_custodian_name  }}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media">
+                                <img src="../../public/images/generic-credit-card.jpg" class="md-card-image" alt="Washed Out">
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start start">
+                        <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
+                        <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
+                        <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+            <cl-paging flex
+                       cl-pages="ctrl.pagination.total"
+                       cl-steps="5"
+                       cl-page-changed="ctrl.applyCardsFilter()"
+                       cl-current-page="ctrl.filter.page"
+                       cl-align="center stretch">
+            </cl-paging>
+        </md-card>
     </div>
 
     <div ng-hide="ctrl.getUser().user_type_name === 'custodian'">

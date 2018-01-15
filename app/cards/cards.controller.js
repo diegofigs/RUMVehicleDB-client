@@ -24,7 +24,13 @@ export default class CardsController {
       department_id: '',
       custodian_id: '',
       type: '',
-      status: ''
+      status: '',
+      page: 1,
+    };
+
+    this.pagination = {
+      pageSize: this.cardsService.pageSize,
+      total: this.cardsService.total,
     };
   }
 
