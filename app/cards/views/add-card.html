@@ -30,13 +30,13 @@
                             <input  type="text"
                                     class="form-control"
                                     name="expiry"
-                                    placeholder="Exp Date in YYYY-MM-DD"
+                                    placeholder="Exp Date in YYYY-MM"
                                     ng-model="ctrl.newCard.expiry"
-                                    ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+                                    ng-pattern = "/^\d{4}-\d{2}$/" required>
 
                             <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">Use the following format: YYYY-MM-DD. For example: 2017-01-22</div>
+                                <div ng-message="pattern">Please use the following format: YYYY-MM. For example: 2020-09</div>
                             </div>
                         </md-input-container>
 
@@ -45,12 +45,10 @@
                                     class="form-control"
                                     name="name"
                                     placeholder="Name"
-                                    ng-model="ctrl.newCard.name"
-                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                                    ng-model="ctrl.newCard.name" required>
 
                             <div ng-messages="cardForm.name.$error" ng-if="cardForm.name.$touched && cardForm.name.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">This entry can only contain characters</div>
                             </div>
 
                         </md-input-container>
@@ -59,12 +57,15 @@
                             <input  type="text"
                                     class="form-control"
                                     name="cardID"
-                                    maxlength=""
+                                    maxlength="6"
+                                    minlength="6"
+                                    ng-pattern="/^\d{6}$/"
                                     placeholder="Card ID (UPR)"
                                     ng-model="ctrl.newCard.cardID" required>
 
                             <div ng-messages="cardForm.cardID.$error" ng-if="cardForm.cardID.$touched && cardForm.cardID.$invalid">
                                 <div ng-message="required">This field is required!</div>
+                                <div ng-message="pattern">This field should contain exactly 6 digits.</div>
                             </div>
 
                         </md-input-container>
@@ -90,10 +91,6 @@
                                 class="form-control"
                                 ng-model="ctrl.newCard.type"
                                 ng-required="true">
-
-                            <md-option ng-repeat="type in ctrl.types" value="type">
-                                    {{type}}
-                                </md-option>
                                 <md-option value="Regular">
                                     Regular
                                 </md-option>
@@ -103,8 +100,8 @@
                                 <md-option value="Diesel">
                                     Diesel
                                 </md-option>
-                                <md-option value="SPARE">
-                                    SPARE
+                                <md-option value="Spare">
+                                    Spare
                                 </md-option>
                             </md-select>
                         </md-input-container>

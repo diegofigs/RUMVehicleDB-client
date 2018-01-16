@@ -2,9 +2,9 @@
     <img class="logo" width="350px" src="../../../../public/images/rum_vehicle_logo.png">
 
 	<div class="form-container shadow">
-		<div class="icon">
-			<i class="mdi mdi-account-circle"></i>
-			<div class="header">
+		<div layout="column" class="icon" layout-align="start center">
+			<i flex class="mdi mdi-account-circle"></i>
+			<div flex class="header">
 				Login
 			</div>
 		</div>
@@ -12,11 +12,11 @@
 		<div layout="row">
 			<form name="loginForm" ng-submit="ctrl.login()" flex="80" flex-xs="90" flex-offset="10" flex-offset-xs="5" layout="column" layout-padding>
 				<div flex>
-					<md-input-container >
+					<md-input-container>
 	                    <input name="email"
                                ng-model="ctrl.user.email"
                                type="email"
-                               placeholder="email"
+                               placeholder="Email"
                                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
 
                         <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched && loginForm.email.$invalid">
@@ -29,16 +29,15 @@
 					<md-input-container >
 	                    <input name="password"
                                ng-model="ctrl.user.password"
-                               type="password" placeholder="password" required>
-
-                        <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched && loginForm.password.$invalid">
-                            <div ng-message="required">This field is required</div>
-                        </div>
+                               type="password"
+                               placeholder="Password" required>
 
 	                </md-input-container>
 				</div>
-			    <div flex>
-                    <md-button type="submit" class="md-raised primary" >Login</md-button>
+			    <div layout="row" layout-align="center center">
+                    <div flex="15">
+                        <md-button type="submit" class="md-raised primary" >Login</md-button>
+                    </div>
 			    </div>
             </form>
 
@@ -51,7 +50,7 @@
 
 	<footer class="login-footer">
 		<div class="left-section">
-			&copy; Material Dashboard Theme
+             Made with &hearts; by RVDT
 		</div>
 
 		<div class="right-section">

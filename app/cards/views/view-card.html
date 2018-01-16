@@ -6,83 +6,78 @@
 </div>
 
 <!-- Show if data is already resolved -->
-<div ng-show="!stateIsLoading">
-<div class="ng-scope layout-xs-column layout-sm-column layout-row mdl-cell" layout="row" layout-sm="column" layout-xs="column" >
+<div layout="row" layout-align="space-between start" layout-margin layout-xs="column" ng-show="!stateIsLoading">
 
-    <!-- Card details view -->
+        <!-- Card details view -->
 
-    <md-content layout="row" flex="34" flex-sm="100">
-        <md-card>
-            <div class="panel-header">
-                Credit Card Details
-            </div>
-            <img class="credit-card" src="../../../public/images/generic-credit-card.jpg">
-                    <span class="md-headline card-detail-title">Card Details</span>
-            <md-card-content>
-                <div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid">
-                    <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{ctrl.card.number || "Number"}} </h3>
-                                <p> Number </p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{ctrl.card.expiry || "Expiry"}} </h3>
-                                <p> Expiration Date </p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{(ctrl.card.name | capitalize) || "Name"}} </h3>
-                                <p> Name </p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{ctrl.card.card_custodian_name || "Custodian Name"}} </h3>
-                                <p> Custodian </p>
-                            </div>
-                        </md-list-item>
-                    </div>
-                    <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{(ctrl.card.card_department_name | capitalize)|| "Department"}} </h3>
-                                <p> Department </p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{(ctrl.card.type | capitalize) || "Type"}} </h3>
-                                <p> Type </p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-2-line">
-                            <div class="md-list-item-text">
-                                <h3> {{(ctrl.card.status | capitalize) || "Status"}} </h3>
-                                <p> Status </p>
-                            </div>
-                        </md-list-item>
-                    </div>
+        <md-content layout="row" flex-gt-sm="40" flex-sm="100" style="background:white;">
+            <md-card>
+                <div class="panel-header">
+                    Credit Card Details
                 </div>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button ui-sref="dashboard.cards.edit({id: ctrl.card.id})">Edit Card Details</md-button>
-            </md-card-actions>
-        </md-card>
-    </md-content>
+                <img class="credit-card" src="../../../public/images/generic-credit-card.jpg">
+                        <span class="md-headline card-detail-title">Card Details</span>
+                <md-card-content>
+                    <div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid">
+                        <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{ctrl.card.number || "Number"}} </h3>
+                                    <p> Number </p>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{ctrl.card.expiry || "Expiry"}} </h3>
+                                    <p> Expiration Date </p>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{(ctrl.card.name | capitalize) || "Name"}} </h3>
+                                    <p> Name </p>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{ctrl.card.card_custodian_name || "Custodian Name"}} </h3>
+                                    <p> Custodian </p>
+                                </div>
+                            </md-list-item>
+                        </div>
+                        <div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{(ctrl.card.card_department_name | capitalize)|| "Department"}} </h3>
+                                    <p> Department </p>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{(ctrl.card.type | capitalize) || "Type"}} </h3>
+                                    <p> Type </p>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <h3> {{(ctrl.card.status | capitalize) || "Status"}} </h3>
+                                    <p> Status </p>
+                                </div>
+                            </md-list-item>
+                        </div>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="dashboard.cards.edit({id: ctrl.card.id})">Edit Card Details</md-button>
+                </md-card-actions>
+            </md-card>
+        </md-content>
 
-    <!-- Card usage OR Add card usage view (interchangeable) -->
-    <div>
+        <!-- Card usage OR Add card usage view (interchangeable) -->
 
-    </div>
-
-    <md-content layout="row" flex="66" flex-sm="100">
-        <md-card>
-            <div ui-view ></div>
-        </md-card>
-    </md-content>
-</div>
+        <md-content layout-margin layout="row" layout-sm="column" flex-gt-sm="60" flex-sm="100" style="background:white;">
+            <md-card flex>
+                <div ui-view ></div>
+            </md-card>
+        </md-content>
 </div>

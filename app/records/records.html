@@ -7,18 +7,18 @@
 
 <!-- Show if data is already resolved -->
 <div ng-show="!stateIsLoading">
-    <div layout class="layout bg-primary bottom-shadow">
+    <div layout class="layout bg-primary bottom-shadow" >
         <h1 class="white" flex="50" flex-offset="10">Expense Records</h1>
     </div>
     <div layout="row" flex-gt-sm="80" flex-offset-gt-sm="10" layout-margin>
 
-        <md-content flex>
+        <md-content flex style="background:white;">
             <md-tabs md-dynamic-height md-border-bottom>
 
                                                 <!-- RECORDS TAB -->
                 <md-tab label="All Records">
                     <md-content>
-                        <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
+                        <div layout-xs="column" layout-sm="column" layout-gt-sm="row" style="background:white;">
                             <div flex="45">
                                 <md-card flex layout="column" layout-padding>
                                 <label>Filter By</label>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
 
-                        <div layout-fill  layout="row">
+                        <div layout-fill  layout="row" style="background:white;">
                             <md-card flex layout-padding>
                                 <md-table-container>
                                     <table md-table>
@@ -119,7 +119,7 @@
                 </md-tab>
                                             <!-- DOWNLOAD REPORTS TAB -->
                 <md-tab label="Download Reports">
-                    <md-content class="md-padding">
+                    <md-content class="md-padding" style="background:white;">
                         <div flex-gt-sm="50" flex-offset-gt-sm="25"  layout-gt-sm="row" layout-xs="column" layout-sm="column">
                             <md-card flex layout="row" layout-fill layout-padding>
                                 <div flex="80">

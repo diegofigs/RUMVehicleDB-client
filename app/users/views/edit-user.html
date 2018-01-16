@@ -33,6 +33,7 @@
                                         ng-model="ctrl.user.email"
                                         ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
                                 <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched && userForm.email.$invalid">
+                                    <div ng-message="required">This field is required!</div>
                                     <div ng-message="pattern">Please enter a valid email.</div>
                                 </div>
 
@@ -42,12 +43,12 @@
                                 <input  type="password"
                                         class="form-control"
                                         name="password"
-                                        placeholder="Password"
+                                        placeholder="Change Password (optional)"
                                         ng-pattern="/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/"
-                                        ng-model="ctrl.user.password" required>
+                                        ng-model="ctrl.user.password">
 
                                 <div ng-messages="userForm.password.$error" ng-if="userForm.password.$touched && userForm.password.$invalid">
-                                    <div ng-message="pattern">Password must contain characters, numbers and should be at least 8 characters long</div>
+                                    <div ng-message="pattern">Password must contain characters, numbers, and should be at least 8 characters long.</div>
                                 </div>
                             </md-input-container>
 
@@ -62,7 +63,6 @@
 
                         </div>
 
-
                         <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
                             <md-input-container>
@@ -74,7 +74,7 @@
                                         ng-model="ctrl.user.contact_number">
 
                                 <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$touched && userForm.contactNumber.$invalid">
-                                    <div ng-message="pattern">This entry can only contain numbers</div>
+                                    <div ng-message="pattern">This entry can only contain numbers.</div>
                                 </div>
 
                             </md-input-container>
@@ -106,24 +106,23 @@
                                     </md-option>
                                 </md-select><br>
                             </md-input-container>
+
                             <md-input-container>
                                 <label>User Type</label>
                                 <md-select
                                     class="form-control"
                                     name="userType"
                                     ng-required="true"
-                                    ng-model="ctrl.user.user_type_id">
+                                    ng-model="ctrl.user.user_type_id" required>
 
-                                    <md-option value="1">Administrator</md-option>
-                                    <md-option value="2">Vehicle Manager</md-option>
-                                    <md-option value="3">Custodian</md-option>
-                                    <md-option value="4">Auxiliary Custodian</md-option>
+                                    <md-option ng-repeat="userType in ctrl.userTypes" ng-value="userType.id">
+                                        {{userType.role_name}}
+                                    </md-option>
+
                                 </md-select>
 
                             </md-input-container>
-
                         </div>
-
                     </div>
 
                     <div style="text-align: center;">

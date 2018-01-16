@@ -27,8 +27,6 @@ const vehiclesModule = angular.module('app.vehicles', [])
             DepartmentsService.getDepartments(),
           users: (UsersService) =>
             UsersService.getUsers(),
-          stats: (StatsService) =>
-          StatsService.getDashboardStats(),
           vehicleTypes: (VehiclesService) =>
             VehiclesService.getVehicleTypes()
         },

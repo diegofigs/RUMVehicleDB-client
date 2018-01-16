@@ -1,14 +1,14 @@
-
 import moment from 'moment';
 
 /**
  * Controller is in charge of all business logic related to card usages (Gas transactions)
  */
 export default class CardsUsageController {
-  constructor($state, $log, FileUploader,
+  constructor($state, $log, $stateParams, FileUploader,
               AuthService, CardsService, CardUsageService, swal) {
     this.$state = $state;
     this.$log = $log;
+    this.$stateParams = $stateParams;
     this.authService = AuthService;
     this.cardUsageService = CardUsageService;
 
@@ -17,6 +17,20 @@ export default class CardsUsageController {
     this.singleCardUsages = this.cardUsageService.singleCardUsages;
     this.temp_date = new Date();
     this.swal = swal;
+
+    this.card = this.cardsService.getCard($stateParams.id);
+
+    this.pageQuery = {
+      page: this.cardUsageService.page,
+    };
+
+    this.pagination = {
+      boundaryLinks: true,
+      limit: this.cardUsageService.pageSize,
+      total: this.cardUsageService.total,
+    };
+
+    this.getPaginatedSingleCardUsages = this.getPaginatedSingleCardUsages.bind(this);
 
     this.newCardUsage = {
       date: '',
@@ -177,6 +191,13 @@ export default class CardsUsageController {
     return this.cardUsageService.editCardUsage(this.cardUsages.id)
       .then(() => {
         this.$state.go('dashboard.cards.view.card-usage');
+      });
+  }
+
+  getPaginatedSingleCardUsages(){
+    return this.cardUsageService.getSingleCardUsages(this.$stateParams.id, this.pageQuery)
+      .then( () => {
+        this.singleCardUsages = this.cardUsageService.singleCardUsages;
       });
   }
 

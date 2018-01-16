@@ -13,15 +13,25 @@ export default class UsersService {
 
     this.user = {};
     this.users = [];
+    this.userTypes = [];
+
+    // Initialize pagination metadata
+    this.total = 1;
+    this.page = 1;
+    this.pageSize = 10;
   }
 
   /**
    * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
    */
-  getUsers() {
-    return this.$http.get(this.baseDomain + this.resource)
+  getUsers(params = {}) {
+    return this.$http.get(this.baseDomain + this.resource, {
+      params: params
+    })
       .then((response) => {
         this.users = response.data.data[0].data;
+        this.pageSize = response.data.data[0].per_page;
+        this.total = response.data.data[0].total;
         return this.users;
       })
       .catch((error) => {
@@ -50,9 +60,6 @@ export default class UsersService {
    */
   createUser(user) {
     return this.$http.post(this.baseDomain + this.resource, user)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 
   /**
@@ -62,9 +69,6 @@ export default class UsersService {
    */
   deleteUser(user) {
     return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   }
 
   /**
@@ -74,6 +78,15 @@ export default class UsersService {
    */
   editUser(user) {
     return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
+  }
+
+  getUserTypes() {
+    return this.$http.get(this.baseDomain +'/user-types')
+      .then((response) => {
+        this.userTypes = response.data;
+        this.$log.log("Inside getUsersType() and usersType: " + this.userTypes);
+        return this.userTypes;
+      })
       .catch((error) => {
         this.$log.log(error);
       });

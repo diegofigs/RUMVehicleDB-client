@@ -12,6 +12,10 @@ export default class CardsService {
 
     this.card = {};
     this.cards = [];
+
+    // Initialize pagination metadata
+    this.pageSize = 10;
+    this.total = 1;
   }
 
   /**
@@ -24,6 +28,8 @@ export default class CardsService {
       params: params
     }).then((response) => {
         this.cards = response.data.data[0].data;
+        this.pageSize = response.data.data[0].per_page;
+        this.total = response.data.data[0].last_page;
         return this.cards;
       })
       .catch((error) => {
@@ -52,9 +58,6 @@ export default class CardsService {
    */
   createCard(card) {
     return this.$http.post(this.baseDomain + this.resource, card)
-      .catch((error) => {
-        this.$log.log(error);
-      });
   };
 
   /**

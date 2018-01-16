@@ -20,6 +20,7 @@ export default class CardUsageService {
     // Initialize pagination metadata
     this.pageSize = 10;
     this.total = 1;
+    this.page =1;
   }
 
   /**
@@ -46,13 +47,17 @@ export default class CardUsageService {
    * Requests card usages for a single card
    * @param cardID Card ID
    */
-  getSingleCardUsages(cardID) {
+  getSingleCardUsages(cardID, params) {
+    //Empty array of single card usages
+    this.singleCardUsages = [];
     return this.$http.get(this.baseDomain + this.resource + '/card/' + cardID, {
-    }).then((response) => {
+      params: params
+    })
+      .then((response) => {
       this.$log.log(response);
       this.singleCardUsages = response.data.data[0].data;
       this.pageSize = response.data.data[0].per_page;
-      this.total = response.data.data[0].last_page;
+      this.total = response.data.data[0].total;
       return this.singleCardUsages;
     })
       .catch((error) => {

@@ -16,6 +16,7 @@ const cardUsageModule = angular.module('app.cards.card-usage', [])
         resolve: {
           singleCardUsages: ($stateParams,CardUsageService) =>
           CardUsageService.getSingleCardUsages($stateParams.id),
+          card: ($stateParams, CardsService) => CardsService.getCard($stateParams.id),
         },
       })
       .state('dashboard.cards.view.add-usage', {

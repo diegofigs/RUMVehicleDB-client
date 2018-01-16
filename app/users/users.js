@@ -31,6 +31,8 @@ const usersModule = angular.module('app.users', [])
         resolve: {
           departments: (DepartmentsService) =>
             DepartmentsService.getDepartments(),
+          userTypes: (UsersService) =>
+            UsersService.getUserTypes()
         }
       })
       .state('dashboard.users.edit', {
