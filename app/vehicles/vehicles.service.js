@@ -22,7 +22,7 @@ export default class VehiclesService {
    * @param params Filtering parameters for vehicles
    */
   getVehicles(params = {}) {
-    return this.$http.get(this.resource, {
+    return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
         this.vehicles = response.data.data[0].data;
