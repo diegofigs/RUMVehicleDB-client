@@ -60,11 +60,6 @@
             md-total="{{ctrl.pagination.total}}"
             md-boundary-links="ctrl.pagination.boundaryLinks"
             md-on-paginate="ctrl.getPaginatedSingleCardUsages">
-
-        <md-card-actions ng-show="ctrl.getUser().user_type_name === 'admin'" layout="row" layout-align="end center">
-            <md-button ng-hide="false" >View All</md-button>
-        </md-card-actions>
-
+        </md-table-pagination>
     </md-card-content>
-
 </div>

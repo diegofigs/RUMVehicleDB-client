@@ -29,13 +29,13 @@
                             <input  type="text"
                                     class="form-control"
                                     name="expiry"
-                                    placeholder="Exp Date in YYYY-MM-DD"
+                                    placeholder="Exp Date in YYYY-MM"
                                     ng-model="ctrl.card.expiry"
-                                    ng-pattern = "/^\d{4}-\d{2}-\d{2}$/" required>
+                                    ng-pattern = "/^\d{4}-\d{2}$/" required>
 
                             <div ng-messages="cardForm.expiry.$error" ng-if="cardForm.expiry.$touched && cardForm.expiry.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">Please use the following format: YYYY-MM-DD. For example: 2018-09-30</div>
+                                <div ng-message="pattern">Please use the following format: YYYY-MM. For example: 2020-09</div>
                             </div>
                         </md-input-container>
 
@@ -92,9 +92,6 @@
                                 name="type"
                                 ng-model="ctrl.card.type"
                                 ng-required="true">
-                                <md-option ng-repeat="type in ctrl.types" value="type">
-                                    {{type}}
-                                </md-option>
                                 <md-option value="Regular">
                                     Regular
                                 </md-option>
@@ -104,8 +101,8 @@
                                 <md-option value="Diesel">
                                     Diesel
                                 </md-option>
-                                <md-option value="SPARE">
-                                    SPARE
+                                <md-option value="Spare">
+                                    Spare
                                 </md-option>
                             </md-select>
                         </md-input-container>
