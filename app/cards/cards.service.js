@@ -4,10 +4,11 @@
  * related to credit cards
  */
 export default class CardsService {
-  constructor($http, $log) {
+  constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
-    this.resource = '/cards';
+    this.API = API;
+    this.resource = '/api/v1/cards/';
 
     this.card = {};
     this.cards = [];
@@ -19,7 +20,7 @@ export default class CardsService {
    * @param params Filtering parameters for cards
    */
   getCards(params = {}) {
-    return this.$http.get(this.resource, {
+    return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
         this.cards = response.data.data[0].data;
@@ -35,7 +36,7 @@ export default class CardsService {
    * @param id Card ID
    */
   getCard(id) {
-    return this.$http.get(this.resource + '/' + id)
+    return this.$http.get(this.API + this.resource + id)
       .then((response) => {
         this.card = response.data.data;
         return this.card;
@@ -50,7 +51,7 @@ export default class CardsService {
    * @param card Credit Card Object
    */
   createCard(card) {
-    return this.$http.post(this.resource, card)
+    return this.$http.post(this.API + this.resource, card)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -62,7 +63,7 @@ export default class CardsService {
    * @returns {Promise} Server response. If delete was not successful, catch error and log it.
    */
   deleteCard(card) {
-    return this.$http.delete(this.resource + '/' + card.id)
+    return this.$http.delete(this.API + this.resource + card.id)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -74,7 +75,7 @@ export default class CardsService {
    * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
    */
   editCard(card) {
-    return this.$http.put(this.resource + '/' + card.id, card)
+    return this.$http.put(this.API + this.resource + card.id, card)
       .catch((error) => {
         this.$log.log(error);
       });

@@ -34,7 +34,8 @@ import spanishTranslations from './languages/es.json';
 
 export const appModule = 'app';
 
-let NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const API = process.env.API;
 
 angular.module(appModule, [
   angularUiRouter,
@@ -83,6 +84,7 @@ angular.module(appModule, [
       .warnPalette('newRed');
   })
   .constant('NODE_ENV', NODE_ENV)
+  .constant('API', API)
   .run(($rootScope) => {
     $rootScope.stateIsLoading = false;
 

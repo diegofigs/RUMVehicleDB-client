@@ -9,10 +9,11 @@ export default class AuthService {
    * @param $log
    * @param $sessionStorage
    */
-  constructor($http, $log, $sessionStorage) {
+  constructor($http, $log, $sessionStorage, API) {
     this.$http = $http;
     this.$log = $log;
     this.$sessionStorage = $sessionStorage;
+    this.API = API;
 
     if(this.$sessionStorage.token){
       this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
@@ -31,7 +32,7 @@ export default class AuthService {
    * @return {Promise<Object>}
    */
   authenticate(user) {
-    return this.$http.post('api/v1/auth', user)
+    return this.$http.post(this.API + '/api/v1/auth', user)
       .then((response) => {
         this.$sessionStorage.token = response.data.token;
         this.$http.defaults.headers.common.Authorization = 'Bearer ' + this.$sessionStorage.token;
@@ -45,7 +46,7 @@ export default class AuthService {
    * @return {Promise<Object>}
    */
   currentUser() {
-    return this.$http.get('api/v1/auth/me')
+    return this.$http.get(this.API + 'api/v1/auth/me')
       .then((response) => {
         this.$sessionStorage.user = response.data.data;
         return this.$sessionStorage.user;
