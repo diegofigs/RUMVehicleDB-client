@@ -113,12 +113,12 @@
                                     class="form-control"
                                     name="userType"
                                     ng-required="true"
-                                    ng-model="ctrl.user.user_type_id">
+                                    ng-model="ctrl.user.user_type_id" required>
 
-                                    <md-option value="1">Administrator</md-option>
-                                    <md-option value="2">Vehicle Manager</md-option>
-                                    <md-option value="3">Custodian</md-option>
-                                    <md-option value="4">Auxiliary Custodian</md-option>
+                                    <md-option ng-repeat="userType in ctrl.userTypes" ng-value="userType.id">
+                                        {{userType.role_name}}
+                                    </md-option>
+
                                 </md-select>
 
                             </md-input-container>
