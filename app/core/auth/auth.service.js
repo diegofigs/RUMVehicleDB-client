@@ -46,7 +46,7 @@ export default class AuthService {
    * @return {Promise<Object>}
    */
   currentUser() {
-    return this.$http.get(this.API + 'api/v1/auth/me')
+    return this.$http.get(this.API + '/api/v1/auth/me')
       .then((response) => {
         this.$sessionStorage.user = response.data.data;
         return this.$sessionStorage.user;
