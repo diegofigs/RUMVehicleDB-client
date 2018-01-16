@@ -11,6 +11,7 @@ export default class UsersController {
 
     this.users = this.usersService.users;
     this.user = this.usersService.user;
+    this.userTypes = this.usersService.userTypes;
     this.newUser = {};
     this.departments = DepartmentsService.departments;
 

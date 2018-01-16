@@ -11,20 +11,20 @@
                 <div layout="row" class="mdl-cell" flex ="100 nogrow">
                     <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
-                <md-input-container>
-                        <input  type="text"
-                                class="form-control"
-                                name="fullName"
-                                placeholder="Full Name"
-                                ng-trim="false"
-                                ng-model="ctrl.newUser.name"
-                                ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                    <md-input-container>
+                            <input  type="text"
+                                    class="form-control"
+                                    name="fullName"
+                                    placeholder="Full Name"
+                                    ng-trim="false"
+                                    ng-model="ctrl.newUser.name"
+                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
 
-                    <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$touched && userForm.fullName.$invalid">
-                        <div ng-message="required">This field is required!</div>
-                        <div ng-message="pattern">This entry can only contain characters.</div>
-                    </div>
-                    </md-input-container>
+                        <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$touched && userForm.fullName.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">This entry can only contain characters.</div>
+                        </div>
+                        </md-input-container>
 
                     <md-input-container>
                         <input  type="email"
@@ -37,7 +37,6 @@
                             <div ng-message="required">This field is required!</div>
                             <div ng-message="pattern">Please enter a valid email.</div>
                         </div>
-
                     </md-input-container>
 
                     <md-input-container>
@@ -60,11 +59,8 @@
                                 name="position"
                                 placeholder="Position"
                                 ng-model="ctrl.newUser.position">
-
                     </md-input-container>
-
                     </div>
-
 
                     <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
 
@@ -114,19 +110,15 @@
                         <md-select
                             class="form-control"
                             name="userType"
-                            ng-required="true"
-                            ng-model="ctrl.newUser.user_type_id">
+                            ng-model="ctrl.newUser.user_type_id" required>
 
-                        <md-option value="1">Administrator</md-option>
-                        <md-option value="2">Vehicle Manager</md-option>
-                        <md-option value="3">Custodian</md-option>
-                        <md-option value="4">Auxiliary Custodian</md-option>
+                            <md-option ng-repeat="userType in ctrl.userTypes" ng-value="userType.id">
+                                {{userType.role_name}}
+                            </md-option>
+
                         </md-select>
-
                     </md-input-container>
-
                 </div>
-
                 </div>
 
                 <div style="text-align: center;">

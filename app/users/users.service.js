@@ -13,6 +13,7 @@ export default class UsersService {
 
     this.user = {};
     this.users = [];
+    this.userTypes = [];
 
     // Initialize pagination metadata
     this.total = 1;
@@ -77,5 +78,17 @@ export default class UsersService {
    */
   editUser(user) {
     return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
+  }
+
+  getUserTypes() {
+    return this.$http.get(this.baseDomain +'/user-types')
+      .then((response) => {
+        this.userTypes = response.data;
+        this.$log.log("Inside getUsersType() and usersType: " + this.userTypes);
+        return this.userTypes;
+      })
+      .catch((error) => {
+        this.$log.log(error);
+      });
   }
 }
