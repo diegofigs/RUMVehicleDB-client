@@ -5,11 +5,11 @@
  */
 
 export default class DepartmentsService {
-  constructor($http, $log) {
+  constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/departments';
+    this.API = API;
+    this.resource = '/api/v1/departments';
     this.departments = [];
   }
 
@@ -17,7 +17,7 @@ export default class DepartmentsService {
    * Requests the backend for a list of all departments
    */
   getDepartments() {
-    return this.$http.get(this.baseDomain + this.resource)
+    return this.$http.get(this.API + this.resource)
       .then((response) => {
         this.departments = response.data;
         return this.departments;

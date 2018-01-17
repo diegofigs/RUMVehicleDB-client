@@ -5,11 +5,11 @@
  */
 
 export default class UsersService {
-  constructor($http, $log) {
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/custodians';
+  constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
+    this.API = API;
+    this.resource = '/api/v1/custodians/';
 
     this.user = {};
     this.users = [];
@@ -26,11 +26,9 @@ export default class UsersService {
    * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
    */
   getUsers(params = {}) {
-
-    return this.$http.get(this.baseDomain + this.resource, {
+    return this.$http.get(this.API + this.resource, {
       params: params
-    })
-      .then((response) => {
+    }).then((response) => {
         this.users = response.data.data[0].data;
         this.pageSize = response.data.data[0].per_page;
         this.total = response.data.data[0].total;
@@ -46,7 +44,7 @@ export default class UsersService {
    * @param id User ID
    */
   getUser(id) {
-    return this.$http.get(this.baseDomain + this.resource + '/' + id)
+    return this.$http.get(this.API + this.resource + id)
       .then((response) => {
         this.user = response.data.data;
         return this.user;
@@ -61,34 +59,33 @@ export default class UsersService {
    * @param user User to be created
    */
   createUser(user) {
-    return this.$http.post(this.baseDomain + this.resource, user)
+    return this.$http.post(this.API + this.resource, user);
   }
 
-  // /**
-  //  * Requests the backend to delete a user
-  //  * @param user user to be deleted
-  //  * @returns {*} Server response
-  //  */
-  // deleteUser(user) {
-  //   return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
-  // }
-
+  /**
+   * Requests the backend to delete a user
+   * @param user user to be deleted
+   * @returns {*} Server response
+   */
   deleteUser(user) {
     user.user_type_id = 4;  //4 is for Inactive
-    return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
+    return this.$http.put(this.API + this.resource + user.id, user);
   }
 
   /**
    * Requests the backend to modify an existing user
    * @param user User to be modified
-   * @returns {FinishedRequest<T>} Server response
+   * @returns {Promise<Object>} Server response
    */
   editUser(user) {
-    return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
+    return this.$http.put(this.API + this.resource + user.id, user)
+      .catch((error) => {
+        this.$log.log(error);
+      });
   }
 
   getUserTypes() {
-    return this.$http.get(this.baseDomain +'/user-types')
+    return this.$http.get(this.API +'/api/v1/user-types')
       .then((response) => {
         this.userTypes = response.data;
         return this.userTypes;
@@ -98,17 +95,14 @@ export default class UsersService {
       });
   }
 
-  getNonPaginatedUsers(){
-
-    return this.$http.get(this.baseDomain +'/custodians-list')
+  getNonPaginatedUsers() {
+    return this.$http.get(this.API + '/api/v1/custodians-list')
       .then((response) => {
         this.nonPaginatedUsers = response.data;
-        this.$log.log("Inside getNonPaginatedUsers() and nonPaginatedUsers are  =  " + this.nonPaginatedUsers);
         return this.nonPaginatedUsers;
       })
       .catch((error) => {
         this.$log.log(error);
       });
-
   }
 }

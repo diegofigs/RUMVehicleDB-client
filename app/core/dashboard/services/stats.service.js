@@ -9,12 +9,12 @@ export default class StatsService {
    * @param $http
    * @param $log
    */
-  constructor($http, $log) {
+  constructor($http, $log, API) {
     // angular injected service
     this.$http = $http;
     this.$log = $log;
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/dashboard/stats';
+    this.API = API;
+    this.resource = '/api/v1/dashboard/stats';
 
     this.registered_users = 0;
     this.registered_vehicles = 0;
@@ -28,7 +28,7 @@ export default class StatsService {
    * @return {Promise<Object>}
    */
   getDashboardStats() {
-    return this.$http.get(this.baseDomain + this.resource)
+    return this.$http.get(this.API + this.resource)
       .then((response) => {
         this.registered_users = response.data.stats.registered_users;
         this.registered_vehicles = response.data.stats.registered_vehicles;
