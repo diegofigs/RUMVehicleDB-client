@@ -167,6 +167,9 @@ export default class CardsController {
     return this.authService.getUser();
   }
 
+  /**
+   * Reloads view in order to reset/clear filter parameters
+   */
   reload(){
     this.$state.reload();
   }

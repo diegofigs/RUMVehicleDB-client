@@ -21,11 +21,6 @@
 
     <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
 
-        <!-- User Type IDs: Administrator = 1, Card Custodian = 2, Card Custodian (Auxiliary) = 3, Vehicle Manager = 4
-
-        - Administrator and Vehicle Manager can filter cards by: department, custodian, type, and status
-        - Custodians can filter cards by: type, and status -->
-
         <md-card ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex layout="column" layout-padding>
             <div flex layout="row">
                 <label flex layout-align-gt-sm="start">
