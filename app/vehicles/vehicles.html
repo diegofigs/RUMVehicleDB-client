@@ -9,7 +9,14 @@
 <div ng-show="!stateIsLoading">
 
     <div layout class="layout bg-primary bottom-shadow">
-        <h1 class="white" flex="50" flex-offset="10">Vehicles</h1>
+        <h1 class="white" flex="65" flex-offset="10">Vehicles</h1>
+
+        <div flex="15" layout="row" layout-align="end center">
+            <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex ui-sref="dashboard.vehicles.add()" class="md-raised">
+                <md-icon flex md-svg-src="images/ic_add_black_24px.svg"></md-icon>
+                Add Vehicle
+            </md-button>
+        </div>
     </div>
 
     <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
@@ -40,12 +47,7 @@
                             <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container flex flex-gt-sm="33" ng-hide="ctrl.getUser().user_type_name === 'custodian'">
-                        <label>Custodian</label>
-                        <md-select ng-model="ctrl.filter.custodian_id">
-                            <md-option value="{{user.id}}" ng-repeat="user in ctrl.users">{{user.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
+
                     <md-input-container flex flex-gt-sm="33">
                         <label>Vehicle Type</label>
                         <md-select ng-model="ctrl.filter.type_id">
@@ -53,20 +55,28 @@
                         </md-select>
                     </md-input-container>
 
+                    <md-input-container flex flex-gt-sm="33">
+                        <label>Status</label>
+                        <md-select ng-model="ctrl.filter.was_archived">
+                            <md-option value=0>Active</md-option>
+                            <md-option value=1>Inactive</md-option>
+
+                        </md-select>
+                    </md-input-container>
+
                     <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
 
                 </div>
             </md-card>
-
-
-
+    <md-card layout-margin>
         <div class="card-group" layout="row"  layout-wrap>
             <md-card ng-repeat="v in ctrl.vehicles" flex-md="50 none" flex-gt-md="33 nogrow">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{v.make}} {{v.model}} {{v.licence_plate}}</span>
+                        <span class="md-headline">{{v.make}} {{v.model}}</span>
                         <span class="md-subhead">Department: {{ v.vehicle_department_name }}</span>
-                        <span class="md-subhead">Custodian: {{ v.vehicle_custodian_name }}</span>
+                        <span class="md-subhead">Color: {{ v.color }}</span>
+
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
@@ -76,18 +86,18 @@
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="start start">
                     <md-button ui-sref="dashboard.vehicles.view({id: v.id})">View Vehicle</md-button>
-                    <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
-                    <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
+                    <md-button ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
+                    <md-button ng-hide="v.was_archived === '1'" ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
                 </md-card-actions>
             </md-card>
          </div>
+        <cl-paging
+                   cl-pages="ctrl.pagination.total"
+                   cl-steps="5"
+                   cl-page-changed="ctrl.applyVehicleFilter()"
+                   cl-current-page="ctrl.filter.page"
+                   cl-align="center stretch">
+        </cl-paging>
+    </md-card>
     </div>
-
-    <div ng-hide="ctrl.getUser().user_type_name === 'custodian'">
-        <nav mfb-menu position="br" effect="slidein-spring" label="Add Vehicle"
-             active-icon="mdi mdi-plus" resting-icon="mdi mdi-plus"
-             toggling-method="click" ui-sref="dashboard.vehicles.add()">
-        </nav>
-    </div>
-
 </div>

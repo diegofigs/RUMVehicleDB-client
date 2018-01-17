@@ -18,17 +18,43 @@ export default class VehiclesController {
     this.vehicles = this.vehiclesService.vehicles;
     this.vehicle = this.vehiclesService.vehicle;
     this.departments = this.departmentsService.departments;
-    //Get all custodians for card filtering purposes.
     this.users = this.usersService.users;
     this.vehicleTypes = this.vehiclesService.vehicleTypes;
     this.newVehicle = {};
     this.swal = swal;
+
+    this.date = new Date();
+
+    this.maxVehicleYearAllowed = new Date(
+      this.date.getFullYear() + 1,
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+
+    this.maxMarbeteDate = new Date(
+      this.date.getFullYear() + 1,
+      this.date.getMonth() + 1,
+      this.date.getDate()
+    );
+
+    this.today = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate()
+    );
 
     // Filter object will contain filter parameters for filtering vehicles
     this.filter = {
       department_id: '',
       custodian_id: '',
       type_id: '',
+      page: 1,
+      was_archived: 0
+    };
+
+    this.pagination = {
+      pageSize: this.vehiclesService.pageSize,
+      total: this.vehiclesService.total,
     };
   }
 
@@ -38,6 +64,14 @@ export default class VehiclesController {
    */
   confirmVehicleCreation(){
 
+    if(parseInt(this.newVehicle.year) > parseInt(this.maxVehicleYearAllowed.getFullYear())){
+      this.swal({
+        title: 'Error',
+        text: ' Vehicle year can\'t be greater than '+this.maxVehicleYearAllowed.getFullYear()+" and the year entered was "+this.newVehicle.year+"." ,
+        type: 'error'
+      });
+      return;
+    }
     this.createVehicle()
       .then(() => {
         this.swal({
@@ -58,12 +92,26 @@ export default class VehiclesController {
    * Formats input dates as YYYY-MM-DD
    */
   createVehicle() {
+
+    this.newVehicle.was_archived = 0;
     this.newVehicle.custodian_id = this.authService.getUser().id;
 
-    this.newVehicle.marbete_date = moment(this.newVehicle.marbete_date).format('YYYY-MM-DD');
-    this.newVehicle.decomission_date = moment(this.newVehicle.decomission_date).format('YYYY-MM-DD');
-    this.newVehicle.inscription_date = moment(this.newVehicle.inscription_date).format('YYYY-MM-DD');
-    this.newVehicle.inspection_date = moment(this.newVehicle.inspection_date).format('YYYY-MM-DD');
+    //If user actually selected a date, then format it
+    if(this.newVehicle.marbete_date) {
+      this.newVehicle.marbete_date = moment(this.newVehicle.marbete_date).format('YYYY-MM-DD');
+    }
+
+    if(this.newVehicle.inspection_date){
+      this.newVehicle.inspection_date = moment(this.newVehicle.inspection_date).format('YYYY-MM-DD');
+    }
+
+    if(this.newVehicle.decomission_date){
+      this.newVehicle.decomission_date = moment(this.newVehicle.decomission_date).format('YYYY-MM-DD');
+    }
+
+    if(this.newVehicle.inscription_date){
+      this.newVehicle.inscription_date = moment(this.newVehicle.inscription_date).format('YYYY-MM-DD');
+    }
 
     return this.vehiclesService.createVehicle(this.newVehicle)
       .then(() => {
@@ -143,10 +191,24 @@ export default class VehiclesController {
    */
   editVehicle() {
 
-    this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format('YYYY-MM-DD');
-    this.vehicle.decomission_date = moment(this.vehicle.decomission_date).format('YYYY-MM-DD');
-    this.vehicle.inscription_date = moment(this.vehicle.inscription_date).format('YYYY-MM-DD');
-    this.vehicle.inspection_date = moment(this.vehicle.inspection_date).format('YYYY-MM-DD');
+    this.newVehicle.was_archived = 0;
+
+    //If user actually selected a date, then format it
+    if(this.vehicle.marbete_date) {
+      this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format('YYYY-MM-DD');
+    }
+
+    if(this.vehicle.inspection_date){
+      this.vehicle.inspection_date = moment(this.vehicle.inspection_date).format('YYYY-MM-DD');
+    }
+
+    if(this.vehicle.decomission_date){
+      this.vehicle.decomission_date = moment(this.vehicle.decomission_date).format('YYYY-MM-DD');
+    }
+
+    if(this.vehicle.inscription_date){
+      this.vehicle.inscription_date = moment(this.vehicle.inscription_date).format('YYYY-MM-DD');
+    }
 
     return this.vehiclesService.editVehicle(this.vehicle)
       .then(() => {
@@ -168,6 +230,8 @@ export default class VehiclesController {
   applyVehicleFilter() {
     return this.vehiclesService.getVehicles(this.filter)
       .then(() => {
+        this.pagination.pageSize = this.vehiclesService.pageSize;
+        this.pagination.total = this.vehiclesService.total;
         this.vehicles = this.vehiclesService.vehicles;
       });
   }
