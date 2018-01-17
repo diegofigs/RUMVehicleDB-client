@@ -24,6 +24,7 @@ export default class CardsService {
    * @param params Filtering parameters for cards
    */
   getCards(params = {}) {
+
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
     }).then((response) => {
@@ -65,8 +66,16 @@ export default class CardsService {
    * @param card Credit Card Object
    * @returns {Promise} Server response. If delete was not successful, catch error and log it.
    */
+  // deleteCard(card) {
+  //   return this.$http.delete(this.baseDomain + this.resource + '/' + card.id)
+  //     .catch((error) => {
+  //       this.$log.log(error);
+  //     });
+  // };
+
   deleteCard(card) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + card.id)
+    card.status = 'Inactive';
+    return this.$http.put(this.baseDomain + this.resource + '/' + card.id,card)
       .catch((error) => {
         this.$log.log(error);
       });

@@ -110,8 +110,7 @@
                             <label>Status</label>
                             <md-select
                                 class="form-control"
-                                ng-model="ctrl.newCard.status"
-                                ng-required="true">
+                                ng-model="ctrl.newCard.status" required>
                             <md-option ng-repeat="status in ctrl.status_types" value="status">
                                     {{status}}
                                 </md-option>
@@ -127,9 +126,8 @@
                         <md-input-container flex>
                             <label>Custodian</label>
                             <md-select
-                                ng-model="ctrl.newCard.custodian_id"
-                                ng-required="true">
-                            <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
+                                ng-model="ctrl.newCard.custodian_id" required>
+                            <md-option value="{{user.id}}" ng-repeat="user in ctrl.nonPaginatedUsers">{{user.name}}</md-option>
                             </md-select>
                         </md-input-container>
                     </div>

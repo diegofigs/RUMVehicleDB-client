@@ -26,10 +26,22 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         template: cardsTemplate,
         controller: 'CardsCtrl as ctrl',
         resolve: {
-          cards: (CardsService) => CardsService.getCards(),
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
           users: (UsersService) => UsersService.getUsers(),
+
+          //TODO: Fix this
+          // users: ($q, CardsService, UsersService) => {
+          //   let deferred = $q.defer();
+          //   if(UsersService.getUser().user_type_name === 'admin')
+          //     deferred.resolve();
+          //   else {
+          //     deferred.reject();
+          //   }
+          //   return deferred.promise;
+          // }
         },
+        cards: (CardsService) =>
+          CardsService.getCards({status: 'Active'}),
       })
       .state('dashboard.cards.add', {
         url: '/add',
@@ -38,6 +50,8 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         resolve: {
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
           users: (UsersService) => UsersService.getUsers(),
+          nonPaginatedUsers: (UsersService) =>
+            UsersService.getNonPaginatedUsers(),
         },
       })
       .state('dashboard.cards.view', {
@@ -56,7 +70,9 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         resolve: {
           card: ($stateParams, CardsService) => CardsService.getCard($stateParams.id),
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
-          users: (UsersService) => UsersService.getUsers()
+          users: (UsersService) => UsersService.getUsers(),
+          nonPaginatedUsers: (UsersService) =>
+            UsersService.getNonPaginatedUsers(),
         },
       });
   })

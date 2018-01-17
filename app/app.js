@@ -33,6 +33,7 @@ import vehiclesModule from './vehicles/vehicles';
 import usersModule from './users/users';
 import cardUsageModule from './cards/card-usage/card-usage';
 import recordsModule from './records/records';
+import 'moment';
 
 export const appModule = 'app';
 
@@ -83,7 +84,17 @@ angular.module(appModule, [
     $mdThemingProvider.theme('default')
       .primaryPalette('newGreen')
       .warnPalette('newRed');
-  }).run(['$rootScope', '$state',function($rootScope){
+  })
+  .config(($mdDateLocaleProvider) => {
+
+     $mdDateLocaleProvider.parseDate = function(dateString) {
+      let m = moment.utc(dateString);
+      m.add(100, 'h');
+      return m.isValid() ? m.toISOString() : new Date(NaN);
+    };
+
+  })
+  .run(['$rootScope', '$state',function($rootScope){
 
     $rootScope.stateIsLoading = false;
 

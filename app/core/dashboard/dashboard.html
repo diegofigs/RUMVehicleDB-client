@@ -58,7 +58,7 @@
             </div>
             <div class="dashboard-menu">
                 <ul class="menu-list">
-                    <li ui-sref-active="active">
+                    <li ng-hide="ctrl.getUser().user_type_name === 'vehicle_admin'" ui-sref-active="active">
                         <md-button ui-sref="dashboard.home">
                             <i class="mdi mdi-home"></i>
                             <span class="text">{{ 'dashboard' | translate }}</span>
@@ -83,7 +83,7 @@
                             <span class="text">{{ 'records' | translate }}</span>
                         </md-button>
                     </li>
-                    <li ui-sref-active="active">
+                    <li ng-show="ctrl.getUser().user_type_name === 'admin' || ctrl.getUser().user_type_name === 'vehicle_admin'" ui-sref-active="active">
                         <md-button ui-sref="dashboard.vehicles.list">
                             <i class="mdi mdi-car"></i>
                             <span class="text">{{ 'vehicles' | translate }}</span>

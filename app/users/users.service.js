@@ -13,6 +13,7 @@ export default class UsersService {
 
     this.user = {};
     this.users = [];
+    this.nonPaginatedUsers = [];
     this.userTypes = [];
 
     // Initialize pagination metadata
@@ -25,6 +26,7 @@ export default class UsersService {
    * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
    */
   getUsers(params = {}) {
+
     return this.$http.get(this.baseDomain + this.resource, {
       params: params
     })
@@ -62,13 +64,18 @@ export default class UsersService {
     return this.$http.post(this.baseDomain + this.resource, user)
   }
 
-  /**
-   * Requests the backend to delete a user
-   * @param user user to be deleted
-   * @returns {*} Server response
-   */
+  // /**
+  //  * Requests the backend to delete a user
+  //  * @param user user to be deleted
+  //  * @returns {*} Server response
+  //  */
+  // deleteUser(user) {
+  //   return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
+  // }
+
   deleteUser(user) {
-    return this.$http.delete(this.baseDomain + this.resource + '/' + user.id)
+    user.user_type_id = 4;  //4 is for Inactive
+    return this.$http.put(this.baseDomain + this.resource + '/' + user.id, user)
   }
 
   /**
@@ -84,11 +91,24 @@ export default class UsersService {
     return this.$http.get(this.baseDomain +'/user-types')
       .then((response) => {
         this.userTypes = response.data;
-        this.$log.log("Inside getUsersType() and usersType: " + this.userTypes);
         return this.userTypes;
       })
       .catch((error) => {
         this.$log.log(error);
       });
+  }
+
+  getNonPaginatedUsers(){
+
+    return this.$http.get(this.baseDomain +'/custodians-list')
+      .then((response) => {
+        this.nonPaginatedUsers = response.data;
+        this.$log.log("Inside getNonPaginatedUsers() and nonPaginatedUsers are  =  " + this.nonPaginatedUsers);
+        return this.nonPaginatedUsers;
+      })
+      .catch((error) => {
+        this.$log.log(error);
+      });
+
   }
 }
