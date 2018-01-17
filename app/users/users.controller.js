@@ -18,7 +18,7 @@ export default class UsersController {
     this.swal = swal;
 
     this.filter = {
-      department: '',
+      department_id: '',
       user_type_id: '',
     };
 
@@ -153,5 +153,24 @@ export default class UsersController {
       .then( () => {
         this.users = this.usersService.users;
       });
+  }
+
+  /**
+   * Requests Users Service a list of users with filter parameters applied
+   */
+  applyUsersFilter() {
+    return this.usersService.getUsers(this.filter)
+      .then( () => {
+        this.pagination.limit = this.usersService.pageSize;
+        this.pagination.total = this.usersService.total;
+        this.users = this.usersService.users;
+      });
+  }
+
+  /**
+   * Reloads view in order to reset/clear filter parameters
+   */
+  reload(){
+    this.$state.reload();
   }
 }

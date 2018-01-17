@@ -18,7 +18,39 @@
     </div>
 </div>
 
-    <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
+
+        <md-card flex layout="column" layout-padding>
+            <div flex layout="row">
+                <label flex layout-align-gt-sm="start">
+                    <span>
+                        <md-icon>
+                        <i class="filter-icon mdi mdi-filter-outline"></i>
+                        </md-icon>Filter by:
+                    </span>
+                </label>
+                <span layout-padding layout-align-gt-sm="end">
+                    <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear all</a>
+                </span>
+            </div>
+            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-between center">
+                <md-input-container flex flex-gt-sm="33">
+                    <label>Department</label>
+                    <md-select ng-model="ctrl.filter.department_id">
+                        <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex flex-gt-sm="33">
+                    <label>Role</label>
+                    <md-select ng-model="ctrl.filter.user_type_id">
+                        <md-option value="{{userType.id}}" ng-repeat="userType in ctrl.userTypes" >{{userType.role_name}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-button flex="initial" ng-click="ctrl.applyUsersFilter()" class="md-raised md-primary">Filter</md-button>
+
+            </div>
+        </md-card>
         <md-card flex>
             <md-table-container>
                 <table md-table>
@@ -44,7 +76,8 @@
                                     <i ui-sref="dashboard.users.edit({id: user.id})" class="clickable mdi mdi-account-edit"></i>
                                 </md-icon>
                             </td>
-                            <td md-cell>
+                            <!-- Hide delete icon if user is already inactive/deleted -->
+                            <td md-cell ng-hide="user.user_type_id === '4'">
                                 <md-icon>
                                     <i ng-click="ctrl.confirmUserDeletion(user)" class="clickable mdi mdi-delete"></i>
                                 </md-icon>

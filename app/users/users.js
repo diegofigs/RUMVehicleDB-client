@@ -23,6 +23,10 @@ const usersModule = angular.module('app.users', [])
             let isActive = {is_active: 1};
             return UsersService.getUsers(isActive);
           },
+          departments: (DepartmentsService) =>
+            DepartmentsService.getDepartments(),
+          userTypes: (UsersService) =>
+            UsersService.getUserTypes(),
         }
       })
       .state('dashboard.users.add', {
