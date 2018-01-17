@@ -8,7 +8,14 @@
 <!-- Show if data is already resolved -->
 <div ng-show="!stateIsLoading">
 <div layout class="layout bg-primary bottom-shadow">
-    <h1 class="white" flex="50" flex-offset="10">Users</h1>
+    <h1 class="white"  flex="65" flex-offset="10">Users</h1>
+
+    <div flex="15" layout="row" layout-align="end center">
+        <md-button flex ui-sref="dashboard.users.add()" class="md-raised">
+            <md-icon>add</md-icon>
+            Add User
+        </md-button>
+    </div>
 </div>
 
     <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="row">
@@ -54,10 +61,6 @@
                 md-boundary-links="ctrl.pagination.boundaryLinks"
                 md-on-paginate="ctrl.getPaginatedUsers">
             </md-table-pagination>
-
-            <div style="text-align: center;">
-                <md-button class="md-raised md-primary" ui-sref="dashboard.users.add()"> Add User </md-button>
-            </div>
 
         </md-card>
     </div>

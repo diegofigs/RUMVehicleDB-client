@@ -58,8 +58,13 @@
                                 class="form-control"
                                 name="position"
                                 placeholder="Position"
-                                ng-model="ctrl.newUser.position">
+                                ng-model="ctrl.newUser.position" required>
+
+                        <div ng-messages="userForm.position.$error" ng-if="userForm.position.$touched && userForm.position.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
+
                     </div>
 
                     <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
@@ -67,13 +72,15 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                name="contactNumber"
-                                placeholder="Contact Number"
-                                ng-pattern="/^(\d)+$/"
+                                name="extension"
+                                maxlength="4"
+                                minlength="4"
+                                placeholder="Phone Extension"
+                                ng-pattern="/^\d{4}$/"
                                 ng-model="ctrl.newUser.contact_number">
 
-                        <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$touched && userForm.contactNumber.$invalid">
-                            <div ng-message="pattern">This entry can only contain numbers</div>
+                        <div ng-messages="userForm.extension.$error" ng-if="userForm.extension.$touched && userForm.extension.$invalid">
+                            <div ng-message="pattern">This field should contain exactly 4 digits</div>
                         </div>
 
                     </md-input-container>
