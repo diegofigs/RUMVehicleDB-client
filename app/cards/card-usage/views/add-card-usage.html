@@ -12,13 +12,13 @@
 
                     <md-input-container>
                         <label>Transaction Date</label>
+                        <md-datepicker
+                            ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
+                            ng-change="ctrl.onDateChange()"
+                            ng-model="ctrl.temp_date"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
                     </md-input-container>
-                    <md-datepicker
-                        ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
-                        ng-change="ctrl.onDateChange()"
-                        ng-model="ctrl.temp_date"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
 
                 </div>
 
