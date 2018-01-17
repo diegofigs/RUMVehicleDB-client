@@ -26,17 +26,39 @@ export default class AuthController {
    */
   login() {
     return this.authService.authenticate(this.user)
-      .then(() => {
+      .then((user) => {
         this.user = {};
-        this.$state.go('dashboard.home');
+        if(user.user_type_name === 'vehicle_admin'){
+          this.$state.go('dashboard.vehicles.list');
+        }
+        else{
+          this.$state.go('dashboard.home');
+        }
       })
       .catch((error) => {
         this.$log.log(error);
-        this.swal({
-          title: 'Error',
-          text: 'Invalid credentials. Please, enter a valid email and password.',
-          type: 'error',
-        });
+
+        if(error.data === null){
+          this.swal({
+            title: 'Error',
+            text: 'Something went wrong! Please try again later.',
+            type: 'error',
+          });
+        }
+        else if(error.data !== null && error.data.error === 'invalid_credentials'){
+          this.swal({
+            title: 'Error',
+            text: 'Invalid credentials. Please, enter a valid email and password.',
+            type: 'error',
+          });
+        }
+        else {
+          this.swal({
+            title: 'Error',
+            text: 'Something went wrong! Please try again later.',
+            type: 'error',
+          });
+        }
       });
   }
 
@@ -44,8 +66,8 @@ export default class AuthController {
     this.swal({
       title: 'Forgot Password?',
       type: 'info',
-      text: 'Please contact RUM Vehicle\'s administrator, Jeannette Muñiz Vargas at (787) 832-4040 Ext. XXX in order to ' +
-      'reset your password. '
+      text: 'Please contact RUM Vehicle\'s administrator at (787) 832-4040 ext. 2020/2024 in order to ' +
+      'reset your password. Location: José De Diego\'s Building, Office 205.'
     });
 
   }

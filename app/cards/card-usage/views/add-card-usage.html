@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body forms">
 
-        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.confirmUsageForm()" novalidate> 
+        <form name="cardUsageForm" class="form-horizontal" ng-submit="ctrl.confirmUsageForm()" novalidate>
             <h4>Please enter usage details</h4>
             <div layout="column" layout-sm="column" layout-xs="column" class="mdl-grid">
 
@@ -12,13 +12,13 @@
 
                     <md-input-container>
                         <label>Transaction Date</label>
+                        <md-datepicker
+                            ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
+                            ng-change="ctrl.onDateChange()"
+                            ng-model="ctrl.temp_date"
+                            md-placeholder="mm/dd/yyyy">
+                        </md-datepicker>
                     </md-input-container>
-                    <md-datepicker
-                        ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
-                        ng-change="ctrl.onDateChange()"
-                        ng-model="ctrl.temp_date"
-                        md-placeholder="mm/dd/yyyy">
-                    </md-datepicker>
 
                 </div>
 
@@ -41,7 +41,7 @@
                                     ng-model="ctrl.newCardUsage.vehicle_mileage"
                                     ng-pattern="/^(\d)+$/"
                                     required>
-                            <div ng-messages="cardUsageForm.vehicle_mileage.$error" ng-if="cardUsageForm.vehicle_mileage.$dirty">
+                            <div ng-messages="cardUsageForm.vehicle_mileage.$error" ng-if="cardUsageForm.vehicle_mileage.$touched && cardUsageForm.vehicle_mileage.$invalid ">
                                 <div ng-message="required">This field is required!</div>
                                 <div ng-message="pattern">This entry can only contain numbers</div>
                             </div>
@@ -54,11 +54,11 @@
                                     name="total_liters"
                                     placeholder="Total of liters"
                                     ng-model="ctrl.newCardUsage.total_liters"
-                                    ng-pattern="/^(\d)+$/"
+                                    ng-pattern="/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{1,4})?$/"
                                     required>
-                            <div ng-messages="cardUsageForm.total_liters.$error" ng-if="cardUsageForm.total_liters.$dirty">
+                            <div ng-messages="cardUsageForm.total_liters.$error" ng-if="cardUsageForm.total_liters.$touched && cardUsageForm.total_liters.$invalid ">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">This entry can only contain numbers</div>
+                                <div ng-message="pattern">This entry can only contain numbers and decimal point. For example: 123.45</div>
                             </div>
                         </md-input-container>
 
@@ -92,11 +92,11 @@
                                     name="total_receipt"
                                     placeholder="Receipt Total"
                                     ng-model="ctrl.newCardUsage.total_receipt"
-                                    ng-pattern="/^\d+(\.\d+)?$/"
+                                    ng-pattern="/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/"
                                     required>
-                            <div ng-messages="cardUsageForm.total_receipt.$error" ng-if="cardUsageForm.total_receipt.$dirty">
+                            <div ng-messages="cardUsageForm.total_receipt.$error" ng-if="cardUsageForm.total_receipt.$touched && cardUsageForm.total_receipt.$invalid">
                                 <div ng-message="required">This field is required!</div>
-                                <div ng-message="pattern">This entry can only contain numbers and decimal point</div>
+                                <div ng-message="pattern">This entry can only contain numbers and decimal point. For example: 23.12</div>
                             </div>
                         </md-input-container>
 
@@ -108,7 +108,7 @@
                                     ng-model="ctrl.newCardUsage.receipt_number"
                                     ng-pattern="/^(\d)+$/"
                                     required>
-                            <div ng-messages="cardUsageForm.receipt_number.$error" ng-if="cardUsageForm.receipt_number.$dirty">
+                            <div ng-messages="cardUsageForm.receipt_number.$error" ng-if="cardUsageForm.receipt_number.$touched && cardUsageForm.receipt_number.$invalid ">
                                 <div ng-message="required">This field is required!</div>
                                 <div ng-message="pattern">This entry can only contain numbers</div>
                             </div>
@@ -131,7 +131,7 @@
                                 </li>
                             </ul>
                         </md-input-container>
-                  </div>   
+                  </div>
                 </div>
             </div>
             <div style="text-align: center;">

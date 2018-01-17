@@ -7,6 +7,8 @@ import homeController from './home/home.controller';
 import statsService from './services/stats.service';
 import notificationService from './services/notifications.service';
 
+import './assets/styles/app-green.scss';
+
 /** @ngInject */
 const dashboardModule = angular.module('core.dashboard', [])
   // Declare module elements

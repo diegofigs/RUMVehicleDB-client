@@ -5,7 +5,7 @@
             <div class="panel-header">
                 Vehicle Details
             </div>
-	        <img src="../../../public/images/vehicle.png" class="md-card-image" alt="Washed Out">
+	        <img src="../assets/vehicle.png" class="md-card-image" alt="Washed Out">
 
 	        <md-card-content>
 				<div layout="row" layout-xs="column" layout-sm="column" class="mdl-grid">
@@ -20,107 +20,120 @@
 								<p> Vehicle </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line">
+
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.vehicle_type_name}} </h3>
+                                <p> Type </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.vehicle_department_name}} </h3>
+                                <p> Department </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.marbete_date !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.marbete_date}} </h3>
+                                <p> Marbete Date </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.inspection_date !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.inspection_date}} </h3>
+                                <p> Inspection Date </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.decomission_date !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.decomission_date}} </h3>
+                                <p> Decommission Date </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.inscription_date !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.inscription_date}} </h3>
+                                <p> Inscription Date </p>
+                            </div>
+                        </md-list-item>
+
+						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.registration_id !== null && ctrl.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.color}} </h3>
-								<p> Color </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.vin || "VIN"}} </h3>
-								<p> VIN </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.type || "Type"}} </h3>
-								<p> Type </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.serial_number || "Serial Number"}} </h3>
-								<p> Serial Number </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.property_number || "Property Number"}} </h3>
-								<p> Property Number </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.registration_id || "Registration ID"}} </h3>
+								<h3> {{ctrl.vehicle.registration_id}} </h3>
 								<p> Registration ID </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
+						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.title_id !== null && ctrl.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.title_id || "Title ID"}} </h3>
+								<h3> {{ctrl.vehicle.title_id}} </h3>
 								<p> Title ID </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.purchase_price || "Purchase Price"}} </h3>
-								<p> Purchase Price </p>
-							</div>
-						</md-list-item>
+
 					</div>
 					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
-						<md-list-item class="md-2-line">
+
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.license_plate}} </h3>
+                                <p> License Plate </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.color}} </h3>
+                                <p> Color </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.property_number}} </h3>
+                                <p> Property Number </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.serial_number !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.serial_number}} </h3>
+                                <p> Serial Number </p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.vin !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.vin}} </h3>
+                                <p> VIN </p>
+                            </div>
+                        </md-list-item>
+
+						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.doors !== null && ctrl.vehicle.cylinders !== null && ctrl.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.vehicle_department_name || "Department"}} </h3>
-								<p> Department </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.marbete_date || "Marbete Date"}} </h3>
-								<p> Marbete Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.inspection_date || "Inspection Date"}} </h3>
-								<p> Inspection Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.decomission_date || "Decommission Date"}} </h3>
-								<p> Decommission Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.inscription_date || "Inscription Date"}} </h3>
-								<p> Inscription Date </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.doors || "Doors"}}/{{ctrl.vehicle.cylinders || "Cylinders"}} </h3>
+								<h3> {{ctrl.vehicle.doors}}/{{ctrl.vehicle.cylinders}} </h3>
 								<p> Doors/Cylinders </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
+
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.purchase_price !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> ${{ctrl.vehicle.purchase_price}} </h3>
+                                <p> Purchase Price </p>
+                            </div>
+                        </md-list-item>
+
+						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.ACAA !== null && ctrl.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.color || "Color"}} </h3>
-								<p> Color </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.ACAA || "ACAA"}} </h3>
+								<h3> ${{ctrl.vehicle.ACAA}} </h3>
 								<p> ACAA </p>
 							</div>
 						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.moreDetails">
+						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.insurance !== null && ctrl.moreDetails">
 							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.insurance || "Insurance"}} </h3>
+								<h3> ${{ctrl.vehicle.insurance}} </h3>
 								<p> Insurance </p>
 							</div>
 						</md-list-item>

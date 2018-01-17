@@ -5,11 +5,11 @@
 
 export default class CardUsageService {
 
-  constructor($http, $log) {
-    this.baseDomain = 'http://dev.uprm.edu/rumvehicles/api/v1';
-    this.resource = '/records';
+  constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
+    this.API = API;
+    this.resource = '/api/v1/records/';
 
     // Initialize all cards usage list
     this.cardsUsages = [];
@@ -28,7 +28,7 @@ export default class CardUsageService {
    * @param params Filtering parameters for card usages
    */
   getCardsUsages(params) {
-    return this.$http.get(this.baseDomain + this.resource, {
+    return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
         this.$log.log(response);
@@ -46,13 +46,17 @@ export default class CardUsageService {
    * Requests card usages for a single card
    * @param cardID Card ID
    */
-  getSingleCardUsages(cardID) {
-    return this.$http.get(this.baseDomain + this.resource + '/card/' + cardID, {
-    }).then((response) => {
+  getSingleCardUsages(cardID, params) {
+    //Empty array of single card usages
+    this.singleCardUsages = [];
+    return this.$http.get(this.API + this.resource + 'card/' + cardID, {
+      params: params
+    })
+      .then((response) => {
       this.$log.log(response);
       this.singleCardUsages = response.data.data[0].data;
       this.pageSize = response.data.data[0].per_page;
-      this.total = response.data.data[0].last_page;
+      this.total = response.data.data[0].total;
       return this.singleCardUsages;
     })
       .catch((error) => {
@@ -67,7 +71,7 @@ export default class CardUsageService {
    */
   deleteCardUsage(id) {
     this.$log.log('I am inside deleteCardUsage(cardUsage) in card-usage.service');
-    return this.$http.delete(this.baseDomain + this.resource + '/' + id)
+    return this.$http.delete(this.API + this.resource + id)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -80,7 +84,7 @@ export default class CardUsageService {
    */
   editCardUsage(cardUsage) {
     this.$log.log('I am inside editCardUsage() in card-usage.service');
-    return this.$http.put(this.baseDomain + this.resource + '/' + cardUsage)
+    return this.$http.put(this.API + this.resource + cardUsage)
       .catch((error) => {
         this.$log.log(error);
       });

@@ -22,13 +22,11 @@ const vehiclesModule = angular.module('app.vehicles', [])
         controller: 'VehiclesCtrl as ctrl',
         resolve: {
           vehicles: (VehiclesService) =>
-            VehiclesService.getVehicles(),
+            VehiclesService.getVehicles({was_archived: 0}),
           departments: (DepartmentsService) =>
             DepartmentsService.getDepartments(),
           users: (UsersService) =>
             UsersService.getUsers(),
-          stats: (StatsService) =>
-          StatsService.getDashboardStats(),
           vehicleTypes: (VehiclesService) =>
             VehiclesService.getVehicleTypes()
         },

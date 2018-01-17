@@ -20,8 +20,9 @@ const usersModule = angular.module('app.users', [])
         controller: 'UsersCtrl as ctrl',
         resolve: {
           users: function(UsersService) {
-            return UsersService.getUsers();
-          }
+            let isActive = {is_active: 1};
+            return UsersService.getUsers(isActive);
+          },
         }
       })
       .state('dashboard.users.add', {
@@ -31,6 +32,8 @@ const usersModule = angular.module('app.users', [])
         resolve: {
           departments: (DepartmentsService) =>
             DepartmentsService.getDepartments(),
+          userTypes: (UsersService) =>
+            UsersService.getUserTypes()
         }
       })
       .state('dashboard.users.edit', {
@@ -41,7 +44,9 @@ const usersModule = angular.module('app.users', [])
           user: ($stateParams, UsersService) =>
             UsersService.getUser($stateParams.id),
           departments: (DepartmentsService) =>
-            DepartmentsService.getDepartments()
+            DepartmentsService.getDepartments(),
+          userTypes: (UsersService) =>
+            UsersService.getUserTypes()
         },
       });
   })
