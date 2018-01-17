@@ -16,33 +16,65 @@
 <div layout="column" layout-margin layout-fill>
     <!-- Dashboard view for ADMINISTRATOR -->
     <div ng-show="ctrl.getUser().user_type_name === 'admin'" layout="row" flex="100" class="layout">
-        <div layout="column" layout-align="center start" flex="5" flex-offset="10">
-            <i flex="25" class="mdi mdi-account-multiple mdi-48px icon-block"></i>
-            <i flex="25" class="mdi mdi-credit-card mdi-48px icon-block"></i>
-            <i flex="25" class="mdi mdi-car mdi-48px icon-block"></i>
-            <i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>
-        </div>
-        <div layout="column" layout-align="center center" flex="10">
-            <h2 flex="25" class="text-light">{{ ctrl.registered_users }}</h2>
-            <h2 flex="25" class="text-light">{{ ctrl.active_credit_cards }}</h2>
-            <h2 flex="25" class="text-light">{{ ctrl.registered_vehicles }}</h2>
-            <h2 flex="25" class="text-light">{{ ctrl.total_monthly_expenses }}</h2>
-        </div>
-        <div layout="column" layout-align="center start" flex="25">
-            <h3 flex="25" class="text-light">registered users</h3>
-            <h3 flex="25" class="text-light">credit cards active</h3>
-            <h3 flex="25" class="text-light">registered vehicles</h3>
-            <h3 flex="25" class="text-light">monthly expenses</h3>
-        </div>
-        <div flex="50">
-            <div class="shadow">
-                <div class="panel-header">{{ 'status' | translate }}</div>
-                <div class="panel-body" layout="row" layout-xs="column" layout-sm="column" layout-wrap>
-                    <md-button ui-sref="dashboard.conciliation.step1" class="md-raised">START Conciliation</md-button>
-                    <md-button ui-sref="dashboard.reconciliation.step1" class="md-raised">Reconciliation</md-button>
+        <!--<div layout="column" layout-align="center start" flex="5" flex-offset="10">-->
+            <!--<i flex="25" class="mdi mdi-account-multiple mdi-48px icon-block"></i>-->
+            <!--<i flex="25" class="mdi mdi-credit-card mdi-48px icon-block"></i>-->
+            <!--<i flex="25" class="mdi mdi-car mdi-48px icon-block"></i>-->
+            <!--<i flex="25" class="mdi mdi-currency-usd mdi-48px icon-block"></i>-->
+        <!--</div>-->
+        <!--<div layout="column" layout-align="center center" flex="10">-->
+            <!--<h2 flex="25" class="text-light">{{ ctrl.registered_users }}</h2>-->
+            <!--<h2 flex="25" class="text-light">{{ ctrl.active_credit_cards }}</h2>-->
+            <!--<h2 flex="25" class="text-light">{{ ctrl.registered_vehicles }}</h2>-->
+            <!--<h2 flex="25" class="text-light">{{ ctrl.total_monthly_expenses }}</h2>-->
+        <!--</div>-->
+        <!--<div layout="column" layout-align="center start" flex="25">-->
+            <!--<h3 flex="25" class="text-light">registered users</h3>-->
+            <!--<h3 flex="25" class="text-light">credit cards active</h3>-->
+            <!--<h3 flex="25" class="text-light">registered vehicles</h3>-->
+            <!--<h3 flex="25" class="text-light">monthly expenses</h3>-->
+        <!--</div>-->
+        <md-card flex="30" flex-offset="10" layout="column">
+            <md-toolbar layout="row">
+                <div class="md-toolbar-tools">
+                    <span>Notifications</span>
                 </div>
+            </md-toolbar>
+            <md-content>
+                <md-list>
+                    <md-subheader class="md-no-sticky">{{ ctrl.justified_notifications_count }} unread notifications</md-subheader>
+                    <md-list-item class="md-3-line" ng-repeat="notification in ctrl.notifications" layout="row" ng-click="ctrl.showTransaction(notification)">
+                        <md-icon class="material-icons md-36">error_outline</md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ notification.notification_type === 'Not reconcile by: Data Entry Error'? 'Data Entry Error' : 'Transaction Not Found' }}</h3>
+                            <h4>Status: {{ notification.record_correction_status }}</h4>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-card>
+        <md-card flex="40" flex-offset="10" layout="column">
+            <md-toolbar layout="row">
+                <div class="md-toolbar-tools">
+                    <span>Status</span>
+                </div>
+            </md-toolbar>
+            <div flex layout="row" layout-align="start center" layout-padding>
+                <div flex="15" flex-offset="20">
+                    <md-icon class="material-icons md-96 md-primary md-hue-2" ng-show="ctrl.justified_notifications_count === 0">check_circle</md-icon>
+                    <md-icon class="material-icons md-96 md-warn" ng-show="ctrl.justified_notifications_count > 0">error_outline</md-icon>
+                </div>
+                <h3 flex flex-offset="5" class="text-light">{{ ctrl.justified_notifications_count }} notification(s)</h3>
             </div>
-        </div>
+            <div flex layout="row" layout-align="center center">
+                <md-button flex="50" ui-sref="dashboard.approval"
+                           ng-disabled="ctrl.unread_notifications_count === 0"
+                           class="md-raised md-primary">Justifications</md-button>
+                <md-button flex="50" ui-sref="dashboard.conciliation.step1"
+                           ng-disabled="ctrl.unread_notifications_count === 0"
+                           class="md-raised">Start Conciliation</md-button>
+            </div>
+        </md-card>
     </div>
 
     <!-- Dashboard view for VEHICLE MANAGER -->
@@ -82,7 +114,7 @@
                 <md-list>
                     <md-subheader class="md-no-sticky">{{ ctrl.unread_notifications_count }} unread notifications</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="notification in ctrl.notifications" layout="row" ng-click="ctrl.showTransaction(notification)">
-                        <md-icon class="material-icons md-avatar-icon md-36">error</md-icon>
+                        <md-icon class="material-icons md-36">error</md-icon>
                         <div class="md-list-item-text" layout="column">
                             <h3>{{ notification.notification_type === 'Not reconcile by: Data Entry Error'? 'Data Entry Error' : 'Transaction Not Found' }}</h3>
                             <h4>Due date: {{ notification.due_date }}</h4>
@@ -98,17 +130,15 @@
                     <span>Status</span>
                 </div>
             </md-toolbar>
-            <div flex layout="row" layout-align="start center">
+            <div flex layout="row" layout-align="start center" layout-padding>
                 <div flex="15" flex-offset="20">
                     <md-icon class="material-icons md-96 md-primary md-hue-2" ng-show="ctrl.unread_notifications_count === 0">check_circle</md-icon>
                     <md-icon class="material-icons md-96 md-warn" ng-show="ctrl.unread_notifications_count > 0">error_outline</md-icon>
                 </div>
-                <div flex flex-offset="5" layout="row">
-                    <h3 flex class="text-light">{{ ctrl.unread_notifications_count }} notification(s)</h3>
-                </div>
+                <h3 flex flex-offset="5" class="text-light">{{ ctrl.unread_notifications_count }} notification(s)</h3>
             </div>
             <div flex layout="row" layout-align="center center">
-                <md-button flex="50" ui-sref="dashboard.reconciliation.step1"
+                <md-button flex="50" ui-sref="dashboard.justification"
                            ng-disabled="ctrl.unread_notifications_count === 0"
                            class="md-raised md-primary">Justify</md-button>
             </div>

@@ -1,0 +1,52 @@
+<div layout class="layout bg-primary bottom-shadow">
+    <h1 class="white" flex="50" flex-offset="10">Justification Approval</h1>
+</div>
+<div layout-fill layout-padding layout="row">
+    <md-card flex="80" flex-offset="10" layout="column" layout-align="start center" layout-padding>
+        <h2 flex="initial">Approve justified records</h2>
+        <p flex="initial">
+            The table below shows all justified transactions up to date.
+            Please use right side buttons to approve or deny justifications provided.
+        </p>
+        <div layout="column" layout-align="start center">
+            <md-table-container flex>
+                <table md-table>
+                    <thead md-head>
+                    <tr md-row>
+                        <th md-column>Custodian</th>
+                        <th md-column>Date</th>
+                        <th md-column>Type</th>
+                        <th md-column>Liters</th>
+                        <th md-column>Total</th>
+                        <th md-column>Receipt</th>
+                        <th md-column>Justification</th>
+                        <th md-column>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="transaction in ctrl.notifications">
+                        <td md-cell>{{transaction.record_info.record_custodian_name}}</td>
+                        <td md-cell>{{transaction.record_info.date}}</td>
+                        <td md-cell>{{transaction.record_info.purchase_type}}</td>
+                        <td md-cell>{{transaction.record_info.total_liters}}</td>
+                        <td md-cell>${{transaction.record_info.total_receipt}}</td>
+                        <td md-cell>View Receipt</td>
+                        <td md-cell>
+                            {{transaction.justification}}
+                        </td>
+                        <td md-cell layout="row" layout-align="start center" layout-padding>
+                            <div flex="50">
+                                <md-icon class="clickable md-warn" ng-click="ctrl.submitApproval(transaction, 4)">clear</md-icon>
+                            </div>
+                            <div flex="50">
+                                <md-icon class="clickable md-primary" ng-click="ctrl.submitApproval(transaction, 3)">done</md-icon>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-button flex class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
+        </div>
+    </md-card>
+</div>

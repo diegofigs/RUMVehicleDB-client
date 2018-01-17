@@ -1,5 +1,3 @@
-import NotificationService from "../services/notifications.service";
-
 /** @ngInject */
 export default class HomeController {
   constructor($scope, $timeout, swal, AuthService, StatsService,
@@ -13,7 +11,13 @@ export default class HomeController {
     this.active_credit_cards = this.statsService.active_credit_cards;
     this.total_monthly_expenses = this.statsService.total_monthly_expenses;
     this.notifications = this.notificationService.notifications;
-    this.unread_notifications_count = this.notificationService.unread_notifications_count;
+
+    if(this.authService.getUser().user_type_name === 'admin') {
+      this.justified_notifications_count = this.notificationService.justified_notifications_count;
+    }
+    else {
+      this.unread_notifications_count = this.notificationService.unread_notifications_count;
+    }
 
 
     $scope.options1 = {
@@ -142,7 +146,7 @@ export default class HomeController {
   }
 
   showTransaction(notification) {
-    let transaction = notification.record_info[0];
+    let transaction = notification.record_info;
     this.swal({
       title: 'Transaction details',
       html: '<div class="confirmation-table">' +
