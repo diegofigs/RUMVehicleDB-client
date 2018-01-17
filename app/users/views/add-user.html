@@ -16,13 +16,12 @@
                                     class="form-control"
                                     name="fullName"
                                     placeholder="Full Name"
-                                    ng-trim="false"
                                     ng-model="ctrl.newUser.name"
-                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                                    ng-pattern = "/^([A-ZÁ-Ú]+[a-zá-ú]*)(\s|\-)?([A-ZÁ-Ú]+[a-zá-ú]*)?(\s|\-)?([A-ZÁ-Ú]+[a-zá-ú]*)?(\s|\-)?([A-ZÁ-Ú]+[a-zá-ú]*)?$/" required>
 
                         <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$touched && userForm.fullName.$invalid">
                             <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">This entry can only contain characters.</div>
+                            <div ng-message="pattern">Please enter a valid name. Make sure that First Name and Last Name start with a capital letter.</div>
                         </div>
                         </md-input-container>
 
