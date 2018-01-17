@@ -83,11 +83,14 @@
                                 class="form-control"
                                 name="employeeID"
                                 placeholder="Employee ID"
-                                ng-pattern="/^(\d)+$/"
-                                ng-model="ctrl.newUser.employee_id">
+                                maxlength="6"
+                                minlength="6"
+                                ng-pattern="/^\d{6}$/"
+                                ng-model="ctrl.newUser.employee_id" required>
 
                         <div ng-messages="userForm.employeeID.$error" ng-if="userForm.employeeID.$touched && userForm.employeeID.$invalid">
-                            <div ng-message="pattern">This entry can only contain numbers.</div>
+                            <div ng-message="required">This field is required!</div>
+                            <div ng-message="pattern">This field should contain exactly 6 digits</div>
                         </div>
 
                     </md-input-container>

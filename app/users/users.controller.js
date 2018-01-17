@@ -17,8 +17,18 @@ export default class UsersController {
 
     this.swal = swal;
 
+    this.filter = {
+      department: '',
+      user_type_id: '',
+    };
+
+    this.isActive = {
+      is_active: '1',
+    };
+
     this.pageQuery = {
       page: this.usersService.page,
+      is_active: '1',
     };
 
 
