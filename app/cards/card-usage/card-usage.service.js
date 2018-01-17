@@ -5,10 +5,11 @@
 
 export default class CardUsageService {
 
-  constructor($http, $log) {
+  constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
-    this.resource = 'api/v1/records';
+    this.API = API;
+    this.resource = '/api/v1/records/';
 
     // Initialize all cards usage list
     this.cardsUsages = [];
@@ -19,7 +20,6 @@ export default class CardUsageService {
     // Initialize pagination metadata
     this.pageSize = 10;
     this.total = 1;
-    this.page =1;
   }
 
   /**
@@ -28,7 +28,7 @@ export default class CardUsageService {
    * @param params Filtering parameters for card usages
    */
   getCardsUsages(params) {
-    return this.$http.get(this.resource, {
+    return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
         this.$log.log(response);
@@ -49,7 +49,7 @@ export default class CardUsageService {
   getSingleCardUsages(cardID, params) {
     //Empty array of single card usages
     this.singleCardUsages = [];
-    return this.$http.get(this.resource + '/card/' + cardID, {
+    return this.$http.get(this.API + this.resource + 'card/' + cardID, {
       params: params
     })
       .then((response) => {
@@ -71,7 +71,7 @@ export default class CardUsageService {
    */
   deleteCardUsage(id) {
     this.$log.log('I am inside deleteCardUsage(cardUsage) in card-usage.service');
-    return this.$http.delete(this.resource + '/' + id)
+    return this.$http.delete(this.API + this.resource + id)
       .catch((error) => {
         this.$log.log(error);
       });
@@ -84,7 +84,7 @@ export default class CardUsageService {
    */
   editCardUsage(cardUsage) {
     this.$log.log('I am inside editCardUsage() in card-usage.service');
-    return this.$http.put(this.resource + '/' + cardUsage)
+    return this.$http.put(this.API + this.resource + cardUsage)
       .catch((error) => {
         this.$log.log(error);
       });
