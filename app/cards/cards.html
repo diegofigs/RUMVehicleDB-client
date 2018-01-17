@@ -9,8 +9,18 @@
 <div ng-show="!stateIsLoading">
 
 <div layout class="layout bg-primary bottom-shadow">
-    <h1 class="white" flex="50" flex-offset="10">Cards</h1>
+    <h1 class="white" flex="65" flex-offset="10">Cards</h1>
+
+    <div flex="15" layout="row" layout-align="end center">
+        <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex ui-sref="dashboard.cards.add()" class="md-raised">
+            <md-icon flex md-svg-src="images/ic_add_black_24px.svg"></md-icon>
+            Add Card
+        </md-button>
+    </div>
 </div>
+
+
+
 
     <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
 
@@ -19,7 +29,7 @@
         - Administrator and Vehicle Manager can filter cards by: department, custodian, type, and status
         - Custodians can filter cards by: type, and status -->
 
-        <md-card flex layout="column" layout-padding>
+        <md-card ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex layout="column" layout-padding>
             <div flex layout="row">
                 <label flex layout-align-gt-sm="start">
                     <span>
@@ -53,7 +63,7 @@
                     </md-select>
                 </md-input-container>
 
-                <md-input-container flex flex-gt-sm="33">
+                <md-input-container ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex flex-gt-sm="33">
                     <label>Status</label>
                     <md-select ng-model="ctrl.filter.status">
                         <md-option  value="{{status}}" ng-repeat="status in ctrl.cardStatusOptions">{{status}}</md-option>
@@ -85,7 +95,7 @@
                     <md-card-actions layout="row" layout-align="start start">
                         <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
                         <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
-                        <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
+                        <md-button ng-hide="card.status === 'Inactive'" ng-show="ctrl.getUser().user_type_name === 'admin'" ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -97,12 +107,5 @@
                        cl-align="center stretch">
             </cl-paging>
         </md-card>
-    </div>
-
-    <div ng-hide="ctrl.getUser().user_type_name === 'custodian'">
-        <nav mfb-menu position="br" effect="slidein-spring" label="Add Vehicle"
-         active-icon="mdi mdi-plus" resting-icon="mdi mdi-plus"
-         toggling-method="click" ui-sref="dashboard.cards.add()">
-        </nav>
     </div>
 </div>

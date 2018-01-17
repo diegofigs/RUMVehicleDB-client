@@ -16,6 +16,7 @@ export default class CardsController {
     this.departments = this.departmentsService.departments;
     this.newCard = {};
     this.custodianNames = this.usersService.users;
+    this.nonPaginatedUsers = this.usersService.nonPaginatedUsers;
 
     this.cardTypeOptions = ["Regular", "Premium", "Diesel", "Spare"];
     this.cardStatusOptions = ["Active", "Inactive"];
@@ -24,7 +25,7 @@ export default class CardsController {
       department_id: '',
       custodian_id: '',
       type: '',
-      status: '',
+      status: 'Active',
       page: 1,
     };
 
@@ -33,6 +34,13 @@ export default class CardsController {
       total: this.cardsService.total,
     };
   }
+
+  // getCards() {
+  //   return this.cardsService.getCards(this.filter)
+  //     .then( () => {
+  //       this.cards = this.cardsService.cards;
+  //     });
+  // }
 
   /**
    * If card creation is successful, shows user success feedback
@@ -59,7 +67,6 @@ export default class CardsController {
    * Sends card to be created to the Card Service
    */
   createCard() {
-    this.newCard.custodian_id = this.authService.getUser().id;
     return this.cardsService.createCard(this.newCard)
       .then(() => {
       this.$state.go('dashboard.cards.list');
@@ -146,6 +153,8 @@ export default class CardsController {
   applyCardsFilter() {
     return this.cardsService.getCards(this.filter)
       .then( () => {
+        this.pagination.pageSize = this.cardsService.pageSize;
+        this.pagination.total = this.cardsService.total;
         this.cards = this.cardsService.cards;
       });
   }
