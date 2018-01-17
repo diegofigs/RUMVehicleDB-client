@@ -87,6 +87,8 @@ export default class RecordsController {
     return this.cardUsageService.getCardsUsages(this.filter)
       .then( () => {
         this.records = this.cardUsageService.cardsUsages;
+        this.pagination.total = this.cardUsageService.total;
+        this.pagination.pageSize = this.cardUsageService.pageSize;
       });
   }
 
@@ -140,5 +142,16 @@ export default class RecordsController {
 
   reload() {
     this.$state.reload();
+  }
+
+  /**
+   * Shows a card usage receipt in a dialog/pop up
+   * @param usage CardUsage object
+   */
+  showReceipt(usage){
+    this.swal({
+      title: 'Receipt',
+      imageUrl: usage.record_picture,
+    });
   }
 };
