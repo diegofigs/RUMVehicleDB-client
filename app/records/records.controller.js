@@ -92,7 +92,16 @@ export default class RecordsController {
       });
   }
 
+  cancelUpload(){
+    this.$state.go('dashboard.home');
+  }
+
   submitInvoice(){
+    let tempItem = null;
+    for (let x = 0; x < this.uploader.queue.length; x++){
+      tempItem = this.uploader.queue[x];
+    }
+    this.$log.log(tempItem);
     this.swal({
       title: 'Confirm Upload',
       type: 'info',
@@ -102,11 +111,7 @@ export default class RecordsController {
       cancelButtonText: 'Cancel',
       cancelButtonColor: '#f44336',
     }).then(() => {
-      let tempItem = null;
-      for (let x = 0; x < this.uploader.queue.length; x++){
-        this.tempItem = this.uploader.queue[x];
-      }
-      this.tempItem.upload();
+      tempItem.upload();
     });
   }
 
@@ -134,6 +139,47 @@ export default class RecordsController {
           type: 'error',
         });
       });
+  }
+
+  submitApproval(notification, status) {
+    notification.status_type_id = status;
+    let action = '';
+    notification.status_type_id = status;
+    if(status === 3){
+      action = 'approval';
+    }
+    else {
+      action = 'denial';
+    }
+    this.swal({
+      title: 'Confirm ' + action,
+      type: 'info',
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#4caf50',
+      showCancelButton: 'true',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#f44336',
+    }).then(() => {
+      return this.notificationService.justifyNotification(notification)
+        .then(() => {
+          this.swal({
+            title: 'Success!',
+            text: 'You have submitted your decision!',
+            type: 'success',
+          }).then(() => {
+            this.$state.reload();
+          });
+        })
+        .catch((error) => {
+          this.$log.log(error);
+          this.swal({
+            title: 'Error',
+            text: 'There was an error communicating with the server.',
+            type: 'error',
+          });
+        });
+    });
+
   }
 
   downloadMonthlyReport(){
