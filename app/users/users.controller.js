@@ -56,10 +56,19 @@ export default class UsersController {
           });
         })
         .catch((error) => {
-          this.swal({
-            title: 'Error: User could not be created',
-            type: 'error'
-          });
+
+          if(error.data !== null && error.data.message === 'duplicated_email'){
+            this.swal({
+              title: 'The email: ' + this.newUser.email + ' already exists in the system',
+              type: 'error'
+            });
+          }
+          else {
+            this.swal({
+              title: 'Error: User could not be created',
+              type: 'error'
+            });
+          }
         });
   }
 
