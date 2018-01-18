@@ -27,18 +27,21 @@
                         <td md-cell>{{transaction.record_info.date}}</td>
                         <td md-cell>{{transaction.record_info.purchase_type}}</td>
                         <td md-cell>{{transaction.record_info.total_liters}}</td>
-                        <td md-cell>${{transaction.record_info.total_receipt}}</td>
-                        <td md-cell>View Receipt</td>
+                        <td md-cell>{{transaction.record_info.total_receipt | currency}}</td>
+                        <td md-cell>
+                            <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.showReceipt(transaction)">View receipt</a>
+                        </td>
                         <td md-cell>
                             <md-input-container flex>
-                                <input  type="text"
-                                        class="form-control"
-                                        name="name"
-                                        placeholder="Justify here"
-                                        ng-model="transaction.justification"
-                                        ng-init="transaction.justification = ''"
-                                        required>
-
+                                <textarea class="form-control"
+                                          name="name"
+                                          placeholder="Justify here"
+                                          ng-model="transaction.justification"
+                                          ng-init="transaction.justification = ''"
+                                          md-maxlength="150"
+                                          rows="4"
+                                          required>
+                                </textarea>
                             </md-input-container>
                         </td>
                         <td md-cell>

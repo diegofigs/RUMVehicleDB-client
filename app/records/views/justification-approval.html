@@ -29,8 +29,10 @@
                         <td md-cell>{{transaction.record_info.date}}</td>
                         <td md-cell>{{transaction.record_info.purchase_type}}</td>
                         <td md-cell>{{transaction.record_info.total_liters}}</td>
-                        <td md-cell>${{transaction.record_info.total_receipt}}</td>
-                        <td md-cell>View Receipt</td>
+                        <td md-cell>{{transaction.record_info.total_receipt | currency}}</td>
+                        <td md-cell>
+                            <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.showReceipt(record)">View receipt</a>
+                        </td>
                         <td md-cell>
                             {{transaction.justification}}
                         </td>
