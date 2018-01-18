@@ -172,4 +172,8 @@ export default class CardsController {
   reload(){
     this.$state.reload();
   }
+
+  formatExpirationDateForMarkup(date){
+    return moment(date).format('MMMM YYYY');
+  }
 }

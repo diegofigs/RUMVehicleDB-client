@@ -118,7 +118,7 @@ export default class CardsUsageController {
       title: 'Confirm transaction',
       html: '<div class="confirmation-table">' +
       '<ul style="list-style-type:none; text-align: left">' +
-      '<li> Date:  ' + '<b>' + this.newCardUsage.date + '</b></li>' +
+      '<li> Date:  ' + '<b>' + moment(this.newCardUsage.date).format('MMM D, YYYY') + '</b></li>' +
       '<li> Store:  ' + '<b>' + this.newCardUsage.provider_number + '</b></li>' +
       '<li> Vehicle mileage:  ' + '<b>' + this.newCardUsage.vehicle_mileage + '</b></li>' +
       '<li> Purchase type:  ' + '<b>' + this.newCardUsage.purchase_type + '</b></li>' +
