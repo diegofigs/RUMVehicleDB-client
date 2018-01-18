@@ -4,11 +4,12 @@ import moment from 'moment';
  * Controller is in charge of all business logic related to card usages (Gas transactions)
  */
 export default class CardsUsageController {
-  constructor($state, $log, $stateParams, FileUploader,
-              AuthService, CardsService, CardUsageService, swal) {
+  constructor($state, $log, $stateParams, $window, FileUploader,
+              AuthService, CardsService, CardUsageService, swal, ) {
     this.$state = $state;
     this.$log = $log;
     this.$stateParams = $stateParams;
+    this.$window = $window;
     this.authService = AuthService;
     this.cardUsageService = CardUsageService;
 
@@ -48,6 +49,14 @@ export default class CardsUsageController {
     };
     this.onDateChange();
 
+    this.date = new Date();
+
+    this.today = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+
     /**
      *  Used for uploading gas transaction, including receipt
      */
@@ -86,6 +95,8 @@ export default class CardsUsageController {
       this.$log.log(response);
       this.$state.go('dashboard.cards.view.card-usage');
     };
+
+    this.tempItem = null;
   }
 
   /**
@@ -93,11 +104,7 @@ export default class CardsUsageController {
    * @param usage Card usage object
    */
   showReceipt(usage){
-    console.log(usage.record_picture);
-    this.swal({
-      title: 'Receipt',
-      imageUrl: usage.record_picture,
-    });
+    this.$window.open(usage.record_picture, "_blank");
   }
 
   /**
@@ -127,13 +134,23 @@ export default class CardsUsageController {
       cancelButtonColor: '#f44336',
     }).then(() => {
 
-      this.swal({
-        title: 'Success!',
-        text: 'You have submitted a new transaction successfully',
-        type: 'success'
-      });
       this.submitUsageForm();
-    });
+
+        if(this.uploader.queue.length === 0){
+          this.swal({
+            title: 'Receipt not found!',
+            text: 'You need to submit a receipt with the transaction.',
+            type: 'info',
+          });
+        }
+        else{
+          this.swal({
+            title: 'Success!',
+            text: 'You have submitted a new transaction successfully',
+            type: 'success'
+          });
+        }
+      });
   }
 
   /**
@@ -141,12 +158,13 @@ export default class CardsUsageController {
    */
   submitUsageForm(){
 
-    let tempItem = null;
-
     for (let x = 0; x < this.uploader.queue.length; x++){
       this.tempItem = this.uploader.queue[x];
     }
-    this.tempItem.upload();
+
+    if(this.uploader.queue.length !== 0) {
+      this.tempItem.upload();
+    }
   }
 
   /**
@@ -170,17 +188,6 @@ export default class CardsUsageController {
    */
   getSingleCardUsages(cardID) {
     return this.cardUsageService.getSingleCardUsages(cardID);
-  }
-
-  /**
-   * Deletes a specific card usage or gas transaction
-   * @param id Card Usage ID
-   */
-  deleteCardUsage(id) {
-    return this.cardUsageService.deleteCardUsage(id)
-      .then(() => {
-        this.$state.reload();
-      });
   }
 
   /**

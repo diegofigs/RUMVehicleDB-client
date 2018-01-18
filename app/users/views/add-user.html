@@ -16,13 +16,13 @@
                                     class="form-control"
                                     name="fullName"
                                     placeholder="Full Name"
-                                    ng-trim="false"
+                                    maxlength="35"
                                     ng-model="ctrl.newUser.name"
-                                    ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/" required>
+                                    ng-pattern = "/^([A-ZÁ-Ú]+[a-zá-ú]*)(\s|\-)?([A-ZÁ-Úa-zá-ú]+[a-zá-ú]*)?(\s|\-)?([A-ZÁ-Úa-zá-ú]+[a-zá-ú]*)?(\s|\-)?([A-ZÁ-Ú]+[a-zá-ú]*)?(\s|\-)?([A-ZÁ-Ú]+[a-zá-ú]*)?$/" required>
 
                         <div ng-messages="userForm.fullName.$error" ng-if="userForm.fullName.$touched && userForm.fullName.$invalid">
                             <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">This entry can only contain characters.</div>
+                            <div ng-message="pattern">Please enter a valid name. Make sure that First Name and Last Name start with a capital letter.</div>
                         </div>
                         </md-input-container>
 
@@ -31,11 +31,12 @@
                                 class="form-control"
                                 name="email"
                                 placeholder="Email"
+                                maxlength="35"
                                 ng-model="ctrl.newUser.email"
                                 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
                         <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched && userForm.email.$invalid">
                             <div ng-message="required">This field is required!</div>
-                            <div ng-message="pattern">Please enter a valid email.</div>
+                            <div ng-message="pattern">Please enter a valid email. Use the '@upr.edu' email.</div>
                         </div>
                     </md-input-container>
 
@@ -57,9 +58,15 @@
                         <input  type="text"
                                 class="form-control"
                                 name="position"
+                                maxlength="85"
                                 placeholder="Position"
-                                ng-model="ctrl.newUser.position">
+                                ng-model="ctrl.newUser.position" required>
+
+                        <div ng-messages="userForm.position.$error" ng-if="userForm.position.$touched && userForm.position.$invalid">
+                            <div ng-message="required">This field is required!</div>
+                        </div>
                     </md-input-container>
+
                     </div>
 
                     <div layout="column" class="mdl-cell" flex-md="50 none" flex-gt-md="33 nogrow">
@@ -67,13 +74,15 @@
                     <md-input-container>
                         <input  type="text"
                                 class="form-control"
-                                name="contactNumber"
-                                placeholder="Contact Number"
-                                ng-pattern="/^(\d)+$/"
+                                name="extension"
+                                maxlength="4"
+                                minlength="4"
+                                placeholder="Phone Extension"
+                                ng-pattern="/^\d{4}$/"
                                 ng-model="ctrl.newUser.contact_number">
 
-                        <div ng-messages="userForm.contactNumber.$error" ng-if="userForm.contactNumber.$touched && userForm.contactNumber.$invalid">
-                            <div ng-message="pattern">This entry can only contain numbers</div>
+                        <div ng-messages="userForm.extension.$error" ng-if="userForm.extension.$touched && userForm.extension.$invalid">
+                            <div ng-message="pattern">This field should contain exactly 4 digits</div>
                         </div>
 
                     </md-input-container>

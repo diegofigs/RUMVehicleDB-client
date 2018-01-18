@@ -29,7 +29,7 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
           users: (UsersService) => UsersService.getUsers(),
 
-          //TODO: Fix this
+          //TODO: Fix: only pull users from backend is user is an administrator
           // users: ($q, CardsService, UsersService) => {
           //   let deferred = $q.defer();
           //   if(UsersService.getUser().user_type_name === 'admin')

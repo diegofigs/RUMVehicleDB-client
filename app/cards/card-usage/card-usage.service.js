@@ -44,12 +44,12 @@ export default class CardUsageService {
 
   /**
    * Requests card usages for a single card
-   * @param cardID Card ID
+   * @params cardID Card ID
    */
   getSingleCardUsages(cardID, params) {
     //Empty array of single card usages
     this.singleCardUsages = [];
-    return this.$http.get(this.API + this.resource + 'card/' + cardID, {
+    return this.$http.get(this.API + this.resource + '/card/' + cardID, {
       params: params
     })
       .then((response) => {
@@ -83,7 +83,6 @@ export default class CardUsageService {
    * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
    */
   editCardUsage(cardUsage) {
-    this.$log.log('I am inside editCardUsage() in card-usage.service');
     return this.$http.put(this.API + this.resource + cardUsage)
       .catch((error) => {
         this.$log.log(error);
