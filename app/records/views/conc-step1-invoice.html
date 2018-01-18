@@ -8,14 +8,14 @@
     <div layout="row" >
         <form name="invoiceForm" flex="100" layout="row" layout-align="center center" ng-submit="ctrl.submitInvoice()">
             <md-input-container flex="60" ng-if="ctrl.uploader">
-                <input aria-label="Invoice image" type="file" nv-file-select uploader="ctrl.uploader" /><br/>
+                <input aria-label="Invoice image" type="file" nv-file-select uploader="ctrl.uploader" filters=""/><br/>
                 <ul>
                     <li ng-repeat="item in ctrl.uploader.queue">
                         {{item.file.name}}
                     </li>
                 </ul>
             </md-input-container>
-            <md-button flex="20" class="md-raised md-warn" ng-click="">Cancel</md-button>
+            <md-button flex="20" class="md-raised md-warn" ui-sref="dashboard.home">Cancel</md-button>
             <md-button type="submit" flex="20" class="md-raised md-primary">Submit</md-button>
         </form>
     </div>

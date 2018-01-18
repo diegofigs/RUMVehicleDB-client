@@ -58,6 +58,7 @@ export default class RecordsController {
       headers: {
         Authorization: 'Bearer ' + this.authService.getToken(),
       },
+      queueLimit: 1
     });
 
     this.uploader.onBeforeUploadItem = (fileItem) => {
@@ -104,15 +105,25 @@ export default class RecordsController {
     this.$log.log(tempItem);
     this.swal({
       title: 'Confirm Upload',
+      text: tempItem.file.name,
       type: 'info',
       confirmButtonText: 'Confirm',
       confirmButtonColor: '#4caf50',
       showCancelButton: 'true',
       cancelButtonText: 'Cancel',
       cancelButtonColor: '#f44336',
-    }).then(() => {
-      tempItem.upload();
-    });
+    })
+      .then(() => {
+        tempItem.upload();
+      })
+      .catch(() => {
+        this.swal({
+          title: 'Error',
+          text: 'There was an error communicating with the server.',
+          type: 'error',
+        });
+      });
+
   }
 
   isStateActive(stateName) {
@@ -195,9 +206,6 @@ export default class RecordsController {
    * @param usage CardUsage object
    */
   showReceipt(usage){
-    this.swal({
-      title: 'Receipt',
-      imageUrl: usage.record_picture,
-    });
+    this.$window.open(usage.record_picture, "_blank");
   }
 };
