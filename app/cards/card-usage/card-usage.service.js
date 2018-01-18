@@ -49,7 +49,7 @@ export default class CardUsageService {
   getSingleCardUsages(cardID, params) {
     //Empty array of single card usages
     this.singleCardUsages = [];
-    return this.$http.get(this.API + this.resource + '/card/' + cardID, {
+    return this.$http.get(this.API + this.resource + 'card/' + cardID, {
       params: params
     })
       .then((response) => {
