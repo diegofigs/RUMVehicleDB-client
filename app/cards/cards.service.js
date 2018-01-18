@@ -67,7 +67,7 @@ export default class CardsService {
    */
   deleteCard(card) {
     card.status = 'Inactive';
-    return this.$http.put(this.API + this.resource + '/' + card.id,card)
+    return this.$http.put(this.API + this.resource + card.id,card)
       .catch((error) => {
         this.$log.log(error);
       });
