@@ -3,12 +3,14 @@
 </div>
 <div layout-fill layout-padding layout="row">
     <md-card flex="80" flex-offset="10" layout="column" layout-align="start center" layout-padding>
-        <h2 flex="initial">Justify unreconciled records</h2>
-        <p flex="initial">
+        <h2 ng-hide="ctrl.unread_notifications_count === 0" flex="initial">Justify unreconciled records</h2>
+        <p ng-hide="ctrl.unread_notifications_count === 0" flex="initial">
             The table below shows all unreconciled transactions up to date.
             Please use right side text fields to input justifications.
         </p>
-        <div layout="column" layout-align="start center">
+        <h3 ng-show="ctrl.unread_notifications_count === 0" flex="initial">No more unreconciled transactions found</h3>
+
+        <div ng-hide="ctrl.unread_notifications_count === 0" layout="column" layout-align="start center">
             <md-table-container flex>
                 <table md-table>
                     <thead md-head>
@@ -51,7 +53,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-button flex class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
         </div>
+        <md-button flex class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
     </md-card>
 </div>
