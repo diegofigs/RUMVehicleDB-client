@@ -100,7 +100,7 @@ export default class CardsUsageController {
   }
 
   /**
-   * Shows a card usage receipt in a dialog/pop up
+   * Shows a card usage receipt in a new tab
    * @param usage Card usage object
    */
   showReceipt(usage){
@@ -207,5 +207,4 @@ export default class CardsUsageController {
         this.singleCardUsages = this.cardUsageService.singleCardUsages;
       });
   }
-
 }

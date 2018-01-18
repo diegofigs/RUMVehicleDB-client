@@ -20,6 +20,7 @@ export default class CardUsageService {
     // Initialize pagination metadata
     this.pageSize = 10;
     this.total = 1;
+    this.page = 1;
   }
 
   /**
