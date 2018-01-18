@@ -13,7 +13,7 @@
     <div layout="row" flex-gt-sm="80" flex-offset-gt-sm="10" layout-margin>
 
         <md-content flex>
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs style="background: white" md-dynamic-height md-border-bottom>
 
                                                 <!-- RECORDS TAB -->
                 <md-tab label="All Records">
@@ -65,7 +65,11 @@
                             </md-card>
                         </div>
 
-                        <div layout-fill  layout="row" style="background:white;">
+                        <md-card ng-show="ctrl.records.length === 0" layout-margin layout-align="start center">
+                            <h3 flex="initial"> No records found</h3>
+                        </md-card>
+
+                        <div ng-hide="ctrl.records.length === 0" layout-fill  layout="row" style="background:white;">
                             <md-card flex layout-padding>
                                 <md-table-container>
                                     <table md-table>
