@@ -67,8 +67,12 @@
             </div>
         </md-card>
 
-        <md-card layout-margin>
-            <div class="card-group" layout="row"  layout-wrap>
+        <md-card ng-show="ctrl.cards.length === 0" layout-margin layout-align="start center">
+            <h3 flex="initial"> No cards found</h3>
+        </md-card>
+
+        <md-card ng-hide="ctrl.cards.length === 0" layout-margin>
+            <div  class="card-group" layout="row"  layout-wrap>
                 <md-card ng-repeat="card in ctrl.cards" flex-md="50 none" flex-gt-md="33 nogrow">
                     <md-card-title>
                         <md-card-title-text>

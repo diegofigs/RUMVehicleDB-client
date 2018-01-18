@@ -21,83 +21,82 @@
 
     <div flex-gt-sm="80" flex-offset-gt-sm="10" layout="column" layout-xs="column" layout-sm="column" layout-wrap>
 
-            <!-- User Type IDs: Administrator = 1, Card Custodian = 2, Card Custodian (Auxiliary) = 3, Vehicle Manager = 4
-
-            - Administrator and Vehicle Manager can filter vehicles by: Department, Custodian, Vehicle Type (Trolley, Golf Cars, Security)
-            - Custodians can filter vehicles by: Vehicle Type (Trolley, Golf Cars, Security) -->
-
-            <md-card flex layout="column" layout-padding>
-                <div flex layout="row">
-                    <label flex layout-align-gt-sm="start">
-                        <span>
-                            <md-icon>
-                            <i class="filter-icon mdi mdi-filter-outline"></i>
-                            </md-icon>Filter by:
-                        </span>
-                    </label>
-
-                    <span layout-padding layout-align-gt-sm="end">
-                        <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear all</a>
+        <md-card flex layout="column" layout-padding>
+            <div flex layout="row">
+                <label flex layout-align-gt-sm="start">
+                    <span>
+                        <md-icon>
+                        <i class="filter-icon mdi mdi-filter-outline"></i>
+                        </md-icon>Filter by:
                     </span>
-                </div>
-                <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-between center">
-                    <md-input-container flex flex-gt-sm="33">
-                        <label>Department</label>
-                        <md-select ng-model="ctrl.filter.department_id">
-                            <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
+                </label>
 
-                    <md-input-container flex flex-gt-sm="33">
-                        <label>Vehicle Type</label>
-                        <md-select ng-model="ctrl.filter.type_id">
-                            <md-option value="{{type.id}}" ng-repeat="type in ctrl.vehicleTypes">{{type.vehicle_type_name}}</md-option>
-                        </md-select>
-                    </md-input-container>
+                <span layout-padding layout-align-gt-sm="end">
+                    <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.reload()">Clear all</a>
+                </span>
+            </div>
+            <div flex layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-between center">
+                <md-input-container flex flex-gt-sm="33">
+                    <label>Department</label>
+                    <md-select ng-model="ctrl.filter.department_id">
+                        <md-option value="{{department.id}}" ng-repeat="department in ctrl.departments">{{department.name}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-                    <md-input-container flex flex-gt-sm="33">
-                        <label>Status</label>
-                        <md-select ng-model="ctrl.filter.was_archived">
-                            <md-option value=0>Active</md-option>
-                            <md-option value=1>Inactive</md-option>
+                <md-input-container flex flex-gt-sm="33">
+                    <label>Vehicle Type</label>
+                    <md-select ng-model="ctrl.filter.type_id">
+                        <md-option value="{{type.id}}" ng-repeat="type in ctrl.vehicleTypes">{{type.vehicle_type_name}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-                        </md-select>
-                    </md-input-container>
+                <md-input-container flex flex-gt-sm="33">
+                    <label>Status</label>
+                    <md-select ng-model="ctrl.filter.was_archived">
+                        <md-option value=0>Active</md-option>
+                        <md-option value=1>Inactive</md-option>
 
-                    <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
+                    </md-select>
+                </md-input-container>
 
-                </div>
-            </md-card>
-    <md-card layout-margin>
-        <div class="card-group" layout="row"  layout-wrap>
-            <md-card ng-repeat="v in ctrl.vehicles" flex-md="50 none" flex-gt-md="33 nogrow">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{v.make}} {{v.model}}</span>
-                        <span class="md-subhead">Department: {{ v.vehicle_department_name }}</span>
-                        <span class="md-subhead">Color: {{ v.color }}</span>
+                <md-button ng-click="ctrl.applyVehicleFilter()" class="md-raised md-primary">Filter</md-button>
 
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media">
-                            <img src="./assets/vehicle.png" class="md-card-image" alt="Washed Out">
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start start">
-                    <md-button ui-sref="dashboard.vehicles.view({id: v.id})">View Vehicle</md-button>
-                    <md-button ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
-                    <md-button ng-hide="v.was_archived === '1'" ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
-                </md-card-actions>
-            </md-card>
-         </div>
-        <cl-paging
-                   cl-pages="ctrl.pagination.total"
-                   cl-steps="5"
-                   cl-page-changed="ctrl.applyVehicleFilter()"
-                   cl-current-page="ctrl.filter.page"
-                   cl-align="center stretch">
-        </cl-paging>
-    </md-card>
+            </div>
+        </md-card>
+        <md-card ng-show="ctrl.vehicles.length ===0" layout-margin layout-align="start center">
+            <h3 flex="initial"> No vehicles found</h3>
+        </md-card>
+
+        <md-card ng-hide="ctrl.vehicles.length ===0" layout-margin>
+            <div class="card-group" layout="row"  layout-wrap>
+                <md-card ng-repeat="v in ctrl.vehicles" flex-md="50 none" flex-gt-md="33 nogrow">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{v.make}} {{v.model}}</span>
+                            <span class="md-subhead">Department: {{ v.vehicle_department_name }}</span>
+                            <span class="md-subhead">Color: {{ v.color }}</span>
+
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-sm card-media">
+                                <img src="./assets/vehicle.png" class="md-card-image" alt="Washed Out">
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start start">
+                        <md-button ui-sref="dashboard.vehicles.view({id: v.id})">View Vehicle</md-button>
+                        <md-button ui-sref="dashboard.vehicles.edit({id: v.id})">Edit Vehicle</md-button>
+                        <md-button ng-hide="v.was_archived === '1'" ng-click="ctrl.confirmVehicleDeletion(v)">Delete Vehicle</md-button>
+                    </md-card-actions>
+                </md-card>
+             </div>
+            <cl-paging
+                       cl-pages="ctrl.pagination.total"
+                       cl-steps="5"
+                       cl-page-changed="ctrl.applyVehicleFilter()"
+                       cl-current-page="ctrl.filter.page"
+                       cl-align="center stretch">
+            </cl-paging>
+        </md-card>
     </div>
 </div>
