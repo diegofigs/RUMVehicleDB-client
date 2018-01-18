@@ -124,8 +124,7 @@ export default class RecordsController {
         });
       });
 
-  }gi tst
-
+  }
 
   isStateActive(stateName) {
     return this.$state.current.name === stateName;
