@@ -56,6 +56,23 @@ export default class VehiclesController {
       pageSize: this.vehiclesService.pageSize,
       total: this.vehiclesService.total,
     };
+
+    //If user actually selected a date, then format it
+    if(this.vehicle.marbete_date) {
+      this.vehicle.marbete_date = moment(this.vehicle.marbete_date);
+    }
+
+    if(this.vehicle.inspection_date){
+      this.vehicle.inspection_date = moment(this.vehicle.inspection_date);
+    }
+
+    if(this.vehicle.decomission_date){
+      this.vehicle.decomission_date = moment(this.vehicle.decomission_date);
+    }
+
+    if(this.vehicle.inscription_date){
+      this.vehicle.inscription_date = moment(this.vehicle.inscription_date);
+    }
   }
 
   /**
@@ -191,8 +208,6 @@ export default class VehiclesController {
    */
   editVehicle() {
 
-    this.newVehicle.was_archived = 0;
-
     //If user actually selected a date, then format it
     if(this.vehicle.marbete_date) {
       this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format('YYYY-MM-DD');
@@ -238,5 +253,13 @@ export default class VehiclesController {
 
   reload(){
     this.$state.reload();
+  }
+
+  /**
+   * @param date Date to be formatted
+   * @returns {string} returns a String with the following format: MMM DD, YYYY
+   */
+  formatDateForMarkup(date){
+    return moment(date).format('MMM DD, YYYY');
   }
 }
