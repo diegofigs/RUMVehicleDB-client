@@ -3,12 +3,13 @@
 </div>
 <div layout-fill layout-padding layout="row">
     <md-card flex="80" flex-offset="10" layout="column" layout-align="start center" layout-padding>
-        <h2 flex="initial">Approve justified records</h2>
-        <p flex="initial">
+        <h2 ng-hide="ctrl.justified_notifications_count === 0" flex="initial">Approve justified records</h2>
+        <p ng-hide="ctrl.justified_notifications_count === 0" flex="initial">
             The table below shows all justified transactions up to date.
-            Please use right side buttons to approve or deny justifications provided.
+            Please use right side buttons to deny or approve justifications provided.
         </p>
-        <div layout="column" layout-align="start center">
+        <h3 ng-show="ctrl.justified_notifications_count === 0" flex="initial">No more justifications found</h3>
+        <div ng-hide="ctrl.justified_notifications_count === 0" layout="column" layout-align="start center">
             <md-table-container flex>
                 <table md-table>
                     <thead md-head>
@@ -31,7 +32,7 @@
                         <td md-cell>{{transaction.record_info.total_liters}}</td>
                         <td md-cell>{{transaction.record_info.total_receipt | currency}}</td>
                         <td md-cell>
-                            <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.showReceipt(record)">View receipt</a>
+                            <a style="color:#6EBFDA" class="clickable" ng-click="ctrl.showReceipt(transaction)">View receipt</a>
                         </td>
                         <td md-cell>
                             {{transaction.justification}}
@@ -48,7 +49,8 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-button flex class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
         </div>
+        <md-button flex="initial" class="md-raised md-primary" ui-sref="dashboard.home">Finish</md-button>
+
     </md-card>
 </div>

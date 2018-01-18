@@ -50,6 +50,8 @@ export default class RecordsController {
     this.total_server_records = this.$sessionStorage.total_server_records || [];
     this.total_expenses_in_excel_records = this.$sessionStorage.total_expenses_in_excel_records || [];
     this.total_expenses_in_server_records = this.$sessionStorage.total_expenses_in_server_records || [];
+    this.justified_notifications_count = this.notificationService.justified_notifications_count;
+    this.unread_notifications_count = this.notificationService.unread_notifications_count;
 
     this.uploader = new FileUploader({
       url: 'http://dev.uprm.edu/rumvehicles/api/v1/records/reconcile',
