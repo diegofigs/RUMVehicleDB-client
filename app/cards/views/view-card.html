@@ -68,7 +68,7 @@
                     </div>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button ui-sref="dashboard.cards.edit({id: ctrl.card.id})">Edit Card Details</md-button>
+                    <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ui-sref="dashboard.cards.edit({id: ctrl.card.id})">Edit Card Details</md-button>
                 </md-card-actions>
             </md-card>
         </md-content>

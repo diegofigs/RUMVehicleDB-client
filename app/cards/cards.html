@@ -90,8 +90,8 @@
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="start start">
                         <md-button ui-sref="dashboard.cards.view.card-usage({id: card.id})">View Card</md-button>
-                        <md-button ng-show="ctrl.getUser().user_type_name === 'admin'" ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
-                        <md-button ng-hide="card.status === 'Inactive'" ng-show="ctrl.getUser().user_type_name === 'admin'" ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
+                        <md-button ng-hide="ctrl.getUser().user_type_name === 'custodian'" ui-sref="dashboard.cards.edit({id: card.id})">Edit Card</md-button>
+                        <md-button ng-hide="card.status === 'Inactive' || ctrl.getUser().user_type_name === 'custodian'"  ng-click="ctrl.confirmCardDeletion(card)">Delete Card</md-button>
                     </md-card-actions>
                 </md-card>
             </div>
