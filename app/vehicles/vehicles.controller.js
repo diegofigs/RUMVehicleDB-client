@@ -188,6 +188,14 @@ export default class VehiclesController {
    */
   confirmVehicleEdition(){
 
+    if(parseInt(this.vehicle.year) > parseInt(this.maxVehicleYearAllowed.getFullYear())) {
+      this.swal({
+        title: 'Error',
+        text: ' Vehicle year can\'t be greater than ' + this.maxVehicleYearAllowed.getFullYear() + " and the year entered was " + this.vehicle.year + ".",
+        type: 'error'
+      });
+      return;
+    }
       this.editVehicle()
         .then(() => {
           this.swal({
