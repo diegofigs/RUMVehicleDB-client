@@ -15,7 +15,6 @@ export default class CardsController {
     this.cards = this.cardsService.cards;
     this.departments = this.departmentsService.departments;
     this.newCard = {};
-    this.custodianNames = this.usersService.users;
     this.nonPaginatedUsers = this.usersService.nonPaginatedUsers;
 
     this.cardTypeOptions = ["Regular", "Premium", "Diesel", "Spare"];

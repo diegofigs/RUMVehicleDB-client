@@ -45,7 +45,7 @@
                 <md-input-container ng-hide="ctrl.getUser().user_type_name === 'custodian'" flex flex-gt-sm="33">
                     <label>Custodian</label>
                     <md-select ng-model="ctrl.filter.custodian_id">
-                        <md-option value="{{custodian.id}}" ng-repeat="custodian in ctrl.custodianNames">{{custodian.name}}</md-option>
+                        <md-option value="{{user.id}}" ng-repeat="user in ctrl.nonPaginatedUsers">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container flex flex-gt-sm="33">

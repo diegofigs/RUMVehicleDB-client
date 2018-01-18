@@ -27,7 +27,8 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
         controller: 'CardsCtrl as ctrl',
         resolve: {
           departments: (DepartmentsService) => DepartmentsService.getDepartments(),
-          users: (UsersService) => UsersService.getUsers(),
+          nonPaginatedUsers: (UsersService) =>
+            UsersService.getNonPaginatedUsers(),
 
           //TODO: Fix: only pull users from backend is user is an administrator
           // users: ($q, CardsService, UsersService) => {

@@ -18,6 +18,7 @@ export default class RecordsController {
     this.swal = swal;
     this.reportDates = this.recordsService.reportDates;
     this.selectedReportDate = '';
+    this.nonPaginatedUsers = this.usersService.nonPaginatedUsers;
 
     this.purchaseTypes = ['Regular', 'Premium', 'Diesel'];
 
