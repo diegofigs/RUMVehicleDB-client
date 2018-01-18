@@ -8,19 +8,17 @@
             <h4>Please enter transaction details</h4>
             <div layout="column" layout-sm="column" layout-xs="column" class="mdl-grid">
 
-                <div class="mdl-cell" flex ="100 nogrow">
+                <div layout="column">
 
-                    <md-input-container>
-                        <label>Transaction Date</label>
+                    <label flex flex-offset-gt-sm="5"><small>Transaction Date</small></label>
                         <md-datepicker
+                            flex flex-offset-gt-sm="5"
                             ng-init="ctrl.temp_date = (ctrl.newCardUsage.date | toDate)"
                             ng-change="ctrl.onDateChange()"
                             ng-model="ctrl.temp_date"
                             md-placeholder="mm/dd/yyyy"
                             md-max-date="ctrl.today">
                         </md-datepicker>
-                    </md-input-container>
-
                 </div>
 
                 <div layout="row" class="mdl-cell" flex ="100 nogrow">
