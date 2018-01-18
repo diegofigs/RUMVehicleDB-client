@@ -195,8 +195,9 @@
                             <label><small>Marbete Date</small></label>
                         </md-input-container>
                         <md-datepicker
+                            md-current-view="year"
+                            md-max-date="ctrl.maxMarbeteDate"
                             ng-model="ctrl.vehicle.marbete_date"
-                            ng-model-options="{timezone: 'utc'}"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
 
@@ -204,9 +205,8 @@
                             <label><small>Inspection Date</small></label>
                         </md-input-container>
                         <md-datepicker
+                            md-max-date="ctrl.today"
                             ng-model="ctrl.vehicle.inspection_date"
-                            ng-model-options="{timezone: 'utc'}"
-                            ng-change="ctrl.vehicle.inspection_date = ctrl.vehicle.inspection_date.toLocaleString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
                         <br><br>
@@ -233,7 +233,6 @@
                         </md-input-container>
                         <md-datepicker
                             ng-model="ctrl.vehicle.decomission_date"
-                            ng-change="ctrl.vehicle.decomission_date = ctrl.vehicle.decomission_date.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
 
@@ -241,8 +240,8 @@
                             <label><small>Inscription Date</small></label>
                         </md-input-container>
                         <md-datepicker
+                            md-max-date="ctrl.today"
                             ng-model="ctrl.vehicle.inscription_date"
-                            ng-change="ctrl.vehicle.inscription_date = ctrl.vehicle.inscription_date.toISOString()"
                             md-placeholder="mm/dd/yyyy">
                         </md-datepicker>
                         <br><br>

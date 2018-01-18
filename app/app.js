@@ -84,15 +84,6 @@ angular.module(appModule, [
       .primaryPalette('newGreen')
       .warnPalette('newRed');
   })
-  .config(($mdDateLocaleProvider) => {
-
-    $mdDateLocaleProvider.parseDate = function(dateString) {
-      let m = moment.utc(dateString);
-      m.add(100, 'h');
-      return m.isValid() ? m.toISOString() : new Date(NaN);
-    };
-
-  })
   .constant('NODE_ENV', NODE_ENV)
   .constant('API', API)
   .run(($rootScope) => {

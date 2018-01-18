@@ -1,10 +1,7 @@
-<pageheader pagename="{{ 'vehicleDetails' | translate }}" subtitle="Gotta Catch 'Em All!"></pageheader>
-<div layout="row" layout-sm="column" layout-xs="column" style="background: white;">
-	<md-content flex="50" flex-sm="100">
-		<md-card>
-            <div class="panel-header">
-                Vehicle Details
-            </div>
+<div flex-gt-sm="40" flex-offset-gt-sm="30" style="background: white;">
+
+	    <md-card>
+            <div class="panel-header">Vehicle Details</div>
 	        <img src="../assets/vehicle.png" class="md-card-image" alt="Washed Out">
 
 	        <md-card-content>
@@ -35,43 +32,43 @@
                             </div>
                         </md-list-item>
 
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.registration_id !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.registration_id}} </h3>
+                                <p> Registration ID </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-2-line" ng-show="ctrl.vehicle.title_id !== null && ctrl.moreDetails">
+                            <div class="md-list-item-text">
+                                <h3> {{ctrl.vehicle.title_id}} </h3>
+                                <p> Title ID </p>
+                            </div>
+                        </md-list-item>
+
                         <md-list-item class="md-2-line" ng-show="ctrl.vehicle.marbete_date !== null && ctrl.moreDetails">
                             <div class="md-list-item-text">
-                                <h3> {{ctrl.vehicle.marbete_date}} </h3>
+                                <h3> {{ctrl.formatDateForMarkup(ctrl.vehicle.marbete_date)}} </h3>
                                 <p> Marbete Date </p>
                             </div>
                         </md-list-item>
                         <md-list-item class="md-2-line" ng-show="ctrl.vehicle.inspection_date !== null && ctrl.moreDetails">
                             <div class="md-list-item-text">
-                                <h3> {{ctrl.vehicle.inspection_date}} </h3>
+                                <h3> {{ctrl.formatDateForMarkup(ctrl.vehicle.inspection_date)}} </h3>
                                 <p> Inspection Date </p>
                             </div>
                         </md-list-item>
                         <md-list-item class="md-2-line" ng-show="ctrl.vehicle.decomission_date !== null && ctrl.moreDetails">
                             <div class="md-list-item-text">
-                                <h3> {{ctrl.vehicle.decomission_date}} </h3>
+                                <h3> {{ctrl.formatDateForMarkup(ctrl.vehicle.decomission_date)}} </h3>
                                 <p> Decommission Date </p>
                             </div>
                         </md-list-item>
                         <md-list-item class="md-2-line" ng-show="ctrl.vehicle.inscription_date !== null && ctrl.moreDetails">
                             <div class="md-list-item-text">
-                                <h3> {{ctrl.vehicle.inscription_date}} </h3>
+                                <h3> {{ctrl.formatDateForMarkup(ctrl.vehicle.inscription_date)}} </h3>
                                 <p> Inscription Date </p>
                             </div>
                         </md-list-item>
-
-						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.registration_id !== null && ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.registration_id}} </h3>
-								<p> Registration ID </p>
-							</div>
-						</md-list-item>
-						<md-list-item class="md-2-line" ng-show="ctrl.vehicle.title_id !== null && ctrl.moreDetails">
-							<div class="md-list-item-text">
-								<h3> {{ctrl.vehicle.title_id}} </h3>
-								<p> Title ID </p>
-							</div>
-						</md-list-item>
 
 					</div>
 					<div class="mdl-cell" flex="50" flex-sm="100" flex-xs="100">
@@ -148,7 +145,6 @@
 				<md-button ui-sref="dashboard.vehicles.edit({id: ctrl.vehicle.id})">Edit Vehicle Details</md-button>
 	        </md-card-actions>
 	    </md-card>
-	</md-content>
 
 </div>
 
