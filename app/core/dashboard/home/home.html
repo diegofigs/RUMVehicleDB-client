@@ -8,8 +8,15 @@
 <!-- Show if data is already resolved -->
 <div ng-show="!stateIsLoading">
 
-<div layout class="layout bg-primary bottom-shadow">
-    <h1 class="white" flex="50" flex-offset="10">Welcome, {{ctrl.getUser().name}}</h1>
+<div class="bg-primary bottom-shadow" layout="column">
+    <h1 class="white margin-bottom-0" flex-offset="10"
+        ng-show="ctrl.getUser().user_type_name === 'admin'">Welcome, {{ctrl.getUser().name}}</h1>
+    <h1 class="white" flex-offset="10"
+        ng-show="ctrl.getUser().user_type_name === 'custodian'">Welcome, {{ctrl.getUser().name}}</h1>
+    <h4 class="white margin-top-0 margin-bottom-0" flex-offset="10"
+        ng-show="ctrl.getUser().user_type_name === 'admin'">Current conciliation percent: {{ ctrl.actual_after_conciliation_percent }}%</h4>
+    <h6 class="white margin-top-0" flex-offset="10"
+        ng-show="ctrl.getUser().user_type_name === 'admin'">Last conciliation date: {{ ctrl.latest_conciliation_date }}</h6>
 </div>
 
 <!-- User Type Names: Administrator = 'admin', Vehicle Manager = 'vehicle_admin', Card Custodian = 'custodian', Card Custodian (Auxiliary) = 'auxiliary custodian', -->
@@ -26,28 +33,15 @@
             <md-icon flex class="text-center">forward</md-icon>
             <span flex class="text-light">{{ctrl.total_monthly_expenses | currency}} in Expenses</span>
         </md-card>
-        <div ng-show="ctrl.getUser().user_type_name === 'admin'" flex layout="row" layout-align="center center">
-            <md-button flex="25" ui-sref="dashboard.conciliation.step1"
-                       ng-disabled="ctrl.unread_notifications_count === 0"
-                       md-colors="{background: 'blue'}"
-                       class="md-raised">Start Conciliation</md-button>
-            <md-button flex="25" ui-sref="dashboard.approval"
-                       ng-disabled="ctrl.unread_notifications_count === 0"
-                       class="md-raised md-primary">Justifications</md-button>
-        </div>
-        <div ng-show="ctrl.getUser().user_type_name === 'custodian'" flex layout="row" layout-align="center center">
-            <md-button flex="50" ui-sref="dashboard.justification"
-                       ng-disabled="ctrl.unread_notifications_count === 0"
-                       class="md-raised md-primary">Justify</md-button>
-        </div>
-        <div flex="initial" layout="row" layout-align="center stretch">
-            <md-card flex="50" layout="column">
-                <md-toolbar layout="row">
+
+        <div flex="initial" layout="row" layout-align="start stretch">
+            <md-card flex layout="column">
+                <md-toolbar flex="initial" layout="row">
                     <div class="md-toolbar-tools">
                         <span>Notifications</span>
                     </div>
                 </md-toolbar>
-                <md-list ng-show="ctrl.getUser().user_type_name === 'admin' && ctrl.justified_notifications_count > 0">
+                <md-list flex="grow" ng-show="ctrl.getUser().user_type_name === 'admin' && ctrl.justified_notifications_count > 0">
                     <md-subheader class="md-no-sticky">{{ ctrl.justified_notifications_count }} unread notifications</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="notification in ctrl.notifications" layout="row" ng-click="ctrl.showTransaction(notification)">
                         <md-icon class="material-icons md-36">error_outline</md-icon>
@@ -57,7 +51,7 @@
                         </div>
                     </md-list-item>
                 </md-list>
-                <md-list ng-show="ctrl.getUser().user_type_name === 'custodian' && ctrl.unread_notifications_count > 0">
+                <md-list flex="grow" ng-show="ctrl.getUser().user_type_name === 'custodian' && ctrl.unread_notifications_count > 0">
                     <md-subheader class="md-no-sticky">{{ ctrl.unread_notifications_count }} unread notifications</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="notification in ctrl.notifications" layout="row" ng-click="ctrl.showTransaction(notification)">
                         <md-icon class="material-icons md-36">error</md-icon>
@@ -68,9 +62,30 @@
                         </div>
                     </md-list-item>
                 </md-list>
-                <md-icon class="material-icons md-96 md-primary md-hue-2" ng-show="ctrl.justified_notifications_count === 0">check_circle</md-icon>
-                <md-icon class="material-icons md-96 md-primary md-hue-2" ng-show="ctrl.unread_notifications_count === 0">check_circle</md-icon>
+                <div flex ng-show="ctrl.justified_notifications_count === 0" layout="row" layout-align="start center" layout-margin>
+                    <md-icon flex class="material-icons md-96 md-primary md-hue-2">check_circle</md-icon>
+                    <h3 flex>0 notifications</h3>
+                </div>
+                <div flex ng-show="ctrl.unread_notifications_count === 0" layout="row" layout-align="start center" layout-margin>
+                    <md-icon class="material-icons md-96 md-primary md-hue-2">check_circle</md-icon>
+                    <h3 flex>0 notifications</h3>
+                </div>
             </md-card>
+            <div ng-show="ctrl.getUser().user_type_name === 'admin'" flex layout="column" layout-align="start stretch" layout-padding>
+                <md-button flex="initial" ui-sref="dashboard.conciliation.step1"
+                           ng-disabled="ctrl.unread_notifications_count === 0"
+                           md-colors="{background: 'blue'}"
+                           class="md-raised">Start Conciliation</md-button>
+                <md-button flex="initial" ui-sref="dashboard.approval"
+                           ng-disabled="ctrl.justified_notifications_count === 0"
+                           class="md-raised md-primary">Review Justifications</md-button>
+            </div>
+            <div ng-show="ctrl.getUser().user_type_name === 'custodian'" flex layout="column" layout-align="start stretch" layout-padding>
+                <md-button flex="initial" ui-sref="dashboard.justification"
+                           ng-disabled="ctrl.unread_notifications_count === 0"
+                           md-colors="{background: 'deep-orange-700'}"
+                           class="md-raised md-warn">Justify</md-button>
+            </div>
         </div>
     </div>
 
