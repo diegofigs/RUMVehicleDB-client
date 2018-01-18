@@ -207,4 +207,12 @@ export default class CardsUsageController {
         this.singleCardUsages = this.cardUsageService.singleCardUsages;
       });
   }
+
+  /**
+   * gets current system User
+   * @returns {*|Object} User Object
+   */
+  getUser() {
+    return this.authService.getUser();
+  }
 }
