@@ -70,7 +70,7 @@
                     </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="user in ctrl.users | orderBy: '-user_department_name'">
+                        <tr md-row ng-repeat="user in ctrl.users | orderBy: 'name'">
                             <td md-cell><md-icon md-font-set="mdi">people</md-icon></td>
                             <td md-cell>{{user.name}}</td>
                             <td md-cell>{{user.user_type_name_string}}</td>

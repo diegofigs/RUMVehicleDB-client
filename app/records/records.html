@@ -17,8 +17,8 @@
 
                                                 <!-- RECORDS TAB -->
                 <md-tab label="All Records">
-                    <md-content>
-                        <div layout-xs="column" layout-sm="column" layout-gt-sm="row" style="background:white;">
+                    <md-content style="background:white;">
+                        <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
                             <md-card flex="100" layout="column" layout-padding>
                                 <div flex="100" layout="row" layout-align="start center">
                                     <span flex="20"><md-icon class="mdi mdi-filter-outline"></md-icon> Filter by:</span>
@@ -69,7 +69,7 @@
                             <h3 flex="initial"> No records found</h3>
                         </md-card>
 
-                        <div ng-hide="ctrl.records.length === 0" layout-fill  layout="row" style="background:white;">
+                        <div ng-hide="ctrl.records.length === 0" layout-fill  layout="row">
                             <md-card flex layout-padding>
                                 <md-table-container>
                                     <table md-table>
@@ -85,7 +85,7 @@
                                         </tr>
                                         </thead>
                                         <tbody md-body>
-                                        <tr md-row ng-repeat="record in ctrl.records">
+                                        <tr md-row ng-repeat="record in ctrl.records | orderBy: 'date'">
                                             <td md-cell><i class="mdi mdi-receipt mdi-24px"></i></td>
                                             <td md-cell>{{ record.record_custodian_name }}</td>
                                             <td md-cell>{{ record.date | date}}</td>
