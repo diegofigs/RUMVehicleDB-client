@@ -59,7 +59,7 @@ export default class VehiclesController {
 
     //If user actually selected a date, then format it
     if(this.vehicle.marbete_date) {
-      this.vehicle.marbete_date = moment(this.vehicle.marbete_date);
+      this.vehicle.marbete_date = moment(this.vehicle.marbete_date).toDate();
     }
 
     if(this.vehicle.inspection_date){
