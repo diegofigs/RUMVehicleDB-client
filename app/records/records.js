@@ -57,8 +57,8 @@ const recordsModule = angular.module('app.records', [])
           },
           departments: (DepartmentsService) =>
             DepartmentsService.getDepartments(),
-          users: (UsersService) =>
-            UsersService.getUsers(),
+          nonPaginatedUsers: (UsersService) =>
+            UsersService.getNonPaginatedUsers(),
           reportDates: (RecordsService) =>
             RecordsService.getReportDates(),
         }
