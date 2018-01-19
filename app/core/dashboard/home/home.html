@@ -14,7 +14,7 @@
     <h1 class="white" flex-offset="10"
         ng-show="ctrl.getUser().user_type_name === 'custodian'">Welcome, {{ctrl.getUser().name}}</h1>
     <h4 class="white margin-top-0 margin-bottom-0" flex-offset="10"
-        ng-show="ctrl.getUser().user_type_name === 'admin'">Current conciliation percent: {{ ctrl.actual_after_conciliation_percent }}%</h4>
+        ng-show="ctrl.getUser().user_type_name === 'admin' && ctrl.actual_after_conciliation_percent">Current conciliation percent: {{ ctrl.actual_after_conciliation_percent }}%</h4>
     <h6 class="white margin-top-0" flex-offset="10"
         ng-show="ctrl.getUser().user_type_name === 'admin'">Last conciliation date: {{ ctrl.latest_conciliation_date }}</h6>
 </div>

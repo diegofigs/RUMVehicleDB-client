@@ -10,8 +10,8 @@ export default class HomeController {
     this.registered_vehicles = this.statsService.registered_vehicles;
     this.active_credit_cards = this.statsService.active_credit_cards;
     this.total_monthly_expenses = this.statsService.total_monthly_expenses;
-    this.latest_conciliation_date = moment(this.statsService.latest_conciliation_date).format('MMM D, YYYY');
-    this.actual_after_conciliation_percent = this.statsService.actual_after_conciliation_percent;
+    this.latest_conciliation_date = moment(this.statsService.latest_conciliation_date).format('MMM D, YYYY') || 'Not reconciled';
+    this.actual_after_conciliation_percent = this.statsService.actual_after_conciliation_percent || null;
     this.notifications = this.notificationService.notifications;
 
     if(this.authService.getUser().user_type_name === 'admin') {
