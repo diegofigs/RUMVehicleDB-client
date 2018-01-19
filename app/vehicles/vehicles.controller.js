@@ -63,15 +63,15 @@ export default class VehiclesController {
     }
 
     if(this.vehicle.inspection_date){
-      this.vehicle.inspection_date = moment(this.vehicle.inspection_date);
+      this.vehicle.inspection_date = moment(this.vehicle.inspection_date).toDate();
     }
 
     if(this.vehicle.decomission_date){
-      this.vehicle.decomission_date = moment(this.vehicle.decomission_date);
+      this.vehicle.decomission_date = moment(this.vehicle.decomission_date).toDate();
     }
 
     if(this.vehicle.inscription_date){
-      this.vehicle.inscription_date = moment(this.vehicle.inscription_date);
+      this.vehicle.inscription_date = moment(this.vehicle.inscription_date).toDate();
     }
   }
 
