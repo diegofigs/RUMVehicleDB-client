@@ -74,7 +74,7 @@
             <div ng-show="ctrl.getUser().user_type_name === 'admin'" flex layout="column" layout-align="start stretch" layout-padding>
                 <md-button flex="initial" ui-sref="dashboard.conciliation.step1"
                            ng-disabled="ctrl.unread_notifications_count === 0"
-                           md-colors="{background: 'blue-500'}"
+                           style="background: rgb(33, 150, 243); color: rgb(255, 255, 255);"
                            class="md-raised">Start Conciliation</md-button>
                 <md-button flex="initial" ui-sref="dashboard.approval"
                            ng-disabled="ctrl.justified_notifications_count === 0"
