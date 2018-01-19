@@ -43,6 +43,7 @@
                                     class="form-control"
                                     name="make"
                                     placeholder="Make"
+                                    maxlength="18"
                                     ng-pattern = "/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
                                     ng-model="ctrl.vehicle.make"
                                     ng-change="ctrl.vehicle.make = (ctrl.vehicle.make | uppercase)" required>
@@ -57,6 +58,7 @@
                             <input  type="text"
                                     class="form-control"
                                     name="model"
+                                    maxlength="30"
                                     placeholder="Model"
                                     ng-model="ctrl.vehicle.model"
                                     ng-change="ctrl.vehicle.model = (ctrl.vehicle.model | uppercase)" required>
@@ -90,6 +92,7 @@
                                     class="form-control"
                                     name="color"
                                     placeholder="Color"
+                                    maxlength="20"
                                     ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
                                     ng-model="ctrl.vehicle.color"
                                     ng-change="ctrl.vehicle.color = (ctrl.vehicle.color | uppercase)" required>
