@@ -259,6 +259,9 @@ export default class VehiclesController {
       });
   }
 
+  /**
+   * Reloads current state. Used for clearing filter parameters applied
+   */
   reload(){
     this.$state.reload();
   }

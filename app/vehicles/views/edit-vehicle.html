@@ -29,12 +29,14 @@
                                     name="vin"
                                     placeholder="VIN"
                                     maxlength="17"
-                                    minlength="17"
                                     ng-pattern="/^[a-zA-Z0-9]{17}$/"
-                                    ng-model="ctrl.vehicle.vin">
-
+                                    ng-model="ctrl.vehicle.vin"
+                                    ng-model-options="{allowInvalid: true}"
+                                    ng-change="ctrl.vehicle.vin = (ctrl.vehicle.vin | uppercase)">
+                            
                             <div ng-messages="vehicleForm.vin.$error" ng-if="vehicleForm.vin.$touched && vehicleForm.vin.$invalid">
                                 <div ng-message="pattern">VIN number should have 17 characters/digits. </div>
+                                <div ng-message="maxlength">VIN number should have 17 characters/digits. </div>
                             </div>
                         </md-input-container>
 
@@ -156,7 +158,7 @@
                                     ng-change="ctrl.vehicle.serial_number = (ctrl.vehicle.serial_number | uppercase)">
 
                             <div ng-messages="vehicleForm.serial_number.$error" ng-if="vehicleForm.serial_number.$touched && vehicleForm.serial_number.$invalid">
-                                <div ng-message="pattern">This field should only contain alphanumeric characters and/or numbers</div>
+                                <div ng-message="pattern">This field should only contain characters and/or numbers</div>
                             </div>
                         </md-input-container>
 
