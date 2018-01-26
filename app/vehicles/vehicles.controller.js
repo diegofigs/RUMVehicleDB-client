@@ -6,10 +6,11 @@ import moment from 'moment-es6';
  * Vehicles Controller is in charge of all business logic related to UPRM's Vehicles
  */
 export default class VehiclesController {
-  constructor($state, $log,
+  constructor($state, $log,$window,
            AuthService, DepartmentsService, UsersService, VehiclesService, swal) {
     this.$state = $state;
     this.$log = $log;
+    this.$window = $window;
     this.authService = AuthService;
     this.departmentsService = DepartmentsService;
     this.usersService = UsersService;
@@ -272,5 +273,12 @@ export default class VehiclesController {
    */
   formatDateForMarkup(date){
     return moment(date).format('MMM DD, YYYY');
+  }
+
+  /**
+   * Downloads an excel file which includes all vehicles in the system
+   */
+  downloadVehicleReport(){
+    this.$window.open('http://dev.uprm.edu/rumvehicles/api/v1/dashboard/report/vehicles', "_self");
   }
 }
