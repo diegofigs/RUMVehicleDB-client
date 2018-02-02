@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">app/cards/cards.service.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/cards/cards.service.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Cards Service is in charge of emitting http requests to the API
+ * related to credit card information.
+ */
+export default class CardsService {
+  /**
+   * Constructs a new instance of CardsService and initializes it.
+   * @param $http
+   * @param $log
+   * @param API
+   */
+  constructor($http, $log, API) {
+    this.$http = $http;
+    this.$log = $log;
+    this.API = API;
+    this.resource = &apos;/api/v1/cards/&apos;;
+
+    this.card = {};
+    this.cards = [];
+
+    // Initialize pagination metadata
+    this.pageSize = 10;
+    this.total = 1;
+  }
+
+  /**
+   * Requests cards to the API, filtering results if params provided.
+   * @param {Object} params Object where each key and value is used
+   * for filtering requested Card objects
+   * @return {Promise&lt;Object&gt;}
+   */
+  getCards(params) {
+    return this.$http.get(this.API + this.resource, {
+      params: params
+    }).then((response) =&gt; {
+        this.cards = response.data.data[0].data;
+        this.pageSize = response.data.data[0].per_page;
+        this.total = response.data.data[0].last_page;
+        return this.cards;
+      });
+  }
+
+  /**
+   * Requests a single card to the API.
+   * @param {number} id Numerical value provided by the API
+   * @return {Promise&lt;Object&gt;}
+   */
+  getCard(id) {
+    return this.$http.get(this.API + this.resource + id)
+      .then((response) =&gt; {
+        this.card = response.data.data;
+        return this.card;
+      });
+  }
+
+  /**
+   * Requests the creation of a new Card object to the API.
+   * @param {Object} card Card for creation
+   * @return {Promise&lt;Object&gt;}
+   */
+  createCard(card) {
+    return this.$http.post(this.API + this.resource, card);
+  };
+
+  /**
+   * Requests the deletion of a single existing Card object to the API.
+   * @param {Object} card Card for deletion
+   * @returns {Promise&lt;Object&gt;}
+   */
+  deleteCard(card) {
+    card.status = &apos;Inactive&apos;;
+    return this.$http.put(this.API + this.resource + card.id, card);
+  };
+
+  /**
+   * Requests the modification of a single existing
+   * Card object to the API.
+   * @param {Object} card Card for modification
+   * @returns {Promise&lt;Object&gt;}
+   */
+  editCard(card) {
+    return this.$http.put(this.API + this.resource + card.id, card);
+  };
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

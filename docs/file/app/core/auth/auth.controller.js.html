@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">app/core/auth/auth.controller.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/core/auth/auth.controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * AuthController is in charge of handling user input at the
+ * login portal.
+ */
+export default class AuthController {
+  /**
+   * Constructs a new instance of AuthController and initializes it.
+   * @param $state
+   * @param $log
+   * @param AuthService
+   */
+  constructor ($state, $log, AuthService, swal) {
+    // angular injected services
+    this.$state = $state;
+    this.$log = $log;
+    this.authService = AuthService;
+    this.swal = swal;
+
+    // Temporary user object for form
+    this.user = {};
+  }
+
+  /**
+   * Login function that calls AuthService with user credentials.
+   * @return {Promise&lt;Object&gt;}
+   */
+  login() {
+    return this.authService.authenticate(this.user)
+      .then((user) =&gt; {
+        this.user = {};
+        if(user.user_type_name === &apos;vehicle_admin&apos;){
+          this.$state.go(&apos;dashboard.vehicles.list&apos;);
+        }
+        else{
+          this.$state.go(&apos;dashboard.home&apos;);
+        }
+      })
+      .catch((error) =&gt; {
+        this.$log.log(error);
+
+        if(error.data === null){
+          this.swal({
+            title: &apos;Error&apos;,
+            text: &apos;Something went wrong! Please try again later.&apos;,
+            type: &apos;error&apos;,
+          });
+        }
+        else if(error.data !== null &amp;&amp; error.data.error === &apos;invalid_credentials&apos;){
+          this.swal({
+            title: &apos;Error&apos;,
+            text: &apos;Invalid credentials. Please, enter a valid email and password.&apos;,
+            type: &apos;error&apos;,
+          });
+        }
+        else {
+          this.swal({
+            title: &apos;Error&apos;,
+            text: &apos;Something went wrong! Please try again later.&apos;,
+            type: &apos;error&apos;,
+          });
+        }
+      });
+  }
+
+  showForgotPasswordDialog(){
+    this.swal({
+      title: &apos;Forgot Password?&apos;,
+      type: &apos;info&apos;,
+      text: &apos;Please contact RUM Vehicle\&apos;s administrator at (787) 832-4040 ext. 2020/2024 in order to &apos; +
+      &apos;reset your password. Location: Jos&#xE9; De Diego\&apos;s Building, Office 205.&apos;
+    });
+
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

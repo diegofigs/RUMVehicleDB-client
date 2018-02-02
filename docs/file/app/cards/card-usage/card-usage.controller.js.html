@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">app/cards/card-usage/card-usage.controller.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/cards/card-usage/card-usage.controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import moment from &apos;moment&apos;;
+
+/**
+ * CardsUsage Controller is in charge of presentation and validation logic
+ * for usage related states and interactions.
+ */
+export default class CardsUsageController {
+  /**
+   * Constructs a new instance of CardsUsageController and initializes it.
+   * @param $state
+   * @param $log
+   * @param $stateParams
+   * @param $window
+   * @param FileUploader
+   * @param AuthService
+   * @param CardsService
+   * @param CardUsageService
+   * @param swal
+   * @param API
+   */
+  constructor($state, $log, $stateParams, $window, FileUploader,
+              AuthService, CardsService, CardUsageService, swal, API) {
+    this.$state = $state;
+    this.$log = $log;
+    this.$stateParams = $stateParams;
+    this.$window = $window;
+    this.authService = AuthService;
+    this.cardUsageService = CardUsageService;
+
+    this.cardsService = CardsService;
+    this.cardsUsages = this.cardUsageService.cardsUsages;
+    this.singleCardUsages = this.cardUsageService.singleCardUsages;
+    this.temp_date = new Date();
+    this.swal = swal;
+    this.API = API;
+
+    this.card = this.cardsService.getCard($stateParams.id);
+
+    this.pageQuery = {
+      page: this.cardUsageService.page,
+    };
+
+    this.pagination = {
+      boundaryLinks: true,
+      limit: this.cardUsageService.pageSize,
+      total: this.cardUsageService.total,
+    };
+
+    this.getPaginatedSingleCardUsages = this.getPaginatedSingleCardUsages.bind(this);
+
+    this.newCardUsage = {
+      date: &apos;&apos;,
+      vehicle_mileage: &apos;&apos;,
+      provider_number: &apos;&apos;,
+      purchase_type: &apos;&apos;,
+      total_liters: &apos;&apos;,
+      total_receipt: &apos;&apos;,
+      receipt_number: &apos;&apos;,
+      comments: &apos;&apos;,
+      vehicle_id: &apos;&apos;,
+      card_id: &apos;&apos;,
+      custodian_id: &apos;&apos;,
+      department_id: &apos;&apos;
+    };
+    this.onDateChange();
+
+    this.date = new Date();
+
+    this.today = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+
+    /**
+     * Uploader object used for uploading assets like
+     * receipt images and travel ballots.
+     */
+    this.uploader = new FileUploader({
+      url: this.API + &apos;/api/v1/records&apos;,
+      alias: &apos;filename&apos;,
+      method: &apos;POST&apos;,
+      headers: {
+        Authorization: &apos;Bearer &apos; + this.authService.getToken(),
+      },
+    });
+
+    /**
+     * Gathers new Card Usage data and file (receipt picture),
+     * aggregates them to the form data.
+     * @param {File} fileItem File item to be processed before upload
+     * @callback
+     */
+    this.uploader.onBeforeUploadItem = (fileItem) =&gt; {
+      this.newCardUsage.custodian_id = this.authService.getUser().id;
+      this.newCardUsage.card_id = this.cardsService.card.id;
+      this.newCardUsage.department_id = this.cardsService.card.department_id;
+      this.newCardUsage.vehicle_id = 1;
+      fileItem.formData.push(this.newCardUsage);
+    };
+
+    /**
+     * Once upload is complete, navigate back to card usage state.
+     * @param item
+     * @param response
+     * @param status
+     * @param headers
+     * @callback
+     */
+    this.uploader.onCompleteItem = (item, response, status, headers) =&gt; {
+      this.$state.go(&apos;dashboard.cards.view.card-usage&apos;);
+    };
+
+    this.tempItem = null;
+  }
+
+  /**
+   * Shows a card usage receipt in a new tab
+   * @param {Object} usage Usage object for receipt display
+   */
+  showReceipt(usage){
+    this.$window.open(usage.record_picture, &quot;_blank&quot;);
+  }
+
+  /**
+   * Shows confirmation dialog to user
+   * If user confirms, a new card usage/record will be created
+   * If user cancels, he/she will stay in the &quot;Add New Card Usage&quot; view
+   */
+  confirmUsageForm() {
+
+    this.swal({
+      title: &apos;Confirm transaction&apos;,
+      html: &apos;&lt;div class=&quot;confirmation-table&quot;&gt;&apos; +
+      &apos;&lt;ul style=&quot;list-style-type:none; text-align: left&quot;&gt;&apos; +
+      &apos;&lt;li&gt; Date:  &apos; + &apos;&lt;b&gt;&apos; + moment(this.newCardUsage.date).format(&apos;MMM D, YYYY&apos;) + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Store:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.provider_number + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Vehicle mileage:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.vehicle_mileage + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Purchase type:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.purchase_type + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Total of liters:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.total_liters + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Receipt total:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.total_receipt + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Receipt number: &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.receipt_number + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Comments:  &apos; + &apos;&lt;b&gt;&apos; + this.newCardUsage.comments + &apos;&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&apos;,
+      type: &apos;info&apos;,
+      confirmButtonText: &apos;Confirm&apos;,
+      confirmButtonColor: &apos;#4caf50&apos;,
+      showCancelButton: &apos;true&apos;,
+      cancelButtonText: &apos;Cancel&apos;,
+      cancelButtonColor: &apos;#f44336&apos;,
+    }).then(() =&gt; {
+
+      this.submitUsageForm();
+
+        if(this.uploader.queue.length === 0){
+          this.swal({
+            title: &apos;Receipt not found!&apos;,
+            text: &apos;You need to submit a receipt with the transaction.&apos;,
+            type: &apos;info&apos;,
+          });
+        }
+        else{
+          this.swal({
+            title: &apos;Success!&apos;,
+            text: &apos;You have submitted a new transaction successfully&apos;,
+            type: &apos;success&apos;
+          });
+        }
+      });
+  }
+
+  /**
+   * Sends newly created gas transaction to backend
+   */
+  submitUsageForm(){
+
+    for (let x = 0; x &lt; this.uploader.queue.length; x++){
+      this.tempItem = this.uploader.queue[x];
+    }
+
+    if(this.uploader.queue.length !== 0) {
+      this.tempItem.upload();
+    }
+  }
+
+  /**
+   * Method used to format date in the format YYYY-MM-DD
+   */
+  onDateChange() {
+    this.newCardUsage.date = moment(this.temp_date).format(&apos;YYYY-M-D&apos;);
+  }
+
+  /**
+   * Requests card usages to service with filter object provided.
+   * @return {Promise&lt;Object&gt;}
+   */
+  getCardsUsages() {
+    return this.cardUsageService.getCardsUsages();
+  }
+
+  /**
+   * Requests card usages of a single card to service with id provided.
+   * @param {number} id Numerical value assigned by API
+   * @return {Promise&lt;Object&gt;}
+   */
+  getSingleCardUsages(id) {
+    return this.cardUsageService.getSingleCardUsages(id);
+  }
+
+  /**
+   * Requests modification of a specific card usage to service,
+   * with id of desired
+   * @param {number} id Numerical value assigned by API
+   * @return {Promise&lt;Object&gt;}
+   */
+  editCardUsage(id) {
+    return this.cardUsageService.editCardUsage(id)
+      .then(() =&gt; {
+        this.$state.go(&apos;dashboard.cards.view.card-usage&apos;);
+      });
+  }
+
+  /**
+   * Requests card usages of a single card to service with id provided,
+   * paginated for presentation purposes.
+   * @return {Promise&lt;Object&gt;}
+   */
+  getPaginatedSingleCardUsages(){
+    return this.cardUsageService.getSingleCardUsages(this.$stateParams.id, this.pageQuery)
+      .then( () =&gt; {
+        this.singleCardUsages = this.cardUsageService.singleCardUsages;
+      });
+  }
+
+  /**
+   * Gets currently logged user
+   * @returns {Object|null}
+   */
+  getUser() {
+    return this.authService.getUser();
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

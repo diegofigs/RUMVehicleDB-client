@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">app/vehicles/vehicles.controller.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/vehicles/vehicles.controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+
+import moment from &apos;moment-es6&apos;;
+
+/**
+ * Vehicles Controller is in charge of all business logic related to UPRM&apos;s Vehicles
+ */
+export default class VehiclesController {
+  constructor($state, $log,$window,
+           AuthService, DepartmentsService, UsersService, VehiclesService, swal) {
+    this.$state = $state;
+    this.$log = $log;
+    this.$window = $window;
+    this.authService = AuthService;
+    this.departmentsService = DepartmentsService;
+    this.usersService = UsersService;
+    this.vehiclesService = VehiclesService;
+
+    this.vehicles = this.vehiclesService.vehicles;
+    this.vehicle = this.vehiclesService.vehicle;
+    this.departments = this.departmentsService.departments;
+    this.users = this.usersService.users;
+    this.vehicleTypes = this.vehiclesService.vehicleTypes;
+    this.newVehicle = {};
+    this.swal = swal;
+
+    this.date = new Date();
+
+    this.maxVehicleYearAllowed = new Date(
+      this.date.getFullYear() + 1,
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+
+    this.maxMarbeteDate = new Date(
+      this.date.getFullYear() + 1,
+      this.date.getMonth() + 1,
+      this.date.getDate()
+    );
+
+    this.today = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+
+    // Filter object will contain filter parameters for filtering vehicles
+    this.filter = {
+      department_id: &apos;&apos;,
+      custodian_id: &apos;&apos;,
+      type_id: &apos;&apos;,
+      page: 1,
+      was_archived: 0
+    };
+
+    this.pagination = {
+      pageSize: this.vehiclesService.pageSize,
+      total: this.vehiclesService.total,
+    };
+
+    //If user actually selected a date, then format it
+    if(this.vehicle.marbete_date) {
+      this.vehicle.marbete_date = moment(this.vehicle.marbete_date).toDate();
+    }
+
+    if(this.vehicle.inspection_date){
+      this.vehicle.inspection_date = moment(this.vehicle.inspection_date).toDate();
+    }
+
+    if(this.vehicle.decomission_date){
+      this.vehicle.decomission_date = moment(this.vehicle.decomission_date).toDate();
+    }
+
+    if(this.vehicle.inscription_date){
+      this.vehicle.inscription_date = moment(this.vehicle.inscription_date).toDate();
+    }
+  }
+
+  /**
+   * If vehicle creation is successful, shows user success feedback
+   * If vehicle creation is unsuccessful, shows user error feedback
+   */
+  confirmVehicleCreation(){
+
+    if(parseInt(this.newVehicle.year) &gt; parseInt(this.maxVehicleYearAllowed.getFullYear())){
+      this.swal({
+        title: &apos;Error&apos;,
+        text: &apos; Vehicle year can\&apos;t be greater than &apos;+this.maxVehicleYearAllowed.getFullYear()+&quot; and the year entered was &quot;+this.newVehicle.year+&quot;.&quot; ,
+        type: &apos;error&apos;
+      });
+      return;
+    }
+    this.createVehicle()
+      .then(() =&gt; {
+        this.swal({
+          title: &apos;Vehicle was successfully created!&apos;,
+          type: &apos;success&apos;
+        });
+      })
+      .catch((error) =&gt; {
+        this.swal({
+          title: &apos;Error: Vehicle could not be created&apos;,
+          type: &apos;error&apos;
+        });
+      });
+  }
+
+  /**
+   * Sends vehicle to be created to the Vehicles Service
+   * Formats input dates as YYYY-MM-DD
+   */
+  createVehicle() {
+
+    this.newVehicle.was_archived = 0;
+    this.newVehicle.custodian_id = this.authService.getUser().id;
+
+    //If user actually selected a date, then format it
+    if(this.newVehicle.marbete_date) {
+      this.newVehicle.marbete_date = moment(this.newVehicle.marbete_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.newVehicle.inspection_date){
+      this.newVehicle.inspection_date = moment(this.newVehicle.inspection_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.newVehicle.decomission_date){
+      this.newVehicle.decomission_date = moment(this.newVehicle.decomission_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.newVehicle.inscription_date){
+      this.newVehicle.inscription_date = moment(this.newVehicle.inscription_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    return this.vehiclesService.createVehicle(this.newVehicle)
+      .then(() =&gt; {
+      this.$state.go(&apos;dashboard.vehicles.list&apos;);
+      });
+  }
+
+  /**
+   *  Shows confirmation dialog to user
+   * If user confirms, vehicle will be deleted (if no error in deletion is present)
+   * If user cancels, he/she will stay in the &quot;Vehicles&quot; view
+   * @param vehicle Vehicle to be deleted
+   */
+  confirmVehicleDeletion(vehicle) {
+
+    this.swal({
+      title: &apos;Do you really want to delete this vehicle?&apos;,
+      type: &apos;warning&apos;,
+      confirmButtonText: &apos;Confirm&apos;,
+      confirmButtonColor: &apos;#4caf50&apos;,
+      showCancelButton: &apos;true&apos;,
+      cancelButtonText: &apos;Cancel&apos;,
+      cancelButtonColor: &apos;#f44336&apos;,
+    }).then(() =&gt; {
+
+      this.deleteVehicle(vehicle)
+        .then(() =&gt; {
+
+          this.swal({
+            title: &apos;Vehicle has been deleted&apos;,
+            type: &apos;success&apos;
+          });
+
+          this.$state.reload();
+      })
+        .catch((error) =&gt; {
+          this.swal({
+            title: &apos;Error: Vehicle could not be deleted&apos;,
+            type: &apos;error&apos;
+          });
+        });
+    });
+  }
+
+  /**
+   *Sends vehicle to be deleted to the Vehicles Service
+   * @param vehicle Vehicle to be deleted
+   * @returns {*}
+   */
+  deleteVehicle(vehicle) {
+    return this.vehiclesService.deleteVehicle(vehicle);
+  }
+
+  /**
+   * If vehicle edition is successful, shows user success feedback
+   * If vehicle edition is unsuccessful, shows user error feedback
+   */
+  confirmVehicleEdition(){
+
+    if(parseInt(this.vehicle.year) &gt; parseInt(this.maxVehicleYearAllowed.getFullYear())) {
+      this.swal({
+        title: &apos;Error&apos;,
+        text: &apos; Vehicle year can\&apos;t be greater than &apos; + this.maxVehicleYearAllowed.getFullYear() + &quot; and the year entered was &quot; + this.vehicle.year + &quot;.&quot;,
+        type: &apos;error&apos;
+      });
+      return;
+    }
+      this.editVehicle()
+        .then(() =&gt; {
+          this.swal({
+            title: &apos;Vehicle was successfully edited!&apos;,
+            type: &apos;success&apos;
+          });
+        })
+        .catch((error) =&gt; {
+          this.swal({
+            title: &apos;Error: Vehicle could not be edited&apos;,
+            type: &apos;error&apos;
+          });
+        });
+    }
+
+  /**
+   * Sends vehicle to be edited to the Vehicles Service
+   */
+  editVehicle() {
+
+    //If user actually selected a date, then format it
+    if(this.vehicle.marbete_date) {
+      this.vehicle.marbete_date = moment(this.vehicle.marbete_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.vehicle.inspection_date){
+      this.vehicle.inspection_date = moment(this.vehicle.inspection_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.vehicle.decomission_date){
+      this.vehicle.decomission_date = moment(this.vehicle.decomission_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    if(this.vehicle.inscription_date){
+      this.vehicle.inscription_date = moment(this.vehicle.inscription_date).format(&apos;YYYY-MM-DD&apos;);
+    }
+
+    return this.vehiclesService.editVehicle(this.vehicle)
+      .then(() =&gt; {
+      this.$state.go(&apos;dashboard.vehicles.list&apos;);
+      });
+  }
+
+  /**
+   * gets current system User
+   * @returns {*|Object} User Object
+   */
+  getUser() {
+    return this.authService.getUser();
+  }
+
+  /**
+   * Requests Vehicles Service a list of vehicles with filter parameters applied
+   */
+  applyVehicleFilter() {
+    return this.vehiclesService.getVehicles(this.filter)
+      .then(() =&gt; {
+        this.pagination.pageSize = this.vehiclesService.pageSize;
+        this.pagination.total = this.vehiclesService.total;
+        this.vehicles = this.vehiclesService.vehicles;
+      });
+  }
+
+  /**
+   * Reloads current state. Used for clearing filter parameters applied
+   */
+  reload(){
+    this.$state.reload();
+  }
+
+  /**
+   * @param date Date to be formatted
+   * @returns {string} returns a String with the following format: MMM DD, YYYY
+   */
+  formatDateForMarkup(date){
+    return moment(date).format(&apos;MMM DD, YYYY&apos;);
+  }
+
+  /**
+   * Downloads an excel file which includes all vehicles in the system
+   */
+  downloadVehicleReport(){
+    this.$window.open(&apos;http://dev.uprm.edu/rumvehicles/api/v1/dashboard/report/vehicles&apos;, &quot;_self&quot;);
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

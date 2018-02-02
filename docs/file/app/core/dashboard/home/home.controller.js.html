@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">app/core/dashboard/home/home.controller.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/core/dashboard/home/home.controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** @ngInject */
+export default class HomeController {
+  constructor($scope, $timeout, swal, AuthService, StatsService,
+              NotificationService) {
+    this.swal = swal;
+    this.authService = AuthService;
+    this.statsService = StatsService;
+    this.notificationService = NotificationService;
+    this.registered_users = this.statsService.registered_users;
+    this.registered_vehicles = this.statsService.registered_vehicles;
+    this.active_credit_cards = this.statsService.active_credit_cards;
+    this.total_monthly_expenses = this.statsService.total_monthly_expenses;
+    this.latest_conciliation_date = moment(this.statsService.latest_conciliation_date).format(&apos;MMM D, YYYY&apos;) || &apos;Not reconciled&apos;;
+    this.actual_after_conciliation_percent = this.statsService.actual_after_conciliation_percent || null;
+    this.notifications = this.notificationService.notifications;
+
+    if(this.authService.getUser().user_type_name === &apos;admin&apos;) {
+      this.justified_notifications_count = this.notificationService.justified_notifications_count;
+    }
+    else {
+      this.unread_notifications_count = this.notificationService.unread_notifications_count;
+    }
+
+
+    $scope.options1 = {
+      lineWidth: 8,
+      scaleColor: false,
+      size: 85,
+      lineCap: &apos;square&apos;,
+      barColor: &apos;#fb8c00&apos;,
+      trackColor: &apos;#f9dcb8&apos;,
+    };
+    $scope.options2 = {
+      lineWidth: 8,
+      scaleColor: false,
+      size: 85,
+      lineCap: &apos;square&apos;,
+      barColor: &apos;#00D554&apos;,
+      trackColor: &apos;#c7f9db&apos;,
+    };
+    $scope.options3 = {
+      lineWidth: 8,
+      scaleColor: false,
+      size: 85,
+      lineCap: &apos;square&apos;,
+      barColor: &apos;#F800FC&apos;,
+      trackColor: &apos;#F5E5F5&apos;,
+    };
+
+    $scope.labels = [&apos;January&apos;, &apos;February&apos;, &apos;March&apos;,
+      &apos;April&apos;, &apos;May&apos;, &apos;June&apos;, &apos;July&apos;,
+    ];
+
+    $scope.series = [&apos;Series A&apos;, &apos;Series B&apos;];
+    $scope.data = [
+      [65, 59, 80, 81, 56, 55, 40],
+      [28, 48, 40, 19, 86, 27, 90],
+    ];
+
+    $scope.onClick = function (points, evt) {
+      console.log(points, evt);
+    };
+
+    if ($(window).width() &lt; 600) {
+      $(&apos;.mdl-grid&apos;).removeAttr(&apos;dragula&apos;);
+    }
+
+    $timeout(function () {
+      $scope.line = {
+        labels: [&apos;January&apos;, &apos;February&apos;, &apos;March&apos;, &apos;April&apos;, &apos;May&apos;, &apos;June&apos;, &apos;July&apos;],
+        data: [
+          [7, 20, 10, 15, 17, 10, 27],
+          [6, 9, 22, 11, 13, 20, 27],
+        ],
+        colours: [{
+          fillColor: &apos;#FFA3FD&apos;,
+          strokeColor: &apos;#FFA3FD&apos;,
+          pointColor: &apos;#fff&apos;,
+          pointStrokeColor: &apos;#FFA3FD&apos;,
+          pointHighlightFill: &apos;#fff&apos;,
+          pointHighlightStroke: &apos;#FFA3FD&apos;,
+        },
+          {
+            fillColor: &apos;#F800FC&apos;,
+            strokeColor: &apos;#F800FC&apos;,
+            pointColor: &apos;#fff&apos;,
+            pointStrokeColor: &apos;#F800FC&apos;,
+            pointHighlightFill: &apos;#fff&apos;,
+            pointHighlightStroke: &apos;#F800FC&apos;,
+          },
+        ],
+        options: {
+          responsive: true,
+          bezierCurve: false,
+          datasetStroke: false,
+          legendTemplate: false,
+          pointDotRadius: 6,
+          showTooltips: false,
+        },
+        onClick: function (points, evt) {
+          console.log(points, evt);
+        },
+      };
+    }, 100);
+
+    $scope.line2 = {
+      labels: [&apos;JAN&apos;, &apos;FEB&apos;, &apos;MAR&apos;, &apos;APR&apos;, &apos;MAY&apos;, &apos;JUN&apos;],
+      data: [
+        [99, 180, 80, 140, 120, 220, 100],
+        [50, 145, 200, 75, 50, 100, 50],
+      ],
+      colours: [{
+        fillColor: &apos;rgba(0,0,0, 0)&apos;,
+        strokeColor: &apos;#C172FF&apos;,
+        pointColor: &apos;#fff&apos;,
+        pointStrokeColor: &apos;#8F00FF&apos;,
+        pointHighlightFill: &apos;#fff&apos;,
+        pointHighlightStroke: &apos;#8F00FF&apos;,
+      },
+        {
+          fillColor: &apos;rgba(0,0,0, 0)&apos;,
+          strokeColor: &apos;#FFB53A&apos;,
+          pointColor: &apos;#fff&apos;,
+          pointStrokeColor: &apos;#FF8300&apos;,
+          pointHighlightFill: &apos;#fff&apos;,
+          pointHighlightStroke: &apos;#FF8300&apos;,
+        },
+      ],
+      options: {
+        responsive: true,
+        bezierCurve: false,
+        datasetStroke: false,
+        legendTemplate: false,
+        pointDotRadius: 9,
+        pointDotStrokeWidth: 3,
+        datasetStrokeWidth: 3,
+      },
+      onClick: function (points, evt) {
+        console.log(points, evt);
+      },
+
+    };
+
+  }
+
+  getUser() {
+    return this.authService.getUser();
+  }
+
+  showTransaction(notification) {
+    let transaction = notification.record_info;
+    this.swal({
+      title: &apos;Transaction details&apos;,
+      html: &apos;&lt;div class=&quot;confirmation-table&quot;&gt;&apos; +
+      &apos;&lt;ul style=&quot;list-style-type:none; text-align: left&quot;&gt;&apos; +
+      &apos;&lt;li&gt; Date:  &apos; + &apos;&lt;b&gt;&apos; + transaction.date + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Store:  &apos; + &apos;&lt;b&gt;&apos; + transaction.provider_number + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Vehicle mileage:  &apos; + &apos;&lt;b&gt;&apos; + transaction.vehicle_mileage + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Purchase type:  &apos; + &apos;&lt;b&gt;&apos; + transaction.purchase_type + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Total of liters:  &apos; + &apos;&lt;b&gt;&apos; + transaction.total_liters + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Receipt total:  &apos; + &apos;&lt;b&gt;&apos; + transaction.total_receipt + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Receipt number: &apos; + &apos;&lt;b&gt;&apos; + transaction.receipt_number + &apos;&lt;/b&gt;&lt;/li&gt;&apos; +
+      &apos;&lt;li&gt; Comments:  &apos; + &apos;&lt;b&gt;&apos; + transaction.comments + &apos;&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&apos;,
+      type: &apos;info&apos;,
+    });
+  }
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

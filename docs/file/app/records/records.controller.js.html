@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">app/records/records.controller.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appModule">appModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards">cards</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.controller.js~CardsController.html">CardsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/cards.service.js~CardsService.html">CardsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardsModule">cardsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cards-card-usage">cards/card-usage</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.controller.js~CardsUsageController.html">CardsUsageController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/cards/card-usage/card-usage.service.js~CardUsageService.html">CardUsageService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cardUsageModule">cardUsageModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core">core</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-coreModule">coreModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-auth">core/auth</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.controller.js~AuthController.html">AuthController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/auth/auth.service.js~AuthService.html">AuthService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authModule">authModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard">core/dashboard</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/dashboard.controller.js~DashboardController.html">DashboardController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dashboardModule">dashboardModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-home">core/dashboard/home</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/home/home.controller.js~HomeController.html">HomeController</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-dashboard-services">core/dashboard/services</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/notifications.service.js~NotificationService.html">NotificationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/core/dashboard/services/stats.service.js~StatsService.html">StatsService</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-filters">core/filters</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-capitalize">capitalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-todate">todate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#departments">departments</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/departments/departments.service.js~DepartmentsService.html">DepartmentsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-departmentsModule">departmentsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#records">records</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.controller.js~RecordsController.html">RecordsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/records/records.service.js~RecordsService.html">RecordsService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recordsModule">recordsModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#users">users</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.controller.js~UsersController.html">UsersController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/users/users.service.js~UsersService.html">UsersService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usersModule">usersModule</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vehicles">vehicles</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.controller.js~VehiclesController.html">VehiclesController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/vehicles/vehicles.service.js~VehiclesService.html">VehiclesService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vehiclesModule">vehiclesModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/records/records.controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** @ngInject */
+export default class RecordsController {
+  constructor($log, $state, $sessionStorage, $timeout, $window, FileUploader,
+              AuthService, CardUsageService, DepartmentsService,
+              UsersService, RecordsService, NotificationService, swal) {
+    // Injected elements
+    this.$log = $log;
+    this.$state = $state;
+    this.$sessionStorage = $sessionStorage;
+    this.$timeout = $timeout;
+    this.$window = $window;
+    this.authService = AuthService;
+    this.cardUsageService = CardUsageService;
+    this.departmentsService = DepartmentsService;
+    this.usersService = UsersService;
+    this.recordsService = RecordsService;
+    this.notificationService = NotificationService;
+    this.swal = swal;
+    this.reportDates = this.recordsService.reportDates;
+    this.selectedReportDate = &apos;&apos;;
+    this.nonPaginatedUsers = this.usersService.nonPaginatedUsers;
+
+    this.purchaseTypes = [&apos;Regular&apos;, &apos;Premium&apos;, &apos;Diesel&apos;];
+
+    this.filter = {
+      department_id: &apos;&apos;,
+      custodian_id: &apos;&apos;,
+      purchase_type: &apos;&apos;,
+      page: 1,
+    };
+
+    this.pagination = {
+      pageSize: this.cardUsageService.pageSize,
+      total: this.cardUsageService.total,
+    };
+
+    // Reference to records from service
+    this.records = this.cardUsageService.cardsUsages;
+    // Reference to departments from service
+    this.departments = this.departmentsService.departments;
+    // Reference to custodian names
+    this.users = this.usersService.users;
+    this.notifications = this.notificationService.notifications;
+
+    // Lists that detail reconciliation process and breakdown
+    this.reconciled = [];
+    this.nonReconciled = [];
+    this.excelNonReconciled = this.$sessionStorage.excelNonReconciled || [];
+    this.conciliation_percent = this.$sessionStorage.conciliation_percent || [];
+    this.total_excel_records = this.$sessionStorage.total_excel_records || [];
+    this.total_server_records = this.$sessionStorage.total_server_records || [];
+    this.total_expenses_in_excel_records = this.$sessionStorage.total_expenses_in_excel_records || [];
+    this.total_expenses_in_server_records = this.$sessionStorage.total_expenses_in_server_records || [];
+    this.justified_notifications_count = this.notificationService.justified_notifications_count;
+    this.unread_notifications_count = this.notificationService.unread_notifications_count;
+
+    this.uploader = new FileUploader({
+      url: &apos;http://dev.uprm.edu/rumvehicles/api/v1/records/reconcile&apos;,
+      alias: &apos;file&apos;,
+      method: &apos;POST&apos;,
+      headers: {
+        Authorization: &apos;Bearer &apos; + this.authService.getToken(),
+      },
+      queueLimit: 1
+    });
+
+    this.uploader.onBeforeUploadItem = (fileItem) =&gt; {
+      this.$log.log(fileItem);
+    };
+
+    this.uploader.onCompleteItem = (item, response, status, headers) =&gt; {
+      let responseData = response.data;
+      this.$sessionStorage.conciliation_percent = responseData.conciliation_percent;
+      this.$sessionStorage.total_excel_records = responseData.total_excel_records;
+      this.$sessionStorage.total_server_records = responseData.total_server_records;
+      this.$sessionStorage.total_expenses_in_excel_records = responseData.total_expenses_in_excel_records;
+      this.$sessionStorage.total_expenses_in_server_records = responseData.total_expenses_in_server_records;
+      this.$sessionStorage.excelNonReconciled = responseData.excel_no_reconciliated_records;
+      this.swal({
+        title: &apos;Good job!&apos;,
+        text: &apos;You have submitted the Report!&apos;,
+        type: &apos;success&apos;,
+      }).then(() =&gt; {
+        this.$state.go(&apos;dashboard.conciliation.step2&apos;);
+      });
+    };
+
+  }
+
+  applyFilter(){
+    return this.cardUsageService.getCardsUsages(this.filter)
+      .then( () =&gt; {
+        this.records = this.cardUsageService.cardsUsages;
+        this.pagination.total = this.cardUsageService.total;
+        this.pagination.pageSize = this.cardUsageService.pageSize;
+      });
+  }
+
+  cancelUpload(){
+    this.$state.go(&apos;dashboard.home&apos;);
+  }
+
+  submitInvoice(){
+    let tempItem = null;
+    for (let x = 0; x &lt; this.uploader.queue.length; x++){
+      tempItem = this.uploader.queue[x];
+    }
+    this.$log.log(tempItem);
+    this.swal({
+      title: &apos;Confirm Upload&apos;,
+      text: tempItem.file.name,
+      type: &apos;info&apos;,
+      confirmButtonText: &apos;Confirm&apos;,
+      confirmButtonColor: &apos;#4caf50&apos;,
+      showCancelButton: &apos;true&apos;,
+      cancelButtonText: &apos;Cancel&apos;,
+      cancelButtonColor: &apos;#f44336&apos;,
+    })
+      .then(() =&gt; {
+        tempItem.upload();
+      })
+      .catch(() =&gt; {
+        this.swal({
+          title: &apos;Error&apos;,
+          text: &apos;There was an error communicating with the server.&apos;,
+          type: &apos;error&apos;,
+        });
+      });
+
+  }
+
+  isStateActive(stateName) {
+    return this.$state.current.name === stateName;
+  }
+
+  submitJustification(notification) {
+    notification.was_read = 1;
+    return this.notificationService.justifyNotification(notification)
+      .then(() =&gt; {
+        this.swal({
+          title: &apos;Success!&apos;,
+          text: &apos;You have submitted justification!&apos;,
+          type: &apos;success&apos;,
+        }).then(() =&gt; {
+          this.$state.reload();
+        });
+      })
+      .catch((error) =&gt; {
+        this.$log.log(error);
+        this.swal({
+          title: &apos;Error&apos;,
+          text: &apos;There was an error communicating with the server.&apos;,
+          type: &apos;error&apos;,
+        });
+      });
+  }
+
+  submitApproval(notification, status) {
+    notification.status_type_id = status;
+    let action = &apos;&apos;;
+    notification.status_type_id = status;
+    if(status === 3){
+      action = &apos;approval&apos;;
+    }
+    else {
+      action = &apos;denial&apos;;
+    }
+    this.swal({
+      title: &apos;Confirm &apos; + action,
+      type: &apos;info&apos;,
+      confirmButtonText: &apos;Confirm&apos;,
+      confirmButtonColor: &apos;#4caf50&apos;,
+      showCancelButton: &apos;true&apos;,
+      cancelButtonText: &apos;Cancel&apos;,
+      cancelButtonColor: &apos;#f44336&apos;,
+    }).then(() =&gt; {
+      return this.notificationService.justifyNotification(notification)
+        .then(() =&gt; {
+          this.swal({
+            title: &apos;Success!&apos;,
+            text: &apos;You have submitted your decision!&apos;,
+            type: &apos;success&apos;,
+          }).then(() =&gt; {
+            this.$state.reload();
+          });
+        })
+        .catch((error) =&gt; {
+          this.$log.log(error);
+          this.swal({
+            title: &apos;Error&apos;,
+            text: &apos;There was an error communicating with the server.&apos;,
+            type: &apos;error&apos;,
+          });
+        });
+    });
+
+  }
+
+  downloadMonthlyReport(){
+    this.$window.open(&apos;http://dev.uprm.edu/rumvehicles/api/v1/dashboard/report?dates=&apos; + this.selectedReportDate, &quot;_self&quot;);
+  }
+
+  reload() {
+    this.$state.reload();
+  }
+
+  /**
+   * Shows a card usage receipt in a dialog/pop up
+   * @param usage CardUsage object
+   */
+  showReceipt(usage){
+    this.$window.open(usage.record_picture, &quot;_blank&quot;);
+  }
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
