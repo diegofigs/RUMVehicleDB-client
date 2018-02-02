@@ -1,4 +1,3 @@
-
 import cardsController from './cards.controller';
 import cardsService from './cards.service';
 
@@ -7,12 +6,9 @@ import cardsAddTemplate from './views/add-card.html';
 import cardsEditTemplate from './views/edit-card.html';
 import cardsViewTemplate from './views/view-card.html';
 import cardsTemplate from './cards.html';
-
-/**
- *
- */
 import cardUsageModule from './card-usage/card-usage.js';
 
+/** @ngInject */
 const cardsModule = angular.module('app.cards', [cardUsageModule])
   .config(function ($stateProvider) {
     $stateProvider
@@ -81,4 +77,12 @@ const cardsModule = angular.module('app.cards', [cardUsageModule])
   .controller('CardsCtrl', cardsController)
   .name;
 
+/**
+ * Cards is in charge of encapsulating all functionality
+ * related to credit cards inside the application.
+ * This angular module declares all states from the cards sub tree
+ * of views and requires the CardsUsage module to function properly.
+ * @type {string}
+ * @return {string} 'app.cards'
+ */
 export default cardsModule;

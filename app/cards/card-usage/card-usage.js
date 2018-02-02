@@ -33,4 +33,12 @@ const cardUsageModule = angular.module('app.cards.card-usage', [])
   .controller('cardsUsageCtrl', cardsUsageController)
   .name;
 
+/**
+ * CardUsage module is in charge of encapsulating all functionality
+ * related to card expenses inside the application.
+ * This angular module declares all states from the card-usage
+ * sub tree of views.
+ * @type {string}
+ * @return {string} 'app.cards.card-usage'
+ */
 export default cardUsageModule;

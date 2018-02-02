@@ -1,9 +1,14 @@
-
 /**
- * Cards Service is in charge of API calls (GET, POST, PUT, DELETE)
- * related to credit cards
+ * Cards Service is in charge of emitting http requests to the API
+ * related to credit card information.
  */
 export default class CardsService {
+  /**
+   * Constructs a new instance of CardsService and initializes it.
+   * @param $http
+   * @param $log
+   * @param API
+   */
   constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
@@ -19,11 +24,12 @@ export default class CardsService {
   }
 
   /**
-   * Requests all cards if no param is given
-   * If filtering params are given, then requests cards that apply only
-   * @param params Filtering parameters for cards
+   * Requests cards to the API, filtering results if params provided.
+   * @param {Object} params Object where each key and value is used
+   * for filtering requested Card objects
+   * @return {Promise<Object>}
    */
-  getCards(params = {}) {
+  getCards(params) {
     return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
@@ -31,57 +37,48 @@ export default class CardsService {
         this.pageSize = response.data.data[0].per_page;
         this.total = response.data.data[0].last_page;
         return this.cards;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
   /**
-   * Requests the backend for a specific card
-   * @param id Card ID
+   * Requests a single card to the API.
+   * @param {number} id Numerical value provided by the API
+   * @return {Promise<Object>}
    */
   getCard(id) {
     return this.$http.get(this.API + this.resource + id)
       .then((response) => {
         this.card = response.data.data;
         return this.card;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
   /**
-   * Requests backend to create a new card
-   * @param card Credit Card Object
+   * Requests the creation of a new Card object to the API.
+   * @param {Object} card Card for creation
+   * @return {Promise<Object>}
    */
   createCard(card) {
     return this.$http.post(this.API + this.resource, card);
   };
 
   /**
-   * Deletes a specific card from the backend
-   * @param card Credit Card Object
-   * @returns {Promise} Server response. If delete was not successful, catch error and log it.
+   * Requests the deletion of a single existing Card object to the API.
+   * @param {Object} card Card for deletion
+   * @returns {Promise<Object>}
    */
   deleteCard(card) {
     card.status = 'Inactive';
-    return this.$http.put(this.API + this.resource + card.id,card)
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    return this.$http.put(this.API + this.resource + card.id, card);
   };
 
   /**
-   * Modifies a card in the backend
-   * @param card Card to be modified
-   * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
+   * Requests the modification of a single existing
+   * Card object to the API.
+   * @param {Object} card Card for modification
+   * @returns {Promise<Object>}
    */
   editCard(card) {
-    return this.$http.put(this.API + this.resource + card.id, card)
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    return this.$http.put(this.API + this.resource + card.id, card);
   };
 }

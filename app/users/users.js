@@ -6,6 +6,7 @@ import usersTemplate from '../users/users.html';
 import usersAddTemplate from '../users/views/add-user.html';
 import usersEditTemplate from '../users/views/edit-user.html';
 
+/** @ngInject */
 const usersModule = angular.module('app.users', [])
   .config(function($stateProvider) {
     $stateProvider
@@ -58,4 +59,10 @@ const usersModule = angular.module('app.users', [])
   .controller('UsersCtrl', usersController)
   .name;
 
+/**
+ * Users is in charge of encapsulating all functionality
+ * related to users inside the application.
+ * @type {string}
+ * @return {string} 'app.users'
+ */
 export default usersModule;

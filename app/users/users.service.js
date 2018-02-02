@@ -1,10 +1,14 @@
-
 /**
- * Users Service is in charge of API calls (GET, POST, PUT, DELETE)
- * related to Users
+ * Users Service is in charge of emitting http requests to the API
+ * related to user information.
  */
-
 export default class UsersService {
+  /**
+   * Constructs a new instance of UsersService and initializes it.
+   * @param $http
+   * @param $log
+   * @param API
+   */
   constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
@@ -23,9 +27,12 @@ export default class UsersService {
   }
 
   /**
-   * Requests the backend for a list of all system users (Admins, Custodians, and Vehicle Managers)
+   * Requests users to the API, filtering results if params provided.
+   * @param {Object} params Object where each key and value is used
+   * for filtering requested User objects
+   * @return {Promise<Object>}
    */
-  getUsers(params = {}) {
+  getUsers(params) {
     return this.$http.get(this.API + this.resource, {
       params: params
     }).then((response) => {
@@ -33,39 +40,35 @@ export default class UsersService {
         this.pageSize = response.data.data[0].per_page;
         this.total = response.data.data[0].total;
         return this.users;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
   /**
-   * Requests the backend for a specific user
-   * @param id User ID
+   * Requests a single user to the API.
+   * @param {number} id Numerical value provided by the API
+   * @return {Promise<Object>}
    */
   getUser(id) {
     return this.$http.get(this.API + this.resource + id)
       .then((response) => {
         this.user = response.data.data;
         return this.user;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
   /**
-   * Requests the backend to create a new system user
-   * @param user User to be created
+   * Requests the creation of a new User object to the API.
+   * @param {Object} user User for creation
+   * @return {Promise<Object>}
    */
   createUser(user) {
     return this.$http.post(this.API + this.resource, user);
   }
 
   /**
-   * Requests the backend to delete a user
-   * @param user user to be deleted
-   * @returns {*} Server response
+   * Requests the deletion of a single existing User object to the API.
+   * @param {Object} user User for deletion
+   * @returns {Promise<Object>}
    */
   deleteUser(user) {
     user.user_type_id = 4;  //4 is for Inactive
@@ -73,36 +76,36 @@ export default class UsersService {
   }
 
   /**
-   * Requests the backend to modify an existing user
-   * @param user User to be modified
-   * @returns {Promise<Object>} Server response
+   * Requests the modification of a single existing
+   * User object to the API.
+   * @param {Object} user User for modification
+   * @returns {Promise<Object>}
    */
   editUser(user) {
-    return this.$http.put(this.API + this.resource + user.id, user)
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    return this.$http.put(this.API + this.resource + user.id, user);
   }
 
+  /**
+   * Requests user types to the API, in a list sorted by name.
+   * @return {Promise<Object[]>}
+   */
   getUserTypes() {
     return this.$http.get(this.API +'/api/v1/user-types')
       .then((response) => {
         this.userTypes = response.data;
         return this.userTypes;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 
+  /**
+   * Requests users to the API, in a list sorted by name.
+   * @return {Promise<Object[]>}
+   */
   getNonPaginatedUsers() {
     return this.$http.get(this.API + '/api/v1/custodians-list')
       .then((response) => {
         this.nonPaginatedUsers = response.data;
         return this.nonPaginatedUsers;
-      })
-      .catch((error) => {
-        this.$log.log(error);
       });
   }
 }

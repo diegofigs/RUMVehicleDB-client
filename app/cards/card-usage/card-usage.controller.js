@@ -1,11 +1,25 @@
 import moment from 'moment';
 
 /**
- * Controller is in charge of all business logic related to card usages (Gas transactions)
+ * CardsUsage Controller is in charge of presentation and validation logic
+ * for usage related states and interactions.
  */
 export default class CardsUsageController {
+  /**
+   * Constructs a new instance of CardsUsageController and initializes it.
+   * @param $state
+   * @param $log
+   * @param $stateParams
+   * @param $window
+   * @param FileUploader
+   * @param AuthService
+   * @param CardsService
+   * @param CardUsageService
+   * @param swal
+   * @param API
+   */
   constructor($state, $log, $stateParams, $window, FileUploader,
-              AuthService, CardsService, CardUsageService, swal, ) {
+              AuthService, CardsService, CardUsageService, swal, API) {
     this.$state = $state;
     this.$log = $log;
     this.$stateParams = $stateParams;
@@ -18,6 +32,7 @@ export default class CardsUsageController {
     this.singleCardUsages = this.cardUsageService.singleCardUsages;
     this.temp_date = new Date();
     this.swal = swal;
+    this.API = API;
 
     this.card = this.cardsService.getCard($stateParams.id);
 
@@ -58,10 +73,11 @@ export default class CardsUsageController {
     );
 
     /**
-     *  Used for uploading gas transaction, including receipt
+     * Uploader object used for uploading assets like
+     * receipt images and travel ballots.
      */
     this.uploader = new FileUploader({
-      url: 'http://dev.uprm.edu/rumvehicles/api/v1/records',
+      url: this.API + '/api/v1/records',
       alias: 'filename',
       method: 'POST',
       headers: {
@@ -70,29 +86,28 @@ export default class CardsUsageController {
     });
 
     /**
-     * Gathers New Card Usage data and file data (receipt picture) together
-     * @param fileItem
+     * Gathers new Card Usage data and file (receipt picture),
+     * aggregates them to the form data.
+     * @param {File} fileItem File item to be processed before upload
+     * @callback
      */
     this.uploader.onBeforeUploadItem = (fileItem) => {
       this.newCardUsage.custodian_id = this.authService.getUser().id;
       this.newCardUsage.card_id = this.cardsService.card.id;
       this.newCardUsage.department_id = this.cardsService.card.department_id;
       this.newCardUsage.vehicle_id = 1;
-      this.$log.log(this.newCardUsage);
       fileItem.formData.push(this.newCardUsage);
     };
 
     /**
-     * Once upload is complete, goes back to card usage list
+     * Once upload is complete, navigate back to card usage state.
      * @param item
      * @param response
      * @param status
      * @param headers
+     * @callback
      */
     this.uploader.onCompleteItem = (item, response, status, headers) => {
-      this.$log.log(item);
-      this.$log.log(status);
-      this.$log.log(response);
       this.$state.go('dashboard.cards.view.card-usage');
     };
 
@@ -101,7 +116,7 @@ export default class CardsUsageController {
 
   /**
    * Shows a card usage receipt in a new tab
-   * @param usage Card usage object
+   * @param {Object} usage Usage object for receipt display
    */
   showReceipt(usage){
     this.$window.open(usage.record_picture, "_blank");
@@ -175,32 +190,40 @@ export default class CardsUsageController {
   }
 
   /**
-   * Gets all card usages or gas transactions that are logged in the system
-   * @returns {Promise} Promise object represents all card usages
+   * Requests card usages to service with filter object provided.
+   * @return {Promise<Object>}
    */
   getCardsUsages() {
     return this.cardUsageService.getCardsUsages();
   }
 
   /**
-   * Gets a single card usages or gas transactions that are logged in the system
-   * @returns {Promise} Promise object represents a single card usages
+   * Requests card usages of a single card to service with id provided.
+   * @param {number} id Numerical value assigned by API
+   * @return {Promise<Object>}
    */
-  getSingleCardUsages(cardID) {
-    return this.cardUsageService.getSingleCardUsages(cardID);
+  getSingleCardUsages(id) {
+    return this.cardUsageService.getSingleCardUsages(id);
   }
 
   /**
-   * Modifies a specific card usage or gas transaction
-   * @param id Card Usage ID
+   * Requests modification of a specific card usage to service,
+   * with id of desired
+   * @param {number} id Numerical value assigned by API
+   * @return {Promise<Object>}
    */
   editCardUsage(id) {
-    return this.cardUsageService.editCardUsage(this.cardUsages.id)
+    return this.cardUsageService.editCardUsage(id)
       .then(() => {
         this.$state.go('dashboard.cards.view.card-usage');
       });
   }
 
+  /**
+   * Requests card usages of a single card to service with id provided,
+   * paginated for presentation purposes.
+   * @return {Promise<Object>}
+   */
   getPaginatedSingleCardUsages(){
     return this.cardUsageService.getSingleCardUsages(this.$stateParams.id, this.pageQuery)
       .then( () => {
@@ -209,8 +232,8 @@ export default class CardsUsageController {
   }
 
   /**
-   * gets current system User
-   * @returns {*|Object} User Object
+   * Gets currently logged user
+   * @returns {Object|null}
    */
   getUser() {
     return this.authService.getUser();

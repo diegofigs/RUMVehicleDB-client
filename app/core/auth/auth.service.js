@@ -1,6 +1,7 @@
 /**
  * AuthService is in charge of enforcing security
- * measures in the core application layer.
+ * measures in the core application layer by emitting http
+ * requests to the API for authenticating users into the app.
  */
 export default class AuthService {
   /**
@@ -8,6 +9,7 @@ export default class AuthService {
    * @param $http
    * @param $log
    * @param $sessionStorage
+   * @param API
    */
   constructor($http, $log, $sessionStorage, API) {
     this.$http = $http;
@@ -28,7 +30,7 @@ export default class AuthService {
   /**
    * Authenticates a user with credentials and
    * returns its details.
-   * @param {Object} user user credentials
+   * @param {Object} user credentials
    * @return {Promise<Object>}
    */
   authenticate(user) {

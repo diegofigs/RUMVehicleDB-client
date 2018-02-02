@@ -1,4 +1,3 @@
-
 import vehiclesController from './vehicles.controller';
 import vehiclesService from './vehicles.service';
 
@@ -8,6 +7,7 @@ import vehiclesAddTemplate from './views/add-vehicle.html';
 import vehiclesEditTemplate from './views/edit-vehicle.html';
 import vehiclesViewTemplate from './views/view-vehicle.html';
 
+/** @ngInject */
 const vehiclesModule = angular.module('app.vehicles', [])
   .config(function($stateProvider) {
     $stateProvider
@@ -69,4 +69,12 @@ const vehiclesModule = angular.module('app.vehicles', [])
   .controller('VehiclesCtrl', vehiclesController)
   .name;
 
+/**
+ * Vehicles is in charge of encapsulating all functionality
+ * related to vehicles inside the application.
+ * This angular module declares all states from
+ * the vehicles sub tree of views.
+ * @type {string}
+ * @return {string} 'app.vehicles'
+ */
 export default vehiclesModule;

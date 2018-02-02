@@ -1,10 +1,14 @@
 /**
- * Card Usage Service is in charge of API calls (GET, POST, PUT, DELETE)
- * related to card usage (gas transactions) object
+ * CardUsage Service is in charge of emitting http requests to the API
+ * related to card expense information.
  */
-
 export default class CardUsageService {
-
+  /**
+   * Constructs a new instance of CardUsageService and initializes it.
+   * @param $http
+   * @param $log
+   * @param API
+   */
   constructor($http, $log, API) {
     this.$http = $http;
     this.$log = $log;
@@ -24,9 +28,10 @@ export default class CardUsageService {
   }
 
   /**
-   * Requests all card usages if no param is given
-   * If filtering params are given, then requests card usages that apply only
-   * @param params Filtering parameters for card usages
+   * Requests usages to the API, filtering results if params provided.
+   * @param {Object} params Object where each key and value is used
+   * for filtering requested Usage objects
+   * @return {Promise<Object>}
    */
   getCardsUsages(params) {
     return this.$http.get(this.API + this.resource, {
@@ -44,8 +49,10 @@ export default class CardUsageService {
   };
 
   /**
-   * Requests card usages for a single card
-   * @params cardID Card ID
+   * Requests a single card usage from a card to the API.
+   * @param {number} cardID Numerical value provided by the API
+   * @param {Object} params
+   * @return {Promise<Object>}
    */
   getSingleCardUsages(cardID, params) {
     //Empty array of single card usages
@@ -66,28 +73,23 @@ export default class CardUsageService {
   };
 
   /**
-   * Deletes a specific card usage from the backend
-   * @param id Card Usage ID
-   * @returns {Promise} Server response. If delete was not successful, catch error and log it.
+   * Requests the deletion of a single existing Card Usage
+   * object to the API.
+   * @param {number} id Numerical id of Usage object for deletion
+   * @returns {Promise<Object>}
    */
   deleteCardUsage(id) {
-    this.$log.log('I am inside deleteCardUsage(cardUsage) in card-usage.service');
-    return this.$http.delete(this.API + this.resource + id)
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    return this.$http.delete(this.API + this.resource + id);
   };
 
   /**
-   * Modifies a card usage in the backend
-   * @param cardUsage Card Usage
-   * @returns {FinishedRequest<T>} Server response. If edit was not successful, catch error and log it.
+   * Requests the modification of a single existing
+   * Usage object to the API.
+   * @param {Object} cardUsage Usage for modification
+   * @returns {Promise<Object>}
    */
   editCardUsage(cardUsage) {
-    return this.$http.put(this.API + this.resource + cardUsage)
-      .catch((error) => {
-        this.$log.log(error);
-      });
+    return this.$http.put(this.API + this.resource + cardUsage);
   };
 
 }

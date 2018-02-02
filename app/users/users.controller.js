@@ -1,13 +1,22 @@
-
 /**
- * Users Controller is in charge of all business logic related to System Users
- * The system has 4 different type of users: Admin, Vehicle Admin, Custodian, Auxiliary Custodian
+ * Users Controller is in charge of presentation and validation logic
+ * for user related states and interactions.
  */
 export default class UsersController {
+  /**
+   * Constructs a new instance of UsersController and initializes it.
+   * @param $state
+   * @param $log
+   * @param UsersService
+   * @param DepartmentsService
+   * @param swal
+   */
   constructor($state, $log, UsersService, DepartmentsService, swal) {
     this.$state = $state;
     this.$log = $log;
     this.usersService = UsersService;
+    this.swal = swal;
+
 
     this.users = this.usersService.users;
     this.user = this.usersService.user;
@@ -15,7 +24,6 @@ export default class UsersController {
     this.newUser = {};
     this.departments = DepartmentsService.departments;
 
-    this.swal = swal;
 
     this.filter = {
       department_id: '',
@@ -73,7 +81,9 @@ export default class UsersController {
   }
 
   /**
-   * Sends user to be created to the Users Service
+   * Requests user creation to service, providing the
+   * User object.
+   * @return {Promise<Object>}
    */
   createUser() {
     return this.usersService.createUser(this.newUser)
@@ -83,9 +93,8 @@ export default class UsersController {
   }
 
   /**
-   * If card user is successful, shows user success feedback
-   * If user deletion is unsuccessful, shows user error feedback
-   * @param user User to be deleted
+   * Asks for user confirmation before actually processing deletion.
+   * @param {Object} user User to be deleted
    */
   confirmUserDeletion(user){
 
@@ -117,7 +126,9 @@ export default class UsersController {
   }
 
   /**
-   * Sends user to be deleted to the Users Service
+   * Requests card deletion to service, providing
+   * desired User object.
+   * @return {Promise<Object>}
    */
   deleteUser(user){
     return this.usersService.deleteUser(user)
@@ -149,7 +160,9 @@ export default class UsersController {
   }
 
   /**
-   * Sends user to be edited to the Card Service
+   * Requests user modification to service, providing
+   * modified User object.
+   * @return {Promise<Object>}
    */
   editUser(){
     return this.usersService.editUser(this.user).then(() => {
@@ -157,6 +170,10 @@ export default class UsersController {
     });
   }
 
+  /**
+   * Requests users to service with page object provided.
+   * @return {Promise<Object>}
+   */
   getPaginatedUsers(){
     return this.usersService.getUsers(this.pageQuery)
       .then( () => {
@@ -165,7 +182,9 @@ export default class UsersController {
   }
 
   /**
-   * Requests Users Service a list of users with filter parameters applied
+   * Requests cards to service with filter object provided,
+   * synchronizes pagination metadata on success.
+   * @return {Promise<Object>}
    */
   applyUsersFilter() {
     return this.usersService.getUsers(this.filter)

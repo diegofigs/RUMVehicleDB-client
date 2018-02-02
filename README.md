@@ -1,11 +1,42 @@
-## Material Dashboard Admin Angular Theme
+# RUM Vehicle - Web
 
-Thanks for purchasing the Material Dashboard Admin Angular Theme.
+A web application that handles all expenses related to UPRM's Vehicle fleet.
 
-Follow the documentation to install and get started with the development:
+## Usage
 
-  - Link to documentation: http://material-admin-angular.strapui.com/#/dashboard/docs
-  - Live Demo URL: http://material-admin-angular.strapui.com/
-  - Product URL: http://www.strapui.com/themes/material-dashboard-admin-angular/
+First, install the package using npm:
+```
+npm install
+```
+Then, create a .env file for providing environment variables to build:
+```
+nano .env
+```
+define ASSET_PATH, PATH and PORT in .env and use it like so:
+```
+# Run application in dev mode
+npm run dev
 
-Happy coding!
+# Run application in prod mode (served by Express)
+npm run prod
+OR
+npm run build && npm run server
+```
+
+## Distribution and Deployment
+For distribution purposes, minified + gzipped web application with documentation
+can be built using the following:
+```
+npm run build
+```
+Results can be found in /dist
+
+## Documentation
+Documentation can be generated using npm:
+```
+npm build:docs
+```
+
+## License
+
+This library is licensed under MIT.

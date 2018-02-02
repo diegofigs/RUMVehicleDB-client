@@ -33,12 +33,15 @@ import 'moment';
 import englishTranslations from './languages/en.json';
 import spanishTranslations from './languages/es.json';
 
+// Define constants
 export const appModule = 'app';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const API = process.env.API;
 
+// Initialize application module
 angular.module(appModule, [
+  // Inject dependencies
   angularUiRouter,
   angularAnimate,
   'ngMessages',
@@ -60,12 +63,13 @@ angular.module(appModule, [
   usersModule,
   cardUsageModule,
   recordsModule,
-]).config(($translateProvider) => {
+])// Config translations
+  .config(($translateProvider) => {
   $translateProvider.translations('en', englishTranslations);
   $translateProvider.translations('es', spanishTranslations);
   $translateProvider.useSanitizeValueStrategy(null);
   $translateProvider.preferredLanguage('en');
-})
+})// Config material design theming
   .config(($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
       .fontSet('mdi', 'material-icons');
@@ -84,6 +88,7 @@ angular.module(appModule, [
       .primaryPalette('newGreen')
       .warnPalette('newRed');
   })
+  // Add constants in angular context
   .constant('NODE_ENV', NODE_ENV)
   .constant('API', API)
   .run(($rootScope) => {
